@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class SelectionController : MonoBehaviour
@@ -15,5 +16,10 @@ public class SelectionController : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public IEnumerable<Character> GetSelectedCharacters()
+    {
+        return PlayableCharacters.Where(character => character.GetComponent<SelectableObject>().IsSelected);
     }
 }

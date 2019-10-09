@@ -6,19 +6,23 @@ public class MovementController : MonoBehaviour
 {
     public float Speed = 10;
     private Vector3 currentMoveToTarget = Vector3.negativeInfinity;
-    private Collider collider;
 
-    private void Start()
+    public void MoveToPosition(Vector2 targetPosition)
     {
-        collider = GetComponent<Collider>();
-    }
-
-    public void MoveToPosition(Vector3 TargetPosition)
-    {
-        currentMoveToTarget = TargetPosition;
+        if (targetPosition.x == this.currentMoveToTarget.x && targetPosition.y == this.currentMoveToTarget.y)
+        {
+            // Already Moving there.
+            return;
+        }
+        currentMoveToTarget = new Vector3(targetPosition.x, targetPosition.y, transform.position.z);
         // TODO: Get the path we should walk
-        var path = new Vector3[] { TargetPosition };
+        var path = new Vector3[] { currentMoveToTarget };
         StartCoroutine(MoveToFollowPath(path));
+    }
+    public void StopMovement()
+    {
+        currentMoveToTarget = Vector3.negativeInfinity;
+        GetComponent<Animator>().SetBool("Walking", false);
     }
 
     private IEnumerator MoveToFollowPath(Vector3[] Path)
@@ -37,12 +41,11 @@ public class MovementController : MonoBehaviour
                 yield return null;
             }
         }
-        GetComponent<Animator>().SetBool("Walking", false);
+        StopMovement();
     }
 
     private void OnCollisionEnter2D()
     {
-        currentMoveToTarget = Vector3.negativeInfinity;
-        GetComponent<Animator>().SetBool("Walking", false);
+        StopMovement();
     }
 }
