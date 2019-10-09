@@ -6,6 +6,13 @@ public class MovementController : MonoBehaviour
 {
     public float Speed = 10;
     private Vector3 currentMoveToTarget = Vector3.negativeInfinity;
+    private Collider collider;
+
+    private void Start()
+    {
+        collider = GetComponent<Collider>();
+    }
+
     public void MoveToPosition(Vector3 TargetPosition)
     {
         currentMoveToTarget = TargetPosition;
@@ -30,6 +37,12 @@ public class MovementController : MonoBehaviour
                 yield return null;
             }
         }
+        GetComponent<Animator>().SetBool("Walking", false);
+    }
+
+    private void OnCollisionEnter2D()
+    {
+        currentMoveToTarget = Vector3.negativeInfinity;
         GetComponent<Animator>().SetBool("Walking", false);
     }
 }
