@@ -21064,12 +21064,14 @@ GameObject:
   - component: {fileID: 1162048158}
   - component: {fileID: 1162048157}
   - component: {fileID: 1162048160}
-  - component: {fileID: 1162048162}
   - component: {fileID: 1162048164}
   - component: {fileID: 1162048163}
   - component: {fileID: 1162048165}
   - component: {fileID: 1162048166}
   - component: {fileID: 1162048161}
+  - component: {fileID: 1162048167}
+  - component: {fileID: 1162048162}
+  - component: {fileID: 1162048168}
   m_Layer: 0
   m_Name: MinotaurGrey
   m_TagString: Untagged
@@ -21199,7 +21201,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b6285f3991f7b243856bd2334d8f223, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TotalMaxHitpoints: 10
+  TotalMaxHitpoints: 100
 --- !u!114 &1162048162
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21209,12 +21211,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1162048156}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3af11c1c255c774cb3e07255e183b6e, type: 3}
+  m_Script: {fileID: 11500000, guid: f3725e30b6c411f44911375399ecaa69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Range: 1
-  DamagePerHit: 5
-  Speed: 1
+  Target: {fileID: 0}
+  AutoAttackSkill: {fileID: 1162048167}
 --- !u!114 &1162048163
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21266,6 +21267,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AggroRange: 10
+--- !u!114 &1162048167
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1162048156}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 800b101e2bf061640b2b9a0ecb366647, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Cooldown: 2
+  CanTargetDownedCharacters: 0
+  Range: 1
+  Repetitions: 3
+  Speed: 1
+  SkillAnimationName: Attacking
+  DamagePerHit: 3
+--- !u!114 &1162048168
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1162048156}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c471b92036da804991d9f321532e39c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1177634638
 GameObject:
   m_ObjectHideFlags: 0
@@ -29875,7 +29907,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PartyMembers:
   - {fileID: 1597586603}
-  - {fileID: 0}
 --- !u!1 &1427510076
 GameObject:
   m_ObjectHideFlags: 0
@@ -34392,17 +34423,20 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1597586606}
+  - component: {fileID: 1597586612}
+  - component: {fileID: 1597586613}
   - component: {fileID: 1597586605}
   - component: {fileID: 1597586604}
   - component: {fileID: 1597586603}
   - component: {fileID: 1597586608}
   - component: {fileID: 1597586607}
+  - component: {fileID: 1597586616}
   - component: {fileID: 1597586609}
   - component: {fileID: 1597586610}
   - component: {fileID: 1597586611}
-  - component: {fileID: 1597586613}
-  - component: {fileID: 1597586612}
+  - component: {fileID: 1597586615}
   - component: {fileID: 1597586614}
+  - component: {fileID: 1597586617}
   m_Layer: 0
   m_Name: Knight
   m_TagString: Untagged
@@ -34422,7 +34456,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93f483bb6549edc4b990d38018ec1bd7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TotalMaxHitpoints: 10
+  TotalMaxHitpoints: 100
+  SelfTargetSkill: {fileID: 0}
+  EnemyTargetSkill: {fileID: 1597586617}
+  FriendlyTargetSkill: {fileID: 0}
 --- !u!95 &1597586604
 Animator:
   serializedVersion: 3
@@ -34631,12 +34668,61 @@ MonoBehaviour:
   m_GameObject: {fileID: 1597586602}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3af11c1c255c774cb3e07255e183b6e, type: 3}
+  m_Script: {fileID: 11500000, guid: f3725e30b6c411f44911375399ecaa69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Target: {fileID: 0}
+  AutoAttackSkill: {fileID: 1597586615}
+--- !u!114 &1597586615
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1597586602}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 800b101e2bf061640b2b9a0ecb366647, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Cooldown: 0
+  CanTargetDownedCharacters: 0
   Range: 1
-  DamagePerHit: 2
+  Repetitions: 1
   Speed: 1
+  SkillAnimationName: Attacking
+  DamagePerHit: 1
+--- !u!114 &1597586616
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1597586602}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c471b92036da804991d9f321532e39c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1597586617
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1597586602}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 800b101e2bf061640b2b9a0ecb366647, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Cooldown: 3
+  CanTargetDownedCharacters: 0
+  Range: 1
+  Repetitions: 1
+  Speed: 0.5
+  SkillAnimationName: Attacking
+  DamagePerHit: 10
 --- !u!1 &1606277191
 GameObject:
   m_ObjectHideFlags: 0

@@ -14,6 +14,7 @@ public class CombatantBase : MonoBehaviour
     public int HitPoints { get; protected set; }
     // Current maximum hitpoints, i.e. value to which the combatant can be healed.
     public int MaxHitpoints { get; protected set; }
+    public TargetedSkill[] CharacterSkills { get; protected set; }
 
     HealthBar healthBar;
 
@@ -58,6 +59,7 @@ public class CombatantBase : MonoBehaviour
         HitPoints = TotalMaxHitpoints;
         healthBar = GetComponentInChildren<HealthBar>();
         UpdateHealthbar();
+        CharacterSkills = GetComponents<TargetedSkill>();
     }
 
     // Update is called once per frame

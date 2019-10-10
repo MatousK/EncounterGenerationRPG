@@ -6,17 +6,17 @@ public class AggressiveBehavior : MonoBehaviour
 {
     public float AggroRange = 5;
     PartyManager partyManager;
-    AutoAttack autoAttack;
+    AutoAttacking autoAttacking;
 
     private void Start()
     {
         partyManager = FindObjectOfType<PartyManager>();
-        autoAttack = GetComponent<AutoAttack>();
+        autoAttacking = GetComponent<AutoAttacking>();
     }
     // Update is called once per frame
     void Update()
     {
-        if (!autoAttack.IsAutoAttacking)
+        if (autoAttacking.Target == null)
         {
             AttackClosestCharacter();
         }
@@ -38,7 +38,7 @@ public class AggressiveBehavior : MonoBehaviour
         }
         if (closestDistance < AggroRange)
         {
-            autoAttack.StartAutoAttack(closestTarget);
+            autoAttacking.Target = closestTarget;
         }
     }
 }
