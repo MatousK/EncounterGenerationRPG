@@ -12,11 +12,21 @@ public class SelectableObject : MonoBehaviour
     {
         selectionIndicator = GetComponent<Circle>();
         selectionIndicator.IsVisible = IsSelected;
+        var combatant = GetComponent<CombatantBase>();
+        if (combatant != null)
+        {
+            combatant.CombatantDied += Combatant_CombatantDied;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
         selectionIndicator.IsVisible = IsSelected;
+    }
+
+    private void Combatant_CombatantDied(object sender, System.EventArgs e)
+    {
+        IsSelected = false;
     }
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class LeftClickController : MonoBehaviour
 {
-    private SelectionController selectionController;
+    private PartyManager partyManager;
     Texture2D whiteTexture;
     Rect currentSelectionRectangle = Rect.zero;
     Vector2 selectionStart = Vector2.positiveInfinity;
@@ -14,7 +14,7 @@ public class LeftClickController : MonoBehaviour
         whiteTexture = new Texture2D(1, 1);
         whiteTexture.SetPixel(0, 0, Color.white);
         whiteTexture.Apply();
-        selectionController = GetComponent<SelectionController>();
+        partyManager = GetComponent<PartyManager>();
     }
 
     // Update is called once per frame
@@ -41,7 +41,7 @@ public class LeftClickController : MonoBehaviour
     private void SelectPlayerCharacters(Vector2 selectionStart, Vector2 selectionEnd)
     {
         var selectionBoxBounds = GetWorldBounds(selectionStart, selectionEnd);
-        foreach (var character in selectionController.PlayableCharacters)
+        foreach (var character in partyManager.AlivePartyMembers)
         {
             var characterBounds = character.GetComponent<SpriteRenderer>().bounds;
             character.GetComponent<SelectableObject>().IsSelected = characterBounds.Intersects(selectionBoxBounds);

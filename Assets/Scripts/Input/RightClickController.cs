@@ -5,10 +5,10 @@ using UnityEngine;
 
 public class RightClickController : MonoBehaviour
 {
-    SelectionController selectionController;
+    PartyManager partyManager;
     private void Start()
     {
-        selectionController = GetComponent<SelectionController>();
+        partyManager = GetComponent<PartyManager>();
     }
 
     // Update is called once per frame
@@ -24,8 +24,7 @@ public class RightClickController : MonoBehaviour
 
             var hitEnemy = hit.collider?.GetComponent<Enemy>();
             var hitFriend = hit.collider?.GetComponent<Character>();
-            var selectedCharacters = selectionController.GetSelectedCharacters();
-            foreach (var character in selectedCharacters)
+            foreach (var character in partyManager.SelectedPartyMembers)
             {
                 if (hitEnemy)
                 {

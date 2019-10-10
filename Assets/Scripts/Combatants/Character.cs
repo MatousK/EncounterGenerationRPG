@@ -7,14 +7,16 @@ public class Character : CombatantBase
 {
     private MovementController movementController;
     // Start is called before the first frame update
-    void Start()
+    protected override void Start()
     {
+        base.Start();
         movementController = GetComponent<MovementController>();
     }
 
     // Update is called once per frame
-    void Update()
+    protected override void Update()
     {
+        base.Update();
     }
 
     public virtual void SkillAttackUsed(Enemy target) { }

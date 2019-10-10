@@ -5,8 +5,15 @@ using UnityEngine;
 public class AutoAttack : MonoBehaviour
 {
     public int Range = 1;
-    public float DamagePerHit = 1;
+    public int DamagePerHit = 1;
     public float Speed = 1;
+    public bool IsAutoAttacking
+    {
+        get
+        {
+            return target != null;
+        }
+    }
     private CombatantBase target;
     // Start is called before the first frame update
     void Start()
@@ -21,6 +28,7 @@ public class AutoAttack : MonoBehaviour
         {
             GetComponent<Animator>().SetBool("Attacking", false);
             GetComponent<OrientationController>().LookAtTarget = null;
+            target = null;
             return;
         }
         if (GetComponent<Collider2D>().Distance(target.GetComponent<Collider2D>()).distance > Range)
@@ -45,6 +53,6 @@ public class AutoAttack : MonoBehaviour
 
     public void AttackHit()
     {
-        target.HitPoints -= 1;
+        target.DealDamage(DamagePerHit);
     }
 }
