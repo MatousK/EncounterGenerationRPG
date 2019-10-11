@@ -1,16 +1,16 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Rage : PersonalSkill
 {
-    const int RageDuration = 5;
-    const int RageDamageMultiplier = 4;
-    const float RageSpeedMultiplier = 4;
-    const float RageCooldown = 10;
+    protected int RageDuration = 5;
+    protected int RageDamageMultiplier = 4;
+    protected float RageSpeedMultiplier = 4;
+    protected float RageCooldown = 10;
 
-    AutoAttacking autoAttacking;
     CombatantsManager combatantsManager;
     SelectableObject selectableComponent;
     CombatantBase combatant;
@@ -25,15 +25,15 @@ public class Rage : PersonalSkill
     protected override void Update()
     {
         base.Update();
-        if (IsActive && autoAttacking.Target == null)
+        if (IsActive && !combatantsManager.GetOpponentsFor(selfCombatant, onlyAlive:true).Any())
         {
-            AutoAttackClosestEnemy();
+            // Everyone is dead, noone to attack.
+            TryStopSkill();
         }
     }
     protected override void Start()
     {
         combatant = GetComponent<CombatantBase>();
-        autoAttacking = GetComponent<AutoAttacking>();
         combatantsManager = FindObjectOfType<CombatantsManager>();
         selectableComponent = GetComponent<SelectableObject>();
         base.Start();
@@ -45,7 +45,6 @@ public class Rage : PersonalSkill
             selectableComponent.IsSelected = false;
             selectableComponent.IsSelectionEnabled = false;
         }
-        AutoAttackClosestEnemy();
 
         combatant.Attributes.MovementSpeedMultiplier *= RageSpeedMultiplier;
         combatant.Attributes.AttackSpeedMultiplier *= RageSpeedMultiplier;
@@ -63,28 +62,5 @@ public class Rage : PersonalSkill
         combatant.Attributes.MovementSpeedMultiplier /= RageSpeedMultiplier;
         combatant.Attributes.AttackSpeedMultiplier /= RageSpeedMultiplier;
         combatant.Attributes.DealtDamageMultiplier /= RageDamageMultiplier;
-    }
-
-    private void AutoAttackClosestEnemy()
-    {
-        float closestDistance = float.PositiveInfinity;
-        CombatantBase closestTarget = null;
-        foreach (var target in combatantsManager.GetOpponentsFor(selfCombatant))
-        {
-            var distanceToTarget = target.GetComponent<Collider2D>().Distance(GetComponent<Collider2D>()).distance;
-            if (distanceToTarget < closestDistance)
-            {
-                closestDistance = distanceToTarget;
-                closestTarget = target;
-            }
-        }
-        if (closestTarget == null)
-        {
-            TryStopSkill();
-        }
-        else
-        {
-            autoAttacking.Target = closestTarget;
-        }
     }
 }

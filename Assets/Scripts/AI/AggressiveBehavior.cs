@@ -18,10 +18,6 @@ public class AggressiveBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GetComponent<Rage>()?.CanUseSkill() == true)
-        {
-            GetComponent<Rage>().ActivateSkill();
-        }
         if (autoAttacking.Target == null)
         {
             AttackClosestOpponent();
@@ -33,13 +29,13 @@ public class AggressiveBehavior : MonoBehaviour
         var collider = GetComponent<Collider2D>();
         float closestDistance = float.PositiveInfinity;
         CombatantBase closestTarget = null;
-        foreach (var character in combatantsManager.GetOpponentsFor(selfCombatant, onlyAlive: true))
+        foreach (var opponent in combatantsManager.GetOpponentsFor(selfCombatant, onlyAlive: true))
         {
-            var distanceToCharacter = character.GetComponent<Collider2D>().Distance(collider).distance;
-            if (distanceToCharacter < closestDistance)
+            var distanceToOpponent = opponent.GetComponent<Collider2D>().Distance(collider).distance;
+            if (distanceToOpponent < closestDistance)
             {
-                closestDistance = distanceToCharacter;
-                closestTarget = character;
+                closestDistance = distanceToOpponent;
+                closestTarget = opponent;
             }
         }
         if (closestDistance < AggroRange)
