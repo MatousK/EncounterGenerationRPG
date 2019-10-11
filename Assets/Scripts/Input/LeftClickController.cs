@@ -1,10 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class LeftClickController : MonoBehaviour
 {
-    private PartyManager partyManager;
+    private CombatantsManager combatantsManager;
     Texture2D whiteTexture;
     Rect currentSelectionRectangle = Rect.zero;
     Vector2? selectionStart;
@@ -14,7 +15,7 @@ public class LeftClickController : MonoBehaviour
         whiteTexture = new Texture2D(1, 1);
         whiteTexture.SetPixel(0, 0, Color.white);
         whiteTexture.Apply();
-        partyManager = GetComponent<PartyManager>();
+        combatantsManager = FindObjectOfType<CombatantsManager>();
     }
 
     // Update is called once per frame
@@ -46,10 +47,15 @@ public class LeftClickController : MonoBehaviour
     private void SelectPlayerCharacters(Vector2 selectionStart, Vector2 selectionEnd)
     {
         var selectionBoxBounds = GetWorldBounds(selectionStart, selectionEnd);
-        foreach (var character in partyManager.AlivePartyMembers)
+        foreach (var character in combatantsManager.GetPlayerCharacters(onlyAlive: true))
         {
+            var selectableComponent = character.GetComponent<SelectableObject>();
+            if (!selectableComponent.IsSelectionEnabled)
+            {
+                continue;
+            }
             var characterBounds = character.GetComponent<SpriteRenderer>().bounds;
-            character.GetComponent<SelectableObject>().IsSelected = characterBounds.Intersects(selectionBoxBounds);
+            selectableComponent.IsSelected = characterBounds.Intersects(selectionBoxBounds);
         }
     }
     // MARK: Screen space transformations.

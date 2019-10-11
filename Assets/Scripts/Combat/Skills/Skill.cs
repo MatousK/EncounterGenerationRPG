@@ -10,8 +10,19 @@ using UnityEngine;
 public abstract class Skill: MonoBehaviour
 {
     /// <summary>
+    /// If true, the player cannot start another skill while this skill is being executed.
+    /// </summary>
+    [NonSerialized]
+    public bool BlocksOtherSkills = true;
+    /// <summary>
+    /// If true, the player cannot order the character to move while this skill is being executed.
+    /// </summary>
+    [NonSerialized]
+    public bool BlocksManualMovement = true;
+    /// <summary>
     /// Number of seconds for which the skill cannot be used again once it's used.
     /// </summary>
+    [NonSerialized]
     public float Cooldown;
     /// <summary>
     /// When was this skill used last, in game time.
@@ -20,18 +31,22 @@ public abstract class Skill: MonoBehaviour
     /// <summary>
     /// How many spaces away from target can the character be to start using the skill.
     /// </summary>
+    [NonSerialized]
     public int Range = 1;
     /// <summary>
     /// How many times does the animation repeat as part of one skill usage.
     /// </summary>
+    [NonSerialized]
     public int Repetitions = 1;
     /// <summary>
     /// How fast should the animation play. 1 is start, 2 is twice as fast, 0.5 is half as slow etc.
     /// </summary>
+    [NonSerialized]
     public float Speed = 1;
     /// <summary>
     /// The name of the animation that should be played while this skill is being used.
     /// </summary>
+    [NonSerialized]
     public string SkillAnimationName;
     /// <summary>
     /// This should fire events when a skill animation reaches points when we should react to it.
@@ -49,10 +64,15 @@ public abstract class Skill: MonoBehaviour
     /// How many times was this animation already completed while using this skill
     /// </summary>
     protected int animationCompletedCount;
+    /// <summary>
+    /// Combatant who is using this skill.
+    /// </summary>
+    protected CombatantBase selfCombatant;
     // Start is called before the first frame update
     protected virtual void Start()
     {
         animationEventListener = GetComponent<AnimationEventsListener>();
+        selfCombatant = GetComponent<CombatantBase>();
     }
 
     // Update is called once per frame
@@ -62,7 +82,8 @@ public abstract class Skill: MonoBehaviour
         {
             return;
         }
-        if (!didGetInRange && GetDistanceToTargetLocation() >= Range)
+        var rangeMultiplier = selfCombatant?.Attributes?.RangeMultiplier ?? 1;
+        if (!didGetInRange && GetDistanceToTargetLocation() >= Range * rangeMultiplier)
         {
             // Move in range.
             GetComponent<MovementController>().MoveToPosition(GetTargetLocation());
@@ -109,7 +130,6 @@ public abstract class Skill: MonoBehaviour
         }
         GetComponent<Animator>().SetBool(SkillAnimationName, false);
         GetComponent<OrientationController>().LookAtTarget = null;
-        GetComponent<Animator>().speed = 1;
         SkillLastUsedAt = Time.time;
         animationEventListener.ApplySkillEffect -= ApplySkillEffects;
         animationEventListener.SkillAnimationFinished -= AnimationCompleted;
@@ -143,6 +163,7 @@ public abstract class Skill: MonoBehaviour
         // In range, start using the skill - orient toward the target and start dishing out attacks.
         GetComponent<OrientationController>().LookAtTarget = GetTargetLocation();
         GetComponent<Animator>().SetBool(SkillAnimationName, true);
-        GetComponent<Animator>().speed = Speed;
+        var speedMultiplier = selfCombatant?.Attributes?.AttackSpeedMultiplier ?? 1;
+        GetComponent<Animator>().SetFloat("SkillSpeed", Speed * speedMultiplier);
     }
 }

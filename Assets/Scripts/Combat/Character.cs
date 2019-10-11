@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 
@@ -9,7 +10,7 @@ public class Character : CombatantBase
     /// <summary>
     /// A skill that should be used when using a skill on self.
     /// </summary>
-    public TargetedSkill SelfTargetSkill;
+    public PersonalSkill SelfTargetSkill;
     /// <summary>
     /// A skill that should be used when using a skill on an enemy.
     /// </summary>
@@ -23,6 +24,7 @@ public class Character : CombatantBase
     protected override void Start()
     {
         base.Start();
+        FindObjectOfType<CombatantsManager>().PlayerCharacters.Add(this);
         movementController = GetComponent<MovementController>();
     }
 
@@ -36,7 +38,7 @@ public class Character : CombatantBase
     {
         // After using a skill, we probably want to keep attacking the enemy.
         GetComponent<AutoAttacking>().Target = target;
-        if (EnemyTargetSkill?.CanUseSkill() != true)
+        if (EnemyTargetSkill?.CanUseSkill() != true || IsSkillUsageBlocked())
         {
             // Special attack either cannot be used or is not defined.
             // Use normal attack started at the start of the method as fallback.
@@ -54,6 +56,10 @@ public class Character : CombatantBase
 
     public virtual void FriendlySkillUsed(Character target)
     {
+        if (IsSkillUsageBlocked())
+        {
+            return;
+        }
         // Using a skill on a friendly might mean moving towards said friendly.
         // In that case we probably don't want to keep on attacking
         FriendlyTargetSkill?.UseSkillOn(target);
@@ -64,19 +70,31 @@ public class Character : CombatantBase
 
     public virtual void SelfSkillUsed()
     {
-        SelfTargetSkill?.UseSkillOn(this);
+        if (IsSkillUsageBlocked())
+        {
+            return;
+        }
+        SelfTargetSkill?.ActivateSkill();
     }
 
     public virtual void SelfClicked(){ }
 
     public virtual void LocationSkillClick(Vector2 position)
     {
+        if (IsManualMovementBlocked())
+        {
+            return;
+        }
         GetComponent<AutoAttacking>().Target = null;
         movementController.MoveToPosition(position);
     }
 
     public virtual void LocationClick(Vector2 position)
     {
+        if (IsManualMovementBlocked())
+        {
+            return;
+        }
         GetComponent<AutoAttacking>().Target = null;
         movementController.MoveToPosition(position);
     }

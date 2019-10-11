@@ -6,13 +6,14 @@ public class MovementController : MonoBehaviour
 {
     public float Speed = 10;
     private Vector3? currentMoveToTarget;
+    private CombatantBase selfCombatant;
 
     private void Start()
     {
-        var movementComponent = GetComponent<CombatantBase>();
-        if (movementComponent != null)
+        selfCombatant = GetComponent<CombatantBase>();
+        if (selfCombatant != null)
         {
-            movementComponent.CombatantDied += MovementComponent_CombatantDied;
+            selfCombatant.CombatantDied += MovementComponent_CombatantDied;
         }
     }
 
@@ -46,7 +47,9 @@ public class MovementController : MonoBehaviour
                     // Changed target.
                     yield break;
                 }
-                transform.position = Vector3.MoveTowards(transform.position, pathPoint, Speed*Time.deltaTime);
+                var speedMultiplier = selfCombatant?.Attributes?.MovementSpeedMultiplier ?? 1;
+                GetComponent<Animator>().SetFloat("MovementSpeedMultiplier", speedMultiplier);
+                transform.position = Vector3.MoveTowards(transform.position, pathPoint, Speed*Time.deltaTime * speedMultiplier);
                 yield return null;
             }
         }

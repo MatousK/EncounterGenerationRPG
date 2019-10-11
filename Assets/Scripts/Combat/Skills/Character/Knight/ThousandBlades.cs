@@ -4,13 +4,16 @@ using UnityEngine;
 
 public class ThousandBlades : Attack
 {
-    // Start is called before the first frame update
-    protected override void Start()
+    public ThousandBlades()
     {
         Cooldown = 6;
         Repetitions = 10;
         Speed = 5;
         DamagePerHit = 1;
+    }
+    // Start is called before the first frame update
+    protected override void Start()
+    {
         base.Start();
     }
 

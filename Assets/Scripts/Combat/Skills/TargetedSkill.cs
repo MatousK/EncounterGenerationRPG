@@ -14,6 +14,7 @@ public abstract class TargetedSkill : Skill
     /// <summary>
     /// If true, the skill can target characters who are already dead.
     /// </summary>
+    [NonSerialized]
     public bool CanTargetDownedCharacters;
     protected override void Start()
     {

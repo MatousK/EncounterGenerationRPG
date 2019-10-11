@@ -7,6 +7,7 @@ using UnityEngine;
 
 class AutoAttacking : MonoBehaviour
 {
+    [NonSerialized]
     public CombatantBase Target;
     public TargetedSkill AutoAttackSkill;
     CombatantBase SelfCombatant;
@@ -28,13 +29,10 @@ class AutoAttacking : MonoBehaviour
             // Noone to autoattack.
             return;
         }
-        // Do not start an autoattack if we're already doing something.
-        foreach (var skill in SelfCombatant.CharacterSkills)
+        // Do not start an autoattack if we're already doing blocking skills, as basic attack is also a skill.
+        if (SelfCombatant.IsSkillUsageBlocked())
         {
-            if (skill.IsBeingUsed())
-            {
-                return;
-            }
+            return;
         }
         // We are not doing anything interesting - just attack the target.
         AutoAttackSkill.UseSkillOn(Target);

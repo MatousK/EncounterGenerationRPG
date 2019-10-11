@@ -5,29 +5,35 @@ using UnityEngine;
 public class AggressiveBehavior : MonoBehaviour
 {
     public float AggroRange = 5;
-    PartyManager partyManager;
+    CombatantsManager combatantsManager;
     AutoAttacking autoAttacking;
+    CombatantBase selfCombatant;
 
     private void Start()
     {
-        partyManager = FindObjectOfType<PartyManager>();
+        combatantsManager = FindObjectOfType<CombatantsManager>();
         autoAttacking = GetComponent<AutoAttacking>();
+        selfCombatant = GetComponent<CombatantBase>();
     }
     // Update is called once per frame
     void Update()
     {
+        if (GetComponent<Rage>()?.CanUseSkill() == true)
+        {
+            GetComponent<Rage>().ActivateSkill();
+        }
         if (autoAttacking.Target == null)
         {
-            AttackClosestCharacter();
+            AttackClosestOpponent();
         }
     }
 
-    void AttackClosestCharacter()
+    void AttackClosestOpponent()
     {
         var collider = GetComponent<Collider2D>();
         float closestDistance = float.PositiveInfinity;
-        Character closestTarget = null;
-        foreach (var character in partyManager.AlivePartyMembers)
+        CombatantBase closestTarget = null;
+        foreach (var character in combatantsManager.GetOpponentsFor(selfCombatant, onlyAlive: true))
         {
             var distanceToCharacter = character.GetComponent<Collider2D>().Distance(collider).distance;
             if (distanceToCharacter < closestDistance)

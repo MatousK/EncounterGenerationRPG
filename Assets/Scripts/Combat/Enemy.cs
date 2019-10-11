@@ -4,9 +4,13 @@ using UnityEngine;
 
 public class Enemy : CombatantBase
 {
+    CombatantsManager combatantsManager;
     protected override void Start()
     {
         base.Start();
+        combatantsManager = FindObjectOfType<CombatantsManager>();
+        combatantsManager.Enemies.Add(this);
+        DamageMaxHitPointsDirectly = true;
     }
     // Update is called once per frame
     protected override void Update()
@@ -14,10 +18,12 @@ public class Enemy : CombatantBase
         base.Update();
     }
 
-    public override void DealDamage(int damage)
+    public override void TakeDamage(int damage, CombatantBase FromCombatant)
     {
-        // Monsters deplete max HP directly, they do not deplete normal hit points first.
-        MaxHitpoints -= damage;
-        base.DealDamage(damage);
+        base.TakeDamage(damage, FromCombatant);
+        if (IsDown)
+        {
+            combatantsManager.Enemies.Remove(this);
+        }
     }
 }

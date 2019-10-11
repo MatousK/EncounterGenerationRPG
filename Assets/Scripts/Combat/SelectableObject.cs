@@ -5,6 +5,10 @@ using UnityEngine;
 public class SelectableObject : MonoBehaviour
 {
     public bool IsSelected;
+    /// <summary>
+    /// If false then, for whatever reason, selection is right now impossible.
+    /// </summary>
+    public bool IsSelectionEnabled = true;
     Circle selectionIndicator;
 
     // Start is called before the first frame update
