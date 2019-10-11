@@ -11,4 +11,9 @@ class BasicAttack : Attack
     {
         BlocksManualMovement = false;
     }
+
+    public override bool CanUseSkill()
+    {
+        return !IsBeingUsed();
+    }
 }

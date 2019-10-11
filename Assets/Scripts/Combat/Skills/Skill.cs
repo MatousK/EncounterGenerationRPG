@@ -25,10 +25,6 @@ public abstract class Skill: MonoBehaviour
     [NonSerialized]
     public float Cooldown;
     /// <summary>
-    /// When was this skill used last, in game time.
-    /// </summary>
-    public float? SkillLastUsedAt { get; protected set; }
-    /// <summary>
     /// How many spaces away from target can the character be to start using the skill.
     /// </summary>
     [NonSerialized]
@@ -110,6 +106,10 @@ public abstract class Skill: MonoBehaviour
             // Already using the skill on someone or we're in cooldown.
             return false;
         }
+        if (Cooldown > 0)
+        {
+            selfCombatant.StartCooldown(Cooldown);
+        }
         didGetInRange = false;
         isUsingSkill = false;
         animationCompletedCount = 0;
@@ -130,7 +130,6 @@ public abstract class Skill: MonoBehaviour
         }
         GetComponent<Animator>().SetBool(SkillAnimationName, false);
         GetComponent<OrientationController>().LookAtTarget = null;
-        SkillLastUsedAt = Time.time;
         animationEventListener.ApplySkillEffect -= ApplySkillEffects;
         animationEventListener.SkillAnimationFinished -= AnimationCompleted;
         return true;
@@ -138,7 +137,7 @@ public abstract class Skill: MonoBehaviour
     // Return true if this skill can be used at this moment.
     public virtual bool CanUseSkill()
     {
-        return !IsBeingUsed() && (!SkillLastUsedAt.HasValue || SkillLastUsedAt.Value + Cooldown < Time.time);
+        return !IsBeingUsed() && (selfCombatant.LastSkillRemainingCooldown ?? 0) <= 0;
     }
     /// <summary>
     /// Called when the skill animation hits the point where the effects should be applied

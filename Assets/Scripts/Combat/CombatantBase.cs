@@ -3,11 +3,22 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-
+/// <summary>
+/// The base class for all entities that can be involved in combat, i.e. both monsters and player characters.
+/// </summary>
 public class CombatantBase : MonoBehaviour
 {
+    /// <summary>
+    /// This event is raised whenever the combatant is defeated.
+    /// </summary>
     public event EventHandler CombatantDied;
+    /// <summary>
+    /// This event is raised whenever the combatant is damaged.
+    /// </summary>
     public event EventHandler<int> TookDamage;
+    /// <summary>
+    /// This event is raised whenever the combatant is healed.
+    /// </summary>
     public event EventHandler<int> HealedDamage;
     /// <summary>
     /// If true, combat damage deals damage to max hitpoints directly.
@@ -15,17 +26,37 @@ public class CombatantBase : MonoBehaviour
     /// </summary>
     [NonSerialized]
     public bool DamageMaxHitPointsDirectly;
+    /// <summary>
+    /// What was the total cooldown of the last skill used.
+    /// </summary>
+    public float? LastSkillCooldown { get; protected set; }
+    /// <summary>
+    ///  What is the remaining cooldown of the last skill used.
+    /// </summary>
+    public float? LastSkillRemainingCooldown { get; protected set; }
+    /// <summary>
+    /// Attributes of the character that can change the character's attack and defense capabilities.
+    /// </summary>
     public CombatantAttributes Attributes = new CombatantAttributes();
-    // How many hitpoints can the combatant have, i.e. size of the healthbar.
+    /// <summary>
+    /// How many hitpoints can the combatant have, i.e. size of the healthbar.
+    /// </summary>
     public int TotalMaxHitpoints;
-    // How many hitpoints does the combatant have
+    /// <summary>
+    /// How many hitpoints does the combatant have.
+    /// </summary>
     public int HitPoints { get; protected set; }
-    // Current maximum hitpoints, i.e. value to which the combatant can be healed.
+    /// <summary>
+    ///  Current maximum hitpoints, i.e. value to which the combatant can be healed.
+    /// </summary>
     public int MaxHitpoints { get; protected set; }
+    /// <summary>
+    /// All skills this combatant possesses, including the basic attack.
+    /// </summary>
     public Skill[] CombatantSkills { get; protected set; }
-
-    HealthBar healthBar;
-
+    /// <summary>
+    /// If true, the character is defeated. They might still theoretically be resurrected, that's why we use Down insteadof Dead.
+    /// </summary>
     public bool IsDown
     {
         get
@@ -34,7 +65,7 @@ public class CombatantBase : MonoBehaviour
         }
     }
 
-    public virtual bool IsSkillUsageBlocked()
+    public virtual bool IsBlockingSkillInProgress()
     {
         return CombatantSkills.Any(skill => skill.IsBeingUsed() && skill.BlocksOtherSkills && !IsBasicAttack(skill));
     }
@@ -60,7 +91,6 @@ public class CombatantBase : MonoBehaviour
         }
         // Max hitpoints should never fall below zero.
         MaxHitpoints = MaxHitpoints >= 0 ? MaxHitpoints : 0;
-        UpdateHealthbar();
         TookDamage?.Invoke(this, damage);
         if (IsDown)
         {
@@ -69,12 +99,17 @@ public class CombatantBase : MonoBehaviour
         }
     }
 
-    public virtual void HealDamage(int healAmount, CombatantBase FromCombatant)
+    public virtual void HealDamage(int healAmount, CombatantBase fromCombatant)
     {
-        healAmount = (int)(healAmount * Attributes.ReceivedHealingMultiplier * (FromCombatant?.Attributes?.DealtHealingMultiplier ?? 1));
+        healAmount = (int)(healAmount * Attributes.ReceivedHealingMultiplier * (fromCombatant?.Attributes?.DealtHealingMultiplier ?? 1));
         HitPoints = HitPoints + healAmount > MaxHitpoints ? MaxHitpoints : HitPoints + healAmount;
-        UpdateHealthbar();
         HealedDamage?.Invoke(this, healAmount);
+    }
+
+    public virtual void StartCooldown(float cooldownTime)
+    {
+        LastSkillCooldown = cooldownTime;
+        LastSkillRemainingCooldown = cooldownTime;
     }
 
     public virtual bool IsBasicAttack(Skill skill)
@@ -86,21 +121,16 @@ public class CombatantBase : MonoBehaviour
     {
         MaxHitpoints = TotalMaxHitpoints;
         HitPoints = TotalMaxHitpoints;
-        healthBar = GetComponentInChildren<HealthBar>();
-        UpdateHealthbar();
         CombatantSkills = GetComponents<Skill>();
     }
 
     // Update is called once per frame
     protected virtual void Update()
     {
-    }
-
-    void UpdateHealthbar()
-    {
-        healthBar.TotalMaxHitPoints = TotalMaxHitpoints;
-        healthBar.CurrentMaxHitPoints = MaxHitpoints;
-        healthBar.CurrentHitPoints = HitPoints;
+        if (LastSkillRemainingCooldown.HasValue)
+        {
+            LastSkillRemainingCooldown -= Time.deltaTime;
+        }
     }
 
     public void DeathAnimationFinished()

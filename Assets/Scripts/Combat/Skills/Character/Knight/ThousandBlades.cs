@@ -6,7 +6,7 @@ public class ThousandBlades : Attack
 {
     public ThousandBlades()
     {
-        Cooldown = 6;
+        Cooldown = 5;
         Repetitions = 10;
         Speed = 5;
         DamagePerHit = 1;

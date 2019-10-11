@@ -4,9 +4,7 @@ using UnityEngine;
 
 public class HealthBar : MonoBehaviour
 {
-    public float TotalMaxHitPoints = 1;
-    public float CurrentMaxHitPoints = 1;
-    public float CurrentHitPoints = 1;
+    CombatantBase RepresentedCombatant;
 
     public UIBar TotalMaxHitPointsIndicator;
     public UIBar CurrentMaxHitPointsIndicator;
@@ -14,6 +12,7 @@ public class HealthBar : MonoBehaviour
 
     private void Start()
     {
+        RepresentedCombatant = GetComponentInParent<CombatantBase>();
         UpdateIndicators();
     }
 
@@ -25,7 +24,7 @@ public class HealthBar : MonoBehaviour
 
     private void UpdateIndicators()
     {
-        CurrentMaxHitPointsIndicator.Percentage = CurrentMaxHitPoints / TotalMaxHitPoints;
-        CurrentHitPointsIndicator.Percentage = CurrentHitPoints / TotalMaxHitPoints;
+        CurrentMaxHitPointsIndicator.Percentage = (float)RepresentedCombatant.MaxHitpoints / RepresentedCombatant.TotalMaxHitpoints;
+        CurrentHitPointsIndicator.Percentage = (float)RepresentedCombatant.HitPoints / RepresentedCombatant.TotalMaxHitpoints;
     }
 }
