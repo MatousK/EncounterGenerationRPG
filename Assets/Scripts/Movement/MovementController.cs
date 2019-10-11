@@ -5,7 +5,7 @@ using UnityEngine;
 public class MovementController : MonoBehaviour
 {
     public float Speed = 10;
-    private Vector3 currentMoveToTarget = Vector3.negativeInfinity;
+    private Vector3? currentMoveToTarget;
 
     private void Start()
     {
@@ -18,19 +18,19 @@ public class MovementController : MonoBehaviour
 
     public void MoveToPosition(Vector2 targetPosition)
     {
-        if (targetPosition.x == this.currentMoveToTarget.x && targetPosition.y == this.currentMoveToTarget.y)
+        if (currentMoveToTarget.HasValue && targetPosition.x == currentMoveToTarget.Value.x && targetPosition.y == currentMoveToTarget.Value.y)
         {
             // Already Moving there.
             return;
         }
         currentMoveToTarget = new Vector3(targetPosition.x, targetPosition.y, transform.position.z);
         // TODO: Get the path we should walk
-        var path = new Vector3[] { currentMoveToTarget };
+        var path = new Vector3[] { currentMoveToTarget.Value };
         StartCoroutine(MoveToFollowPath(path));
     }
     public void StopMovement()
     {
-        currentMoveToTarget = Vector3.negativeInfinity;
+        currentMoveToTarget = null;
         GetComponent<Animator>().SetBool("Walking", false);
     }
 

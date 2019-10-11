@@ -10,8 +10,8 @@ public class Circle : MonoBehaviour
     public float Radius;
     public float LineWidth;
     LineRenderer line;
-    float lastFrameRadius = float.NegativeInfinity;
-    int lastFrameSegments = -1;
+    float? lastFrameRadius;
+    int? lastFrameSegments;
 
     // Start is called before the first frame update
     void Start()
@@ -24,6 +24,8 @@ public class Circle : MonoBehaviour
     {
         UpdateCircleProperties();
         line.enabled = IsVisible;
+        lastFrameRadius = Radius;
+        lastFrameSegments = Segments;
     }
 
     private void DrawCircle(GameObject container)
@@ -41,7 +43,7 @@ public class Circle : MonoBehaviour
     {
         line.startWidth = LineWidth;
         line.endWidth = LineWidth;
-        if (lastFrameSegments != Segments || lastFrameRadius != Radius)
+        if (!lastFrameRadius.HasValue || !lastFrameSegments.HasValue || lastFrameSegments.Value != Segments || lastFrameRadius.Value != Radius)
         {
             UpdateCirclePoints();
         }

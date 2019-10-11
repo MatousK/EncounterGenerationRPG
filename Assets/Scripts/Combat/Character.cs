@@ -43,7 +43,7 @@ public class Character : CombatantBase
             return;
         }
         // We do not want multiple skills being executed simoultaneously.
-        GetComponent<AutoAttacking>()?.AutoAttackSkill?.StopSkill();
+        GetComponent<AutoAttacking>()?.AutoAttackSkill?.TryStopSkill();
         EnemyTargetSkill?.UseSkillOn(target);
     }
 

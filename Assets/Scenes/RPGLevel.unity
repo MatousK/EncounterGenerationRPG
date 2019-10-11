@@ -21253,7 +21253,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a44358159b71774f8d0433269b2c5b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LookAtTarget: {fileID: 0}
 --- !u!114 &1162048166
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21280,11 +21279,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Cooldown: 2
-  CanTargetDownedCharacters: 0
   Range: 1
   Repetitions: 3
   Speed: 1
   SkillAnimationName: Attacking
+  CanTargetDownedCharacters: 0
   DamagePerHit: 3
 --- !u!114 &1162048168
 MonoBehaviour:
@@ -34556,7 +34555,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a44358159b71774f8d0433269b2c5b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LookAtTarget: {fileID: 0}
 --- !u!114 &1597586608
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34686,11 +34684,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Cooldown: 0
-  CanTargetDownedCharacters: 0
   Range: 1
   Repetitions: 1
   Speed: 1
   SkillAnimationName: Attacking
+  CanTargetDownedCharacters: 0
   DamagePerHit: 1
 --- !u!114 &1597586616
 MonoBehaviour:
@@ -34713,16 +34711,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 1597586602}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 800b101e2bf061640b2b9a0ecb366647, type: 3}
+  m_Script: {fileID: 11500000, guid: 083ffb249bb99ca4db31997beab0b5ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Cooldown: 3
-  CanTargetDownedCharacters: 0
+  Cooldown: 6
   Range: 1
-  Repetitions: 1
-  Speed: 0.5
+  Repetitions: 10
+  Speed: 3
   SkillAnimationName: Attacking
-  DamagePerHit: 10
+  CanTargetDownedCharacters: 0
+  DamagePerHit: 1
 --- !u!1 &1606277191
 GameObject:
   m_ObjectHideFlags: 0

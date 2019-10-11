@@ -7,7 +7,7 @@ public class LeftClickController : MonoBehaviour
     private PartyManager partyManager;
     Texture2D whiteTexture;
     Rect currentSelectionRectangle = Rect.zero;
-    Vector2 selectionStart = Vector2.positiveInfinity;
+    Vector2? selectionStart;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,14 +27,19 @@ public class LeftClickController : MonoBehaviour
         }
         else if (Input.GetMouseButtonUp(0))
         {
-            SelectPlayerCharacters(selectionStart, Input.mousePosition);
+            if (!selectionStart.HasValue)
+            {
+                Debug.Assert(false, "We should always first start dragging before ending dragging.");
+                return;
+            }
+            SelectPlayerCharacters(selectionStart.Value, Input.mousePosition);
             // End dragging selection box
-            selectionStart = Vector2.positiveInfinity;
+            selectionStart = null;
             currentSelectionRectangle = Rect.zero;
         }
-        if (!float.IsInfinity(selectionStart.x))
+        if (selectionStart != null)
         {
-            currentSelectionRectangle = GetScreenRect(selectionStart, Input.mousePosition);
+            currentSelectionRectangle = GetScreenRect(selectionStart.Value, Input.mousePosition);
         }
     }
 

@@ -31,7 +31,7 @@ class AutoAttacking : MonoBehaviour
         // Do not start an autoattack if we're already doing something.
         foreach (var skill in SelfCombatant.CharacterSkills)
         {
-            if (skill.IsUsingSkill)
+            if (skill.IsBeingUsed())
             {
                 return;
             }

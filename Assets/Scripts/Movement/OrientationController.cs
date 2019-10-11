@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class OrientationController : MonoBehaviour
 {
-    public GameObject LookAtTarget;
+    public Vector2? LookAtTarget = null;
     // Update is called once per frame
     void Update()
     {
@@ -14,7 +14,8 @@ public class OrientationController : MonoBehaviour
             orientationVector = GetComponent<VelocityManager>().GetVelocity();
         } else
         {
-            orientationVector = LookAtTarget.transform.position - transform.position;
+            Vector2 currentPosition = transform.position;
+            orientationVector = LookAtTarget.Value - currentPosition;
         }
         if ((orientationVector.x > 0 && transform.localScale.x < 0) ||
             (orientationVector.x < 0 && transform.localScale.x > 0))
