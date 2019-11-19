@@ -45,7 +45,7 @@ public class CombatantBase : MonoBehaviour
     /// <summary>
     /// How many hitpoints does the combatant have.
     /// </summary>
-    public int HitPoints { get; protected set; }
+    public float HitPoints { get; protected set; }
     /// <summary>
     ///  Current maximum hitpoints, i.e. value to which the combatant can be healed.
     /// </summary>
@@ -64,6 +64,8 @@ public class CombatantBase : MonoBehaviour
             return MaxHitpoints <= 0;
         }
     }
+
+    protected CombatantsManager combatantsManager;
 
     public virtual bool IsBlockingSkillInProgress()
     {
@@ -86,7 +88,7 @@ public class CombatantBase : MonoBehaviour
         if (HitPoints < 0)
         {
             // Once hitpoints are depleted, max HP should start depleting.
-            MaxHitpoints += HitPoints;
+            MaxHitpoints += (int)(HitPoints);
             HitPoints = 0;
         }
         // Max hitpoints should never fall below zero.
@@ -122,19 +124,33 @@ public class CombatantBase : MonoBehaviour
         MaxHitpoints = TotalMaxHitpoints;
         HitPoints = TotalMaxHitpoints;
         CombatantSkills = GetComponents<Skill>();
+        combatantsManager = FindObjectOfType<CombatantsManager>();
     }
 
     // Update is called once per frame
     protected virtual void Update()
     {
-        if (LastSkillRemainingCooldown.HasValue)
-        {
-            LastSkillRemainingCooldown -= Time.deltaTime;
-        }
+        UpdateSkillCooldown();
+        ApplyHealthRegeneration();
     }
 
     public void DeathAnimationFinished()
     {
         Destroy(gameObject);
+    }
+
+    private void ApplyHealthRegeneration()
+    {
+        float regenerationRate = combatantsManager.IsCombatActive ? Attributes.CombatHealthRegeneration : Attributes.OutOfCombatHealthRegeneration;
+        float regeneratedHP = regenerationRate * Time.deltaTime;
+        HitPoints = Math.Min(MaxHitpoints, HitPoints + regeneratedHP);
+    }
+
+    private void UpdateSkillCooldown()
+    {
+        if (LastSkillRemainingCooldown.HasValue)
+        {
+            LastSkillRemainingCooldown -= Time.deltaTime;
+        }
     }
 }

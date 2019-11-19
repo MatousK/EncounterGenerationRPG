@@ -4,11 +4,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
-class CombatantsManager : MonoBehaviour
+public class CombatantsManager : MonoBehaviour
 {
     public List<Monster> Enemies = new List<Monster>();
     public List<Hero> PlayerCharacters = new List<Hero>();
 
+    public bool IsCombatActive
+    {
+        get
+        {
+            return Enemies.Any();
+        }
+    }
     public IEnumerable<CombatantBase> GetOpponentsFor(CombatantBase combatant, bool onlyAlive = false, bool onlySelected = false)
     {
         IEnumerable<CombatantBase> opponents = null;
