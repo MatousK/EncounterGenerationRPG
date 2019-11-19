@@ -12,13 +12,11 @@ public abstract class PersonalSkill : Skill
 {
     public PersonalSkill()
     {
-        // Personal skills start and stop on timer.
-        Repetitions = int.MaxValue;
-        // Usually a personal skill does no
+        // Usually a personal skill does not block other skills
         BlocksOtherSkills = false;
         BlocksManualMovement = false;
+        SkillAnimationName = "PersonalSkillAura";
     }
-    [NonSerialized]
     public float Duration = 1;
     /// <summary>
     /// If true, the skill is active right now

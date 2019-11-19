@@ -114,7 +114,7 @@ public class CombatantBase : MonoBehaviour
 
     public virtual bool IsBasicAttack(Skill skill)
     {
-        return skill is BasicAttack;
+        return skill.isBasicAttack;
     }
 
     protected virtual void Start()

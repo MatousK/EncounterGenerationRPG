@@ -3,26 +3,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CooldownBar : MonoBehaviour
+public class CooldownBar : UIProgressBarBase
 {
-    CombatantBase RepresentedCombatant;
 
     public UIBar TotalCooldownIndicator;
     public UIBar CooldownProgressIndicator;
 
-    private void Start()
+    protected override void Start()
     {
-        RepresentedCombatant = GetComponentInParent<CombatantBase>();
-        UpdateIndicators();
+        base.Start();
     }
 
     // Update is called once per frame
-    void Update()
+    protected override void Update()
     {
-        UpdateIndicators();
+        base.Update();
     }
 
-    private void UpdateIndicators()
+    protected override void UpdateIndicators()
     {
         // We do not show the indicator if we the cooldown is not active.
         if (!RepresentedCombatant.LastSkillRemainingCooldown.HasValue || !RepresentedCombatant.LastSkillCooldown.HasValue || RepresentedCombatant.LastSkillRemainingCooldown < 0)

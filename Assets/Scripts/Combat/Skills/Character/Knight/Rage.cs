@@ -6,10 +6,8 @@ using UnityEngine;
 
 public class Rage : PersonalSkill
 {
-    protected int RageDuration = 5;
-    protected int RageDamageMultiplier = 4;
-    protected float RageSpeedMultiplier = 4;
-    protected float RageCooldown = 10;
+    public int DamageMultiplier = 4;
+    public float SpeedMultiplier = 4;
 
     CombatantsManager combatantsManager;
     SelectableObject selectableComponent;
@@ -17,9 +15,8 @@ public class Rage : PersonalSkill
 
     public Rage()
     {
-        Duration = RageDuration;
-        SkillAnimationName = "Raging";
-        Cooldown = RageCooldown;
+        Duration = 5;
+        Cooldown = 10;
     }
 
     protected override void Update()
@@ -46,9 +43,9 @@ public class Rage : PersonalSkill
             selectableComponent.IsSelectionEnabled = false;
         }
 
-        combatant.Attributes.MovementSpeedMultiplier *= RageSpeedMultiplier;
-        combatant.Attributes.AttackSpeedMultiplier *= RageSpeedMultiplier;
-        combatant.Attributes.DealtDamageMultiplier *= RageDamageMultiplier;
+        combatant.Attributes.MovementSpeedMultiplier *= SpeedMultiplier;
+        combatant.Attributes.AttackSpeedMultiplier *= SpeedMultiplier;
+        combatant.Attributes.DealtDamageMultiplier *= DamageMultiplier;
     }
 
     protected override void OnPersonalSkillStopped()
@@ -59,8 +56,8 @@ public class Rage : PersonalSkill
             selectableComponent.IsSelectionEnabled = true;
         }
 
-        combatant.Attributes.MovementSpeedMultiplier /= RageSpeedMultiplier;
-        combatant.Attributes.AttackSpeedMultiplier /= RageSpeedMultiplier;
-        combatant.Attributes.DealtDamageMultiplier /= RageDamageMultiplier;
+        combatant.Attributes.MovementSpeedMultiplier /= SpeedMultiplier;
+        combatant.Attributes.AttackSpeedMultiplier /= SpeedMultiplier;
+        combatant.Attributes.DealtDamageMultiplier /= DamageMultiplier;
     }
 }

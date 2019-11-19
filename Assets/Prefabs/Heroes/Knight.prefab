@@ -12,6 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2ca0d0afb4d8544884d2417886731fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Cooldown: 10
+  Range: 1
+  Speed: 1
+  Duration: 5
+  DamageMultiplier: 4
+  SpeedMultiplier: 4
 --- !u!114 &1149583044
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24,6 +30,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6daa4625a4f98804d93b75566ea21527, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Cooldown: 5
+  Range: 1
+  Speed: 5
+  Repetitions: 10
+  DamagePerHit: 1
 --- !u!1001 &7389953155286600110
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -31,21 +42,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4828470711690574787, guid: 46229661ed166644c8a32b159c483f24,
-        type: 3}
-      propertyPath: TotalMaxHitpoints
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 4828470711690574787, guid: 46229661ed166644c8a32b159c483f24,
-        type: 3}
-      propertyPath: SelfTargetSkill
-      value: 
-      objectReference: {fileID: 1149583043}
-    - target: {fileID: 4828470711690574787, guid: 46229661ed166644c8a32b159c483f24,
-        type: 3}
-      propertyPath: EnemyTargetSkill
-      value: 
-      objectReference: {fileID: 1149583044}
     - target: {fileID: 7682667400691751779, guid: 46229661ed166644c8a32b159c483f24,
         type: 3}
       propertyPath: m_Name
@@ -106,6 +102,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4828470711690574787, guid: 46229661ed166644c8a32b159c483f24,
+        type: 3}
+      propertyPath: TotalMaxHitpoints
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 4828470711690574787, guid: 46229661ed166644c8a32b159c483f24,
+        type: 3}
+      propertyPath: SelfTargetSkill
+      value: 
+      objectReference: {fileID: 1149583043}
+    - target: {fileID: 4828470711690574787, guid: 46229661ed166644c8a32b159c483f24,
+        type: 3}
+      propertyPath: EnemyTargetSkill
+      value: 
+      objectReference: {fileID: 1149583044}
     - target: {fileID: 7682667400691751780, guid: 46229661ed166644c8a32b159c483f24,
         type: 3}
       propertyPath: m_Sprite

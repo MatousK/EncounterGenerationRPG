@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using UnityEngine;
 
-class BasicAttack : Attack
+class RangedBasicAttack: ProjectileAttack
 {
-    BasicAttack()
+    RangedBasicAttack()
     {
         BlocksManualMovement = false;
         isBasicAttack = true;

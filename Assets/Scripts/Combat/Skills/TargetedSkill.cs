@@ -8,6 +8,10 @@ using UnityEngine;
 public abstract class TargetedSkill : Skill
 {
     /// <summary>
+    /// How many times does the animation repeat as part of one skill usage.
+    /// </summary>
+    public int Repetitions = 1;
+    /// <summary>
     /// Target which we are currently using this skill on.
     /// </summary>
     public CombatantBase Target { get; protected set; }
@@ -64,5 +68,17 @@ public abstract class TargetedSkill : Skill
             Target = null;
         }
         return didStopSkill;
+    }
+    /// <summary>
+    /// Called when the skill animation completes.
+    /// Default implementation will stop using the skill if this method was called sufficient amount of times, <see cref="Repetitions"/>
+    /// </summary>
+    protected override void AnimationCompleted(object sender, EventArgs e)
+    {
+        animationCompletedCount++;
+        if (animationCompletedCount >= Repetitions)
+        {
+            TryStopSkill();
+        }
     }
 }

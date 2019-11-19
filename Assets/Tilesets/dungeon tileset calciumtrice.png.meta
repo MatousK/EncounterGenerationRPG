@@ -730,7 +730,7 @@ TextureImporter:
     second: weapon_15
   - first:
       213: 9000875995803995530
-    second: weapon_16
+    second: ranger_arrow
   - first:
       213: 8175057712268091175
     second: weapon_17
@@ -6026,15 +6026,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: weapon_16
+      name: ranger_arrow
       rect:
         serializedVersion: 2
-        x: 368
+        x: 371
         y: 160
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        width: 10
+        height: 3
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []

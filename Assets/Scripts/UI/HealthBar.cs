@@ -2,27 +2,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HealthBar : MonoBehaviour
+public class HealthBar : UIProgressBarBase
 {
-    CombatantBase RepresentedCombatant;
 
     public UIBar TotalMaxHitPointsIndicator;
     public UIBar CurrentMaxHitPointsIndicator;
     public UIBar CurrentHitPointsIndicator;
 
-    private void Start()
+    protected override void Start()
     {
-        RepresentedCombatant = GetComponentInParent<CombatantBase>();
-        UpdateIndicators();
+        base.Start();
     }
 
     // Update is called once per frame
-    void Update()
+    protected override void Update()
     {
-        UpdateIndicators();
+        base.Update();
     }
 
-    private void UpdateIndicators()
+    protected override void UpdateIndicators()
     {
         CurrentMaxHitPointsIndicator.Percentage = (float)RepresentedCombatant.MaxHitpoints / RepresentedCombatant.TotalMaxHitpoints;
         CurrentHitPointsIndicator.Percentage = (float)RepresentedCombatant.HitPoints / RepresentedCombatant.TotalMaxHitpoints;

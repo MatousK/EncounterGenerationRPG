@@ -3852,6 +3852,43 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!1 &256497127 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3890477998113513387, guid: efff9a40eedbd3a46a8455bad244d81e,
+    type: 3}
+  m_PrefabInstance: {fileID: 6873496249404448223}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &256497143 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5467804537046692975, guid: efff9a40eedbd3a46a8455bad244d81e,
+    type: 3}
+  m_PrefabInstance: {fileID: 6873496249404448223}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 256497127}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8db83f804f5ac542aba0ab1aaa164ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &256497144
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 256497127}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f31adf364af54547af85d3c48c6612f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Cooldown: 20
+  Range: 1
+  Speed: 1
+  Duration: 10
+  DamageMultiplier: 3
+  MovementSpeedMultiplier: 0.5
+  AttackSpeedMultiplier: 0.5
 --- !u!1 &262216213
 GameObject:
   m_ObjectHideFlags: 0
@@ -43688,6 +43725,36 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3890477998113513388, guid: efff9a40eedbd3a46a8455bad244d81e,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3890477998113513388, guid: efff9a40eedbd3a46a8455bad244d81e,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3890477998113513388, guid: efff9a40eedbd3a46a8455bad244d81e,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2045123428255694603, guid: efff9a40eedbd3a46a8455bad244d81e,
+        type: 3}
+      propertyPath: EnemyTargetSkill
+      value: 
+      objectReference: {fileID: 256497143}
+    - target: {fileID: 2045123428255694603, guid: efff9a40eedbd3a46a8455bad244d81e,
+        type: 3}
+      propertyPath: SelfTargetSkill
+      value: 
+      objectReference: {fileID: 256497144}
+    - target: {fileID: 5467804537046692975, guid: efff9a40eedbd3a46a8455bad244d81e,
+        type: 3}
+      propertyPath: Cooldown
+      value: 30
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: efff9a40eedbd3a46a8455bad244d81e, type: 3}
 --- !u!1001 &7389953155741801632
@@ -43756,6 +43823,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7000329037752682282, guid: 65ea18269594623448a1dcbcddec12a0,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 65ea18269594623448a1dcbcddec12a0, type: 3}

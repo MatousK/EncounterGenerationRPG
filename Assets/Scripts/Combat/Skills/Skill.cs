@@ -10,6 +10,11 @@ using UnityEngine;
 public abstract class Skill: MonoBehaviour
 {
     /// <summary>
+    /// If true, this attack is considered to be a basic attack for some purposes, like auto attacking.
+    /// </summary>
+    [NonSerialized]
+    public bool isBasicAttack;
+    /// <summary>
     /// If true, the player cannot start another skill while this skill is being executed.
     /// </summary>
     [NonSerialized]
@@ -27,10 +32,6 @@ public abstract class Skill: MonoBehaviour
     /// How many spaces away from target can the character be to start using the skill.
     /// </summary>
     public int Range = 1;
-    /// <summary>
-    /// How many times does the animation repeat as part of one skill usage.
-    /// </summary>
-    public int Repetitions = 1;
     /// <summary>
     /// How fast should the animation play. 1 is start, 2 is twice as fast, 0.5 is half as slow etc.
     /// </summary>
@@ -131,9 +132,9 @@ public abstract class Skill: MonoBehaviour
         return true;
     }
     // Return true if this skill can be used at this moment.
-    public virtual bool CanUseSkill()
+    public bool CanUseSkill()
     {
-        return !IsBeingUsed() && (selfCombatant.LastSkillRemainingCooldown ?? 0) <= 0;
+        return !IsBeingUsed() && (isBasicAttack || ( selfCombatant.LastSkillRemainingCooldown ?? 0) <= 0);
     }
     /// <summary>
     /// Called when the skill animation hits the point where the effects should be applied
@@ -141,15 +142,9 @@ public abstract class Skill: MonoBehaviour
     protected abstract void ApplySkillEffects(object sender, EventArgs e);
     /// <summary>
     /// Called when the skill animation completes.
-    /// Default implementation will stop using the skill if this method was called sufficient amount of times, <see cref="Repetitions"/>
     /// </summary>
     protected virtual void AnimationCompleted(object sender, EventArgs e)
     {
-        animationCompletedCount++;
-        if (animationCompletedCount >= Repetitions)
-        {
-            TryStopSkill();
-        }
     }
 
     protected virtual void StartSkillAnimation()
