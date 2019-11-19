@@ -22,22 +22,18 @@ public abstract class Skill: MonoBehaviour
     /// <summary>
     /// Number of seconds for which the skill cannot be used again once it's used.
     /// </summary>
-    [NonSerialized]
     public float Cooldown;
     /// <summary>
     /// How many spaces away from target can the character be to start using the skill.
     /// </summary>
-    [NonSerialized]
     public int Range = 1;
     /// <summary>
     /// How many times does the animation repeat as part of one skill usage.
     /// </summary>
-    [NonSerialized]
     public int Repetitions = 1;
     /// <summary>
     /// How fast should the animation play. 1 is start, 2 is twice as fast, 0.5 is half as slow etc.
     /// </summary>
-    [NonSerialized]
     public float Speed = 1;
     /// <summary>
     /// The name of the animation that should be played while this skill is being used.

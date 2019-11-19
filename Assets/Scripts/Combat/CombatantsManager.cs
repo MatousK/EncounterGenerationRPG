@@ -6,17 +6,17 @@ using System.Threading.Tasks;
 using UnityEngine;
 class CombatantsManager : MonoBehaviour
 {
-    public List<Enemy> Enemies = new List<Enemy>();
-    public List<Character> PlayerCharacters = new List<Character>();
+    public List<Monster> Enemies = new List<Monster>();
+    public List<Hero> PlayerCharacters = new List<Hero>();
 
     public IEnumerable<CombatantBase> GetOpponentsFor(CombatantBase combatant, bool onlyAlive = false, bool onlySelected = false)
     {
         IEnumerable<CombatantBase> opponents = null;
-        if (combatant is Character)
+        if (combatant is Hero)
         {
             return GetEnemies(onlyAlive, onlySelected);
         }
-        else if (combatant is Enemy)
+        else if (combatant is Monster)
         {
             return GetPlayerCharacters(onlyAlive, onlySelected);
         }
@@ -28,12 +28,12 @@ class CombatantsManager : MonoBehaviour
         return null;
     }
 
-    public IEnumerable<Character> GetPlayerCharacters(bool onlyAlive = false, bool onlySelected = false)
+    public IEnumerable<Hero> GetPlayerCharacters(bool onlyAlive = false, bool onlySelected = false)
     {
         return PlayerCharacters.Where(opponent => (!onlyAlive || !opponent.IsDown) && (!onlySelected || opponent.GetComponent<SelectableObject>()?.IsSelected == true));
     }
 
-    public IEnumerable<Enemy> GetEnemies(bool onlyAlive = false, bool onlySelected = false)
+    public IEnumerable<Monster> GetEnemies(bool onlyAlive = false, bool onlySelected = false)
     {
         return Enemies.Where(opponent => (!onlyAlive || !opponent.IsDown) && (!onlySelected || opponent.GetComponent<SelectableObject>()?.IsSelected == true));
     }

@@ -4,7 +4,7 @@ using System.Linq;
 using UnityEngine;
 
 
-public class Character : CombatantBase
+public class Hero : CombatantBase
 {
     private MovementController movementController;
     /// <summary>
@@ -34,7 +34,7 @@ public class Character : CombatantBase
         base.Update();
     }
 
-    public virtual void SkillAttackUsed(Enemy target)
+    public virtual void SkillAttackUsed(Monster target)
     {
         // After using a skill, we probably want to keep attacking the enemy.
         GetComponent<AutoAttacking>().Target = target;
@@ -49,12 +49,12 @@ public class Character : CombatantBase
         EnemyTargetSkill?.UseSkillOn(target);
     }
 
-    public virtual void AttackUsed(Enemy target)
+    public virtual void AttackUsed(Monster target)
     {
         GetComponent<AutoAttacking>().Target = target;
     }
 
-    public virtual void FriendlySkillUsed(Character target)
+    public virtual void FriendlySkillUsed(Hero target)
     {
         if (IsBlockingSkillInProgress())
         {
@@ -66,7 +66,7 @@ public class Character : CombatantBase
         GetComponent<AutoAttacking>().Target = null;
     }
 
-    public virtual void FriendlyClicked(Character target) { }
+    public virtual void FriendlyClicked(Hero target) { }
 
     public virtual void SelfSkillUsed()
     {

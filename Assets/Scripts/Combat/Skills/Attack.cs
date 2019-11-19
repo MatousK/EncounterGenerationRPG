@@ -9,7 +9,6 @@ public abstract class Attack : TargetedSkill
     /// <summary>
     /// How much damage does the attack do per hit.
     /// </summary>
-    [NonSerialized]
     public int DamagePerHit = 1;
 
     public Attack()

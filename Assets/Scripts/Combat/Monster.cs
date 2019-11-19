@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : CombatantBase
+public class Monster : CombatantBase
 {
     CombatantsManager combatantsManager;
     protected override void Start()
