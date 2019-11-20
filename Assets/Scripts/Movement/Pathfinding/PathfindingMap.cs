@@ -20,6 +20,14 @@ class PathfindingMap
     /// </summary>
     public bool[,] PassableTilesMap;
 
+    public PathfindingMap Clone()
+    {
+        var toReturn = (PathfindingMap)MemberwiseClone();
+        toReturn.PassableTilesMap = (bool[,])PassableTilesMap.Clone();
+        toReturn.tilemapBounds = tilemapBounds;
+        return toReturn;
+    }
+
     public void SetSquareIsPassable(int x, int y, bool isPassable)
     {
         var coordinates = GridCoordinatesToLocal(x, y);

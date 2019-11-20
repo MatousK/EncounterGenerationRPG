@@ -6,6 +6,7 @@ public class MovementController : MonoBehaviour
 {
     public float Speed = 10;
     private Vector3? currentMoveToTarget;
+    private List<Vector3> currentMoveToPath;
     private CombatantBase selfCombatant;
     private Pathfinder pathfinder;
     public bool IsMoving
@@ -26,6 +27,33 @@ public class MovementController : MonoBehaviour
         }
     }
 
+    private void LateUpdate()
+    {
+        if (currentMoveToTarget == null)
+        {
+            return;
+        }
+        if (currentMoveToPath == null || currentMoveToPath.Count == 0)
+        {
+            StopMovement();
+            return;
+        }
+        var pathPoint = currentMoveToPath[0];
+        if (Vector3.Distance(pathPoint, transform.position) < 0.05)
+        {
+            currentMoveToPath.RemoveAt(0);
+            if (currentMoveToPath.Count == 0)
+            {
+                StopMovement();
+                return;
+            }
+            pathPoint = currentMoveToPath[0];
+        }
+        var speedMultiplier = selfCombatant?.Attributes?.MovementSpeedMultiplier ?? 1;
+        GetComponent<Animator>().SetFloat("MovementSpeedMultiplier", speedMultiplier);
+        transform.position = Vector3.MoveTowards(transform.position, pathPoint, Speed * Time.deltaTime * speedMultiplier);
+    }
+
     public void MoveToPosition(Vector2 targetPosition)
     {
         if (currentMoveToTarget.HasValue && targetPosition.x == currentMoveToTarget.Value.x && targetPosition.y == currentMoveToTarget.Value.y)
@@ -33,47 +61,33 @@ public class MovementController : MonoBehaviour
             // Already Moving there.
             return;
         }
-        pathfinder.FindPath(transform.position, targetPosition);
-        currentMoveToTarget = new Vector3(targetPosition.x, targetPosition.y, transform.position.z);
-        // TODO: Get the path we should walk
-        var path = new Vector3[] { currentMoveToTarget.Value };
-        StartCoroutine(MoveToFollowPath(path));
+        CalculateAndSavePathToTarget(targetPosition);
+        GetComponent<Animator>().SetBool("Walking", true);
     }
     public void StopMovement()
     {
         currentMoveToTarget = null;
         GetComponent<Animator>().SetBool("Walking", false);
     }
-
-    private IEnumerator MoveToFollowPath(Vector3[] Path)
+    private void CalculateAndSavePathToTarget(Vector2 targetPosition)
     {
-        GetComponent<Animator>().SetBool("Walking", true);
-        foreach (var pathPoint in Path)
+        var path = pathfinder.FindPath(transform.position, targetPosition, selfCombatant);
+        if (path == null || path.Count == 0)
         {
-            while (Vector3.Distance(pathPoint, transform.position) > 0.1)
-            {
-                if (currentMoveToTarget != Path[Path.Length - 1])
-                {
-                    // Changed target.
-                    yield break;
-                }
-                var speedMultiplier = selfCombatant?.Attributes?.MovementSpeedMultiplier ?? 1;
-                GetComponent<Animator>().SetFloat("MovementSpeedMultiplier", speedMultiplier);
-                transform.position = Vector3.MoveTowards(transform.position, pathPoint, Speed*Time.deltaTime * speedMultiplier);
-                yield return null;
-            }
+            // No path to target found or we're already there.
+            return;
         }
-        StopMovement();
+        List<Vector3> path3D = path.ConvertAll((vector2) => new Vector3(vector2.x, vector2.y, transform.position.z));
+        currentMoveToTarget = path3D[path3D.Count - 1];
+        currentMoveToPath = path3D;
     }
 
     private void OnCollisionEnter2D(Collision2D colision)
     {
-        var character1 = colision.collider.GetComponent<CombatantBase>();
-        var character2 = colision.otherCollider.GetComponent<CombatantBase>();
-        // If the colision is between two characters, do not stop, the other will move out of the way.
-        if (character1 == null || character2 == null)
+        // Colliding. Recalculate path to the target.
+        if (currentMoveToTarget != null)
         {
-            StopMovement();
+            CalculateAndSavePathToTarget(currentMoveToTarget.Value);
         }
     }
 

@@ -8,21 +8,41 @@ using UnityEngine.Tilemaps;
 
 class PathfindingMapController: MonoBehaviour
 {
-    public List<Tilemap> walkableTilemaps;
-    public List<Tilemap> collisionTilemaps;
+    public List<Tilemap> WalkableTilemaps;
+    public List<Tilemap> CollisionTilemaps;
     public PathfindingMap Map;
+    Grid mapGrid;
+    CombatantsManager combatantsManager;
     void Start()
     {
         var bounds = CalculateMapBounds();
         Map = new PathfindingMap(bounds);
+        mapGrid = FindObjectOfType<Grid>();
+        combatantsManager = FindObjectOfType<CombatantsManager>();
         FillPassableTiles();
         FillBlockingTiles();
         print("Success");
     }
 
+    public PathfindingMap GetPassabilityMapForCombatant(CombatantBase navigatingCombatant)
+    {
+        var toReturn = Map.Clone();
+        foreach (var combatant in combatantsManager.GetAllCombatants())
+        {
+            if (combatant == navigatingCombatant)
+            {
+                continue;
+            }
+            Vector2 combatantWorldSpacePosition = combatant.transform.position;
+            var combatantGridPosition = mapGrid.WorldToCell(combatantWorldSpacePosition);
+            toReturn.SetSquareIsPassable(combatantGridPosition.x, combatantGridPosition.y, false);
+        }
+        return toReturn;
+    }
+
     void FillPassableTiles()
     {
-        foreach (Tilemap tileMap in walkableTilemaps)
+        foreach (Tilemap tileMap in WalkableTilemaps)
         {
             FillPathfindingMapForTilemap(tileMap, true);
         }
@@ -30,7 +50,7 @@ class PathfindingMapController: MonoBehaviour
 
     void FillBlockingTiles()
     {
-        foreach (Tilemap tileMap in collisionTilemaps)
+        foreach (Tilemap tileMap in CollisionTilemaps)
         {
             FillPathfindingMapForTilemap(tileMap, false);
         }
@@ -59,7 +79,7 @@ class PathfindingMapController: MonoBehaviour
         var yMin = int.MaxValue;
         var xMax = int.MinValue;
         var yMax = int.MinValue;
-        var allTileMaps = walkableTilemaps.Concat(collisionTilemaps);
+        var allTileMaps = WalkableTilemaps.Concat(CollisionTilemaps);
         foreach (var tilemap in allTileMaps)
         {
             var bounds = tilemap.cellBounds;

@@ -35,6 +35,13 @@ public class CombatantsManager : MonoBehaviour
         return null;
     }
 
+    public IEnumerable<CombatantBase> GetAllCombatants()
+    {
+        IEnumerable<CombatantBase> enemiesCombatantEnumerable = Enemies;
+        IEnumerable<CombatantBase> playerCharactersCombatantEnumerable = PlayerCharacters;
+        return enemiesCombatantEnumerable.Concat(playerCharactersCombatantEnumerable);
+    }
+
     public IEnumerable<Hero> GetPlayerCharacters(bool onlyAlive = false, bool onlySelected = false)
     {
         return PlayerCharacters.Where(opponent => (!onlyAlive || !opponent.IsDown) && (!onlySelected || opponent.GetComponent<SelectableObject>()?.IsSelected == true));
