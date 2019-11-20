@@ -7,6 +7,7 @@ public class MovementController : MonoBehaviour
     public float Speed = 10;
     private Vector3? currentMoveToTarget;
     private CombatantBase selfCombatant;
+    private Pathfinder pathfinder;
     public bool IsMoving
     {
         get
@@ -17,6 +18,7 @@ public class MovementController : MonoBehaviour
 
     private void Start()
     {
+        pathfinder = FindObjectOfType<Pathfinder>();
         selfCombatant = GetComponent<CombatantBase>();
         if (selfCombatant != null)
         {
@@ -31,6 +33,7 @@ public class MovementController : MonoBehaviour
             // Already Moving there.
             return;
         }
+        pathfinder.FindPath(transform.position, targetPosition);
         currentMoveToTarget = new Vector3(targetPosition.x, targetPosition.y, transform.position.z);
         // TODO: Get the path we should walk
         var path = new Vector3[] { currentMoveToTarget.Value };
