@@ -18,7 +18,7 @@ public class AggressiveBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (autoAttacking.Target == null)
+        if (autoAttacking.Target == null && !selfCombatant.IsDoingNonAutoAttackAction())
         {
             AttackClosestOpponent();
         }

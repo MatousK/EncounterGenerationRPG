@@ -7,6 +7,13 @@ public class MovementController : MonoBehaviour
     public float Speed = 10;
     private Vector3? currentMoveToTarget;
     private CombatantBase selfCombatant;
+    public bool IsMoving
+    {
+        get
+        {
+            return currentMoveToTarget != null;
+        }
+    }
 
     private void Start()
     {

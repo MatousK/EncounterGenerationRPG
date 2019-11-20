@@ -26,6 +26,7 @@ class AutoAttacking : MonoBehaviour
         }
         if (Target == null)
         {
+            AutoAttackSkill.TryStopSkill();
             // Noone to autoattack.
             return;
         }

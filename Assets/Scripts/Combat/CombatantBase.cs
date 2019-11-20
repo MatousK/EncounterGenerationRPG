@@ -69,7 +69,20 @@ public class CombatantBase : MonoBehaviour
 
     public virtual bool IsBlockingSkillInProgress()
     {
-        return CombatantSkills.Any(skill => skill.IsBeingUsed() && skill.BlocksOtherSkills && !IsBasicAttack(skill));
+        return CombatantSkills.Any(skill => skill.IsBeingUsed() && skill.BlocksOtherSkills && !skill.isBasicAttack);
+    }
+
+    public bool IsMoving()
+    {
+        return GetComponent<MovementController>()?.IsMoving ?? false;
+    }
+    /// <summary>
+    /// Returns true if the combatant currently has orders from AI or from the player.
+    /// </summary>
+    /// <returns></returns>
+    public bool IsDoingNonAutoAttackAction()
+    {
+        return IsBlockingSkillInProgress() || IsMoving();
     }
 
     public virtual bool IsManualMovementBlocked()
@@ -101,22 +114,21 @@ public class CombatantBase : MonoBehaviour
         }
     }
 
-    public virtual void HealDamage(int healAmount, CombatantBase fromCombatant)
+    public virtual void HealDamage(int healAmount, CombatantBase fromCombatant, bool withDefaultAnimation = true)
     {
         healAmount = (int)(healAmount * Attributes.ReceivedHealingMultiplier * (fromCombatant?.Attributes?.DealtHealingMultiplier ?? 1));
         HitPoints = HitPoints + healAmount > MaxHitpoints ? MaxHitpoints : HitPoints + healAmount;
         HealedDamage?.Invoke(this, healAmount);
+        if (withDefaultAnimation)
+        {
+            GetComponent<Animator>().SetTrigger("Healed");
+        }
     }
 
     public virtual void StartCooldown(float cooldownTime)
     {
         LastSkillCooldown = cooldownTime;
         LastSkillRemainingCooldown = cooldownTime;
-    }
-
-    public virtual bool IsBasicAttack(Skill skill)
-    {
-        return skill.isBasicAttack;
     }
 
     protected virtual void Start()

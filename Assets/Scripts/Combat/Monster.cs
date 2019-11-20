@@ -4,11 +4,9 @@ using UnityEngine;
 
 public class Monster : CombatantBase
 {
-    CombatantsManager combatantsManager;
     protected override void Start()
     {
         base.Start();
-        combatantsManager = FindObjectOfType<CombatantsManager>();
         combatantsManager.Enemies.Add(this);
         DamageMaxHitPointsDirectly = true;
     }

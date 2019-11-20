@@ -56,14 +56,14 @@ public class Hero : CombatantBase
 
     public virtual void FriendlySkillUsed(Hero target)
     {
-        if (IsBlockingSkillInProgress())
+        if (IsBlockingSkillInProgress() || FriendlyTargetSkill == null)
         {
             return;
         }
+        GetComponent<AutoAttacking>().Target = null;
         // Using a skill on a friendly might mean moving towards said friendly.
         // In that case we probably don't want to keep on attacking
         FriendlyTargetSkill?.UseSkillOn(target);
-        GetComponent<AutoAttacking>().Target = null;
     }
 
     public virtual void FriendlyClicked(Hero target) { }
