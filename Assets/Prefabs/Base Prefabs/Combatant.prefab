@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 3163549686643598443}
   - component: {fileID: 3163549686643598442}
   - component: {fileID: 5102921357620900240}
+  - component: {fileID: 2250345927434726146}
   m_Layer: 0
   m_Name: Combatant
   m_TagString: Untagged
@@ -57,7 +58,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.018918514, y: 1.016973}
+  m_Offset: {x: 0.003986597, y: 0.48939133}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0}
@@ -68,7 +69,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.2028418, y: 2.033946}
+  m_Size: {x: 1.0137086, y: 1.0186005}
   m_EdgeRadius: 0
 --- !u!50 &3163549686643598440
 Rigidbody2D:
@@ -250,6 +251,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 528afea00030cf148921a2ed70c342b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Cooldown: 0
+  Range: 1
+  Speed: 1
+  Repetitions: 1
+  DamagePerHit: 1
 --- !u!114 &5102921357620900240
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -263,6 +269,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AggroRange: 5
+--- !u!70 &2250345927434726146
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3163549686643598455}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.009954214, y: 1.0800505}
+  m_Size: {x: 1.0176272, y: 2.244299}
+  m_Direction: 0
 --- !u!1001 &3163549686931193584
 PrefabInstance:
   m_ObjectHideFlags: 0

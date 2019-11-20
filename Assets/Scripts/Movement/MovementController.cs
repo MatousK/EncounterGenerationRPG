@@ -63,9 +63,15 @@ public class MovementController : MonoBehaviour
         StopMovement();
     }
 
-    private void OnCollisionEnter2D()
+    private void OnCollisionEnter2D(Collision2D colision)
     {
-        StopMovement();
+        var character1 = colision.collider.GetComponent<CombatantBase>();
+        var character2 = colision.otherCollider.GetComponent<CombatantBase>();
+        // If the colision is between two characters, do not stop, the other will move out of the way.
+        if (character1 == null || character2 == null)
+        {
+            StopMovement();
+        }
     }
 
     private void MovementComponent_CombatantDied(object sender, System.EventArgs e)

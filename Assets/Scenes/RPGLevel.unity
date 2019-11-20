@@ -8401,29 +8401,6 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
---- !u!1 &560545958 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3890477998113513387, guid: efff9a40eedbd3a46a8455bad244d81e,
-    type: 3}
-  m_PrefabInstance: {fileID: 6873496249404448223}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &560545959
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 560545958}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f6a0b9b05c77bc446875d2fb2812579e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Cooldown: 10
-  Range: 1
-  Speed: 1
-  Repetitions: 1
-  HealAmount: 20
 --- !u!1 &585962333
 GameObject:
   m_ObjectHideFlags: 0
@@ -43711,26 +43688,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3890477998113513388, guid: efff9a40eedbd3a46a8455bad244d81e,
-        type: 3}
-      propertyPath: m_Color.r
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3890477998113513388, guid: efff9a40eedbd3a46a8455bad244d81e,
-        type: 3}
-      propertyPath: m_Color.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3890477998113513388, guid: efff9a40eedbd3a46a8455bad244d81e,
-        type: 3}
-      propertyPath: m_Color.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2045123428255694603, guid: efff9a40eedbd3a46a8455bad244d81e,
-        type: 3}
-      propertyPath: FriendlyTargetSkill
-      value: 
-      objectReference: {fileID: 560545959}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: efff9a40eedbd3a46a8455bad244d81e, type: 3}
 --- !u!1001 &7389953155741801632
@@ -43748,12 +43705,12 @@ PrefabInstance:
     - target: {fileID: 869250211914322633, guid: 65ea18269594623448a1dcbcddec12a0,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -15.910915
+      value: -15.49
       objectReference: {fileID: 0}
     - target: {fileID: 869250211914322633, guid: 65ea18269594623448a1dcbcddec12a0,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -15.200212
+      value: -14.97
       objectReference: {fileID: 0}
     - target: {fileID: 869250211914322633, guid: 65ea18269594623448a1dcbcddec12a0,
         type: 3}
@@ -43799,21 +43756,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 869250211914322634, guid: 65ea18269594623448a1dcbcddec12a0,
-        type: 3}
-      propertyPath: m_Color.r
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 869250211914322634, guid: 65ea18269594623448a1dcbcddec12a0,
-        type: 3}
-      propertyPath: m_Color.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 869250211914322634, guid: 65ea18269594623448a1dcbcddec12a0,
-        type: 3}
-      propertyPath: m_Color.b
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 65ea18269594623448a1dcbcddec12a0, type: 3}

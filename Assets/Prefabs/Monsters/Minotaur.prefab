@@ -12,6 +12,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Minotaur
       objectReference: {fileID: 0}
+    - target: {fileID: 3794834790201460922, guid: 5bb997eb5e02af8419843853bbfa62c0,
+        type: 3}
+      propertyPath: TotalMaxHitpoints
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 8426503475732973462, guid: 5bb997eb5e02af8419843853bbfa62c0,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -67,16 +72,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8426503475732973452, guid: 5bb997eb5e02af8419843853bbfa62c0,
+    - target: {fileID: 8426503475732973460, guid: 5bb997eb5e02af8419843853bbfa62c0,
         type: 3}
-      propertyPath: m_SpriteTilingProperty.oldSize.x
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 8426503475732973452, guid: 5bb997eb5e02af8419843853bbfa62c0,
-        type: 3}
-      propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 3
-      objectReference: {fileID: 0}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 22100000, guid: 975b5e6906524464f8aa84def9be897c,
+        type: 2}
     - target: {fileID: 8426503475732973461, guid: 5bb997eb5e02af8419843853bbfa62c0,
         type: 3}
       propertyPath: m_Sprite
@@ -88,16 +89,15 @@ PrefabInstance:
       propertyPath: m_WasSpriteAssigned
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 8426503475732973460, guid: 5bb997eb5e02af8419843853bbfa62c0,
+    - target: {fileID: 8426503475732973452, guid: 5bb997eb5e02af8419843853bbfa62c0,
         type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 22100000, guid: 975b5e6906524464f8aa84def9be897c,
-        type: 2}
-    - target: {fileID: 3794834790201460922, guid: 5bb997eb5e02af8419843853bbfa62c0,
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8426503475732973452, guid: 5bb997eb5e02af8419843853bbfa62c0,
         type: 3}
-      propertyPath: TotalMaxHitpoints
-      value: 100
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5bb997eb5e02af8419843853bbfa62c0, type: 3}

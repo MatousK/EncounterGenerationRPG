@@ -113,25 +113,6 @@ MonoBehaviour:
   DamagePerHit: 1
   ProjectileTemplate: {fileID: 106769759}
   ProjectileSpeed: 10
---- !u!114 &5467804537046692975
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3890477998113513387}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c8db83f804f5ac542aba0ab1aaa164ef, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Cooldown: 30
-  Range: 15
-  Speed: 0.5
-  Repetitions: 1
-  DamagePerHit: 40
-  ProjectileTemplate: {fileID: 106769759}
-  ProjectileSpeed: 20
 --- !u!114 &256497144
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -151,6 +132,42 @@ MonoBehaviour:
   DamageMultiplier: 3
   MovementSpeedMultiplier: 0.5
   AttackSpeedMultiplier: 0.5
+--- !u!114 &5467804537046692975
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3890477998113513387}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8db83f804f5ac542aba0ab1aaa164ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Cooldown: 30
+  Range: 15
+  Speed: 0.5
+  Repetitions: 1
+  DamagePerHit: 40
+  ProjectileTemplate: {fileID: 106769759}
+  ProjectileSpeed: 20
+--- !u!114 &560545959
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3890477998113513387}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6a0b9b05c77bc446875d2fb2812579e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Cooldown: 10
+  Range: 1
+  Speed: 1
+  Repetitions: 1
+  HealAmount: 20
 --- !u!1001 &6873496247910778056
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -163,6 +180,48 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ranger
       objectReference: {fileID: 0}
+    - target: {fileID: 4828470711690574787, guid: 46229661ed166644c8a32b159c483f24,
+        type: 3}
+      propertyPath: TotalMaxHitpoints
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 4828470711690574787, guid: 46229661ed166644c8a32b159c483f24,
+        type: 3}
+      propertyPath: SelfTargetSkill
+      value: 
+      objectReference: {fileID: 256497144}
+    - target: {fileID: 4828470711690574787, guid: 46229661ed166644c8a32b159c483f24,
+        type: 3}
+      propertyPath: EnemyTargetSkill
+      value: 
+      objectReference: {fileID: 5467804537046692975}
+    - target: {fileID: 4828470711690574787, guid: 46229661ed166644c8a32b159c483f24,
+        type: 3}
+      propertyPath: FriendlyTargetSkill
+      value: 
+      objectReference: {fileID: 560545959}
+    - target: {fileID: 7682667400691751780, guid: 46229661ed166644c8a32b159c483f24,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -3301052868302187063, guid: 0aae7a7920739674c91ed23b4b48e327,
+        type: 3}
+    - target: {fileID: 7682667400691751780, guid: 46229661ed166644c8a32b159c483f24,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7682667400691751780, guid: 46229661ed166644c8a32b159c483f24,
+        type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7682667400691751781, guid: 46229661ed166644c8a32b159c483f24,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 22100000, guid: d0b05dddcc4b3d04d8d5c22e6c1d33c0,
+        type: 2}
     - target: {fileID: 7682667400691751783, guid: 46229661ed166644c8a32b159c483f24,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -218,53 +277,56 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4828470711690574787, guid: 46229661ed166644c8a32b159c483f24,
+    - target: {fileID: 7682667400691751805, guid: 46229661ed166644c8a32b159c483f24,
         type: 3}
-      propertyPath: TotalMaxHitpoints
-      value: 100
+      propertyPath: m_Offset.x
+      value: -0.092707634
       objectReference: {fileID: 0}
-    - target: {fileID: 4828470711690574787, guid: 46229661ed166644c8a32b159c483f24,
+    - target: {fileID: 7682667400691751805, guid: 46229661ed166644c8a32b159c483f24,
         type: 3}
-      propertyPath: SelfTargetSkill
-      value: 
-      objectReference: {fileID: 256497144}
-    - target: {fileID: 4828470711690574787, guid: 46229661ed166644c8a32b159c483f24,
-        type: 3}
-      propertyPath: EnemyTargetSkill
-      value: 
-      objectReference: {fileID: 5467804537046692975}
-    - target: {fileID: 7682667400691751780, guid: 46229661ed166644c8a32b159c483f24,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: -3301052868302187063, guid: 0aae7a7920739674c91ed23b4b48e327,
-        type: 3}
-    - target: {fileID: 7682667400691751780, guid: 46229661ed166644c8a32b159c483f24,
-        type: 3}
-      propertyPath: m_Size.x
-      value: 1
+      propertyPath: m_Offset.y
+      value: 0.38700914
       objectReference: {fileID: 0}
-    - target: {fileID: 7682667400691751780, guid: 46229661ed166644c8a32b159c483f24,
-        type: 3}
-      propertyPath: m_WasSpriteAssigned
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7682667400691751781, guid: 46229661ed166644c8a32b159c483f24,
-        type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 22100000, guid: d0b05dddcc4b3d04d8d5c22e6c1d33c0,
-        type: 2}
     - target: {fileID: 7682667400691751805, guid: 46229661ed166644c8a32b159c483f24,
         type: 3}
       propertyPath: m_SpriteTilingProperty.newSize.x
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7682667400691751805, guid: 46229661ed166644c8a32b159c483f24,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 1.0023327
+      objectReference: {fileID: 0}
+    - target: {fileID: 7682667400691751805, guid: 46229661ed166644c8a32b159c483f24,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 1.0413523
       objectReference: {fileID: 0}
     - target: {fileID: 7682667400691751807, guid: 46229661ed166644c8a32b159c483f24,
         type: 3}
       propertyPath: AutoAttackSkill
       value: 
       objectReference: {fileID: 256497131}
+    - target: {fileID: 6792461042929259542, guid: 46229661ed166644c8a32b159c483f24,
+        type: 3}
+      propertyPath: m_Offset.x
+      value: -0.13793111
+      objectReference: {fileID: 0}
+    - target: {fileID: 6792461042929259542, guid: 46229661ed166644c8a32b159c483f24,
+        type: 3}
+      propertyPath: m_Offset.y
+      value: 1.0857382
+      objectReference: {fileID: 0}
+    - target: {fileID: 6792461042929259542, guid: 46229661ed166644c8a32b159c483f24,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 1.0858817
+      objectReference: {fileID: 0}
+    - target: {fileID: 6792461042929259542, guid: 46229661ed166644c8a32b159c483f24,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 2.414936
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 46229661ed166644c8a32b159c483f24, type: 3}
 --- !u!1 &3890477998113513387 stripped
