@@ -44,11 +44,11 @@ TagManager:
   - name: Background
     uniqueID: 3033201961
     locked: 0
-  - name: Foreground
-    uniqueID: 596549315
-    locked: 0
   - name: Walls
     uniqueID: 3649489953
+    locked: 0
+  - name: Foreground
+    uniqueID: 596549315
     locked: 0
   - name: UI
     uniqueID: 2759175807

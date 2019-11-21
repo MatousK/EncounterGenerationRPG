@@ -21,6 +21,10 @@ public class CameraCentering : MonoBehaviour
     public void Center()
     {
         var alivePlayerCharacters = combatantsManager.GetPlayerCharacters(onlyAlive: true).ToList();
+        if (alivePlayerCharacters.Count == 0)
+        {
+            return;
+        }
         var playerPositions = alivePlayerCharacters.Select(character => character.transform.position);
         var playerCenter = playerPositions.Aggregate((position1, position2) => position1 + position2) / alivePlayerCharacters.Count;
         transform.position = new Vector3(playerCenter.x, playerCenter.y, transform.position.z);
