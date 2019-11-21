@@ -21,9 +21,9 @@ public class Hero : CombatantBase
     public TargetedSkill FriendlyTargetSkill;
 
     // Start is called before the first frame update
-    protected override void Start()
+    protected override void Awake()
     {
-        base.Start();
+        base.Awake();
         FindObjectOfType<CombatantsManager>().PlayerCharacters.Add(this);
         movementController = GetComponent<MovementController>();
     }

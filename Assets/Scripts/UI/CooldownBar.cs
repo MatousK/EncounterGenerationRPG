@@ -9,6 +9,11 @@ public class CooldownBar : UIProgressBarBase
     public UIBar TotalCooldownIndicator;
     public UIBar CooldownProgressIndicator;
 
+    protected override void Awake()
+    {
+        base.Awake();
+    }
+
     protected override void Start()
     {
         base.Start();

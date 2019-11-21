@@ -28,12 +28,12 @@ public class Rage : PersonalSkill
             TryStopSkill();
         }
     }
-    protected override void Start()
+    protected override void Awake()
     {
         combatant = GetComponent<CombatantBase>();
         combatantsManager = FindObjectOfType<CombatantsManager>();
         selectableComponent = GetComponent<SelectableObject>();
-        base.Start();
+        base.Awake();
     }
     protected override void OnPersonalSkillStarted()
     {

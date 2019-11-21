@@ -20,7 +20,7 @@ public class MovementController : MonoBehaviour
         }
     }
 
-    private void Start()
+    private void Awake()
     { 
         pathfindingMapController = FindObjectOfType<PathfindingMapController>();
         MapGrid = FindObjectOfType<Grid>();

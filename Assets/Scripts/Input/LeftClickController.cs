@@ -10,7 +10,7 @@ public class LeftClickController : MonoBehaviour
     Rect currentSelectionRectangle = Rect.zero;
     Vector2? selectionStart;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         whiteTexture = new Texture2D(1, 1);
         whiteTexture.SetPixel(0, 0, Color.white);

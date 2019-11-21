@@ -12,7 +12,7 @@ public class SelectableObject : MonoBehaviour
     Circle selectionIndicator;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         selectionIndicator = GetComponent<Circle>();
         selectionIndicator.IsVisible = IsSelected;

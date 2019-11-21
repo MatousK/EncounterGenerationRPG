@@ -13,11 +13,11 @@ class HuntersFocus : PersonalSkill
     CombatantsManager combatantsManager;
     CombatantBase combatant;
 
-    protected override void Start()
+    protected override void Awake()
     {
         combatant = GetComponent<CombatantBase>();
         combatantsManager = FindObjectOfType<CombatantsManager>();
-        base.Start();
+        base.Awake();
     }
     protected override void Update()
     {

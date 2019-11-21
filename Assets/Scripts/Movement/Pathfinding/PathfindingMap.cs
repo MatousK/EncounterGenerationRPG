@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-class PathfindingMap
+public class PathfindingMap
 {
     public PathfindingMap(BoundsInt tilemapBounds)
     {

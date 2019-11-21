@@ -9,6 +9,11 @@ public class HealthBar : UIProgressBarBase
     public UIBar CurrentMaxHitPointsIndicator;
     public UIBar CurrentHitPointsIndicator;
 
+    protected override void Awake()
+    {
+        base.Awake();
+    }
+
     protected override void Start()
     {
         base.Start();

@@ -7,7 +7,7 @@ public class VelocityManager : MonoBehaviour
     private Vector2? previousFramePosition = null;
     private Vector2 velocity = Vector2.zero;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         previousFramePosition = transform.position;
     }

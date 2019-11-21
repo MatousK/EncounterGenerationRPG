@@ -9,7 +9,7 @@ public class AggressiveBehavior : MonoBehaviour
     AutoAttacking autoAttacking;
     CombatantBase selfCombatant;
 
-    private void Start()
+    private void Awake()
     {
         combatantsManager = FindObjectOfType<CombatantsManager>();
         autoAttacking = GetComponent<AutoAttacking>();

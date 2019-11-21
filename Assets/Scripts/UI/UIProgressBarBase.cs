@@ -8,9 +8,12 @@ using UnityEngine;
 public abstract class UIProgressBarBase: MonoBehaviour
 {
     protected CombatantBase RepresentedCombatant;
-    protected virtual void Start()
+    protected virtual void Awake()
     {
         RepresentedCombatant = GetComponentInParent<CombatantBase>();
+    }
+    protected virtual void Start()
+    {
         UpdateIndicators();
     }
 

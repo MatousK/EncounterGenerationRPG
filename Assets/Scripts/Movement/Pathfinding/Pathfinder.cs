@@ -9,7 +9,7 @@ class Pathfinder: MonoBehaviour
 {
     PathfindingMapController pathfindingMapController;
     public Grid MapGrid;
-    private void Start()
+    private void Awake()
     {
         pathfindingMapController = FindObjectOfType<PathfindingMapController>();
         MapGrid = MapGrid != null ? MapGrid : FindObjectOfType<Grid>();

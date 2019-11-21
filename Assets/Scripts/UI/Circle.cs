@@ -14,7 +14,7 @@ public class Circle : MonoBehaviour
     int? lastFrameSegments;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         DrawCircle(gameObject);
     }

@@ -11,9 +11,9 @@ class RangedBasicAttack: ProjectileAttack
         BlocksManualMovement = false;
         isBasicAttack = true;
     }
-    protected override void Start()
+    protected override void Awake()
     {
-        base.Start();
+        base.Awake();
     }
 
     protected override void Update()

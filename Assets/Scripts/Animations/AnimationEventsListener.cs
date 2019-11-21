@@ -10,18 +10,6 @@ public class AnimationEventsListener : MonoBehaviour
     public event EventHandler ApplySkillEffect;
     public event EventHandler SkillAnimationFinished;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void AnimationCallbackApplySkillEffect()
     {
         ApplySkillEffect?.Invoke(this, new EventArgs());

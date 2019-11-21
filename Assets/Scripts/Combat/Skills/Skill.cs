@@ -62,7 +62,7 @@ public abstract class Skill: MonoBehaviour
     /// </summary>
     protected CombatantBase selfCombatant;
     // Start is called before the first frame update
-    protected virtual void Start()
+    protected virtual void Awake()
     {
         animationEventListener = GetComponent<AnimationEventsListener>();
         selfCombatant = GetComponent<CombatantBase>();

@@ -11,16 +11,12 @@ class PathfindingMapController: MonoBehaviour
     public List<Tilemap> WalkableTilemaps;
     public List<Tilemap> CollisionTilemaps;
     public PathfindingMap Map;
-    PathfindingMapController pathfindingMapController;
-    Grid mapGrid;
     CombatantsManager combatantsManager;
-    void Start()
-    {
+    void Awake()
+    { 
+        combatantsManager = FindObjectOfType<CombatantsManager>();
         var bounds = CalculateMapBounds();
         Map = new PathfindingMap(bounds);
-        mapGrid = FindObjectOfType<Grid>();
-        combatantsManager = FindObjectOfType<CombatantsManager>();
-        pathfindingMapController = FindObjectOfType<PathfindingMapController>();
         FillPassableTiles();
         FillBlockingTiles();
         print("Success");

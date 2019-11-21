@@ -6,7 +6,7 @@ using UnityEngine;
 public class RightClickController : MonoBehaviour
 {
     CombatantsManager combatantsManager;
-    private void Start()
+    private void Awake()
     {
         combatantsManager = FindObjectOfType<CombatantsManager>();
     }

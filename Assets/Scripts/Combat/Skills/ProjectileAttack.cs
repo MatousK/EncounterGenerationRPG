@@ -13,9 +13,9 @@ public class ProjectileAttack : Attack
     public GameObject ProjectileTemplate;
     // How many squares should the projectile traverse per second.
     public float ProjectileSpeed;
-    protected override void Start()
+    protected override void Awake()
     {
-        base.Start();
+        base.Awake();
     }
 
     protected override void Update()

@@ -131,7 +131,7 @@ public class CombatantBase : MonoBehaviour
         LastSkillRemainingCooldown = cooldownTime;
     }
 
-    protected virtual void Start()
+    protected virtual void Awake()
     {
         MaxHitpoints = TotalMaxHitpoints;
         HitPoints = TotalMaxHitpoints;

@@ -12,7 +12,7 @@ class AutoAttacking : MonoBehaviour
     public TargetedSkill AutoAttackSkill;
     CombatantBase SelfCombatant;
 
-    private void Start()
+    private void Awake()
     {
         SelfCombatant = GetComponent<CombatantBase>();
     }
