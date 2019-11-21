@@ -5,10 +5,13 @@ using UnityEngine;
 public class MovementController : MonoBehaviour
 {
     public float Speed = 10;
-    private Vector3? currentMoveToTarget;
-    private List<Vector3> currentMoveToPath;
+    private Vector2Int? currentMoveToTarget;
+    private Queue<Vector2Int> currentMoveToPath;
+    private Vector3? nextSquareWorldSpace;
     private CombatantBase selfCombatant;
     private Pathfinder pathfinder;
+    PathfindingMapController pathfindingMapController;
+    public Grid MapGrid;
     public bool IsMoving
     {
         get
@@ -18,7 +21,9 @@ public class MovementController : MonoBehaviour
     }
 
     private void Start()
-    {
+    { 
+        pathfindingMapController = FindObjectOfType<PathfindingMapController>();
+        MapGrid = FindObjectOfType<Grid>();
         pathfinder = FindObjectOfType<Pathfinder>();
         selfCombatant = GetComponent<CombatantBase>();
         if (selfCombatant != null)
@@ -29,68 +34,83 @@ public class MovementController : MonoBehaviour
 
     private void LateUpdate()
     {
-        if (currentMoveToTarget == null)
+        if (!IsMoving)
         {
+            // Not moving anywhere.
             return;
         }
-        if (currentMoveToPath == null || currentMoveToPath.Count == 0)
+        if (nextSquareWorldSpace != null && Vector3.Distance(nextSquareWorldSpace.Value, transform.position) < 0.05)
         {
+            // Reached next square we wanted to go to. Set the next one.
+            SetNextMoveToSquare();
+        }
+        if (nextSquareWorldSpace == null)
+        {
+            // Reached target or something went wrong.
             StopMovement();
             return;
         }
-        var pathPoint = currentMoveToPath[0];
-        if (Vector3.Distance(pathPoint, transform.position) < 0.05)
-        {
-            currentMoveToPath.RemoveAt(0);
-            if (currentMoveToPath.Count == 0)
-            {
-                StopMovement();
-                return;
-            }
-            pathPoint = currentMoveToPath[0];
-        }
         var speedMultiplier = selfCombatant?.Attributes?.MovementSpeedMultiplier ?? 1;
         GetComponent<Animator>().SetFloat("MovementSpeedMultiplier", speedMultiplier);
-        transform.position = Vector3.MoveTowards(transform.position, pathPoint, Speed * Time.deltaTime * speedMultiplier);
+        transform.position = Vector3.MoveTowards(transform.position, nextSquareWorldSpace.Value, Speed * Time.deltaTime * speedMultiplier);
+    }
+
+    private void SetNextMoveToSquare()
+    {
+        if (currentMoveToPath == null || currentMoveToPath.Count == 0)
+        {
+            nextSquareWorldSpace = null;
+            return;
+        }
+        var nextSpace = currentMoveToPath.Dequeue();
+        if (!pathfindingMapController.GetPassabilityMapForCombatant(selfCombatant).GetSquareIsPassable(nextSpace))
+        {
+            //Something is in our way, recalculate the path.
+            CalculateAndSavePathToTargetGridSpace(currentMoveToTarget.Value);
+            return;
+        }
+        nextSquareWorldSpace = MapGrid.GetCellCenterWorld(new Vector3Int(nextSpace.x, nextSpace.y, 0));
+        nextSquareWorldSpace = new Vector3(nextSquareWorldSpace.Value.x, nextSquareWorldSpace.Value.y, transform.position.z);
+    }
+    /// <summary>
+    /// Get position where this combatant wants to be, either the current position or position of a neighbouring square it is moving to right now.
+    /// </summary>
+    public Vector2Int GetReservedGridPosition()
+    {
+        var worldSpacePosition = nextSquareWorldSpace != null ? nextSquareWorldSpace.Value : transform.position;
+        var grid3DPosition = MapGrid.WorldToCell(worldSpacePosition);
+        return new Vector2Int(grid3DPosition.x, grid3DPosition.y);
     }
 
     public void MoveToPosition(Vector2 targetPosition)
     {
-        if (currentMoveToTarget.HasValue && targetPosition.x == currentMoveToTarget.Value.x && targetPosition.y == currentMoveToTarget.Value.y)
-        {
-            // Already Moving there.
-            return;
-        }
-        CalculateAndSavePathToTarget(targetPosition);
         GetComponent<Animator>().SetBool("Walking", true);
+        CalculateAndSavePathToTargetWorldSpace(targetPosition);
     }
     public void StopMovement()
     {
         currentMoveToTarget = null;
         GetComponent<Animator>().SetBool("Walking", false);
     }
-    private void CalculateAndSavePathToTarget(Vector2 targetPosition)
+    private void CalculateAndSavePathToTargetWorldSpace(Vector2 targetPositionWorldSpace)
     {
-        var path = pathfinder.FindPath(transform.position, targetPosition, selfCombatant);
+        var targetGridSpace = MapGrid.WorldToCell(targetPositionWorldSpace);
+        CalculateAndSavePathToTargetGridSpace(new Vector2Int(targetGridSpace.x, targetGridSpace.y));
+    }
+
+    private void CalculateAndSavePathToTargetGridSpace(Vector2Int targetPositionGridSpace)
+    {
+        currentMoveToTarget = targetPositionGridSpace;
+        var path = pathfinder.FindPath(transform.position, targetPositionGridSpace, selfCombatant);
         if (path == null || path.Count == 0)
         {
             // No path to target found or we're already there.
+            StopMovement();
             return;
         }
-        List<Vector3> path3D = path.ConvertAll((vector2) => new Vector3(vector2.x, vector2.y, transform.position.z));
-        currentMoveToTarget = path3D[path3D.Count - 1];
-        currentMoveToPath = path3D;
+        currentMoveToPath = new Queue<Vector2Int>(path);
+        SetNextMoveToSquare();
     }
-
-    private void OnCollisionEnter2D(Collision2D colision)
-    {
-        // Colliding. Recalculate path to the target.
-        if (currentMoveToTarget != null)
-        {
-            CalculateAndSavePathToTarget(currentMoveToTarget.Value);
-        }
-    }
-
     private void MovementComponent_CombatantDied(object sender, System.EventArgs e)
     {
         StopMovement();

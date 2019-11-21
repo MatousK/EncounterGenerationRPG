@@ -11,6 +11,7 @@ class PathfindingMapController: MonoBehaviour
     public List<Tilemap> WalkableTilemaps;
     public List<Tilemap> CollisionTilemaps;
     public PathfindingMap Map;
+    PathfindingMapController pathfindingMapController;
     Grid mapGrid;
     CombatantsManager combatantsManager;
     void Start()
@@ -19,6 +20,7 @@ class PathfindingMapController: MonoBehaviour
         Map = new PathfindingMap(bounds);
         mapGrid = FindObjectOfType<Grid>();
         combatantsManager = FindObjectOfType<CombatantsManager>();
+        pathfindingMapController = FindObjectOfType<PathfindingMapController>();
         FillPassableTiles();
         FillBlockingTiles();
         print("Success");
@@ -33,8 +35,7 @@ class PathfindingMapController: MonoBehaviour
             {
                 continue;
             }
-            Vector2 combatantWorldSpacePosition = combatant.transform.position;
-            var combatantGridPosition = mapGrid.WorldToCell(combatantWorldSpacePosition);
+            var combatantGridPosition = combatant.GetComponent<MovementController>().GetReservedGridPosition();
             toReturn.SetSquareIsPassable(combatantGridPosition.x, combatantGridPosition.y, false);
         }
         return toReturn;
