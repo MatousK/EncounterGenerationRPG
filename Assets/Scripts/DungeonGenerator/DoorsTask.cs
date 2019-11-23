@@ -37,6 +37,9 @@ public class DoorsTask<TPayload> : ConfigurablePipelineTask<TPayload, DoorsConfi
                 var doorTemplate = GetDoorTemplateObject(doors.IsHorizontal, doors.FacingDirection);
                 var newDoor = Object.Instantiate(doorTemplate, Payload.GameObject.transform);
                 newDoor.transform.localPosition = doorLocalPosition;
+                var doorsComponent = newDoor.GetComponent<Doors>();
+                doorsComponent.ConnectingRooms.Add(room.GeneratorData.Node);
+                doorsComponent.ConnectingRooms.Add(doors.ConnectedRoom);
             }
         }
     }

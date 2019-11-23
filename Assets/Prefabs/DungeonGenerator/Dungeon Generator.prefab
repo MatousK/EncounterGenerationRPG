@@ -47,6 +47,8 @@ MonoBehaviour:
   PipelineItems:
   - {fileID: 11400000, guid: 2ce3ab6bf35c40044a82c2cf0013c3f5, type: 2}
   - {fileID: 11400000, guid: e7c507f95c30cd34bb91ba2ab9beeee3, type: 2}
+  - {fileID: 11400000, guid: fec774c6303d4c845ba27d99a66684a2, type: 2}
   - {fileID: 11400000, guid: ff19315a01ecdd54cbaa6bbc0fc28e6d, type: 2}
   - {fileID: 11400000, guid: de8cc4fec943a9341befc8f5b6da88c2, type: 2}
   - {fileID: 11400000, guid: a36eb703244eed24a8852122fbd4d067, type: 2}
+  - {fileID: 11400000, guid: 850a6b229028afd4685452578b44b196, type: 2}

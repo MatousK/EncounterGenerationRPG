@@ -10,10 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7c5fe7890ac081f47af611bcc142cd88, type: 3}
-  m_Name: WoodenDoorsConfig
+  m_Name: EGWoodenDoorsConfig
   m_EditorClassIdentifier: 
   AddDoors: 1
-  ZCoordinate: 5
   VerticalDoorsTop: {fileID: 6719059086833211073, guid: e2910fffdb1cd3148aed27fae523c2ee,
     type: 3}
   VerticalDoorsBottom: {fileID: 6719059086833211073, guid: e2910fffdb1cd3148aed27fae523c2ee,

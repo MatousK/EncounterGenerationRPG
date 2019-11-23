@@ -9,7 +9,9 @@ public class Doors : MonoBehaviour
     public List<GameObject> ClosedDoorsObjects = new List<GameObject>();
     private CombatantsManager combatantsManager;
     private PathfindingMapController pathfindingMapController;
+    private RoomsLayout roomsLayout;
     public Grid MapGrid;
+    public List<int> ConnectingRooms = new List<int>();
     private bool _IsOpened;
     public bool IsOpened
     {
@@ -25,6 +27,7 @@ public class Doors : MonoBehaviour
     }
     void Awake()
     {
+        roomsLayout = FindObjectOfType<RoomsLayout>();
         pathfindingMapController = FindObjectOfType<PathfindingMapController>();
         combatantsManager = FindObjectOfType<CombatantsManager>();
         MapGrid = MapGrid != null ? MapGrid : FindObjectOfType<Grid>();
@@ -79,5 +82,12 @@ public class Doors : MonoBehaviour
             closedDoor.SetActive(!IsOpened);
         }
         UpdatePathfindingMap(pathfindingMapController?.Map);
+        if (IsOpened)
+        {
+            foreach (var roomIndex in ConnectingRooms)
+            {
+                roomsLayout.Rooms[roomIndex].IsExplored = true;
+            }
+        }
     }
 }
