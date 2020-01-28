@@ -1,4 +1,5 @@
-﻿namespace Assets.ProceduralLevelGenerator.Scripts.GeneratorPipeline.RoomTemplates.RoomTemplateInitializers
+﻿#if UNITY_EDITOR
+namespace Assets.ProceduralLevelGenerator.Scripts.GeneratorPipeline.RoomTemplates.RoomTemplateInitializers
 {
 	using TilemapLayers;
 	using UnityEditor;
@@ -26,3 +27,4 @@
 		}
 	}
 }
+#endif

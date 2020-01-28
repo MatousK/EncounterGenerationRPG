@@ -1,4 +1,5 @@
-﻿namespace Assets.ProceduralLevelGenerator.Scripts.GeneratorPipeline.RoomTemplates.Doors.Editor
+﻿#if UNITY_EDITOR
+namespace Assets.ProceduralLevelGenerator.Scripts.GeneratorPipeline.RoomTemplates.Doors.Editor
 {
 	using System;
 	using RoomTemplates.Doors;
@@ -263,3 +264,4 @@
 		}
 	}
 }
+#endif

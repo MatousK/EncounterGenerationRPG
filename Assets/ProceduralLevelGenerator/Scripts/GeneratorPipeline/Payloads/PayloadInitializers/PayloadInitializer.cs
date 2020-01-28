@@ -1,11 +1,12 @@
-﻿namespace Assets.ProceduralLevelGenerator.Scripts.GeneratorPipeline.Payloads.PayloadInitializers
+﻿
+namespace Assets.ProceduralLevelGenerator.Scripts.GeneratorPipeline.Payloads.PayloadInitializers
 {
 	using System.Linq;
 	using Data.Graphs;
 	using RoomTemplates.TilemapLayers;
-	using UnityEditor;
 	using UnityEngine;
 	using UnityEngine.Tilemaps;
+    using UnityEditor;
 	using Random = System.Random;
 
 	/// <summary>
@@ -75,9 +76,11 @@
 
 			if (tilemapLayersHandler == null)
 			{
-				tilemapLayersHandler = AssetDatabase
+#if UNITY_EDITOR
+                tilemapLayersHandler = AssetDatabase
 					.LoadAssetAtPath<TilemapLayersHandler>("Assets/ProceduralLevelGenerator/ScriptableObjects/DefaultTilemapLayersHandler.asset");
-			}
+#endif
+            }
 
 			tilemapLayersHandler.InitializeTilemaps(dungeonHolder);
 

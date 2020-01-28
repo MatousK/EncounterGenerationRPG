@@ -1,4 +1,5 @@
-﻿namespace Assets.ProceduralLevelGenerator.Scripts.Utils
+﻿#if UNITY_EDITOR
+namespace Assets.ProceduralLevelGenerator.Scripts.Utils
 {
 	using System;
 	using System.Collections.Generic;
@@ -226,3 +227,4 @@
 	}
 #endif
 }
+#endif

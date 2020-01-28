@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: EGWoodenDoorsConfig
   m_EditorClassIdentifier: 
   AddDoors: 1
-  VerticalDoorsTop: {fileID: 6719059086833211073, guid: e2910fffdb1cd3148aed27fae523c2ee,
+  VerticalDoorsTop: {fileID: 6424235743608822193, guid: 9e7c8b6a3290db049bd67fe78587f2ae,
     type: 3}
-  VerticalDoorsBottom: {fileID: 6719059086833211073, guid: e2910fffdb1cd3148aed27fae523c2ee,
+  VerticalDoorsBottom: {fileID: 6424235743608822193, guid: 9e7c8b6a3290db049bd67fe78587f2ae,
     type: 3}
-  HorizontalDoorsLeft: {fileID: 1946073331115771054, guid: ec728ae9eafe99b4f8f20e123397d339,
+  HorizontalDoorsLeft: {fileID: 6868245709551921734, guid: fd8afef9535d08b42968ec80c338bffe,
     type: 3}
-  HorizontalDoorsRight: {fileID: 1946073331115771054, guid: ec728ae9eafe99b4f8f20e123397d339,
+  HorizontalDoorsRight: {fileID: 6868245709551921734, guid: fd8afef9535d08b42968ec80c338bffe,
     type: 3}

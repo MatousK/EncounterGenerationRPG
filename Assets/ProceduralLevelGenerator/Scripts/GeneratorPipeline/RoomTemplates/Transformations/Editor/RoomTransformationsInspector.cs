@@ -1,4 +1,5 @@
-﻿namespace Assets.ProceduralLevelGenerator.Scripts.GeneratorPipeline.RoomTemplates.Transformations.Editor
+﻿#if UNITY_EDITOR
+namespace Assets.ProceduralLevelGenerator.Scripts.GeneratorPipeline.RoomTemplates.Transformations.Editor
 {
 	using Transformations;
 	using UnityEditor;
@@ -20,3 +21,4 @@
 		}
 	}
 }
+#endif

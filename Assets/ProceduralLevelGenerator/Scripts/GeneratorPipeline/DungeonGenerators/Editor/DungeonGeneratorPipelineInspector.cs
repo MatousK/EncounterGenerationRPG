@@ -1,4 +1,5 @@
-﻿namespace Assets.ProceduralLevelGenerator.Scripts.GeneratorPipeline.DungeonGenerators.Editor
+﻿#if UNITY_EDITOR
+namespace Assets.ProceduralLevelGenerator.Scripts.GeneratorPipeline.DungeonGenerators.Editor
 {
 	using DungeonGenerators;
 	using UnityEditor;
@@ -69,3 +70,4 @@
 		}
 	}
 }
+#endif

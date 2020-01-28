@@ -11,12 +11,12 @@
 	/// </summary>
 	public class DungeonGeneratorPipeline : MonoBehaviour
 	{
-		[ExpandableNotFoldable]
-		public AbstractPayloadInitializer PayloadInitializer;
+        [ExpandableNotFoldable]
+        public AbstractPayloadInitializer PayloadInitializer;
 
 		[HideInInspector]
-		[ExpandableNotFoldable]
-		public List<PipelineItem> PipelineItems;
+        [ExpandableNotFoldable]
+        public List<PipelineItem> PipelineItems;
 
 		public void Generate()
 		{

@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class AggressiveBehavior : MonoBehaviour
 {
-    public float AggroRange = 5;
     CombatantsManager combatantsManager;
     AutoAttacking autoAttacking;
     CombatantBase selfCombatant;
@@ -38,9 +37,6 @@ public class AggressiveBehavior : MonoBehaviour
                 closestTarget = opponent;
             }
         }
-        if (closestDistance < AggroRange)
-        {
-            autoAttacking.Target = closestTarget;
-        }
+        autoAttacking.Target = closestTarget;
     }
 }

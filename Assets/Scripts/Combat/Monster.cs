@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Monster : CombatantBase
 {
+    public MonsterRole Role;
+    public MonsterRank Rank;
     protected override void Awake()
     {
         base.Awake();

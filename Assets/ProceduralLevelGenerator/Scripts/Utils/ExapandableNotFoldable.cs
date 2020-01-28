@@ -5,9 +5,6 @@
 	using UnityEditor;
 	using UnityEngine;
 
-#if UNITY_EDITOR
-
-#endif
 
 	/// <summary>
 	/// Use this property on a ScriptableObject type to allow the editors drawing the field to draw an expandable
