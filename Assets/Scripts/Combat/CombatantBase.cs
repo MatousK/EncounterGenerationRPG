@@ -144,6 +144,7 @@ public class CombatantBase : MonoBehaviour
     {
         UpdateSkillCooldown();
         ApplyHealthRegeneration();
+        ResetCooldownIfOutOfCombat();
     }
 
     public void DeathAnimationFinished()
@@ -156,6 +157,15 @@ public class CombatantBase : MonoBehaviour
         float regenerationRate = combatantsManager.IsCombatActive ? Attributes.CombatHealthRegeneration : Attributes.OutOfCombatHealthRegeneration;
         float regeneratedHP = regenerationRate * Time.deltaTime;
         HitPoints = Math.Min(MaxHitpoints, HitPoints + regeneratedHP);
+    }
+
+    private void ResetCooldownIfOutOfCombat()
+    {
+        if (!combatantsManager.IsCombatActive)
+        {
+            LastSkillRemainingCooldown = 0;
+            LastSkillCooldown = null;
+        }
     }
 
     private void UpdateSkillCooldown()

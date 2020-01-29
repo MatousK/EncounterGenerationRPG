@@ -34,6 +34,8 @@ MonoBehaviour:
     RangeMultiplier: 1
     DealtHealingMultiplier: 1
     ReceivedHealingMultiplier: 1
+    OutOfCombatHealthRegeneration: 30
+    CombatHealthRegeneration: 0
   TotalMaxHitpoints: 0
   SelfTargetSkill: {fileID: 0}
   EnemyTargetSkill: {fileID: 0}

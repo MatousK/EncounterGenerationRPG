@@ -15,6 +15,6 @@ public class CombatantAttributes
     public float RangeMultiplier = 1;
     public float DealtHealingMultiplier = 1;
     public float ReceivedHealingMultiplier = 1;
-    public float OutOfCombatHealthRegeneration = 5;
+    public float OutOfCombatHealthRegeneration = 20;
     public float CombatHealthRegeneration = 0;
 }
