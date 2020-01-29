@@ -18,8 +18,8 @@ public class DoorDifficultyIndicator : MonoBehaviour
         var allRooms = FindObjectOfType<RoomsLayout>().Rooms;
         EncounterManager = FindObjectOfType<EncounterManager>();
         ConnectedRooms = new Tuple<RoomInfo, RoomInfo>(allRooms[Doors.ConnectingRooms[0]], allRooms[Doors.ConnectingRooms[1]]);
-        allRooms[0].IsExploredChanged += RoomExplored;
-        allRooms[1].IsExploredChanged += RoomExplored;
+        ConnectedRooms.Item1.IsExploredChanged += RoomExplored;
+        ConnectedRooms.Item2.IsExploredChanged += RoomExplored;
         UpdateDoorColor();
     }
 
@@ -37,11 +37,10 @@ public class DoorDifficultyIndicator : MonoBehaviour
             return;
         }
         // The target room, the one which is the player yet to enter and whose difficulty this door should indicate, is the room that is not explored yet.
-        var targetRoomIndex = ConnectedRooms.Item1.IsExplored ? Doors.ConnectingRooms[1] : Doors.ConnectingRooms[0];
-        var targetEncounter = EncounterManager.EncounterConfigurations[targetRoomIndex];
+        var targetRoom = ConnectedRooms.Item1.IsExplored ? ConnectedRooms.Item2 : ConnectedRooms.Item1;
         foreach (var indicator in DifficultyIndicators)
         { 
-            if (indicator.EncounterDifficulty == targetEncounter.EncounterDifficulty)
+            if (indicator.EncounterDifficulty == targetRoom.RoomEncounter.EncounterDifficulty)
             {
                 var doorRenderers = transform.GetComponentsInChildren<SpriteRenderer>();
                 foreach (var renderer in doorRenderers)

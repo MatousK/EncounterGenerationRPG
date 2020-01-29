@@ -7,8 +7,8 @@
 	/// </summary>
 	public class Connection : ScriptableObject
 	{
-		public Room From;
+		public RoomWithEncounter From;
 
-		public Room To;
+		public RoomWithEncounter To;
 	}
 }

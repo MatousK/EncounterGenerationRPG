@@ -17,9 +17,9 @@
 	/// because Unity does not allow creating instances of scriptable objects outside 
 	/// the main thread.
 	/// </summary>
-	public class CorridorsNodeCreator : ICorridorNodesCreator<Room>
+	public class CorridorsNodeCreator : ICorridorNodesCreator<RoomWithEncounter>
 	{
-		private readonly TwoWayDictionary<Room, int> precomputedMapping = new TwoWayDictionary<Room, int>();
+		private readonly TwoWayDictionary<RoomWithEncounter, int> precomputedMapping = new TwoWayDictionary<RoomWithEncounter, int>();
 
 		private bool alreadyUsed;
 
@@ -35,12 +35,12 @@
 
 			foreach (var corridor in corridors)
 			{
-				var room = ScriptableObject.CreateInstance<Room>();
+				var room = ScriptableObject.CreateInstance<RoomWithEncounter>();
 				precomputedMapping.Add(room, corridor);
 			}
 		}
 
-		public void AddCorridorsToMapping(ICorridorMapDescription<int> mapDescription, TwoWayDictionary<Room, int> mapping)
+		public void AddCorridorsToMapping(ICorridorMapDescription<int> mapDescription, TwoWayDictionary<RoomWithEncounter, int> mapping)
 		{
 			if (alreadyUsed)
 			{

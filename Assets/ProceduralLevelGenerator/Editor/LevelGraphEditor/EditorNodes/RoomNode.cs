@@ -6,9 +6,9 @@
 	using UnityEditor;
 	using UnityEngine;
 
-	public class RoomNode : IEditorNode<Room>
+	public class RoomNode : IEditorNode<RoomWithEncounter>
 	{
-		public Room Data { get; set; }
+		public RoomWithEncounter Data { get; set; }
 
 		public Action OnDelete;
 
@@ -29,7 +29,7 @@
 		private bool isClickAfterContextMenu;
 
 
-		public RoomNode(Room data, float width, float height, GUIStyle style, EditorMode mode)
+		public RoomNode(RoomWithEncounter data, float width, float height, GUIStyle style, EditorMode mode)
 		{
 			Data = data;
 			this.style = style;

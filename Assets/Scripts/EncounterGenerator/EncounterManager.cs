@@ -8,15 +8,13 @@ using UnityEngine;
 class EncounterManager: MonoBehaviour
 {
     EncounterGenerator EncounterGenerator = new EncounterGenerator();
-    RoomsLayout RoomsLayout;
     CombatantSpawnManager CombatantSpawnManager;
-    public List<EncounterConfiguration> EncounterConfigurations;
 
     private void Start()
     {
-        RoomsLayout = FindObjectOfType<RoomsLayout>();
+        var roomsLayout = FindObjectOfType<RoomsLayout>();
         CombatantSpawnManager = FindObjectOfType<CombatantSpawnManager>();
-        foreach (var room in RoomsLayout.Rooms)
+        foreach (var room in roomsLayout.Rooms)
         {
             room.IsExploredChanged += OnRoomExplored;
         }
@@ -29,14 +27,8 @@ class EncounterManager: MonoBehaviour
             // Room is still not explored;
             return;
         }
-        int roomIndex = RoomsLayout.Rooms.IndexOf(sender as RoomInfo);
-        if (roomIndex < 0 || roomIndex >= EncounterConfigurations.Count)
-        {
-            throw new ArgumentOutOfRangeException("sender");
-        }
-        var encounterConfiguration = EncounterConfigurations[roomIndex];
-        var encounter = EncounterGenerator.GenerateEncounters(encounterConfiguration);
-        print(encounter.Count);
+        var exploredRoom = sender as RoomInfo;
+        var encounter = EncounterGenerator.GenerateEncounters(exploredRoom.RoomEncounter);
         SpawnMonsters(encounter, sender as RoomInfo);
     }
 

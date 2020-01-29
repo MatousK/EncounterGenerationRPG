@@ -14,7 +14,7 @@
 		/// List of rooms in the graph.
 		/// </summary>
 		[HideInInspector]
-		public List<Room> Rooms = new List<Room>();
+		public List<RoomWithEncounter> Rooms = new List<RoomWithEncounter>();
 
 		/// <summary>
 		/// List of connections in the graph.

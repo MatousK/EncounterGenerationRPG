@@ -39,7 +39,7 @@
 		{
 			SetupStyles();
 
-			var roomToRoomNodes = new Dictionary<Room, RoomNode>();
+			var roomToRoomNodes = new Dictionary<RoomWithEncounter, RoomNode>();
 
 			roomNodes = new List<RoomNode>();
 			foreach (var data in Data.Rooms)
@@ -227,7 +227,7 @@
 
 		protected void OnClickAddRoom(Vector2 mousePosition)
 		{
-			var room = CreateInstance<Room>();
+			var room = CreateInstance<RoomWithEncounter>();
 
 			room.Position = mousePosition;
 			Data.Rooms.Add(room);
@@ -271,7 +271,7 @@
 			GUI.changed = true;
 		}
 
-		protected RoomNode CreateNode(Room data)
+		protected RoomNode CreateNode(RoomWithEncounter data)
 		{
 			var node = new RoomNode(data, 40, 40, roomNodeStyle, editorMode);
 

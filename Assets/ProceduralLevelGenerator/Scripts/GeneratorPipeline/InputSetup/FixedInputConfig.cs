@@ -24,7 +24,7 @@
 	public class FixedInputTask<TPayload> : InputSetupBaseTask<TPayload, FixedInputConfig>
 		where TPayload : class, IGraphBasedGeneratorPayload, IGeneratorPayload
 	{
-		protected TwoWayDictionary<Room, int> RoomToIntMapping;
+		protected TwoWayDictionary<RoomWithEncounter, int> RoomToIntMapping;
 
 		protected override MapDescription<int> SetupMapDescription()
 		{
@@ -33,7 +33,7 @@
 				throw new ArgumentException("LevelGraph must not be null.");
 			}
 
-			RoomToIntMapping = new TwoWayDictionary<Room, int>();
+			RoomToIntMapping = new TwoWayDictionary<RoomWithEncounter, int>();
 			var mapDescription = new MapDescription<int>();
 			mapDescription.SetDefaultTransformations(new List<Transformation>() { Transformation.Identity });
 
@@ -63,7 +63,7 @@
 				mapDescription.AddPassage(from, to);
 			}
 
-			if (Payload is IRoomToIntMappingPayload<Room> payloadWithMapping)
+			if (Payload is IRoomToIntMappingPayload<RoomWithEncounter> payloadWithMapping)
 			{
 				payloadWithMapping.RoomToIntMapping = RoomToIntMapping;
 			}
@@ -76,7 +76,7 @@
 		/// </summary>
 		/// <param name="room"></param>
 		/// <param name="mapDescription"></param>
-		protected void SetupRoomShapesForRoom(MapDescription<int> mapDescription, Room room)
+		protected void SetupRoomShapesForRoom(MapDescription<int> mapDescription, RoomWithEncounter room)
 		{
 			// Get assigned room templates
 			var roomTemplatesSets = room.RoomTemplateSets;

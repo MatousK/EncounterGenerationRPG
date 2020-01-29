@@ -6,7 +6,7 @@
 	using Scripts.Data.Graphs;
 	using UnityEditor;
 
-	[CustomEditor(typeof(Room))]
+	[CustomEditor(typeof(RoomWithEncounter))]
 	public class RoomInspector : Editor
 	{
 		public override void OnInspectorGUI()
@@ -16,7 +16,7 @@
 			DrawDefaultInspector();
 
 			var layoutGraph = LevelGraphWindow.StaticData; 
-			var room = (Room)target;
+			var room = (RoomWithEncounter)target;
 
 			if (layoutGraph != null)
 			{

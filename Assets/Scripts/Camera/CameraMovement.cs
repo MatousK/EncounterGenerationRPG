@@ -26,19 +26,19 @@ public class CameraMovement : MonoBehaviour
 
         if (mouseX < ScrollingEdge)
         {
-            transform.Translate(new Vector3(-ScrollingSpeed * Time.deltaTime, 0, 0));
+            transform.Translate(new Vector3(-ScrollingSpeed * Time.unscaledDeltaTime, 0, 0));
         }
         else if (mouseX > Screen.width - ScrollingEdge)
         {
-            transform.Translate(new Vector3(ScrollingSpeed * Time.deltaTime, 0, 0));
+            transform.Translate(new Vector3(ScrollingSpeed * Time.unscaledDeltaTime, 0, 0));
         }
         if (mouseY < ScrollingEdge)
         {
-            transform.Translate(new Vector3(0,-ScrollingSpeed * Time.deltaTime, 0));
+            transform.Translate(new Vector3(0,-ScrollingSpeed * Time.unscaledDeltaTime, 0));
         }
         else if (mouseY > Screen.height - ScrollingEdge)
         {
-            transform.Translate(new Vector3(0,ScrollingSpeed * Time.deltaTime, 0));
+            transform.Translate(new Vector3(0,ScrollingSpeed * Time.unscaledDeltaTime, 0));
         }
     }
 }

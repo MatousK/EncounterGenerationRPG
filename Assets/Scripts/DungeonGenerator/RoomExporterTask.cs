@@ -5,9 +5,12 @@ using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using Assets.ProceduralLevelGenerator.Scripts.Data.Graphs;
+using Assets.ProceduralLevelGenerator.Scripts.GeneratorPipeline.Payloads;
+using System;
 
 public class RoomExporterTask<TPayload> : ConfigurablePipelineTask<TPayload, RoomExporterConfig>
-    where TPayload : class, IGeneratorPayload, IGraphBasedGeneratorPayload, INamedTilemapsPayload
+    where TPayload : class, IGeneratorPayload, IGraphBasedGeneratorPayload, INamedTilemapsPayload, IRoomToIntMappingPayload<RoomWithEncounter>
 {
     public override void Process()
     {
@@ -16,6 +19,11 @@ public class RoomExporterTask<TPayload> : ConfigurablePipelineTask<TPayload, Roo
         bool isFirstRoom = true;
         foreach (var room in roomsData)
         {
+            RoomWithEncounter roomGraphData;
+            if (!Payload.RoomToIntMapping.TryGetKey(room.GeneratorData.Node, out roomGraphData))
+            {
+                throw new ArgumentException("Room graph data");
+            }
             var allTilemaps = room.Room.gameObject.GetComponentsInChildren<Tilemap>();
             HashSet<Vector2Int> roomSquares = new HashSet<Vector2Int>();
             foreach (var tilemap in allTilemaps)
@@ -31,6 +39,7 @@ public class RoomExporterTask<TPayload> : ConfigurablePipelineTask<TPayload, Roo
             var roomInfo = new RoomInfo();
             roomInfo.IsStartingRoom = isFirstRoom;
             roomInfo.IsExplored = isFirstRoom;
+            roomInfo.RoomEncounter = roomGraphData.EncounterConfiguration;
             isFirstRoom = false;
             roomInfo.RoomSquaresPositions = roomSquares.ToList();
             roomsLayout.Rooms.Add(roomInfo);

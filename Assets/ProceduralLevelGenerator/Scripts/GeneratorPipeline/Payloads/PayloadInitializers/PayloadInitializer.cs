@@ -33,7 +33,7 @@ namespace Assets.ProceduralLevelGenerator.Scripts.GeneratorPipeline.Payloads.Pay
 		/// <returns></returns>
 		public override object InitializePayload()
 		{
-			return InitializePayload<Room>();
+			return InitializePayload<RoomWithEncounter>();
 		}
 
 		/// <summary>
