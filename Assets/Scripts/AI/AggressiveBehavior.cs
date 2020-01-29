@@ -7,16 +7,23 @@ public class AggressiveBehavior : MonoBehaviour
     CombatantsManager combatantsManager;
     AutoAttacking autoAttacking;
     CombatantBase selfCombatant;
+    CutsceneManager cutsceneManager;
 
     private void Awake()
     {
         combatantsManager = FindObjectOfType<CombatantsManager>();
         autoAttacking = GetComponent<AutoAttacking>();
         selfCombatant = GetComponent<CombatantBase>();
+        cutsceneManager = FindObjectOfType<CutsceneManager>();
     }
     // Update is called once per frame
     void Update()
     {
+        if (cutsceneManager.IsCutsceneActive)
+        {
+            autoAttacking.Target = null;
+            return;
+        }
         if (autoAttacking.Target == null && !selfCombatant.IsDoingNonAutoAttackAction())
         {
             AttackClosestOpponent();

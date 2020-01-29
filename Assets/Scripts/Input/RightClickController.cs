@@ -6,14 +6,20 @@ using UnityEngine;
 public class RightClickController : MonoBehaviour
 {
     CombatantsManager combatantsManager;
+    CutsceneManager cutsceneManager;
     private void Awake()
     {
         combatantsManager = FindObjectOfType<CombatantsManager>();
+        cutsceneManager = FindObjectOfType<CutsceneManager>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (cutsceneManager.IsCutsceneActive)
+        {
+            return;
+        }
         if (Input.GetMouseButtonUp(1))
         {
             var usingSkill = Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl);
@@ -35,8 +41,19 @@ public class RightClickController : MonoBehaviour
                     }
                     else
                     {
-                        character.GetComponent<MovementController>().MoveToPosition(hit.collider.transform.position, () => hitInteractableObject.TryInteract(character));
+                        // We cache a temporary reference to the object, as we will be clearing
+                        // it before the completion completes.
+                        var interactableObject = hitInteractableObject;
+                        character.GetComponent<MovementController>().MoveToPosition(hit.collider.transform.position, moveSuccess =>
+                        {
+                            if (moveSuccess)
+                            {
+                                interactableObject.TryInteract(character);
+                            }
+                        });
                     }
+                    // This is makes sure that only one character tries to use an object at once, to prevent race conditions. The other will just walk to the position.
+                    hitInteractableObject = null;
                 }
                 else if (hitEnemy)
                 {

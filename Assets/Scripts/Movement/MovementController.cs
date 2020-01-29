@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MovementController : MonoBehaviour
 {
-    public delegate void MovementCompletion();
+    public delegate void MovementCompletion(bool successful);
     public float Speed = 10;
     private Vector2Int? currentMoveToTarget;
     private MovementCompletion currentMoveToCompletion;
@@ -49,8 +49,7 @@ public class MovementController : MonoBehaviour
         if (nextSquareWorldSpace == null)
         {
             // Reached target.
-            currentMoveToCompletion?.Invoke();
-            StopMovement();
+            StopMovement(movementSuccessful: true);
             return;
         }
         var speedMultiplier = selfCombatant?.Attributes?.MovementSpeedMultiplier ?? 1;
@@ -96,11 +95,14 @@ public class MovementController : MonoBehaviour
         GetComponent<Animator>().SetBool("Walking", true);
         CalculateAndSavePathToTargetWorldSpace(targetPosition);
     }
-    public void StopMovement()
+    public void StopMovement(bool movementSuccessful = false)
     {
+        // We cache the completion because we can only call it once we stop movement, as completion might stop another movement which would stop.
+        var cachedCompletion = currentMoveToCompletion;
         currentMoveToTarget = null;
         currentMoveToCompletion = null;
         GetComponent<Animator>().SetBool("Walking", false);
+        cachedCompletion?.Invoke(movementSuccessful);
     }
     private void CalculateAndSavePathToTargetWorldSpace(Vector2 targetPositionWorldSpace)
     {
@@ -115,7 +117,7 @@ public class MovementController : MonoBehaviour
         if (path == null || path.Count == 0)
         {
             // No path to target found or we're already there.
-            StopMovement();
+            StopMovement(movementSuccessful: true);
             return;
         }
         currentMoveToPath = new Queue<Vector2Int>(path);
@@ -123,6 +125,6 @@ public class MovementController : MonoBehaviour
     }
     private void MovementComponent_CombatantDied(object sender, System.EventArgs e)
     {
-        StopMovement();
+        StopMovement(movementSuccessful: false);
     }
 }

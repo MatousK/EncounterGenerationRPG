@@ -9,6 +9,7 @@ public class LeftClickController : MonoBehaviour
     Texture2D whiteTexture;
     Rect currentSelectionRectangle = Rect.zero;
     Vector2? selectionStart;
+    CutsceneManager cutsceneManager;
     // Start is called before the first frame update
     void Awake()
     {
@@ -16,11 +17,16 @@ public class LeftClickController : MonoBehaviour
         whiteTexture.SetPixel(0, 0, Color.white);
         whiteTexture.Apply();
         combatantsManager = FindObjectOfType<CombatantsManager>();
+        cutsceneManager = FindObjectOfType<CutsceneManager>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (cutsceneManager.IsCutsceneActive)
+        {
+            return;
+        }
         if (Input.GetMouseButtonDown(0))
         {
             // Start dragging selection box;
