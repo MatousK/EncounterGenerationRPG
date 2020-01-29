@@ -4,14 +4,12 @@ using UnityEngine;
 
 public class Doors : MonoBehaviour
 {
-    public float DistanceToOpen = 1;
-    public List<GameObject> OpenDoorsObjects = new List<GameObject>();
-    public List<GameObject> ClosedDoorsObjects = new List<GameObject>();
-    private CombatantsManager combatantsManager;
-    private PathfindingMapController pathfindingMapController;
-    private RoomsLayout roomsLayout;
     public Grid MapGrid;
     public List<int> ConnectingRooms = new List<int>();
+    public List<GameObject> OpenDoorsObjects = new List<GameObject>();
+    public List<GameObject> ClosedDoorsObjects = new List<GameObject>();
+    private PathfindingMapController pathfindingMapController;
+    private RoomsLayout roomsLayout;
     private bool _IsOpened;
     public bool IsOpened
     {
@@ -29,36 +27,19 @@ public class Doors : MonoBehaviour
     {
         roomsLayout = FindObjectOfType<RoomsLayout>();
         pathfindingMapController = FindObjectOfType<PathfindingMapController>();
-        combatantsManager = FindObjectOfType<CombatantsManager>();
         MapGrid = MapGrid != null ? MapGrid : FindObjectOfType<Grid>();
+        GetComponent<InteractableObject>().OnInteractionTriggered += OnDoorsInteractedWith;
     }
+
     // Start is called before the first frame update
     void Start()
     {
         OnDoorOpenedChanged();
     }
 
-    void Update()
+    private void OnDoorsInteractedWith(object sender, Hero e)
     {
-        if (IsOpened)
-        {
-            // Doors can only close, once opened, do nothing.
-            return;
-        }
-        if (combatantsManager.IsCombatActive)
-        {
-            // Doors can only open when not in combat.
-            return;
-        }
-        foreach (var playerCharacter in combatantsManager.PlayerCharacters)
-        {
-            var distanceFromDoors = Vector2.Distance(playerCharacter.transform.position, transform.position);
-            if (distanceFromDoors < DistanceToOpen)
-            {
-                IsOpened = true;
-                break;
-            }
-        }
+        IsOpened = true;
     }
 
     public void UpdatePathfindingMap(PathfindingMap map)

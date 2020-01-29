@@ -42,7 +42,7 @@ public class DoorDifficultyIndicator : MonoBehaviour
         { 
             if (indicator.EncounterDifficulty == targetRoom.RoomEncounter.EncounterDifficulty)
             {
-                var doorRenderers = transform.GetComponentsInChildren<SpriteRenderer>();
+                var doorRenderers = transform.GetComponentsInChildren<SpriteRenderer>(true);
                 foreach (var renderer in doorRenderers)
                 {
                     renderer.color = indicator.Color;

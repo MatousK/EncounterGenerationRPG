@@ -10,20 +10,20 @@ public class RoomInfo
     public bool IsStartingRoom;
     public event EventHandler<bool> IsExploredChanged;
     [SerializeField]
-    private bool _Explored;
+    private bool _IsExplored;
     public bool IsExplored {
         get
         {
-            return _Explored;
+            return _IsExplored;
         }
         set
         {
-            if (_Explored == value)
+            if (_IsExplored == value)
             {
                 return;
             }
-            _Explored = value;
-            IsExploredChanged?.Invoke(this, _Explored);
+            _IsExplored = value;
+            IsExploredChanged?.Invoke(this, _IsExplored);
         }
     }
 }

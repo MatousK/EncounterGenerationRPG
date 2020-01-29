@@ -24,10 +24,21 @@ public class RightClickController : MonoBehaviour
 
             var hitEnemy = hit.collider?.GetComponent<Monster>();
             var hitFriend = hit.collider?.GetComponent<Hero>();
+            var hitInteractableObject = hit.collider?.GetComponent<InteractableObject>();
             foreach (var character in combatantsManager.GetPlayerCharacters(onlySelected: true))
             {
-
-                if (hitEnemy)
+                if (hitInteractableObject)
+                {
+                    if (hitInteractableObject.IsHeroCloseToInteract(character))
+                    {
+                        hitInteractableObject.TryInteract(character);
+                    }
+                    else
+                    {
+                        character.GetComponent<MovementController>().MoveToPosition(hit.collider.transform.position, () => hitInteractableObject.TryInteract(character));
+                    }
+                }
+                else if (hitEnemy)
                 {
                     if (usingSkill)
                     {

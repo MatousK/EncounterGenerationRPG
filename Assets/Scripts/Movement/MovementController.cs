@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class MovementController : MonoBehaviour
 {
+    public delegate void MovementCompletion();
     public float Speed = 10;
     private Vector2Int? currentMoveToTarget;
+    private MovementCompletion currentMoveToCompletion;
     private Queue<Vector2Int> currentMoveToPath;
     private Vector3? nextSquareWorldSpace;
     private CombatantBase selfCombatant;
@@ -46,7 +48,8 @@ public class MovementController : MonoBehaviour
         }
         if (nextSquareWorldSpace == null)
         {
-            // Reached target or something went wrong.
+            // Reached target.
+            currentMoveToCompletion?.Invoke();
             StopMovement();
             return;
         }
@@ -82,14 +85,21 @@ public class MovementController : MonoBehaviour
         return new Vector2Int(grid3DPosition.x, grid3DPosition.y);
     }
 
-    public void MoveToPosition(Vector2 targetPosition)
+    /// <summary>
+    /// Moves the underlying hero to a specified location. 
+    /// </summary>
+    /// <param name="targetPosition">The position where the hero is moving.</param>
+    /// <param name="onMoveToSuccessful">To be called if we successfuly navigate to the target postiion.</param>
+    public void MoveToPosition(Vector2 targetPosition, MovementCompletion onMoveToSuccessful = null)
     {
+        currentMoveToCompletion = onMoveToSuccessful;
         GetComponent<Animator>().SetBool("Walking", true);
         CalculateAndSavePathToTargetWorldSpace(targetPosition);
     }
     public void StopMovement()
     {
         currentMoveToTarget = null;
+        currentMoveToCompletion = null;
         GetComponent<Animator>().SetBool("Walking", false);
     }
     private void CalculateAndSavePathToTargetWorldSpace(Vector2 targetPositionWorldSpace)
