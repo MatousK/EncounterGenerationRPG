@@ -23,7 +23,7 @@ public class DoorDifficultyIndicator : MonoBehaviour
         UpdateDoorColor();
     }
 
-    private void RoomExplored(object sender, bool e)
+    private void RoomExplored(object sender, RoomExploredEventArgs e)
     {
         UpdateDoorColor();
     }

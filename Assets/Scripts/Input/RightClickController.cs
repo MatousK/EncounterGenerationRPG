@@ -44,7 +44,7 @@ public class RightClickController : MonoBehaviour
                         // We cache a temporary reference to the object, as we will be clearing
                         // it before the completion completes.
                         var interactableObject = hitInteractableObject;
-                        character.GetComponent<MovementController>().MoveToPosition(hit.collider.transform.position, moveSuccess =>
+                        character.GetComponent<MovementController>().MoveToPosition(hit.collider.transform.position, onMoveToSuccessful: moveSuccess =>
                         {
                             if (moveSuccess)
                             {

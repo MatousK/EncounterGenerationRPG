@@ -2,13 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+
+public struct RoomExploredEventArgs
+{
+    public RoomExploredEventArgs(Doors incominingDoors)
+    {
+        IncomingDoors = incominingDoors;
+    }
+    public Doors IncomingDoors;
+}
 [Serializable]
 public class RoomInfo
 {
     public EncounterConfiguration RoomEncounter;
     public List<Vector2Int> RoomSquaresPositions;
     public bool IsStartingRoom;
-    public event EventHandler<bool> IsExploredChanged;
+    public event EventHandler<RoomExploredEventArgs> IsExploredChanged;
     [SerializeField]
     private bool _IsExplored;
     public bool IsExplored {
@@ -16,14 +25,14 @@ public class RoomInfo
         {
             return _IsExplored;
         }
-        set
-        {
-            if (_IsExplored == value)
-            {
-                return;
-            }
-            _IsExplored = value;
-            IsExploredChanged?.Invoke(this, _IsExplored);
-        }
+    }
+    /// <summary>
+    /// Sets this room as explored, optionally setting from which doors the room was explored.
+    /// </summary>
+    /// <param name="incomingDoors">The doors whose opening explored this room.</param>
+    public void ExploreRoom(Doors incomingDoors = null)
+    {
+        _IsExplored = true;
+        IsExploredChanged?.Invoke(this, new RoomExploredEventArgs(incomingDoors));
     }
 }

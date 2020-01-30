@@ -68,7 +68,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 596549315
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 20
   m_Sprite: {fileID: 9000875995803995530, guid: 655dfe2baf3f57344b6822071fadb925,
     type: 3}
@@ -180,48 +180,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ranger
       objectReference: {fileID: 0}
-    - target: {fileID: 4828470711690574787, guid: 46229661ed166644c8a32b159c483f24,
-        type: 3}
-      propertyPath: TotalMaxHitpoints
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 4828470711690574787, guid: 46229661ed166644c8a32b159c483f24,
-        type: 3}
-      propertyPath: SelfTargetSkill
-      value: 
-      objectReference: {fileID: 256497144}
-    - target: {fileID: 4828470711690574787, guid: 46229661ed166644c8a32b159c483f24,
-        type: 3}
-      propertyPath: EnemyTargetSkill
-      value: 
-      objectReference: {fileID: 5467804537046692975}
-    - target: {fileID: 4828470711690574787, guid: 46229661ed166644c8a32b159c483f24,
-        type: 3}
-      propertyPath: FriendlyTargetSkill
-      value: 
-      objectReference: {fileID: 560545959}
-    - target: {fileID: 7682667400691751780, guid: 46229661ed166644c8a32b159c483f24,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: -3301052868302187063, guid: 0aae7a7920739674c91ed23b4b48e327,
-        type: 3}
-    - target: {fileID: 7682667400691751780, guid: 46229661ed166644c8a32b159c483f24,
-        type: 3}
-      propertyPath: m_Size.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7682667400691751780, guid: 46229661ed166644c8a32b159c483f24,
-        type: 3}
-      propertyPath: m_WasSpriteAssigned
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7682667400691751781, guid: 46229661ed166644c8a32b159c483f24,
-        type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 22100000, guid: d0b05dddcc4b3d04d8d5c22e6c1d33c0,
-        type: 2}
     - target: {fileID: 7682667400691751783, guid: 46229661ed166644c8a32b159c483f24,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -277,6 +235,73 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7682667400691751780, guid: 46229661ed166644c8a32b159c483f24,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -3301052868302187063, guid: 0aae7a7920739674c91ed23b4b48e327,
+        type: 3}
+    - target: {fileID: 7682667400691751780, guid: 46229661ed166644c8a32b159c483f24,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7682667400691751780, guid: 46229661ed166644c8a32b159c483f24,
+        type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7682667400691751781, guid: 46229661ed166644c8a32b159c483f24,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 22100000, guid: d0b05dddcc4b3d04d8d5c22e6c1d33c0,
+        type: 2}
+    - target: {fileID: 7682667400691751807, guid: 46229661ed166644c8a32b159c483f24,
+        type: 3}
+      propertyPath: AutoAttackSkill
+      value: 
+      objectReference: {fileID: 256497131}
+    - target: {fileID: 4828470711690574787, guid: 46229661ed166644c8a32b159c483f24,
+        type: 3}
+      propertyPath: TotalMaxHitpoints
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 4828470711690574787, guid: 46229661ed166644c8a32b159c483f24,
+        type: 3}
+      propertyPath: SelfTargetSkill
+      value: 
+      objectReference: {fileID: 256497144}
+    - target: {fileID: 4828470711690574787, guid: 46229661ed166644c8a32b159c483f24,
+        type: 3}
+      propertyPath: EnemyTargetSkill
+      value: 
+      objectReference: {fileID: 5467804537046692975}
+    - target: {fileID: 4828470711690574787, guid: 46229661ed166644c8a32b159c483f24,
+        type: 3}
+      propertyPath: FriendlyTargetSkill
+      value: 
+      objectReference: {fileID: 560545959}
+    - target: {fileID: 6792461042929259542, guid: 46229661ed166644c8a32b159c483f24,
+        type: 3}
+      propertyPath: m_Offset.x
+      value: -0.13793111
+      objectReference: {fileID: 0}
+    - target: {fileID: 6792461042929259542, guid: 46229661ed166644c8a32b159c483f24,
+        type: 3}
+      propertyPath: m_Offset.y
+      value: 1.0857382
+      objectReference: {fileID: 0}
+    - target: {fileID: 6792461042929259542, guid: 46229661ed166644c8a32b159c483f24,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 1.0858817
+      objectReference: {fileID: 0}
+    - target: {fileID: 6792461042929259542, guid: 46229661ed166644c8a32b159c483f24,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 2.414936
+      objectReference: {fileID: 0}
     - target: {fileID: 7682667400691751805, guid: 46229661ed166644c8a32b159c483f24,
         type: 3}
       propertyPath: m_Offset.x
@@ -301,31 +326,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Size.y
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7682667400691751807, guid: 46229661ed166644c8a32b159c483f24,
-        type: 3}
-      propertyPath: AutoAttackSkill
-      value: 
-      objectReference: {fileID: 256497131}
-    - target: {fileID: 6792461042929259542, guid: 46229661ed166644c8a32b159c483f24,
-        type: 3}
-      propertyPath: m_Offset.x
-      value: -0.13793111
-      objectReference: {fileID: 0}
-    - target: {fileID: 6792461042929259542, guid: 46229661ed166644c8a32b159c483f24,
-        type: 3}
-      propertyPath: m_Offset.y
-      value: 1.0857382
-      objectReference: {fileID: 0}
-    - target: {fileID: 6792461042929259542, guid: 46229661ed166644c8a32b159c483f24,
-        type: 3}
-      propertyPath: m_Size.x
-      value: 1.0858817
-      objectReference: {fileID: 0}
-    - target: {fileID: 6792461042929259542, guid: 46229661ed166644c8a32b159c483f24,
-        type: 3}
-      propertyPath: m_Size.y
-      value: 2.414936
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 46229661ed166644c8a32b159c483f24, type: 3}

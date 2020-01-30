@@ -6,6 +6,7 @@ public class MovementController : MonoBehaviour
 {
     public delegate void MovementCompletion(bool successful);
     public float Speed = 10;
+    private bool ignoringCombatants = false;
     private Vector2Int? currentMoveToTarget;
     private MovementCompletion currentMoveToCompletion;
     private Queue<Vector2Int> currentMoveToPath;
@@ -65,7 +66,7 @@ public class MovementController : MonoBehaviour
             return;
         }
         var nextSpace = currentMoveToPath.Dequeue();
-        if (!pathfindingMapController.GetPassabilityMapForCombatant(selfCombatant).GetSquareIsPassable(nextSpace))
+        if (!ignoringCombatants && !pathfindingMapController.GetPassabilityMapForCombatant(selfCombatant).GetSquareIsPassable(nextSpace))
         {
             //Something is in our way, recalculate the path.
             CalculateAndSavePathToTargetGridSpace(currentMoveToTarget.Value);
@@ -76,9 +77,15 @@ public class MovementController : MonoBehaviour
     }
     /// <summary>
     /// Get position where this combatant wants to be, either the current position or position of a neighbouring square it is moving to right now.
+    /// Or null if the character is dead.
     /// </summary>
-    public Vector2Int GetReservedGridPosition()
+    public Vector2Int? GetReservedGridPosition()
     {
+        if (GetComponent<CombatantBase>().IsDown)
+        {
+            // Dead characters should not bother the living.
+            return null;
+        }
         var worldSpacePosition = nextSquareWorldSpace != null ? nextSquareWorldSpace.Value : transform.position;
         var grid3DPosition = MapGrid.WorldToCell(worldSpacePosition);
         return new Vector2Int(grid3DPosition.x, grid3DPosition.y);
@@ -89,8 +96,9 @@ public class MovementController : MonoBehaviour
     /// </summary>
     /// <param name="targetPosition">The position where the hero is moving.</param>
     /// <param name="onMoveToSuccessful">To be called if we successfuly navigate to the target postiion.</param>
-    public void MoveToPosition(Vector2 targetPosition, MovementCompletion onMoveToSuccessful = null)
+    public void MoveToPosition(Vector2 targetPosition, bool ignoreOtherCombatants = false, MovementCompletion onMoveToSuccessful = null)
     {
+        ignoringCombatants = ignoreOtherCombatants;
         currentMoveToCompletion = onMoveToSuccessful;
         GetComponent<Animator>().SetBool("Walking", true);
         CalculateAndSavePathToTargetWorldSpace(targetPosition);
@@ -113,7 +121,7 @@ public class MovementController : MonoBehaviour
     private void CalculateAndSavePathToTargetGridSpace(Vector2Int targetPositionGridSpace)
     {
         currentMoveToTarget = targetPositionGridSpace;
-        var path = pathfinder.FindPath(transform.position, targetPositionGridSpace, selfCombatant);
+        var path = pathfinder.FindPath(transform.position, targetPositionGridSpace, selfCombatant, ignoringCombatants);
         if (path == null || path.Count == 0)
         {
             // No path to target found or we're already there.

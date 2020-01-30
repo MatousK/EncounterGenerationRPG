@@ -3826,7 +3826,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51c1cab88cd61d74b8f790ee442ede6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MapGrid: {fileID: 0}
+  CloseInCombat: 1
+  Orientation: 0
   ConnectingRooms: 0400000006000000
   OpenDoorsObjects:
   - {fileID: 1706956430}
@@ -4012,6 +4013,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ee462c0fa7eca84a8cc1a0d43c96c01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  FollowingHero: {fileID: 0}
   ScrollingEdge: 50
   ScrollingSpeed: 10
 --- !u!114 &264610530
@@ -9707,6 +9709,53 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &521702302
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 521702304}
+  - component: {fileID: 521702303}
+  m_Layer: 0
+  m_Name: InitialPartyManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &521702303
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 521702302}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8fe74bfc1014eb40beedf10f6cbcb68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  InitialParty:
+  - {fileID: 869250211914322637, guid: 65ea18269594623448a1dcbcddec12a0, type: 3}
+  - {fileID: 3890477998113513387, guid: efff9a40eedbd3a46a8455bad244d81e, type: 3}
+  - {fileID: 869250211914322637, guid: 65ea18269594623448a1dcbcddec12a0, type: 3}
+--- !u!4 &521702304
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 521702302}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -5.7354126, y: 4.893716, z: -34.005978}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &532043663
 GameObject:
   m_ObjectHideFlags: 0
@@ -11842,7 +11891,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51c1cab88cd61d74b8f790ee442ede6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MapGrid: {fileID: 0}
+  CloseInCombat: 1
+  Orientation: 0
   ConnectingRooms: 0400000005000000
   OpenDoorsObjects:
   - {fileID: 1501721180}
@@ -18062,7 +18112,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51c1cab88cd61d74b8f790ee442ede6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MapGrid: {fileID: 0}
+  CloseInCombat: 1
+  Orientation: 0
   ConnectingRooms: 0000000001000000
   OpenDoorsObjects:
   - {fileID: 1937469764}
@@ -27553,7 +27604,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51c1cab88cd61d74b8f790ee442ede6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MapGrid: {fileID: 0}
+  CloseInCombat: 1
+  Orientation: 0
   ConnectingRooms: 0300000004000000
   OpenDoorsObjects:
   - {fileID: 2084722894}
@@ -28605,7 +28657,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51c1cab88cd61d74b8f790ee442ede6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MapGrid: {fileID: 0}
+  CloseInCombat: 1
+  Orientation: 0
   ConnectingRooms: 0100000002000000
   OpenDoorsObjects:
   - {fileID: 410265252}
@@ -30195,7 +30248,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51c1cab88cd61d74b8f790ee442ede6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MapGrid: {fileID: 0}
+  CloseInCombat: 1
+  Orientation: 0
   ConnectingRooms: 0100000003000000
   OpenDoorsObjects:
   - {fileID: 1809044037}
@@ -40311,7 +40365,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51c1cab88cd61d74b8f790ee442ede6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MapGrid: {fileID: 0}
+  CloseInCombat: 1
+  Orientation: 0
   ConnectingRooms: 0400000007000000
   OpenDoorsObjects:
   - {fileID: 258688913}

@@ -8,24 +8,34 @@ using UnityEngine;
 class CombatantSpawnManager: MonoBehaviour
 {
     // Used so we know where can we spawn monsters.
-    PathfindingMapController PathfindingMapController;
+    PathfindingMapController pathfindingMapController;
 
-    private void Start()
+    private void Awake()
     {
-        PathfindingMapController = FindObjectOfType<PathfindingMapController>();
+        pathfindingMapController = FindObjectOfType<PathfindingMapController>();
     }
-    public bool SpawnCombatant(GameObject combatantTemplate, RoomInfo spawnRoom)
+    /// <summary>
+    /// Spawns a monster on the map.
+    /// </summary>
+    /// <param name="combatantTemplate">The monster that should be spawned.</param>
+    /// <param name="spawnRoom">The room in which the monster should be spawned.</param>
+    /// <param name="incomingDoors">Doors through which the party came.</param>
+    /// <param name="minDistanceToDoor">Minimum distance from the doors to spawn</param>
+    /// <returns></returns>
+    public bool SpawnCombatant(GameObject combatantTemplate, RoomInfo spawnRoom, Doors incomingDoors = null, float minDistanceToDoor = 0)
     {
         var random = new System.Random();
         //This will get the map in which positions of other combatants are also marked as impassable.
         // TODO: Make this behavior more understandable
-        var pathfindingMap = PathfindingMapController.GetPassabilityMapForCombatant(null);
+        var pathfindingMap = pathfindingMapController.GetPassabilityMapForCombatant(null);
         var spawnTileCandidates = new List<Vector2Int>(spawnRoom.RoomSquaresPositions);
         while (spawnTileCandidates.Any())
         {
             var spawnTileCandidateIndex = random.Next(spawnTileCandidates.Count);
             var spawnTileCandidate = spawnTileCandidates[spawnTileCandidateIndex];
-            if (!pathfindingMap.GetSquareIsPassable(spawnTileCandidate))
+            var distanceToDoor = incomingDoors == null ? float.PositiveInfinity : Vector2.Distance(incomingDoors.transform.localPosition, spawnTileCandidate);
+            bool isTooClose = distanceToDoor < minDistanceToDoor;
+            if (!pathfindingMap.GetSquareIsPassable(spawnTileCandidate) || isTooClose)
             {
                 spawnTileCandidates.RemoveAt(spawnTileCandidateIndex);
                 continue;

@@ -31,7 +31,7 @@ public abstract class Skill: MonoBehaviour
     /// <summary>
     /// How many spaces away from target can the character be to start using the skill.
     /// </summary>
-    public int Range = 1;
+    public float Range = 1f;
     /// <summary>
     /// How fast should the animation play. 1 is start, 2 is twice as fast, 0.5 is half as slow etc.
     /// </summary>
@@ -76,7 +76,7 @@ public abstract class Skill: MonoBehaviour
             return;
         }
         var rangeMultiplier = selfCombatant?.Attributes?.RangeMultiplier ?? 1;
-        if (!didGetInRange && GetDistanceToTargetLocation() >= Range * rangeMultiplier)
+        if (!didGetInRange && GetDistanceToTargetLocation() > Range * rangeMultiplier)
         {
             // Move in range.
             GetComponent<MovementController>().MoveToPosition(GetTargetLocation());

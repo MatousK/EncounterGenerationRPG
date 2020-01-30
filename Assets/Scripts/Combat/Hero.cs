@@ -101,7 +101,7 @@ public class Hero : CombatantBase
         if (!combatantsManager.IsCombatActive)
         {
             cameraMovement.FollowingHero = this;
-            movementController.MoveToPosition(position, (success) => cameraMovement.FollowingHero = null);
+            movementController.MoveToPosition(position, onMoveToSuccessful: (success) => cameraMovement.FollowingHero = null);
         }
         else
         {

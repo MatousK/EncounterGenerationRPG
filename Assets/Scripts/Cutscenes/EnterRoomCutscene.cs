@@ -60,11 +60,7 @@ class EnterRoomCutscene : Cutscene
             var targetPosition = GetHeroTargetPosition(hero);
             ++movingHeroes;
             print("Moving hero to ." + targetPosition);
-            hero.GetComponent<MovementController>().MoveToPosition(targetPosition, moveSuccessful =>
-            {
-                print("Movement finished");
-                --movingHeroes;
-            });
+            hero.GetComponent<MovementController>().MoveToPosition(targetPosition, ignoreOtherCombatants:true, onMoveToSuccessful: moveSuccessful => onMoveToFinished(hero, targetPosition));
         }
     }
 
@@ -74,10 +70,23 @@ class EnterRoomCutscene : Cutscene
         cameraMovement.FollowingHero = null;
     }
 
+    private void onMoveToFinished(Hero hero, Vector2 originalTarget)
+    {
+        // Movement finished but it might have been unsuccessful, something might have been in the way - check whether the hero is on the correct side of the door.
+        var doorPosition = OpenedDoors.transform.position;
+        var doorMainCoordinate = OpenedDoors.Orientation == DoorOrientation.Vertical ? doorPosition.y : doorPosition.x;
+        var targetMainCoordinate = OpenedDoors.Orientation == DoorOrientation.Vertical ? originalTarget.y : originalTarget.x;
+        var heroMainCoordinate = OpenedDoors.Orientation == DoorOrientation.Vertical ? hero.transform.position.y : hero.transform.position.x;
+        bool isOnCorrectSide = (doorMainCoordinate < targetMainCoordinate) == (doorMainCoordinate < heroMainCoordinate);
+        print("Movement finished");
+        --movingHeroes;
+        Debug.Assert(isOnCorrectSide, "We ended up on the wrong side of the door, which should not happen.");
+    }
+
     private Vector2 GetHeroTargetPosition(Hero hero)
     {
-        // Bit complicated - basically we want the heroes to get in a formation where the character who opened doors is two spaces away from the doors in the diraction he came.
-        // The other ones should be only ony space from the doors, also in the direction from which we came.
+        // Bit complicated - basically we want the heroes to get in a formation where the character who opened doors is three spaces away from the doors in the diraction he came.
+        // The other ones should be only two spaces from the doors, also in the direction from which we came.
         // And as for the other axis (y for horizontal movement and x for vertical movement), we always move in the positive direction if possible.
         // For the second character in the back row this is not possible, as the first one is already there.
         var doorsPosition = OpenedDoors.transform.position;
@@ -85,12 +94,12 @@ class EnterRoomCutscene : Cutscene
         float crossAxisMovement;
         if (hero == DoorOpener)
         {
-            mainAxisMovement =  2f;
+            mainAxisMovement = 3f;
             crossAxisMovement = 0.5f;
         }
         else
         {
-            mainAxisMovement = 1f;
+            mainAxisMovement = 2f;
             crossAxisMovement = placeBackRowCharacter ? -0.5f : 0.5f;
             placeBackRowCharacter = true;
         }

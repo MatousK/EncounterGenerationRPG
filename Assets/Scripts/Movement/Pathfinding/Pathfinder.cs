@@ -15,9 +15,9 @@ class Pathfinder: MonoBehaviour
         MapGrid = MapGrid != null ? MapGrid : FindObjectOfType<Grid>();
     }
 
-    public List<Vector2Int> FindPath(Vector2 originWorldSpace, Vector2Int targetGridSpace, CombatantBase combatant)
+    public List<Vector2Int> FindPath(Vector2 originWorldSpace, Vector2Int targetGridSpace, CombatantBase combatant, bool ignoreOtherCombatants = false)
     {
-        var mapData = pathfindingMapController.GetPassabilityMapForCombatant(combatant);
+        var mapData = ignoreOtherCombatants ? pathfindingMapController.Map : pathfindingMapController.GetPassabilityMapForCombatant(combatant);
         Debug.Assert(mapData != null);
         if (mapData == null)
         {

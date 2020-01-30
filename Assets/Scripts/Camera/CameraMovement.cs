@@ -9,7 +9,7 @@ public class CameraMovement : MonoBehaviour
     public float ScrollingSpeed = 0.1f;
 
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
         var mouseY = Input.mousePosition.y;
         var mouseX = Input.mousePosition.x;

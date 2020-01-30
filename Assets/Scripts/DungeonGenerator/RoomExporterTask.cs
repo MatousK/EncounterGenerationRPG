@@ -38,7 +38,10 @@ public class RoomExporterTask<TPayload> : ConfigurablePipelineTask<TPayload, Roo
             }
             var roomInfo = new RoomInfo();
             roomInfo.IsStartingRoom = isFirstRoom;
-            roomInfo.IsExplored = isFirstRoom;
+            if (isFirstRoom)
+            {
+                roomInfo.ExploreRoom();
+            }
             roomInfo.RoomEncounter = roomGraphData.EncounterConfiguration;
             isFirstRoom = false;
             roomInfo.RoomSquaresPositions = roomSquares.ToList();

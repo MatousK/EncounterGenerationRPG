@@ -32,7 +32,10 @@ class PathfindingMapController: MonoBehaviour
                 continue;
             }
             var combatantGridPosition = combatant.GetComponent<MovementController>().GetReservedGridPosition();
-            toReturn.SetSquareIsPassable(combatantGridPosition.x, combatantGridPosition.y, false);
+            if (combatantGridPosition != null)
+            {
+                toReturn.SetSquareIsPassable(combatantGridPosition.Value.x, combatantGridPosition.Value.y, false);
+            }
         }
         return toReturn;
     }

@@ -30,7 +30,7 @@ public class FogOfWarController : MonoBehaviour
         }
     }
 
-    void OnRoomExploredChanged(object sender, bool wasExplored)
+    void OnRoomExploredChanged(object sender, RoomExploredEventArgs exploredEventArgs)
     {
         UpdateFogOfWar();
     }

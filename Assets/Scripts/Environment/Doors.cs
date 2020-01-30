@@ -97,7 +97,7 @@ public class Doors : MonoBehaviour
         {
             if (!roomsLayout.Rooms[roomIndex].IsExplored)
             {
-                roomsLayout.Rooms[roomIndex].IsExplored = true;
+                roomsLayout.Rooms[roomIndex].ExploreRoom(this);
                 var openDoorsCutscene = cutsceneManager.InstantiateCutscene<EnterRoomCutscene>();
                 openDoorsCutscene.DoorOpener = doorOpener;
                 openDoorsCutscene.OpenedDoors = this;

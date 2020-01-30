@@ -20,23 +20,18 @@ class EncounterManager: MonoBehaviour
         }
     }
 
-    private void OnRoomExplored(object sender, bool isExplored)
+    private void OnRoomExplored(object sender, RoomExploredEventArgs exploredEventArgs)
     {
-        if (!isExplored)
-        {
-            // Room is still not explored;
-            return;
-        }
         var exploredRoom = sender as RoomInfo;
         var encounter = EncounterGenerator.GenerateEncounters(exploredRoom.RoomEncounter);
-        SpawnMonsters(encounter, sender as RoomInfo);
+        SpawnMonsters(encounter, sender as RoomInfo, exploredEventArgs.IncomingDoors);
     }
 
-    private void SpawnMonsters(List<GameObject> monstersToSpawn, RoomInfo room)
+    private void SpawnMonsters(List<GameObject> monstersToSpawn, RoomInfo room, Doors incomingDoors)
     {
         foreach (var mosnter in monstersToSpawn)
         {
-            CombatantSpawnManager.SpawnCombatant(mosnter, room);
+            CombatantSpawnManager.SpawnCombatant(mosnter, room, incomingDoors, 3);
         }
     }
 }
