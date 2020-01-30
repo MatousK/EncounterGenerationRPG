@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class Hero : CombatantBase
 {
+    private CameraMovement cameraMovement;
     private MovementController movementController;
     /// <summary>
     /// A skill that should be used when using a skill on self.
@@ -26,6 +27,7 @@ public class Hero : CombatantBase
         base.Awake();
         FindObjectOfType<CombatantsManager>().PlayerCharacters.Add(this);
         movementController = GetComponent<MovementController>();
+        cameraMovement = FindObjectOfType<CameraMovement>();
     }
 
     // Update is called once per frame
@@ -81,21 +83,29 @@ public class Hero : CombatantBase
 
     public virtual void LocationSkillClick(Vector2 position)
     {
-        if (IsManualMovementBlocked())
-        {
-            return;
-        }
-        GetComponent<AutoAttacking>().Target = null;
-        movementController.MoveToPosition(position);
+        MoveToCommand(position);
     }
 
     public virtual void LocationClick(Vector2 position)
+    {
+        MoveToCommand(position);
+    }
+
+    protected void MoveToCommand(Vector2 position)
     {
         if (IsManualMovementBlocked())
         {
             return;
         }
         GetComponent<AutoAttacking>().Target = null;
-        movementController.MoveToPosition(position);
+        if (!combatantsManager.IsCombatActive)
+        {
+            cameraMovement.FollowingHero = this;
+            movementController.MoveToPosition(position, (success) => cameraMovement.FollowingHero = null);
+        }
+        else
+        {
+            movementController.MoveToPosition(position);
+        }
     }
 }

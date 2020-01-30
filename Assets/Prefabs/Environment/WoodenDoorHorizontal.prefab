@@ -336,6 +336,31 @@ PrefabInstance:
       propertyPath: m_Name
       value: WoodenDoorHorizontal
       objectReference: {fileID: 0}
+    - target: {fileID: 7811067050841716561, guid: 64d4f89d360a5a4498499bf314b5e8d8,
+        type: 3}
+      propertyPath: OpenDoorsObjects.Array.data[0]
+      value: 
+      objectReference: {fileID: 7108751848636760697}
+    - target: {fileID: 7811067050841716561, guid: 64d4f89d360a5a4498499bf314b5e8d8,
+        type: 3}
+      propertyPath: OpenDoorsObjects.Array.data[1]
+      value: 
+      objectReference: {fileID: 1827418837312716917}
+    - target: {fileID: 7811067050841716561, guid: 64d4f89d360a5a4498499bf314b5e8d8,
+        type: 3}
+      propertyPath: ClosedDoorsObjects.Array.data[0]
+      value: 
+      objectReference: {fileID: 2089324934486227616}
+    - target: {fileID: 7811067050841716561, guid: 64d4f89d360a5a4498499bf314b5e8d8,
+        type: 3}
+      propertyPath: ClosedDoorsObjects.Array.data[1]
+      value: 
+      objectReference: {fileID: 7333523393186954953}
+    - target: {fileID: 7811067050841716561, guid: 64d4f89d360a5a4498499bf314b5e8d8,
+        type: 3}
+      propertyPath: Orientation
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7811067050841716562, guid: 64d4f89d360a5a4498499bf314b5e8d8,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -391,26 +416,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
       objectReference: {fileID: 0}
-    - target: {fileID: 7811067050841716561, guid: 64d4f89d360a5a4498499bf314b5e8d8,
-        type: 3}
-      propertyPath: OpenDoorsObjects.Array.data[0]
-      value: 
-      objectReference: {fileID: 7108751848636760697}
-    - target: {fileID: 7811067050841716561, guid: 64d4f89d360a5a4498499bf314b5e8d8,
-        type: 3}
-      propertyPath: OpenDoorsObjects.Array.data[1]
-      value: 
-      objectReference: {fileID: 1827418837312716917}
-    - target: {fileID: 7811067050841716561, guid: 64d4f89d360a5a4498499bf314b5e8d8,
-        type: 3}
-      propertyPath: ClosedDoorsObjects.Array.data[0]
-      value: 
-      objectReference: {fileID: 2089324934486227616}
-    - target: {fileID: 7811067050841716561, guid: 64d4f89d360a5a4498499bf314b5e8d8,
-        type: 3}
-      propertyPath: ClosedDoorsObjects.Array.data[1]
-      value: 
-      objectReference: {fileID: 7333523393186954953}
     - target: {fileID: 6270284007452589285, guid: 64d4f89d360a5a4498499bf314b5e8d8,
         type: 3}
       propertyPath: m_Offset.x
