@@ -40,7 +40,7 @@ public abstract class TargetedSkill : Skill
         return GetComponent<Collider2D>().Distance(Target.GetComponent<Collider2D>()).distance;
     }
 
-    public override Vector2 GetTargetLocation()
+    public override Vector2? GetTargetLocation()
     {
         return Target.transform.position;
     }

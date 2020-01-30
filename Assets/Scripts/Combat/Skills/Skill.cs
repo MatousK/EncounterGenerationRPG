@@ -76,10 +76,10 @@ public abstract class Skill: MonoBehaviour
             return;
         }
         var rangeMultiplier = selfCombatant?.Attributes?.RangeMultiplier ?? 1;
-        if (!didGetInRange && GetDistanceToTargetLocation() > Range * rangeMultiplier)
+        if (GetTargetLocation() != null && !didGetInRange && GetDistanceToTargetLocation() > Range * rangeMultiplier)
         {
             // Move in range.
-            GetComponent<MovementController>().MoveToPosition(GetTargetLocation());
+            GetComponent<MovementController>().MoveToPosition(GetTargetLocation().Value);
             return;
         }
         didGetInRange = true;
@@ -90,7 +90,11 @@ public abstract class Skill: MonoBehaviour
         }
     }
     public abstract float GetDistanceToTargetLocation();
-    public abstract Vector2 GetTargetLocation();
+    /// <summary>
+    /// The location of the target to move towards and orient towards. Return null if we do not care about either of those things.
+    /// </summary>
+    /// <returns>The location of the target, or null if we do not wish to orient ourselves toward the target.</returns>
+    public abstract Vector2? GetTargetLocation();
     public abstract bool IsBeingUsed();
     /// <summary>
     /// Call to start execution of this skill.
@@ -151,7 +155,10 @@ public abstract class Skill: MonoBehaviour
     {
         GetComponent<MovementController>().StopMovement();
         // In range, start using the skill - orient toward the target and start dishing out attacks.
-        GetComponent<OrientationController>().LookAtTarget = GetTargetLocation();
+        if (GetTargetLocation() != null)
+        {
+            GetComponent<OrientationController>().LookAtTarget = GetTargetLocation();
+        }
         GetComponent<Animator>().SetBool(SkillAnimationName, true);
         var speedMultiplier = selfCombatant?.Attributes?.AttackSpeedMultiplier ?? 1;
         GetComponent<Animator>().SetFloat("SkillSpeed", Speed * speedMultiplier);

@@ -43,12 +43,12 @@ public abstract class PersonalSkill : Skill
         return 0;
     }
     /// <summary>
-    /// Gets the target location of this skill. For personal skills, this is always the combatant's position.
+    /// Gets the target location of this skill,used for moving toward the character and orientation. For personal skills, return null, we do not care about the target.
     /// </summary>
-    /// <returns>Target of the skill, i.e. combatant's position.</returns>
-    public override Vector2 GetTargetLocation()
+    /// <returns>Null.</returns>
+    public override Vector2? GetTargetLocation()
     {
-        return transform.position;
+        return null;
     }
     public override bool IsBeingUsed()
     {
