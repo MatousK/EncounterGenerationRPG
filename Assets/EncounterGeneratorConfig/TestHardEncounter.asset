@@ -15,4 +15,4 @@ MonoBehaviour:
   EncounterDifficulty: {fileID: 11400000, guid: a97b810d578d52242b8efa8855ded09a,
     type: 2}
   MonsterGroupDefinition:
-  - {fileID: 11400000, guid: d338f2e490911dd458c1edc7aa7bd442, type: 2}
+  - {fileID: 11400000, guid: 49525f9cacb38f449ba68a175d7f7c8b, type: 2}

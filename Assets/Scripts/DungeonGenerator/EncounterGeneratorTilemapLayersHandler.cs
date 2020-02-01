@@ -32,23 +32,23 @@ public class EncounterGeneratorTilemapLayersHandler : TilemapLayersHandler
         var wallsTilemapObject = CreateTilemapGameObject("Walls", gameObject, WallsSortingLayer, WallsSortingOrder);
         AddCompositeCollider(wallsTilemapObject);
 
-        var floorTilemapObject = CreateTilemapGameObject("Floor", gameObject, FloorSortingLayer, FloorSortingOrder);
+        CreateTilemapGameObject("Floor", gameObject, FloorSortingLayer, FloorSortingOrder);
 
         var collideableTilemapObject = CreateTilemapGameObject("Collideable", gameObject, CollidableSortingLayer, CollidableSortingOrder);
         AddCompositeCollider(collideableTilemapObject);
 
-        var other1TilemapObject = CreateTilemapGameObject("Other 1", gameObject, Other1SortingLayer, Other1SortingOrder);
+        CreateTilemapGameObject("Other 1", gameObject, Other1SortingLayer, Other1SortingOrder);
 
-        var other2TilemapObject = CreateTilemapGameObject("Other 2", gameObject, Other2SortingLayer, Other2SortingOrder);
+        CreateTilemapGameObject("Other 2", gameObject, Other2SortingLayer, Other2SortingOrder);
 
-        var other3TilemapObject = CreateTilemapGameObject("Other 3", gameObject, Other3SortingLayer, Other3SortingOrder);
+        CreateTilemapGameObject("Other 3", gameObject, Other3SortingLayer, Other3SortingOrder);
     }
 
     protected GameObject CreateTilemapGameObject(string name, GameObject parentObject, string sortingLayerName, int sortingOrder)
     {
         var tilemapObject = new GameObject(name);
         tilemapObject.transform.SetParent(parentObject.transform);
-        var tilemap = tilemapObject.AddComponent<Tilemap>();
+        tilemapObject.AddComponent<Tilemap>();
         var tilemapRenderer = tilemapObject.AddComponent<TilemapRenderer>();
         tilemapRenderer.sortingOrder = sortingOrder;
         tilemapRenderer.sortingLayerName = sortingLayerName;

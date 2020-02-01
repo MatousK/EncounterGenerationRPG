@@ -8,8 +8,9 @@ using System.Collections;
 
 class Projectile: MonoBehaviour
 {
-    public void StartProjectile(Vector2 target, float speed, Action onHit)
+    public void StartProjectile(CombatantBase target, float speed, Action onHit)
     {
+        
         // Rotate already rotates the arrow correctly - if the arrow was flipped, flip it back.
         if (transform.localScale.x < 0)
         {
@@ -18,16 +19,24 @@ class Projectile: MonoBehaviour
         StartCoroutine(MoveProjectileToTarget(target, speed, onHit));
     }
 
-    private IEnumerator MoveProjectileToTarget(Vector2 target, float speed, Action onHit)
+    private IEnumerator MoveProjectileToTarget(CombatantBase target, float speed, Action onHit)
     {
-        while (Vector2.Distance(target, transform.position) > 0.1)
+        Vector2 targetPosition = GetTargetPosition(target);
+        while (Vector2.Distance(targetPosition, transform.position) > 0.5)
         {
-            Vector2 targetDirection = target - (Vector2)(transform.position);
+            Vector2 targetDirection = targetPosition - (Vector2)(transform.position);
             transform.right = - targetDirection;
-            transform.position = Vector2.MoveTowards(transform.position, target, speed * Time.deltaTime);
+            transform.position = Vector2.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
             yield return null;
+            targetPosition = GetTargetPosition(target);
         }
         onHit();
         Destroy(gameObject);
+    }
+
+    private Vector2 GetTargetPosition(CombatantBase target)
+    {
+        var targetCollider = target.GetComponent<Collider2D>();
+        return targetCollider != null ? targetCollider.bounds.center : target.transform.position;
     }
 }

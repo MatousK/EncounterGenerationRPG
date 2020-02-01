@@ -180,8 +180,8 @@ namespace Assets.ProceduralLevelGenerator.Scripts.GeneratorPipeline.RoomTemplate
 		{
 			var doors = target as Doors;
 
-			from = from + doors.transform.position;
-			to = to + doors.transform.position;
+			from += doors.transform.position;
+			to += doors.transform.position;
 
 			if (from.x == to.x || from.y == to.y)
 			{
@@ -240,7 +240,6 @@ namespace Assets.ProceduralLevelGenerator.Scripts.GeneratorPipeline.RoomTemplate
 
 			var selectedModeProp = serializedObject.FindProperty(nameof(Doors.SelectedMode));
 			selectedModeProp.intValue = GUILayout.SelectionGrid(doors.SelectedMode, new[] { "Simple mode", "Specific positions"}, 2);
-			var shouldRedraw = false;
 
 			EditorGUILayout.Space();
 

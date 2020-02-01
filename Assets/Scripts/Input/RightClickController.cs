@@ -28,9 +28,9 @@ public class RightClickController : MonoBehaviour
 
             RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
 
-            var hitEnemy = hit.collider?.GetComponent<Monster>();
-            var hitFriend = hit.collider?.GetComponent<Hero>();
-            var hitInteractableObject = hit.collider?.GetComponent<InteractableObject>();
+            var hitEnemy = hit.collider != null ? hit.collider.GetComponent<Monster>() : null;
+            var hitFriend = hit.collider != null ? hit.collider.GetComponent<Hero>() : null;
+            var hitInteractableObject = hit.collider != null ? hit.collider.GetComponent<InteractableObject>() : null;
             foreach (var character in combatantsManager.GetPlayerCharacters(onlySelected: true))
             {
                 if (hitInteractableObject)

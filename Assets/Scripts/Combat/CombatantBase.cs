@@ -80,7 +80,7 @@ public class CombatantBase : MonoBehaviour
 
     public bool IsMoving()
     {
-        return GetComponent<MovementController>()?.IsMoving ?? false;
+        return GetComponent<MovementController>().IsMoving;
     }
     /// <summary>
     /// Returns true if the combatant currently has orders from AI or from the player.
@@ -96,9 +96,14 @@ public class CombatantBase : MonoBehaviour
         return CombatantSkills.Any(skill => skill.IsBeingUsed() && skill.BlocksManualMovement);
     }
 
-    public virtual void TakeDamage(int damage, CombatantBase FromCombatant)
+    public virtual void TakeDamage(int damage, CombatantBase fromCombatant)
     {
-        damage = (int)(damage * Attributes.ReceivedDamageMultiplier * (FromCombatant?.Attributes?.DealtDamageMultiplier ?? 1));
+        float damageFloat = damage * Attributes.ReceivedDamageMultiplier;
+        if (fromCombatant != null)
+        {
+            damageFloat *= fromCombatant.Attributes.DealtDamageMultiplier;
+        }
+        damage = (int)damageFloat;
         HitPoints -= damage;
         if (DamageMaxHitPointsDirectly)
         {
@@ -122,7 +127,12 @@ public class CombatantBase : MonoBehaviour
 
     public virtual void HealDamage(int healAmount, CombatantBase fromCombatant, bool withDefaultAnimation = true)
     {
-        healAmount = (int)(healAmount * Attributes.ReceivedHealingMultiplier * (fromCombatant?.Attributes?.DealtHealingMultiplier ?? 1));
+        float healAmountFloat = healAmount * Attributes.ReceivedHealingMultiplier;
+        if (fromCombatant != null)
+        {
+            healAmountFloat *= (fromCombatant.Attributes.DealtHealingMultiplier);
+        }
+        healAmount = (int)healAmountFloat;
         HitPoints = HitPoints + healAmount > MaxHitpoints ? MaxHitpoints : HitPoints + healAmount;
         HealedDamage?.Invoke(this, healAmount);
         if (withDefaultAnimation)

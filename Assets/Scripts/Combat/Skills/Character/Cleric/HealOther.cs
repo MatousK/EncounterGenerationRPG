@@ -20,6 +20,6 @@ class HealOther : TargetedGestureSkill
     }
     protected override void ApplySkillEffects(object sender, EventArgs e)
     {
-        Target?.HealDamage(HealAmount, selfCombatant);
+        Target.HealDamage(HealAmount, selfCombatant);
     }
 }

@@ -28,6 +28,6 @@ public abstract class Attack : TargetedSkill
 
     protected override void ApplySkillEffects(object sender, EventArgs e)
     {
-        Target?.TakeDamage(DamagePerHit, selfCombatant);
+        Target.TakeDamage(DamagePerHit, selfCombatant);
     }
 }

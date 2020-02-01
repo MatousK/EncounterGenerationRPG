@@ -26,7 +26,7 @@ class EnterRoomCutscene : Cutscene
     // If true, we have already decided position for one back row character.
     // We store this info because first backrow character moves on the cross axis in the positive direction, the other one in the negative direction.
     private bool placeBackRowCharacter;
-    private bool heroesInPosition
+    private bool HeroesInPosition
     {
         get
         {
@@ -49,7 +49,7 @@ class EnterRoomCutscene : Cutscene
     }
     public override bool IsCutsceneActive()
     {
-        return !heroesInPosition;
+        return !HeroesInPosition;
     }
 
     public override void StartCutscene()
@@ -60,7 +60,7 @@ class EnterRoomCutscene : Cutscene
             var targetPosition = GetHeroTargetPosition(hero);
             ++movingHeroes;
             print("Moving hero to ." + targetPosition);
-            hero.GetComponent<MovementController>().MoveToPosition(targetPosition, ignoreOtherCombatants:true, onMoveToSuccessful: moveSuccessful => onMoveToFinished(hero, targetPosition));
+            hero.GetComponent<MovementController>().MoveToPosition(targetPosition, ignoreOtherCombatants:true, onMoveToSuccessful: moveSuccessful => OnMoveToFinished(hero, targetPosition));
         }
     }
 
@@ -70,7 +70,7 @@ class EnterRoomCutscene : Cutscene
         cameraMovement.FollowingHero = null;
     }
 
-    private void onMoveToFinished(Hero hero, Vector2 originalTarget)
+    private void OnMoveToFinished(Hero hero, Vector2 originalTarget)
     {
         // Movement finished but it might have been unsuccessful, something might have been in the way - check whether the hero is on the correct side of the door.
         var doorPosition = OpenedDoors.transform.position;

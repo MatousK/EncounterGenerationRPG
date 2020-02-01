@@ -53,7 +53,7 @@ public class MovementController : MonoBehaviour
             StopMovement(movementSuccessful: true);
             return;
         }
-        var speedMultiplier = selfCombatant?.Attributes?.MovementSpeedMultiplier ?? 1;
+        var speedMultiplier = selfCombatant.Attributes.MovementSpeedMultiplier;
         GetComponent<Animator>().SetFloat("MovementSpeedMultiplier", speedMultiplier);
         transform.position = Vector3.MoveTowards(transform.position, nextSquareWorldSpace.Value, Speed * Time.deltaTime * speedMultiplier);
     }

@@ -108,11 +108,15 @@ public class Doors : MonoBehaviour
 
     public void UpdatePathfindingMap(PathfindingMap map)
     {
+        if (map == null)
+        {
+            return;
+        }
         var activeDoorObjects = IsOpened ? OpenDoorsObjects : ClosedDoorsObjects;
         foreach (var doorObject in activeDoorObjects)
         {
             var coordinates = MapGrid.WorldToCell(doorObject.transform.position);
-            map?.SetSquareIsPassable(coordinates.x, coordinates.y, IsOpened);
+            map.SetSquareIsPassable(coordinates.x, coordinates.y, IsOpened);
         }
     }
 
@@ -126,6 +130,9 @@ public class Doors : MonoBehaviour
         {
             closedDoor.SetActive(!IsOpened);
         }
-        UpdatePathfindingMap(pathfindingMapController?.Map);
+        if (pathfindingMapController != null)
+        {
+            UpdatePathfindingMap(pathfindingMapController.Map);
+        }
     }
 }

@@ -21,7 +21,7 @@ public class CutsceneManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (currentCutscene?.IsCutsceneActive() == false)
+        if (currentCutscene != null && !currentCutscene.IsCutsceneActive())
         {
             currentCutscene.EndCutscene();
             Destroy(currentCutscene.gameObject);

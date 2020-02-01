@@ -10,7 +10,7 @@ PrefabInstance:
     - target: {fileID: 8426503475732973458, guid: 5bb997eb5e02af8419843853bbfa62c0,
         type: 3}
       propertyPath: m_Name
-      value: Minotaur
+      value: MinotaurNormal
       objectReference: {fileID: 0}
     - target: {fileID: 3794834790201460922, guid: 5bb997eb5e02af8419843853bbfa62c0,
         type: 3}
@@ -26,6 +26,11 @@ PrefabInstance:
         type: 3}
       propertyPath: Role
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3794834790201460922, guid: 5bb997eb5e02af8419843853bbfa62c0,
+        type: 3}
+      propertyPath: Rank
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8426503475732973462, guid: 5bb997eb5e02af8419843853bbfa62c0,
         type: 3}

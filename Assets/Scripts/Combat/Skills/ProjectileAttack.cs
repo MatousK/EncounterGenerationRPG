@@ -30,8 +30,7 @@ public class ProjectileAttack : Attack
         newProjectile.SetActive(true);
         // Target could change before the projectile hits, so put it in a variable just to be sure.
         var originalTarget = Target;
-        var projectileTarget = Target.GetComponent<Collider2D>()?.bounds.center ?? Target.transform.position;
-        newProjectile.GetComponent<Projectile>()?.StartProjectile(projectileTarget, ProjectileSpeed, () => OnProjectileHit(originalTarget));
+        newProjectile.GetComponent<Projectile>().StartProjectile(Target, ProjectileSpeed, () => OnProjectileHit(originalTarget));
     }
 
     protected virtual void OnProjectileHit(CombatantBase originalTaget)

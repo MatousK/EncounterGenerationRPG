@@ -16,11 +16,11 @@ public abstract class AStarBase
         closedSet = new HashSet<Vector2Int>();
         openSet = new FastPriorityQueue<AStarNode>(map.GetLength(0) * map.GetLength(1));
     }
-    AStarNode[,] allNodes;
-    bool[,] map;
+    readonly AStarNode[,] allNodes;
+    readonly bool[,] map;
     Vector2Int startPosition;
-    HashSet<Vector2Int> closedSet;
-    FastPriorityQueue<AStarNode> openSet;
+    readonly HashSet<Vector2Int> closedSet;
+    readonly FastPriorityQueue<AStarNode> openSet;
     readonly float sqrt2 = (float)(Math.Sqrt(2));
     AStarNode closestToTarget;
 

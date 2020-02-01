@@ -217,6 +217,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a44358159b71774f8d0433269b2c5b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IsSpriteMirrored: 0
 --- !u!114 &3163549686643598437
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -296,8 +297,8 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.009954214, y: 1.0800505}
-  m_Size: {x: 1.0176272, y: 2.244299}
+  m_Offset: {x: 0.009954214, y: 0.9751377}
+  m_Size: {x: 1.0176272, y: 2.0344734}
   m_Direction: 0
 --- !u!114 &7606526776240491369
 MonoBehaviour:

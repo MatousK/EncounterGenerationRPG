@@ -21,7 +21,7 @@ public class CombatantsManager : MonoBehaviour
         IEnumerable<CombatantBase> opponents = null;
         if (combatant is Hero)
         {
-            return GetEnemies(onlyAlive, onlySelected);
+            return GetEnemies(onlyAlive);
         }
         else if (combatant is Monster)
         {
@@ -44,11 +44,11 @@ public class CombatantsManager : MonoBehaviour
 
     public IEnumerable<Hero> GetPlayerCharacters(bool onlyAlive = false, bool onlySelected = false)
     {
-        return PlayerCharacters.Where(opponent => (!onlyAlive || !opponent.IsDown) && (!onlySelected || opponent.GetComponent<SelectableObject>()?.IsSelected == true));
+        return PlayerCharacters.Where(opponent => (!onlyAlive || !opponent.IsDown) && (!onlySelected || opponent.GetComponent<SelectableObject>().IsSelected == true));
     }
 
-    public IEnumerable<Monster> GetEnemies(bool onlyAlive = false, bool onlySelected = false)
+    public IEnumerable<Monster> GetEnemies(bool onlyAlive = false)
     {
-        return Enemies.Where(opponent => (!onlyAlive || !opponent.IsDown) && (!onlySelected || opponent.GetComponent<SelectableObject>()?.IsSelected == true));
+        return Enemies.Where(opponent => (!onlyAlive || !opponent.IsDown));
     }
 }

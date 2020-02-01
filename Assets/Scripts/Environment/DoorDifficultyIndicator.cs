@@ -10,13 +10,11 @@ public class DoorDifficultyIndicator : MonoBehaviour
     public List<DifficultyColorPair> DifficultyIndicators;
     Tuple<RoomInfo, RoomInfo> ConnectedRooms;
     Doors Doors;
-    EncounterManager EncounterManager;
 
     private void Start()
     {
         Doors = GetComponent<Doors>();
         var allRooms = FindObjectOfType<RoomsLayout>().Rooms;
-        EncounterManager = FindObjectOfType<EncounterManager>();
         ConnectedRooms = new Tuple<RoomInfo, RoomInfo>(allRooms[Doors.ConnectingRooms[0]], allRooms[Doors.ConnectingRooms[1]]);
         ConnectedRooms.Item1.IsExploredChanged += RoomExplored;
         ConnectedRooms.Item2.IsExploredChanged += RoomExplored;

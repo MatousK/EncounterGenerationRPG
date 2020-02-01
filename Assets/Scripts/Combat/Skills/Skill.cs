@@ -76,7 +76,7 @@ public abstract class Skill: MonoBehaviour
         {
             return;
         }
-        var rangeMultiplier = selfCombatant?.Attributes?.RangeMultiplier ?? 1;
+        var rangeMultiplier = selfCombatant.Attributes.RangeMultiplier;
         if (GetTargetLocation() != null && !didGetInRange && GetDistanceToTargetLocation() > Range * rangeMultiplier)
         {
             // Move in range.
@@ -161,7 +161,7 @@ public abstract class Skill: MonoBehaviour
             selfCombatant.GetComponent<OrientationController>().LookAtTarget = GetTargetLocation();
         }
         selfCombatant.GetComponent<Animator>().SetBool(SkillAnimationName, true);
-        var speedMultiplier = selfCombatant?.Attributes?.AttackSpeedMultiplier ?? 1;
+        var speedMultiplier = selfCombatant.Attributes.AttackSpeedMultiplier;
         selfCombatant.GetComponent<Animator>().SetFloat("SkillSpeed", Speed * speedMultiplier);
     }
 }

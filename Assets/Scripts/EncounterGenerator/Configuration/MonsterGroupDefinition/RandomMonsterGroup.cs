@@ -16,17 +16,22 @@ public class RandomMonsterGroup : MonsterGroupDefinition
     /// </summary>
     public List<GameObject> AllowedMonsters;
     /// <summary>
-    /// Generates a list of monsters based on a request from the encounter generator.
+    /// Generates a list of monsters based on a request from the encounter generator. If the request cannot be satisfied, returns null.
     /// </summary>
     /// <param name="parameters">The parameters from the encounter generator.</param>
     /// <returns> The list of prefabs which should then be instantiated.</returns>
     public override List<GameObject> GenerateMonsterGroup(GenerateMonsterGroupParameters parameters)
     {
         List<GameObject> toReturn = new List<GameObject>();
+        var random = new System.Random();
         foreach (var monsterRequest in parameters.RequestedMonsters)
         {
             var possibleMonsters = GetMonstersFor(monsterRequest.Key);
-            var random = new System.Random();
+            if (!possibleMonsters.Any())
+            {
+                // Could not satisfy the request.
+                return null;
+            }
             for (int i = 0; i < monsterRequest.Value; ++i)
             {
                 toReturn.Add(possibleMonsters[random.Next(possibleMonsters.Count)]);

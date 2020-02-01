@@ -7,7 +7,7 @@ using UnityEngine;
 
 class EncounterManager: MonoBehaviour
 {
-    EncounterGenerator EncounterGenerator = new EncounterGenerator();
+    readonly EncounterGenerator EncounterGenerator = new EncounterGenerator();
     CombatantSpawnManager CombatantSpawnManager;
 
     private void Start()

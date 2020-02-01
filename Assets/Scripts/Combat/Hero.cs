@@ -40,15 +40,15 @@ public class Hero : CombatantBase
     {
         // After using a skill, we probably want to keep attacking the enemy.
         GetComponent<AutoAttacking>().Target = target;
-        if (EnemyTargetSkill?.CanUseSkill() != true || IsBlockingSkillInProgress(false))
+        if (EnemyTargetSkill == null || !EnemyTargetSkill.CanUseSkill() || IsBlockingSkillInProgress(false))
         {
             // Special attack either cannot be used or is not defined.
             // Use normal attack started at the start of the method as fallback.
             return;
         }
         // We do not want multiple skills being executed simoultaneously.
-        GetComponent<AutoAttacking>()?.AutoAttackSkill?.TryStopSkill();
-        EnemyTargetSkill?.UseSkillOn(target);
+        GetComponent<AutoAttacking>().AutoAttackSkill.TryStopSkill();
+        EnemyTargetSkill.UseSkillOn(target);
     }
 
     public virtual void AttackUsed(Monster target)
@@ -65,18 +65,18 @@ public class Hero : CombatantBase
         GetComponent<AutoAttacking>().Target = null;
         // Using a skill on a friendly might mean moving towards said friendly.
         // In that case we probably don't want to keep on attacking
-        FriendlyTargetSkill?.UseSkillOn(target);
+        FriendlyTargetSkill.UseSkillOn(target);
     }
 
     public virtual void FriendlyClicked(Hero target) { }
 
     public virtual void SelfSkillUsed()
     {
-        if (IsBlockingSkillInProgress(false))
+        if (IsBlockingSkillInProgress(false) || SelfTargetSkill == null)
         {
             return;
         }
-        SelfTargetSkill?.ActivateSkill();
+        SelfTargetSkill.ActivateSkill();
     }
 
     public virtual void SelfClicked(){ }

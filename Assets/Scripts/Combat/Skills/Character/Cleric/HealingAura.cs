@@ -30,7 +30,7 @@ class HealingAura : PersonalSkill
     /// <summary>
     /// Returns how much time is between heal pulses.
     /// </summary>
-    private float pulseTime
+    private float PulseTime
     {
         get
         {
@@ -59,7 +59,7 @@ class HealingAura : PersonalSkill
 
     private void HealPulse()
     {
-        timeToNextPulse = pulseTime;
+        timeToNextPulse = PulseTime;
         foreach (var ally in combatantsManager.PlayerCharacters)
         {
             if (Vector2.Distance(ally.transform.position, transform.position) < AuraRange)

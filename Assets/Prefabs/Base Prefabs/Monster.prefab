@@ -23,7 +23,7 @@ MonoBehaviour:
     OutOfCombatHealthRegeneration: 20
     CombatHealthRegeneration: 0
   TotalMaxHitpoints: 100
-  Role: 0
+  Role: 1
   Rank: 0
 --- !u!1001 &4328387368764092744
 PrefabInstance:

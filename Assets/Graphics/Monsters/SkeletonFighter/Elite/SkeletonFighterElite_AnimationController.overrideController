@@ -6,18 +6,18 @@ AnimatorOverrideController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Minotaur_AnimationController
+  m_Name: SkeletonFighterElite_AnimationController
   m_Controller: {fileID: 9100000, guid: 3f4ae1c07f00c7441a2373d528edfa83, type: 2}
   m_Clips:
   - m_OriginalClip: {fileID: 7400000, guid: 5c0954d23b3c4ac439e2b5642b150106, type: 2}
-    m_OverrideClip: {fileID: 7400000, guid: 558710bb2c25d1e4b813c7e0c32f1f8d, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 21f24d2b5cd9be045a4ad44989b2690c, type: 2}
   - m_OriginalClip: {fileID: 7400000, guid: 96f05477683be0b4595ae94a6b5dd50d, type: 2}
-    m_OverrideClip: {fileID: 7400000, guid: 02bb7653041f1674bacc8125f0f554ef, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 496bfba4fa5fac54cbadfab695fa64c4, type: 2}
   - m_OriginalClip: {fileID: 7400000, guid: d408290d1a8253a429d490d3e197f638, type: 2}
-    m_OverrideClip: {fileID: 7400000, guid: 457ffcdce4c243f4c8c011ebede735a8, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: aedc6bd219fec6649b9ec144eb94a95b, type: 2}
   - m_OriginalClip: {fileID: 7400000, guid: e3be35adf948e39419c083c5ca89862a, type: 2}
-    m_OverrideClip: {fileID: 7400000, guid: 7de02e8bb4892b5499f6da69ae6e1fef, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 3fe18867509dad0419dcfa54b7b32fac, type: 2}
   - m_OriginalClip: {fileID: 7400000, guid: 08d3d4f3dc8a169459191b5deb9cfbbd, type: 2}
-    m_OverrideClip: {fileID: 7400000, guid: 494fce2742f6bff4aab59854bad9464d, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 9a6e3bb754f851b41963a54554b910d5, type: 2}
   - m_OriginalClip: {fileID: 7400000, guid: 833441e92be663241b2a40f1707febb4, type: 2}
-    m_OverrideClip: {fileID: 7400000, guid: 833441e92be663241b2a40f1707febb4, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 76040b1c881336848bf28ab9c3f4a00d, type: 2}

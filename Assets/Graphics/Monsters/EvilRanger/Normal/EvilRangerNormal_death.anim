@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Minotaur_death
+  m_Name: EvilRangerNormal_death
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -147,31 +147,34 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: 1359295917769747823, guid: 56607278585b1f246a7dca73ffa1e658,
+      value: {fileID: 148997183807615204, guid: 7953dd1a5399ddc409292b4a56a31c9c,
         type: 3}
     - time: 0.1
-      value: {fileID: 2355404453062084428, guid: 56607278585b1f246a7dca73ffa1e658,
+      value: {fileID: 4400146228644487837, guid: 7953dd1a5399ddc409292b4a56a31c9c,
         type: 3}
     - time: 0.2
-      value: {fileID: 8951232282364540855, guid: 56607278585b1f246a7dca73ffa1e658,
+      value: {fileID: 8612897984876482342, guid: 7953dd1a5399ddc409292b4a56a31c9c,
         type: 3}
     - time: 0.3
-      value: {fileID: 6225331073713936392, guid: 56607278585b1f246a7dca73ffa1e658,
+      value: {fileID: 7842045832525574195, guid: 7953dd1a5399ddc409292b4a56a31c9c,
         type: 3}
     - time: 0.4
-      value: {fileID: 2567676565505906591, guid: 56607278585b1f246a7dca73ffa1e658,
+      value: {fileID: -5633530671051806340, guid: 7953dd1a5399ddc409292b4a56a31c9c,
         type: 3}
     - time: 0.5
-      value: {fileID: 904373387750236121, guid: 56607278585b1f246a7dca73ffa1e658,
+      value: {fileID: 3996225846052559085, guid: 7953dd1a5399ddc409292b4a56a31c9c,
         type: 3}
     - time: 0.6
-      value: {fileID: 6041891865060431657, guid: 56607278585b1f246a7dca73ffa1e658,
+      value: {fileID: -5848592564433455399, guid: 7953dd1a5399ddc409292b4a56a31c9c,
         type: 3}
     - time: 0.7
-      value: {fileID: -4919609975989951515, guid: 56607278585b1f246a7dca73ffa1e658,
+      value: {fileID: -5523039572351758156, guid: 7953dd1a5399ddc409292b4a56a31c9c,
         type: 3}
     - time: 0.8
-      value: {fileID: -8182533597788213740, guid: 56607278585b1f246a7dca73ffa1e658,
+      value: {fileID: -754162442637123222, guid: 7953dd1a5399ddc409292b4a56a31c9c,
+        type: 3}
+    - time: 0.9
+      value: {fileID: -3163565773599984696, guid: 7953dd1a5399ddc409292b4a56a31c9c,
         type: 3}
     attribute: m_Sprite
     path: 
@@ -199,15 +202,16 @@ AnimationClip:
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: 1359295917769747823, guid: 56607278585b1f246a7dca73ffa1e658, type: 3}
-    - {fileID: 2355404453062084428, guid: 56607278585b1f246a7dca73ffa1e658, type: 3}
-    - {fileID: 8951232282364540855, guid: 56607278585b1f246a7dca73ffa1e658, type: 3}
-    - {fileID: 6225331073713936392, guid: 56607278585b1f246a7dca73ffa1e658, type: 3}
-    - {fileID: 2567676565505906591, guid: 56607278585b1f246a7dca73ffa1e658, type: 3}
-    - {fileID: 904373387750236121, guid: 56607278585b1f246a7dca73ffa1e658, type: 3}
-    - {fileID: 6041891865060431657, guid: 56607278585b1f246a7dca73ffa1e658, type: 3}
-    - {fileID: -4919609975989951515, guid: 56607278585b1f246a7dca73ffa1e658, type: 3}
-    - {fileID: -8182533597788213740, guid: 56607278585b1f246a7dca73ffa1e658, type: 3}
+    - {fileID: 148997183807615204, guid: 7953dd1a5399ddc409292b4a56a31c9c, type: 3}
+    - {fileID: 4400146228644487837, guid: 7953dd1a5399ddc409292b4a56a31c9c, type: 3}
+    - {fileID: 8612897984876482342, guid: 7953dd1a5399ddc409292b4a56a31c9c, type: 3}
+    - {fileID: 7842045832525574195, guid: 7953dd1a5399ddc409292b4a56a31c9c, type: 3}
+    - {fileID: -5633530671051806340, guid: 7953dd1a5399ddc409292b4a56a31c9c, type: 3}
+    - {fileID: 3996225846052559085, guid: 7953dd1a5399ddc409292b4a56a31c9c, type: 3}
+    - {fileID: -5848592564433455399, guid: 7953dd1a5399ddc409292b4a56a31c9c, type: 3}
+    - {fileID: -5523039572351758156, guid: 7953dd1a5399ddc409292b4a56a31c9c, type: 3}
+    - {fileID: -754162442637123222, guid: 7953dd1a5399ddc409292b4a56a31c9c, type: 3}
+    - {fileID: -3163565773599984696, guid: 7953dd1a5399ddc409292b4a56a31c9c, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}

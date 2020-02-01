@@ -19,8 +19,7 @@ public class RoomExporterTask<TPayload> : ConfigurablePipelineTask<TPayload, Roo
         bool isFirstRoom = true;
         foreach (var room in roomsData)
         {
-            RoomWithEncounter roomGraphData;
-            if (!Payload.RoomToIntMapping.TryGetKey(room.GeneratorData.Node, out roomGraphData))
+            if (!Payload.RoomToIntMapping.TryGetKey(room.GeneratorData.Node, out RoomWithEncounter roomGraphData))
             {
                 throw new ArgumentException("Room graph data");
             }
@@ -36,8 +35,10 @@ public class RoomExporterTask<TPayload> : ConfigurablePipelineTask<TPayload, Roo
                     }
                 }
             }
-            var roomInfo = new RoomInfo();
-            roomInfo.IsStartingRoom = isFirstRoom;
+            var roomInfo = new RoomInfo
+            {
+                IsStartingRoom = isFirstRoom
+            };
             if (isFirstRoom)
             {
                 roomInfo.ExploreRoom();
