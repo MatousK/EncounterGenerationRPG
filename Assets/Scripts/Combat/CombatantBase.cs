@@ -135,7 +135,7 @@ public class CombatantBase : MonoBehaviour
     {
         MaxHitpoints = TotalMaxHitpoints;
         HitPoints = TotalMaxHitpoints;
-        CombatantSkills = GetComponents<Skill>();
+        CombatantSkills = GetComponentsInChildren<Skill>();
         combatantsManager = FindObjectOfType<CombatantsManager>();
     }
 

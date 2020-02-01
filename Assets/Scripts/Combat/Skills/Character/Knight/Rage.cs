@@ -11,7 +11,6 @@ public class Rage : PersonalSkill
 
     CombatantsManager combatantsManager;
     SelectableObject selectableComponent;
-    CombatantBase combatant;
 
     public Rage()
     {
@@ -30,10 +29,9 @@ public class Rage : PersonalSkill
     }
     protected override void Awake()
     {
-        combatant = GetComponent<CombatantBase>();
-        combatantsManager = FindObjectOfType<CombatantsManager>();
-        selectableComponent = GetComponent<SelectableObject>();
         base.Awake();
+        combatantsManager = FindObjectOfType<CombatantsManager>();
+        selectableComponent = selfCombatant.GetComponent<SelectableObject>();
     }
     protected override void OnPersonalSkillStarted()
     {
@@ -43,9 +41,9 @@ public class Rage : PersonalSkill
             selectableComponent.IsSelectionEnabled = false;
         }
 
-        combatant.Attributes.MovementSpeedMultiplier *= SpeedMultiplier;
-        combatant.Attributes.AttackSpeedMultiplier *= SpeedMultiplier;
-        combatant.Attributes.DealtDamageMultiplier *= DamageMultiplier;
+        selfCombatant.Attributes.MovementSpeedMultiplier *= SpeedMultiplier;
+        selfCombatant.Attributes.AttackSpeedMultiplier *= SpeedMultiplier;
+        selfCombatant.Attributes.DealtDamageMultiplier *= DamageMultiplier;
     }
 
     protected override void OnPersonalSkillStopped()
@@ -56,8 +54,8 @@ public class Rage : PersonalSkill
             selectableComponent.IsSelectionEnabled = true;
         }
 
-        combatant.Attributes.MovementSpeedMultiplier /= SpeedMultiplier;
-        combatant.Attributes.AttackSpeedMultiplier /= SpeedMultiplier;
-        combatant.Attributes.DealtDamageMultiplier /= DamageMultiplier;
+        selfCombatant.Attributes.MovementSpeedMultiplier /= SpeedMultiplier;
+        selfCombatant.Attributes.AttackSpeedMultiplier /= SpeedMultiplier;
+        selfCombatant.Attributes.DealtDamageMultiplier /= DamageMultiplier;
     }
 }

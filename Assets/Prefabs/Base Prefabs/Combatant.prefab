@@ -1,5 +1,84 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1853349745685530208
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 251102335682754201}
+  - component: {fileID: 6322862577419510445}
+  m_Layer: 0
+  m_Name: Basic Melee Attack
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &251102335682754201
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1853349745685530208}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 9084571621081538144}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6322862577419510445
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1853349745685530208}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 528afea00030cf148921a2ed70c342b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Cooldown: 0
+  Range: 1
+  Speed: 1
+  Repetitions: 1
+  DamagePerHit: 1
+--- !u!1 &2834867636926532519
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9084571621081538144}
+  m_Layer: 0
+  m_Name: Skills
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9084571621081538144
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2834867636926532519}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 251102335682754201}
+  m_Father: {fileID: 3163549686643598451}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3163549686643598455
 GameObject:
   m_ObjectHideFlags: 0
@@ -17,9 +96,9 @@ GameObject:
   - component: {fileID: 3163549686643598444}
   - component: {fileID: 3163549686643598447}
   - component: {fileID: 3163549686643598443}
-  - component: {fileID: 3163549686643598442}
   - component: {fileID: 5102921357620900240}
   - component: {fileID: 2250345927434726146}
+  - component: {fileID: 7606526776240491369}
   m_Layer: 0
   m_Name: Combatant
   m_TagString: Untagged
@@ -40,6 +119,7 @@ Transform:
   m_Children:
   - {fileID: 2959409568592528426}
   - {fileID: 3163549686506333438}
+  - {fileID: 9084571621081538144}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -190,24 +270,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3725e30b6c411f44911375399ecaa69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AutoAttackSkill: {fileID: 3163549686643598442}
---- !u!114 &3163549686643598442
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3163549686643598455}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 528afea00030cf148921a2ed70c342b2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Cooldown: 0
-  Range: 1
-  Speed: 1
-  Repetitions: 1
-  DamagePerHit: 1
+  AutoAttackSkill: {fileID: 6322862577419510445}
 --- !u!114 &5102921357620900240
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -236,6 +299,19 @@ CapsuleCollider2D:
   m_Offset: {x: 0.009954214, y: 1.0800505}
   m_Size: {x: 1.0176272, y: 2.244299}
   m_Direction: 0
+--- !u!114 &7606526776240491369
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3163549686643598455}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 485097ae0d7a08b41bee7592a1a5a9dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ActiveConditions: []
 --- !u!1001 &3163549686931193584
 PrefabInstance:
   m_ObjectHideFlags: 0

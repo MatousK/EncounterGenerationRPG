@@ -1,12 +1,43 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &1149583043
+--- !u!1 &7461301031629968526
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2451823448111947661}
+  - component: {fileID: 3719950708775694755}
+  m_Layer: 0
+  m_Name: Rage
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2451823448111947661
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7461301031629968526}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6477860828858968282}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3719950708775694755
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 869250211914322637}
+  m_GameObject: {fileID: 7461301031629968526}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e2ca0d0afb4d8544884d2417886731fa, type: 3}
@@ -18,13 +49,44 @@ MonoBehaviour:
   Duration: 5
   DamageMultiplier: 4
   SpeedMultiplier: 4
---- !u!114 &1149583044
+--- !u!1 &8447803828324740098
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2340478460625333882}
+  - component: {fileID: 8901190994592927768}
+  m_Layer: 0
+  m_Name: Thousand Blades
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2340478460625333882
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8447803828324740098}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6477860828858968282}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8901190994592927768
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 869250211914322637}
+  m_GameObject: {fileID: 8447803828324740098}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6daa4625a4f98804d93b75566ea21527, type: 3}
@@ -128,17 +190,17 @@ PrefabInstance:
         type: 3}
       propertyPath: SelfTargetSkill
       value: 
-      objectReference: {fileID: 1149583043}
+      objectReference: {fileID: 3719950708775694755}
     - target: {fileID: 4828470711690574787, guid: 46229661ed166644c8a32b159c483f24,
         type: 3}
       propertyPath: EnemyTargetSkill
       value: 
-      objectReference: {fileID: 1149583044}
+      objectReference: {fileID: 8901190994592927768}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 46229661ed166644c8a32b159c483f24, type: 3}
---- !u!1 &869250211914322637 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7682667400691751779, guid: 46229661ed166644c8a32b159c483f24,
+--- !u!4 &6477860828858968282 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4569921241031172468, guid: 46229661ed166644c8a32b159c483f24,
     type: 3}
   m_PrefabInstance: {fileID: 7389953155286600110}
   m_PrefabAsset: {fileID: 0}

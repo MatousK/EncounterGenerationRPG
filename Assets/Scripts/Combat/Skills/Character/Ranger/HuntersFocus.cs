@@ -11,11 +11,9 @@ class HuntersFocus : PersonalSkill
     public float AttackSpeedMultiplier = 0.5f;
 
     CombatantsManager combatantsManager;
-    CombatantBase combatant;
 
     protected override void Awake()
     {
-        combatant = GetComponent<CombatantBase>();
         combatantsManager = FindObjectOfType<CombatantsManager>();
         base.Awake();
     }
@@ -30,15 +28,15 @@ class HuntersFocus : PersonalSkill
     }
     protected override void OnPersonalSkillStarted()
     {
-        combatant.Attributes.MovementSpeedMultiplier *= AttackSpeedMultiplier;
-        combatant.Attributes.AttackSpeedMultiplier *= MovementSpeedMultiplier;
-        combatant.Attributes.DealtDamageMultiplier *= DamageMultiplier;
+        selfCombatant.Attributes.MovementSpeedMultiplier *= AttackSpeedMultiplier;
+        selfCombatant.Attributes.AttackSpeedMultiplier *= MovementSpeedMultiplier;
+        selfCombatant.Attributes.DealtDamageMultiplier *= DamageMultiplier;
     }
 
     protected override void OnPersonalSkillStopped()
     {
-        combatant.Attributes.MovementSpeedMultiplier /= AttackSpeedMultiplier;
-        combatant.Attributes.AttackSpeedMultiplier /= MovementSpeedMultiplier;
-        combatant.Attributes.DealtDamageMultiplier /= DamageMultiplier;
+        selfCombatant.Attributes.MovementSpeedMultiplier /= AttackSpeedMultiplier;
+        selfCombatant.Attributes.AttackSpeedMultiplier /= MovementSpeedMultiplier;
+        selfCombatant.Attributes.DealtDamageMultiplier /= DamageMultiplier;
     }
 }

@@ -37,7 +37,7 @@ public abstract class TargetedSkill : Skill
 
     public override float GetDistanceToTargetLocation()
     {
-        return GetComponent<Collider2D>().Distance(Target.GetComponent<Collider2D>()).distance;
+        return selfCombatant.GetComponent<Collider2D>().Distance(Target.GetComponent<Collider2D>()).distance;
     }
 
     public override Vector2? GetTargetLocation()

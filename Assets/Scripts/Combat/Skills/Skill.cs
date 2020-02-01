@@ -64,8 +64,9 @@ public abstract class Skill: MonoBehaviour
     // Start is called before the first frame update
     protected virtual void Awake()
     {
-        animationEventListener = GetComponent<AnimationEventsListener>();
-        selfCombatant = GetComponent<CombatantBase>();
+        // First, travel the tree to find the combatant object.
+        selfCombatant = GetComponentInParent<CombatantBase>();
+        animationEventListener = selfCombatant.GetComponent<AnimationEventsListener>();
     }
 
     // Update is called once per frame
@@ -79,7 +80,7 @@ public abstract class Skill: MonoBehaviour
         if (GetTargetLocation() != null && !didGetInRange && GetDistanceToTargetLocation() > Range * rangeMultiplier)
         {
             // Move in range.
-            GetComponent<MovementController>().MoveToPosition(GetTargetLocation().Value);
+            selfCombatant.GetComponent<MovementController>().MoveToPosition(GetTargetLocation().Value);
             return;
         }
         didGetInRange = true;
@@ -129,8 +130,8 @@ public abstract class Skill: MonoBehaviour
             // Skill is not being used right now, nothing to stop.
             return false;
         }
-        GetComponent<Animator>().SetBool(SkillAnimationName, false);
-        GetComponent<OrientationController>().LookAtTarget = null;
+        selfCombatant.GetComponent<Animator>().SetBool(SkillAnimationName, false);
+        selfCombatant.GetComponent<OrientationController>().LookAtTarget = null;
         animationEventListener.ApplySkillEffect -= ApplySkillEffects;
         animationEventListener.SkillAnimationFinished -= AnimationCompleted;
         return true;
@@ -153,14 +154,14 @@ public abstract class Skill: MonoBehaviour
 
     protected virtual void StartSkillAnimation()
     {
-        GetComponent<MovementController>().StopMovement();
+        selfCombatant.GetComponent<MovementController>().StopMovement();
         // In range, start using the skill - orient toward the target and start dishing out attacks.
         if (GetTargetLocation() != null)
         {
-            GetComponent<OrientationController>().LookAtTarget = GetTargetLocation();
+            selfCombatant.GetComponent<OrientationController>().LookAtTarget = GetTargetLocation();
         }
-        GetComponent<Animator>().SetBool(SkillAnimationName, true);
+        selfCombatant.GetComponent<Animator>().SetBool(SkillAnimationName, true);
         var speedMultiplier = selfCombatant?.Attributes?.AttackSpeedMultiplier ?? 1;
-        GetComponent<Animator>().SetFloat("SkillSpeed", Speed * speedMultiplier);
+        selfCombatant.GetComponent<Animator>().SetFloat("SkillSpeed", Speed * speedMultiplier);
     }
 }
