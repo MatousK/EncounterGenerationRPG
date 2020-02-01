@@ -31,7 +31,7 @@ class AutoAttacking : MonoBehaviour
             return;
         }
         // Do not start an autoattack if we're already doing blocking skills, as basic attack is also a skill.
-        if (SelfCombatant.IsBlockingSkillInProgress())
+        if (SelfCombatant.IsBlockingSkillInProgress(false))
         {
             return;
         }

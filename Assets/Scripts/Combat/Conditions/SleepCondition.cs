@@ -34,16 +34,12 @@ class SleepCondition: ConditionBase
         {
             skill.TryStopSkill();
         }
-        GetComponent<AggressiveBehavior>().enabled = false;
-        GetComponent<AutoAttacking>().enabled = false;
         GetComponent<Animator>().SetBool("Asleep", true);
         base.StartCondition();
     }
 
     protected override void EndCondition()
     {
-        GetComponent<AggressiveBehavior>().enabled = true;
-        GetComponent<AutoAttacking>().enabled = true;
         GetComponent<Animator>().SetBool("Asleep", false);
         base.EndCondition();
     }

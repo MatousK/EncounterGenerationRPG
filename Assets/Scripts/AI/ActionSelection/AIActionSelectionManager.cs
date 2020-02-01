@@ -16,7 +16,7 @@ class AIActionSelectionManager: MonoBehaviour
     {
         foreach (var actionSelection in OrderedActionSelectionMethods)
         {
-            if (actionSelection.ShouldSelectAction(target))
+            if (actionSelection.ShouldSelectAction(target) && actionSelection.ActionSkill != null && actionSelection.ActionSkill.CanUseSkill())
             {
                 return actionSelection.ActionSkill;
             }

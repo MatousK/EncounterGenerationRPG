@@ -66,10 +66,16 @@ public class CombatantBase : MonoBehaviour
     }
 
     protected CombatantsManager combatantsManager;
-
-    public virtual bool IsBlockingSkillInProgress()
+    /// <summary>
+    /// Checks if the combatant is currently using a skill that blocks other skills.
+    /// By blocking we mean that no other skill can be used while using this skill.
+    /// Usually personal skills are non-blocking, as attacking is possible while an aura is active.
+    /// </summary>
+    /// <param name="isAutoAttackBlocking">If true, basic attacks are considered to be blocking, otherwise they are not. </param>
+    /// <returns>True if a blocking skill is in progress.</returns>
+    public bool IsBlockingSkillInProgress(bool isBasicAttackBlocking)
     {
-        return CombatantSkills.Any(skill => skill.IsBeingUsed() && skill.BlocksOtherSkills && !skill.isBasicAttack);
+        return CombatantSkills.Any(skill => skill.IsBeingUsed() && skill.BlocksOtherSkills && (!skill.isBasicAttack || isBasicAttackBlocking));
     }
 
     public bool IsMoving()
@@ -82,7 +88,7 @@ public class CombatantBase : MonoBehaviour
     /// <returns></returns>
     public bool IsDoingNonAutoAttackAction()
     {
-        return IsBlockingSkillInProgress() || IsMoving();
+        return IsBlockingSkillInProgress(false) || IsMoving();
     }
 
     public virtual bool IsManualMovementBlocked()

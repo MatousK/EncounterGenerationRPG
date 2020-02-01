@@ -40,7 +40,7 @@ public class Hero : CombatantBase
     {
         // After using a skill, we probably want to keep attacking the enemy.
         GetComponent<AutoAttacking>().Target = target;
-        if (EnemyTargetSkill?.CanUseSkill() != true || IsBlockingSkillInProgress())
+        if (EnemyTargetSkill?.CanUseSkill() != true || IsBlockingSkillInProgress(false))
         {
             // Special attack either cannot be used or is not defined.
             // Use normal attack started at the start of the method as fallback.
@@ -58,7 +58,7 @@ public class Hero : CombatantBase
 
     public virtual void FriendlySkillUsed(Hero target)
     {
-        if (IsBlockingSkillInProgress() || FriendlyTargetSkill == null)
+        if (IsBlockingSkillInProgress(false) || FriendlyTargetSkill == null)
         {
             return;
         }
@@ -72,7 +72,7 @@ public class Hero : CombatantBase
 
     public virtual void SelfSkillUsed()
     {
-        if (IsBlockingSkillInProgress())
+        if (IsBlockingSkillInProgress(false))
         {
             return;
         }
