@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: TestMonsterGroup
   m_EditorClassIdentifier: 
   AllowedMonsters:
-  - {fileID: 6961181293527521668, guid: ede1348956f9cb545a90d54a2ff1cb70, type: 3}
+  - {fileID: 1243533878233351848, guid: 150c5cb37d986f34384f066d892d0649, type: 3}

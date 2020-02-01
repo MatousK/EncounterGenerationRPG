@@ -7,5 +7,17 @@ AnimatorOverrideController:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: MinotaurEliteAnimationController
-  m_Controller: {fileID: 0}
-  m_Clips: []
+  m_Controller: {fileID: 9100000, guid: 3f4ae1c07f00c7441a2373d528edfa83, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 5c0954d23b3c4ac439e2b5642b150106, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: d7fa9f7030d5a154d8225fb74cafbe45, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 96f05477683be0b4595ae94a6b5dd50d, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: c324e67afeeaf5845b69a853af1495f5, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: d408290d1a8253a429d490d3e197f638, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 595c41f765ad8f04b94c22b93cd792a1, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: e3be35adf948e39419c083c5ca89862a, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: acb56d2df14a0234ba44810b6bc38279, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 08d3d4f3dc8a169459191b5deb9cfbbd, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 76286f58f7856a341a44ad9cfe7795a1, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 833441e92be663241b2a40f1707febb4, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: c41dedff666b6724196570acd1b1727d, type: 2}

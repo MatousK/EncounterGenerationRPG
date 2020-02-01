@@ -22,7 +22,7 @@ MonoBehaviour:
     ReceivedHealingMultiplier: 1
     OutOfCombatHealthRegeneration: 20
     CombatHealthRegeneration: 0
-  TotalMaxHitpoints: 0
+  TotalMaxHitpoints: 100
   Role: 0
   Rank: 0
 --- !u!1001 &4328387368764092744
