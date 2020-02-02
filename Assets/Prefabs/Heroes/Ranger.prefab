@@ -1,5 +1,50 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2706588759278738342
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4332544377631816962}
+  - component: {fileID: 395927756830671157}
+  m_Layer: 0
+  m_Name: PoisonCloudTemplateWrapper
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &4332544377631816962
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2706588759278738342}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 3, y: 3, z: 3}
+  m_Children:
+  - {fileID: 5151186714144575633}
+  m_Father: {fileID: 3890477998113513391}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &395927756830671157
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2706588759278738342}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02d4c856b1dda0c4daf86d652bc1f470, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AutoDestroyTimeSeconds: 1
 --- !u!1 &7381113697008069117
 GameObject:
   m_ObjectHideFlags: 0
@@ -43,6 +88,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6165e91a1b57a442a0d26cd08c74773, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ClearTargetAfterUsingSkill: 0
   Cooldown: 0
   Range: 5
   Speed: 1
@@ -55,7 +101,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 3890477998113513391}
+    m_TransformParent: {fileID: 4332544377631816962}
     m_Modifications:
     - target: {fileID: 4637380426624689607, guid: cb05ddba3e3bdec4e8bec8d83028fdc2,
         type: 3}
@@ -65,7 +111,7 @@ PrefabInstance:
     - target: {fileID: 4637380426624689607, guid: cb05ddba3e3bdec4e8bec8d83028fdc2,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8390266054439292647, guid: cb05ddba3e3bdec4e8bec8d83028fdc2,
         type: 3}
@@ -85,17 +131,17 @@ PrefabInstance:
     - target: {fileID: 8390266054439292647, guid: cb05ddba3e3bdec4e8bec8d83028fdc2,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 8390266054439292647, guid: cb05ddba3e3bdec4e8bec8d83028fdc2,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 8390266054439292647, guid: cb05ddba3e3bdec4e8bec8d83028fdc2,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 8390266054439292647, guid: cb05ddba3e3bdec4e8bec8d83028fdc2,
         type: 3}
@@ -105,7 +151,7 @@ PrefabInstance:
     - target: {fileID: 8390266054439292647, guid: cb05ddba3e3bdec4e8bec8d83028fdc2,
         type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8390266054439292647, guid: cb05ddba3e3bdec4e8bec8d83028fdc2,
         type: 3}
@@ -125,18 +171,18 @@ PrefabInstance:
     - target: {fileID: 8390266054439292647, guid: cb05ddba3e3bdec4e8bec8d83028fdc2,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8390266054439292647, guid: cb05ddba3e3bdec4e8bec8d83028fdc2,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cb05ddba3e3bdec4e8bec8d83028fdc2, type: 3}
---- !u!1 &8311339709842570161 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4637380426624689607, guid: cb05ddba3e3bdec4e8bec8d83028fdc2,
+--- !u!4 &5151186714144575633 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8390266054439292647, guid: cb05ddba3e3bdec4e8bec8d83028fdc2,
     type: 3}
   m_PrefabInstance: {fileID: 3678463996082773622}
   m_PrefabAsset: {fileID: 0}
@@ -587,6 +633,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Poison Cloud
       objectReference: {fileID: 0}
+    - target: {fileID: 5009929164363449685, guid: baa608df2e5faad4ea297d2fdf0dcbf1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3312675481022747594, guid: baa608df2e5faad4ea297d2fdf0dcbf1,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -646,7 +697,7 @@ PrefabInstance:
         type: 3}
       propertyPath: PoisonCloudEffect
       value: 
-      objectReference: {fileID: 8311339709842570161}
+      objectReference: {fileID: 2706588759278738342}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: baa608df2e5faad4ea297d2fdf0dcbf1, type: 3}
 --- !u!114 &41706940372298106 stripped

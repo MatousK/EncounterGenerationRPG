@@ -25,7 +25,8 @@ class PoisonCloud : TargetedGestureSkill
 
     protected override void ApplySkillEffects(object sender, EventArgs e)
     {
-        Instantiate(PoisonCloudEffect, Target.transform, false);
+        var poisonCloudEffect = Instantiate(PoisonCloudEffect, Target.transform, false);
+        poisonCloudEffect.SetActive(true);
         foreach (var enemy in combatantsManager.GetEnemies(onlyAlive:true))
         {
             if (Vector2.Distance(enemy.transform.position, Target.transform.position) < PoisonCloudRange)

@@ -100,6 +100,10 @@ public class MovementController : MonoBehaviour
     /// <param name="animate"> If true, the combatant will do a walking animation.</param>
     public void MoveToPosition(Vector2 targetPosition, bool ignoreOtherCombatants = false, MovementCompletion onMoveToSuccessful = null, bool animate = true)
     {
+        if (currentMoveToCompletion != null)
+        {
+            currentMoveToCompletion?.Invoke(false);
+        }
         ignoringCombatants = ignoreOtherCombatants;
         currentMoveToCompletion = onMoveToSuccessful;
         if (animate)

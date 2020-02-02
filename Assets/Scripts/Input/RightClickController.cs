@@ -31,15 +31,18 @@ public class RightClickController : MonoBehaviour
             var hitEnemy = hit.collider != null ? hit.collider.GetComponent<Monster>() : null;
             var hitFriend = hit.collider != null ? hit.collider.GetComponent<Hero>() : null;
             var hitInteractableObject = hit.collider != null ? hit.collider.GetComponent<InteractableObject>() : null;
+            // Hacky - basically we need to make sure that if one character opened doors, others won't try to go through them.
+            // So if one suceeds in using an interactive item straight away, others won't try it.
+            bool didUserInteractableObject = false;
             foreach (var character in combatantsManager.GetPlayerCharacters(onlySelected: true))
             {
                 if (hitInteractableObject)
                 {
                     if (hitInteractableObject.IsHeroCloseToInteract(character))
                     {
-                        hitInteractableObject.TryInteract(character);
+                        didUserInteractableObject = hitInteractableObject.TryInteract(character);
                     }
-                    else
+                    else if (!didUserInteractableObject)
                     {
                         // We cache a temporary reference to the object, as we will be clearing
                         // it before the completion completes.
@@ -52,6 +55,7 @@ public class RightClickController : MonoBehaviour
                             }
                         });
                     }
+                    // Else nothing - the interactive item was used by someone else, this character has nothing to do.
                 }
                 else if (hitEnemy)
                 {
