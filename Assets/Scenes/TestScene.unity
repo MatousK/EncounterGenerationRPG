@@ -8170,6 +8170,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   InitialParty:
   - {fileID: 869250211914322637, guid: 65ea18269594623448a1dcbcddec12a0, type: 3}
+  - {fileID: 3890477998113513387, guid: efff9a40eedbd3a46a8455bad244d81e, type: 3}
 --- !u!4 &521702304
 Transform:
   m_ObjectHideFlags: 0

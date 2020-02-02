@@ -17,6 +17,11 @@ class ConditionManager: MonoBehaviour
         return conditionToAdd;
     }
 
+    public bool HasCondition<T>() where T: ConditionBase
+    {
+        return GetComponent<T>() != null;
+    }
+
     public void RemoveCondition(ConditionBase conditionToRemove)
     {
         ActiveConditions.Remove(conditionToRemove);

@@ -26,6 +26,7 @@ class EnterRoomCutscene : Cutscene
     // If true, we have already decided position for one back row character.
     // We store this info because first backrow character moves on the cross axis in the positive direction, the other one in the negative direction.
     private bool placeBackRowCharacter;
+    private Dictionary<Hero, Vector2> requestedMoveRetries;
     private bool HeroesInPosition
     {
         get
@@ -60,7 +61,7 @@ class EnterRoomCutscene : Cutscene
             var targetPosition = GetHeroTargetPosition(hero);
             ++movingHeroes;
             print("Moving hero to ." + targetPosition);
-            hero.GetComponent<MovementController>().MoveToPosition(targetPosition, ignoreOtherCombatants:true, onMoveToSuccessful: moveSuccessful => OnMoveToFinished(hero, targetPosition));
+            hero.GetComponent<MovementController>().MoveToPosition(targetPosition, ignoreOtherCombatants: true, onMoveToSuccessful: moveSuccessful => --movingHeroes);
         }
     }
 
@@ -68,19 +69,6 @@ class EnterRoomCutscene : Cutscene
     {
         OpenedDoors.CloseInCombat = true;
         cameraMovement.FollowingHero = null;
-    }
-
-    private void OnMoveToFinished(Hero hero, Vector2 originalTarget)
-    {
-        // Movement finished but it might have been unsuccessful, something might have been in the way - check whether the hero is on the correct side of the door.
-        var doorPosition = OpenedDoors.transform.position;
-        var doorMainCoordinate = OpenedDoors.Orientation == DoorOrientation.Vertical ? doorPosition.y : doorPosition.x;
-        var targetMainCoordinate = OpenedDoors.Orientation == DoorOrientation.Vertical ? originalTarget.y : originalTarget.x;
-        var heroMainCoordinate = OpenedDoors.Orientation == DoorOrientation.Vertical ? hero.transform.position.y : hero.transform.position.x;
-        bool isOnCorrectSide = (doorMainCoordinate < targetMainCoordinate) == (doorMainCoordinate < heroMainCoordinate);
-        print("Movement finished");
-        --movingHeroes;
-        Debug.Assert(isOnCorrectSide, "We ended up on the wrong side of the door, which should not happen.");
     }
 
     private Vector2 GetHeroTargetPosition(Hero hero)

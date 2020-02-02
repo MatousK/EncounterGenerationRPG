@@ -52,8 +52,6 @@ public class RightClickController : MonoBehaviour
                             }
                         });
                     }
-                    // This is makes sure that only one character tries to use an object at once, to prevent race conditions. The other will just walk to the position.
-                    hitInteractableObject = null;
                 }
                 else if (hitEnemy)
                 {

@@ -37,6 +37,11 @@ public class AggressiveBehavior : MonoBehaviour
         CombatantBase closestTarget = null;
         foreach (var opponent in combatantsManager.GetOpponentsFor(selfCombatant, onlyAlive: true))
         {
+            if (opponent.GetComponent<ConditionManager>().HasCondition<SleepCondition>())
+            {
+                // Do not auto attack sleeping opponents.
+                continue;
+            }
             var distanceToOpponent = opponent.GetComponent<Collider2D>().Distance(collider).distance;
             if (distanceToOpponent < closestDistance)
             {

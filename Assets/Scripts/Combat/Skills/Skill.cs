@@ -10,6 +10,11 @@ using UnityEngine;
 public abstract class Skill: MonoBehaviour
 {
     /// <summary>
+    /// If true, after using this skill the target of the combatant will be cleared no matter what else.
+    /// E.g. after putting an enemy to sleep, we do not want to keep attacking him.
+    /// </summary>
+    public bool ClearTargetAfterUsingSkill = false;
+    /// <summary>
     /// If true, this attack is considered to be a basic attack for some purposes, like auto attacking.
     /// </summary>
     [NonSerialized]
@@ -143,7 +148,10 @@ public abstract class Skill: MonoBehaviour
             // Skill is not being used right now, nothing to stop.
             return false;
         }
-        selfCombatant.GetComponent<Animator>().SetBool(SkillAnimationName, false);
+        if (!string.IsNullOrEmpty(SkillAnimationName))
+        {
+            selfCombatant.GetComponent<Animator>().SetBool(SkillAnimationName, false);
+        }
         selfCombatant.GetComponent<OrientationController>().LookAtTarget = null;
         // HACK: Auto attacking uses the same animation as attack skills.
         // If an attack skill interrupted a basic attack, the animation would not reset, leading to bugs.
@@ -177,7 +185,10 @@ public abstract class Skill: MonoBehaviour
         {
             selfCombatant.GetComponent<OrientationController>().LookAtTarget = GetTargetLocation();
         }
-        selfCombatant.GetComponent<Animator>().SetBool(SkillAnimationName, true);
+        if (!string.IsNullOrEmpty(SkillAnimationName))
+        {
+            selfCombatant.GetComponent<Animator>().SetBool(SkillAnimationName, true);
+        }
         var speedMultiplier = selfCombatant.Attributes.AttackSpeedMultiplier;
         selfCombatant.GetComponent<Animator>().SetFloat("SkillSpeed", Speed * speedMultiplier);
     }

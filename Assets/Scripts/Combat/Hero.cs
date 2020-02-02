@@ -53,6 +53,10 @@ public class Hero : CombatantBase
         // We do not want multiple skills being executed simoultaneously.
         GetComponent<AutoAttacking>().AutoAttackSkill.TryStopSkill();
         EnemyTargetSkill.UseSkillOn(target);
+        if (EnemyTargetSkill.ClearTargetAfterUsingSkill)
+        {
+            GetComponent<AutoAttacking>().Target = null;
+        }
     }
 
     public virtual void AttackUsed(Monster target)
@@ -81,6 +85,10 @@ public class Hero : CombatantBase
             return;
         }
         SelfTargetSkill.ActivateSkill();
+        if (SelfTargetSkill.ClearTargetAfterUsingSkill)
+        {
+            GetComponent<AutoAttacking>().Target = null;
+        }
     }
 
     public virtual void SelfClicked(){ }
