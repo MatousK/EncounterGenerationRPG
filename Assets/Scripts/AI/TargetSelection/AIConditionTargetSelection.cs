@@ -15,9 +15,9 @@ class AIConditionTargetSelection : AITargetSelectionMethodBase
         bool targetForcedByCondition = false;
         foreach (var condition in representedCombatant.GetComponent<ConditionManager>().ActiveConditions)
         {
-            if (condition is SleepCondition)
+            if (condition is StunCondition)
             {
-                // A sleep condition overrides all others, AI should do nothing at all.
+                // A stun condition overrides all others, AI should do nothing at all.
                 target = null;
                 return true;
             }

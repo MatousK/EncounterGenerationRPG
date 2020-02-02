@@ -9,7 +9,7 @@ using UnityEngine;
 /// </summary>
 public abstract class ConditionBase : MonoBehaviour
 {
-    public float remainingDuration = float.PositiveInfinity;
+    public float RemainingDuration = float.PositiveInfinity;
     public event EventHandler<EventArgs> ConditionEnded;
 
     protected virtual void Start()
@@ -19,8 +19,8 @@ public abstract class ConditionBase : MonoBehaviour
 
     protected virtual void Update()
     {
-        remainingDuration -= Time.deltaTime;
-        if (remainingDuration <= 0)
+        RemainingDuration -= Time.deltaTime;
+        if (RemainingDuration <= 0)
         {
             EndCondition();
         }

@@ -35,7 +35,6 @@ public class ProjectileAttack : Attack
 
     protected virtual void OnProjectileHit(CombatantBase originalTaget)
     {
-        base.ApplySkillEffects(this, new EventArgs());
         originalTaget.TakeDamage(DamagePerHit, selfCombatant);
     }
 }

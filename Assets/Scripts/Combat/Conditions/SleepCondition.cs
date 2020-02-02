@@ -8,7 +8,7 @@ using UnityEngine;
 /// When added to a creature, will put it to sleep for a specified duration, then waking it up.
 /// If it takes damage, it is woken up immediately.
 /// </summary>
-class SleepCondition: ConditionBase
+class SleepCondition: StunCondition
 {
     private float originalHitpoints;
     protected override void Start()
@@ -30,17 +30,13 @@ class SleepCondition: ConditionBase
 
     protected override void StartCondition()
     {
-        foreach (var skill in GetComponents<Skill>())
-        {
-            skill.TryStopSkill();
-        }
-        GetComponent<Animator>().SetBool("Asleep", true);
         base.StartCondition();
+        GetComponent<Animator>().SetBool("Asleep", true);
     }
 
     protected override void EndCondition()
     {
-        GetComponent<Animator>().SetBool("Asleep", false);
         base.EndCondition();
+        GetComponent<Animator>().SetBool("Asleep", false);
     }
 }

@@ -21,6 +21,6 @@ class Sleep : TargetedGestureSkill
     protected override void ApplySkillEffects(object sender, EventArgs e)
     {
         var sleepCondition = Target.GetComponent<ConditionManager>().AddCondition<SleepCondition>();
-        sleepCondition.remainingDuration = SleepDuration;
+        sleepCondition.RemainingDuration = SleepDuration;
     }
 }

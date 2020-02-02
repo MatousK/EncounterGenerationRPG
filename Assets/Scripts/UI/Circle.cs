@@ -31,7 +31,7 @@ public class Circle : MonoBehaviour
     private void DrawCircle(GameObject container)
     {
         line = container.AddComponent<LineRenderer>();
-        var spriteRenderer = GetComponent<SpriteRenderer>();
+        var spriteRenderer = GetComponentInParent<SpriteRenderer>();
         line.sortingLayerID = spriteRenderer.sortingLayerID;
         line.sortingOrder = spriteRenderer.sortingOrder - 1;
         line.material = LineMaterial;

@@ -21,9 +21,14 @@ class AITargetSelectionManager: MonoBehaviour
 
         foreach (var targetSelectionMethod in OrderedTargetSelectionMethods)
         {
-            if (targetSelectionMethod.TryGetTarget(ref toReturn))
+            // If the target selection found a target, but it is dead, ignore it, no sense in beating a dead horse.
+            if (targetSelectionMethod.TryGetTarget(ref toReturn) && (toReturn == null || !toReturn.IsDown))
             {
                 return toReturn;
+            } 
+            else
+            {
+                toReturn = null;
             }
         }
         return toReturn;

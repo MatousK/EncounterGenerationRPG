@@ -96,11 +96,16 @@ public class MovementController : MonoBehaviour
     /// </summary>
     /// <param name="targetPosition">The position where the hero is moving.</param>
     /// <param name="onMoveToSuccessful">To be called if we successfuly navigate to the target postiion.</param>
-    public void MoveToPosition(Vector2 targetPosition, bool ignoreOtherCombatants = false, MovementCompletion onMoveToSuccessful = null)
+    /// <param name="ignoreOtherCombatants">If true, pathfinding will ignore all other combatants.</param>
+    /// <param name="animate"> If true, the combatant will do a walking animation.</param>
+    public void MoveToPosition(Vector2 targetPosition, bool ignoreOtherCombatants = false, MovementCompletion onMoveToSuccessful = null, bool animate = true)
     {
         ignoringCombatants = ignoreOtherCombatants;
         currentMoveToCompletion = onMoveToSuccessful;
-        GetComponent<Animator>().SetBool("Walking", true);
+        if (animate)
+        {
+            GetComponent<Animator>().SetBool("Walking", true);
+        }
         CalculateAndSavePathToTargetWorldSpace(targetPosition);
     }
     public void StopMovement(bool movementSuccessful = false)

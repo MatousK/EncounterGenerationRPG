@@ -10,6 +10,8 @@ using UnityEngine;
 public abstract class AIActionSelectionMethodBase: MonoBehaviour
 {
     protected CombatantBase representedCombatant;
+    public bool CanTargetFriendlies = false;
+    public bool CanTargetHostiles = true;
 
     protected virtual void Awake()
     {

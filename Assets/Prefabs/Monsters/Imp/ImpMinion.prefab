@@ -109,20 +109,25 @@ PrefabInstance:
       propertyPath: m_WasSpriteAssigned
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 8426503475732973455, guid: 5bb997eb5e02af8419843853bbfa62c0,
+    - target: {fileID: 2379371922131582341, guid: 5bb997eb5e02af8419843853bbfa62c0,
         type: 3}
-      propertyPath: DamagePerHit
-      value: 10
+      propertyPath: m_RootOrder
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8504542926058137551, guid: 5bb997eb5e02af8419843853bbfa62c0,
         type: 3}
       propertyPath: m_LocalPosition.y
       value: 1.37
       objectReference: {fileID: 0}
-    - target: {fileID: 2379371922131582341, guid: 5bb997eb5e02af8419843853bbfa62c0,
+    - target: {fileID: 623900188228665672, guid: 5bb997eb5e02af8419843853bbfa62c0,
         type: 3}
-      propertyPath: m_RootOrder
-      value: 3
+      propertyPath: DamagePerHit
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8426503475732973455, guid: 5bb997eb5e02af8419843853bbfa62c0,
+        type: 3}
+      propertyPath: DamagePerHit
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8426503475732973452, guid: 5bb997eb5e02af8419843853bbfa62c0,
         type: 3}
@@ -134,10 +139,97 @@ PrefabInstance:
       propertyPath: m_SpriteTilingProperty.oldSize.y
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 623900188228665672, guid: 5bb997eb5e02af8419843853bbfa62c0,
-        type: 3}
-      propertyPath: DamagePerHit
-      value: 10
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5bb997eb5e02af8419843853bbfa62c0, type: 3}
+--- !u!4 &6961181293527521664 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8426503475732973462, guid: 5bb997eb5e02af8419843853bbfa62c0,
+    type: 3}
+  m_PrefabInstance: {fileID: 1471517940169170454}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2072614805915475806 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 623900188228665672, guid: 5bb997eb5e02af8419843853bbfa62c0,
+    type: 3}
+  m_PrefabInstance: {fileID: 1471517940169170454}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 528afea00030cf148921a2ed70c342b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1001 &8594476226963841407
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 6961181293527521664}
+    m_Modifications:
+    - target: {fileID: 5761267173621891073, guid: 99d0f86500df80743ba5e72b2b192bd0,
+        type: 3}
+      propertyPath: m_Name
+      value: MinionAI
+      objectReference: {fileID: 0}
+    - target: {fileID: 4123230228739301907, guid: 99d0f86500df80743ba5e72b2b192bd0,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4123230228739301907, guid: 99d0f86500df80743ba5e72b2b192bd0,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4123230228739301907, guid: 99d0f86500df80743ba5e72b2b192bd0,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4123230228739301907, guid: 99d0f86500df80743ba5e72b2b192bd0,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4123230228739301907, guid: 99d0f86500df80743ba5e72b2b192bd0,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4123230228739301907, guid: 99d0f86500df80743ba5e72b2b192bd0,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4123230228739301907, guid: 99d0f86500df80743ba5e72b2b192bd0,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4123230228739301907, guid: 99d0f86500df80743ba5e72b2b192bd0,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4123230228739301907, guid: 99d0f86500df80743ba5e72b2b192bd0,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4123230228739301907, guid: 99d0f86500df80743ba5e72b2b192bd0,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4123230228739301907, guid: 99d0f86500df80743ba5e72b2b192bd0,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4004047198946567764, guid: 99d0f86500df80743ba5e72b2b192bd0,
+        type: 3}
+      propertyPath: ActionSkill
+      value: 
+      objectReference: {fileID: 2072614805915475806}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 99d0f86500df80743ba5e72b2b192bd0, type: 3}

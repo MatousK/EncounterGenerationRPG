@@ -9,6 +9,10 @@ public class Hero : CombatantBase
     private CameraMovement cameraMovement;
     private MovementController movementController;
     /// <summary>
+    /// The higher the priority, the more likely is the AI to target this hero.
+    /// </summary>
+    public int AITargetPriority;
+    /// <summary>
     /// A skill that should be used when using a skill on self.
     /// </summary>
     public PersonalSkill SelfTargetSkill;

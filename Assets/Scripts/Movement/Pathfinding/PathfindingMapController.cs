@@ -40,6 +40,27 @@ class PathfindingMapController: MonoBehaviour
         return toReturn;
     }
 
+    public Vector2Int? GetPassableSpaceInDistance(CombatantBase navigatingCombatant, Vector2Int targetPostion, int maxDistance)
+    {
+        var passabilityMap = GetPassabilityMapForCombatant(navigatingCombatant);
+
+        Vector2Int? closestPassableSquare = null;
+        float closestPassableSquareDistance = float.MaxValue;
+        for (int x = targetPostion.x - maxDistance; x <= targetPostion.x + maxDistance; ++x)
+        { 
+            for (int y = targetPostion.y - maxDistance; y <= targetPostion.y + maxDistance; ++y)
+            {
+                var distanceFromTarget = Vector2Int.Distance(targetPostion, new Vector2Int(x, y));
+                if (passabilityMap.GetSquareIsPassable(x, y) && distanceFromTarget < closestPassableSquareDistance)
+                {
+                    closestPassableSquareDistance = distanceFromTarget;
+                    closestPassableSquare = new Vector2Int(x, y);
+                }
+            }
+        }
+        return closestPassableSquare;
+    }
+
     void FillPassableTiles()
     {
         foreach (Tilemap tileMap in WalkableTilemaps)

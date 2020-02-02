@@ -37,6 +37,11 @@ public abstract class TargetedSkill : Skill
 
     public override float GetDistanceToTargetLocation()
     {
+        if (Target == null)
+        {
+            // Sometimes target dies before reaching him.
+            return float.MaxValue;
+        }
         return selfCombatant.GetComponent<Collider2D>().Distance(Target.GetComponent<Collider2D>()).distance;
     }
 
@@ -50,7 +55,7 @@ public abstract class TargetedSkill : Skill
         return Target != null;
     }
 
-    public bool UseSkillOn(CombatantBase target)
+    public virtual bool UseSkillOn(CombatantBase target)
     {
         var toReturn = TryStartUsingSkill();
         if (toReturn)

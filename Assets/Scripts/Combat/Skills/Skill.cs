@@ -72,6 +72,7 @@ public abstract class Skill: MonoBehaviour
     // Update is called once per frame
     protected virtual void Update()
     {
+        // TODO: Refactor so it properly recognizes when we cannot reach the target.
         if (!IsBeingUsed())
         {
             return;
@@ -79,8 +80,20 @@ public abstract class Skill: MonoBehaviour
         var rangeMultiplier = selfCombatant.Attributes.RangeMultiplier;
         if (GetTargetLocation() != null && !didGetInRange && GetDistanceToTargetLocation() > Range * rangeMultiplier)
         {
+            if (selfCombatant.GetComponent<MovementController>().IsMoving)
+            {
+                // Already moving somewhere do not start another move.
+                return;
+            }
             // Move in range.
-            selfCombatant.GetComponent<MovementController>().MoveToPosition(GetTargetLocation().Value);
+            selfCombatant.GetComponent<MovementController>().MoveToPosition(GetTargetLocation().Value, onMoveToSuccessful:(result) =>
+            {
+                // Probably cannot reach the target.
+                if (GetDistanceToTargetLocation() > Range * rangeMultiplier)
+                {
+                    TryStopSkill();
+                }
+            });
             return;
         }
         didGetInRange = true;
@@ -132,6 +145,10 @@ public abstract class Skill: MonoBehaviour
         }
         selfCombatant.GetComponent<Animator>().SetBool(SkillAnimationName, false);
         selfCombatant.GetComponent<OrientationController>().LookAtTarget = null;
+        // HACK: Auto attacking uses the same animation as attack skills.
+        // If an attack skill interrupted a basic attack, the animation would not reset, leading to bugs.
+        // This solution is not ideal, it would cease working if someone used for example gesture for basic attacks.
+        selfCombatant.GetComponent<Animator>().Play("Attack", -1, 0);
         animationEventListener.ApplySkillEffect -= ApplySkillEffects;
         animationEventListener.SkillAnimationFinished -= AnimationCompleted;
         return true;

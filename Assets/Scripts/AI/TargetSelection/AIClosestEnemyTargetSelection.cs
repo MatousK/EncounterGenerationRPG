@@ -28,6 +28,6 @@ class AIClosestEnemyTargetSelection : AITargetSelectionMethodBase
                 target = player;
             }
         }
-        return float.IsPositiveInfinity(currentMinDistance);
+        return !float.IsPositiveInfinity(currentMinDistance);
     }
 }

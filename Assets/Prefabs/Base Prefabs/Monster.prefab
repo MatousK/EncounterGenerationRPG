@@ -25,80 +25,6 @@ MonoBehaviour:
   TotalMaxHitpoints: 100
   Role: 1
   Rank: 0
---- !u!1001 &4328387368764092744
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 8426503475732973462}
-    m_Modifications:
-    - target: {fileID: 2748528641031165975, guid: ab8adbd4cf91fcb46a6ef5cac9d57573,
-        type: 3}
-      propertyPath: m_Name
-      value: AIBase
-      objectReference: {fileID: 0}
-    - target: {fileID: 5829968854152182277, guid: ab8adbd4cf91fcb46a6ef5cac9d57573,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5829968854152182277, guid: ab8adbd4cf91fcb46a6ef5cac9d57573,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5829968854152182277, guid: ab8adbd4cf91fcb46a6ef5cac9d57573,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5829968854152182277, guid: ab8adbd4cf91fcb46a6ef5cac9d57573,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5829968854152182277, guid: ab8adbd4cf91fcb46a6ef5cac9d57573,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5829968854152182277, guid: ab8adbd4cf91fcb46a6ef5cac9d57573,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5829968854152182277, guid: ab8adbd4cf91fcb46a6ef5cac9d57573,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5829968854152182277, guid: ab8adbd4cf91fcb46a6ef5cac9d57573,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5829968854152182277, guid: ab8adbd4cf91fcb46a6ef5cac9d57573,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5829968854152182277, guid: ab8adbd4cf91fcb46a6ef5cac9d57573,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5829968854152182277, guid: ab8adbd4cf91fcb46a6ef5cac9d57573,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6791892722973670978, guid: ab8adbd4cf91fcb46a6ef5cac9d57573,
-        type: 3}
-      propertyPath: ActionSkill
-      value: 
-      objectReference: {fileID: 623900188228665672}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: ab8adbd4cf91fcb46a6ef5cac9d57573, type: 3}
 --- !u!1001 &6852187155131278309
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -169,7 +95,7 @@ PrefabInstance:
     - target: {fileID: 9084571621081538144, guid: 7b25ba78df82cc748811779a4a9ecc9f,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5102921357620900240, guid: 7b25ba78df82cc748811779a4a9ecc9f, type: 3}
@@ -181,21 +107,3 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 6852187155131278309}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &8426503475732973462 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3163549686643598451, guid: 7b25ba78df82cc748811779a4a9ecc9f,
-    type: 3}
-  m_PrefabInstance: {fileID: 6852187155131278309}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &623900188228665672 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6322862577419510445, guid: 7b25ba78df82cc748811779a4a9ecc9f,
-    type: 3}
-  m_PrefabInstance: {fileID: 6852187155131278309}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 528afea00030cf148921a2ed70c342b2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
