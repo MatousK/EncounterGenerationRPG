@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class RightClickController : MonoBehaviour
 {
@@ -18,6 +19,11 @@ public class RightClickController : MonoBehaviour
     {
         if (cutsceneManager.IsCutsceneActive)
         {
+            return;
+        }
+        if (EventSystem.current.IsPointerOverGameObject())
+        {
+            // We are over UI, do not do commands.
             return;
         }
         if (Input.GetMouseButtonUp(1))

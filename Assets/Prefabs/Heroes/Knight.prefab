@@ -241,7 +241,7 @@ PrefabInstance:
     - target: {fileID: 4828470711690574787, guid: 46229661ed166644c8a32b159c483f24,
         type: 3}
       propertyPath: TotalMaxHitpoints
-      value: 1000
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 4828470711690574787, guid: 46229661ed166644c8a32b159c483f24,
         type: 3}
@@ -258,6 +258,17 @@ PrefabInstance:
       propertyPath: FriendlyTargetSkill
       value: 
       objectReference: {fileID: 5280803866432759786}
+    - target: {fileID: 4828470711690574787, guid: 46229661ed166644c8a32b159c483f24,
+        type: 3}
+      propertyPath: Portrait
+      value: 
+      objectReference: {fileID: 21300000, guid: 43288d43078caee43bbda268c7317170,
+        type: 3}
+    - target: {fileID: 4828470711690574787, guid: 46229661ed166644c8a32b159c483f24,
+        type: 3}
+      propertyPath: Attributes.DealtDamageMultiplier
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 7682667400691751780, guid: 46229661ed166644c8a32b159c483f24,
         type: 3}
       propertyPath: m_Sprite

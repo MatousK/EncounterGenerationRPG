@@ -203,6 +203,11 @@ PrefabInstance:
       propertyPath: ProjectileTemplate
       value: 
       objectReference: {fileID: 106769759}
+    - target: {fileID: 3369756554141718234, guid: 068e668f700814d44a6384836fd96142,
+        type: 3}
+      propertyPath: DamagePerHit
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 1260456553613436516, guid: 068e668f700814d44a6384836fd96142,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -468,7 +473,7 @@ PrefabInstance:
     - target: {fileID: 4828470711690574787, guid: 46229661ed166644c8a32b159c483f24,
         type: 3}
       propertyPath: TotalMaxHitpoints
-      value: 10000
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 4828470711690574787, guid: 46229661ed166644c8a32b159c483f24,
         type: 3}
@@ -489,6 +494,17 @@ PrefabInstance:
         type: 3}
       propertyPath: AITargetPriority
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4828470711690574787, guid: 46229661ed166644c8a32b159c483f24,
+        type: 3}
+      propertyPath: Portrait
+      value: 
+      objectReference: {fileID: 21300000, guid: cbfd5d329c3a52e41bae714681269e8e,
+        type: 3}
+    - target: {fileID: 4828470711690574787, guid: 46229661ed166644c8a32b159c483f24,
+        type: 3}
+      propertyPath: Attributes.DealtDamageMultiplier
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7682667400691751780, guid: 46229661ed166644c8a32b159c483f24,
         type: 3}
@@ -638,6 +654,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6999661200865158242, guid: baa608df2e5faad4ea297d2fdf0dcbf1,
+        type: 3}
+      propertyPath: PoisonCloudEffect
+      value: 
+      objectReference: {fileID: 2706588759278738342}
     - target: {fileID: 3312675481022747594, guid: baa608df2e5faad4ea297d2fdf0dcbf1,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -693,11 +714,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6999661200865158242, guid: baa608df2e5faad4ea297d2fdf0dcbf1,
-        type: 3}
-      propertyPath: PoisonCloudEffect
-      value: 
-      objectReference: {fileID: 2706588759278738342}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: baa608df2e5faad4ea297d2fdf0dcbf1, type: 3}
 --- !u!114 &41706940372298106 stripped

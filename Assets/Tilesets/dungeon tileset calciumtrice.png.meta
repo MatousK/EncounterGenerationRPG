@@ -880,7 +880,31 @@ TextureImporter:
     second: dungeon tileset calciumtrice_522
   - first:
       213: 663515848490770624
-    second: dungeon tileset calciumtrice_0
+    second: wall_bottom_1
+  - first:
+      213: -1758379665612552404
+    second: wall_bottom_2
+  - first:
+      213: 4193354566661817829
+    second: wall_bottom_3
+  - first:
+      213: 5899141279980250821
+    second: wall_bottom_4
+  - first:
+      213: -4457610189216378931
+    second: wall_bottom_5
+  - first:
+      213: -5888950641748119780
+    second: wall_bottom_6
+  - first:
+      213: -7017864347795168751
+    second: wall_bottom_7
+  - first:
+      213: -538321646188496508
+    second: wall_bottom_8
+  - first:
+      213: -8283190806034698537
+    second: wall_bottom_9
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -2166,9 +2190,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 464
+        y: 480
         width: 16
-        height: 32
+        height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2187,9 +2211,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 16
-        y: 464
+        y: 480
         width: 16
-        height: 32
+        height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2208,9 +2232,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 32
-        y: 464
+        y: 480
         width: 16
-        height: 32
+        height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2229,9 +2253,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 48
-        y: 464
+        y: 480
         width: 16
-        height: 32
+        height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2250,9 +2274,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 64
-        y: 464
+        y: 480
         width: 16
-        height: 32
+        height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2271,9 +2295,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 80
-        y: 464
+        y: 480
         width: 16
-        height: 32
+        height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2292,9 +2316,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 96
-        y: 464
+        y: 480
         width: 16
-        height: 32
+        height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2313,9 +2337,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 112
-        y: 464
+        y: 480
         width: 16
-        height: 32
+        height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2334,9 +2358,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 128
-        y: 464
+        y: 480
         width: 16
-        height: 32
+        height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -7008,6 +7032,195 @@ TextureImporter:
       bones: []
       spriteID: b7b9ebf0c61b0ad409001b8a4d155cc6
       internalID: 7804807344221744696
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wall_bottom_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 464
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c0e917b7551006e44bb9e718584c813b
+      internalID: 663515848490770624
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wall_bottom_2
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 464
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ff50cbd103acf1b4195587c000c6a175
+      internalID: -1758379665612552404
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wall_bottom_3
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 464
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a815e351c7e7fb044916cb1f7fd4322f
+      internalID: 4193354566661817829
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wall_bottom_4
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 464
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 79c2cfe81823fa74687d5cb1b565df4e
+      internalID: 5899141279980250821
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wall_bottom_5
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 464
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dd95c4be62585e541b431e6bed5b982a
+      internalID: -4457610189216378931
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wall_bottom_6
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 464
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4e58de3ad1c0770428dd17eef507a7d1
+      internalID: -5888950641748119780
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wall_bottom_7
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 464
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0db1c2397090bfa4d8c82c07548694f3
+      internalID: -7017864347795168751
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wall_bottom_8
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 464
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 39bd70d59560b1044b3641af35cfd2aa
+      internalID: -538321646188496508
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wall_bottom_9
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 464
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 164434fab7ae832408f153bcf03faab2
+      internalID: -8283190806034698537
       vertices: []
       indices: 
       edges: []

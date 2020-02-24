@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class LeftClickController : MonoBehaviour
 {
@@ -27,6 +28,7 @@ public class LeftClickController : MonoBehaviour
         {
             return;
         }
+
         if (Input.GetMouseButtonDown(0))
         {
             // Start dragging selection box;
@@ -39,7 +41,14 @@ public class LeftClickController : MonoBehaviour
                 Debug.Assert(false, "We should always first start dragging before ending dragging.");
                 return;
             }
-            SelectPlayerCharacters(selectionStart.Value, Input.mousePosition);
+            // Ok, so this might be a bit hacky.
+            // Basically, on one hand we do not want clicks over UI to deselect or select characters.
+            // On the other hand, if the we are dragging a selection rectangle, we want to select, as the click might
+            // have originated outside of the UI. So we allow selection to continue if we have some rectangle worth mentioning.
+            if (!EventSystem.current.IsPointerOverGameObject() || currentSelectionRectangle.size.magnitude > 0.5)
+            {
+                SelectPlayerCharacters(selectionStart.Value, Input.mousePosition);
+            }
             // End dragging selection box
             selectionStart = null;
             currentSelectionRectangle = Rect.zero;
@@ -56,6 +65,11 @@ public class LeftClickController : MonoBehaviour
         foreach (var character in combatantsManager.GetPlayerCharacters(onlyAlive: true))
         {
             var selectableComponent = character.GetComponent<SelectableObject>();
+            if (selectableComponent.IsSelected && (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift)))
+            {
+                // If selecting while holding shift, we do not want to deselect other characters. And this one is already selected.
+                continue;
+            }
             if (!selectableComponent.IsSelectionEnabled)
             {
                 continue;

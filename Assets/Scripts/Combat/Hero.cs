@@ -9,6 +9,10 @@ public class Hero : CombatantBase
     private CameraMovement cameraMovement;
     private MovementController movementController;
     /// <summary>
+    /// The portrait representing this hero.
+    /// </summary>
+    public Sprite Portrait;
+    /// <summary>
     /// The higher the priority, the more likely is the AI to target this hero.
     /// </summary>
     public int AITargetPriority;

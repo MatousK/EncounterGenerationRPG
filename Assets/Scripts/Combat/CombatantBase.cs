@@ -49,7 +49,7 @@ public class CombatantBase : MonoBehaviour
     /// <summary>
     ///  Current maximum hitpoints, i.e. value to which the combatant can be healed.
     /// </summary>
-    public int MaxHitpoints { get; protected set; }
+    public float MaxHitpoints { get; protected set; }
     /// <summary>
     /// All skills this combatant possesses, including the basic attack.
     /// </summary>
