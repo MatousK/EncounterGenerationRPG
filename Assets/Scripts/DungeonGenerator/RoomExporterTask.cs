@@ -44,6 +44,8 @@ public class RoomExporterTask<TPayload> : ConfigurablePipelineTask<TPayload, Roo
                 roomInfo.ExploreRoom();
             }
             roomInfo.RoomEncounter = roomGraphData.EncounterConfiguration;
+            roomInfo.TreasureChestsMax = roomGraphData.TreasureChestsMax;
+            roomInfo.TreasureChestsMin = roomGraphData.TreasureChestsMin;
             isFirstRoom = false;
             roomInfo.RoomSquaresPositions = roomSquares.ToList();
             roomsLayout.Rooms.Add(roomInfo);

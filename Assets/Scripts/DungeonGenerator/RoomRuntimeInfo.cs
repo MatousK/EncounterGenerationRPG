@@ -15,6 +15,8 @@ public struct RoomExploredEventArgs
 public class RoomInfo
 {
     public EncounterConfiguration RoomEncounter;
+    public int TreasureChestsMax;
+    public int TreasureChestsMin;
     public List<Vector2Int> RoomSquaresPositions;
     public bool IsStartingRoom;
     public event EventHandler<RoomExploredEventArgs> IsExploredChanged;

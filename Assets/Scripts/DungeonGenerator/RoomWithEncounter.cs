@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 /// <summary>
-/// Extension of the Room class from Dungeon generator that includes info about encounter difficulties.
+/// Extension of the Room class from Dungeon generator that includes info about encounter difficulties and treasures.
 /// </summary>
 public class RoomWithEncounter: Room
 {
@@ -13,4 +13,7 @@ public class RoomWithEncounter: Room
     /// The encounter that should appear here.
     /// </summary>
     public EncounterConfiguration EncounterConfiguration;
+
+    public int TreasureChestsMax;
+    public int TreasureChestsMin;
 }

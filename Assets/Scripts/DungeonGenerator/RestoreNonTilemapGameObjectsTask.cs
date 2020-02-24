@@ -23,7 +23,11 @@ public class RestoreNonTilemapGameObjectsTask<TPayload> : ConfigurablePipelineTa
                 var childClone = Object.Instantiate(childObject, Payload.GameObject.transform);
                 var originalPositon = childClone.transform.localPosition;
                 childClone.transform.localPosition = new Vector3(originalPositon.x + room.Position.x, originalPositon.y + room.Position.y, originalPositon.z);
-
+                var roomInfoComponent = childClone.GetComponent<RoomInfoComponent>();
+                if (roomInfoComponent != null)
+                {
+                    roomInfoComponent.RoomIndex = room.GeneratorData.Node;
+                }
             }
         }
     }

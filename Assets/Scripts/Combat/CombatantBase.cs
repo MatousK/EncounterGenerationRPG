@@ -41,7 +41,7 @@ public class CombatantBase : MonoBehaviour
     /// <summary>
     /// How many hitpoints can the combatant have, i.e. size of the healthbar.
     /// </summary>
-    public int TotalMaxHitpoints;
+    public float TotalMaxHitpoints;
     /// <summary>
     /// How many hitpoints does the combatant have.
     /// </summary>
@@ -49,7 +49,7 @@ public class CombatantBase : MonoBehaviour
     /// <summary>
     ///  Current maximum hitpoints, i.e. value to which the combatant can be healed.
     /// </summary>
-    public float MaxHitpoints { get; protected set; }
+    public float MaxHitpoints;
     /// <summary>
     /// All skills this combatant possesses, including the basic attack.
     /// </summary>

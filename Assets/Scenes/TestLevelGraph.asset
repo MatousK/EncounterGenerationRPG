@@ -13,12 +13,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: Room
-  Position: {x: 382, y: 154}
+  Position: {x: 357, y: 189}
   RoomTemplateSets: []
   IndividualRoomTemplates: []
   serializedGuid: 00000000000000000000000000000000
   EncounterConfiguration: {fileID: 11400000, guid: 8ced9e8da8e135349b8a1f7a05004946,
     type: 2}
+  TreasureChestsMax: 3
+  TreasureChestsMin: 3
 --- !u!114 &-8542592930693778513
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32,12 +34,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: Room
-  Position: {x: 614, y: 386}
+  Position: {x: 589, y: 421}
   RoomTemplateSets: []
   IndividualRoomTemplates: []
   serializedGuid: 00000000000000000000000000000000
   EncounterConfiguration: {fileID: 11400000, guid: 8ced9e8da8e135349b8a1f7a05004946,
     type: 2}
+  TreasureChestsMax: 2
+  TreasureChestsMin: 2
 --- !u!114 &-8517353724990951573
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -65,12 +69,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: Room
-  Position: {x: 498, y: 259}
+  Position: {x: 473, y: 294}
   RoomTemplateSets: []
   IndividualRoomTemplates: []
   serializedGuid: 00000000000000000000000000000000
   EncounterConfiguration: {fileID: 11400000, guid: be4db2a6b60b35547b4b0436951daa00,
     type: 2}
+  TreasureChestsMax: 1
+  TreasureChestsMin: 1
 --- !u!114 &-8066856152148563883
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -98,12 +104,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: Room
-  Position: {x: 500, y: 157}
+  Position: {x: 475, y: 192}
   RoomTemplateSets: []
   IndividualRoomTemplates: []
   serializedGuid: 00000000000000000000000000000000
   EncounterConfiguration: {fileID: 11400000, guid: 8ced9e8da8e135349b8a1f7a05004946,
     type: 2}
+  TreasureChestsMax: 2
+  TreasureChestsMin: 2
 --- !u!114 &-4633550302470200555
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -117,13 +125,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: Start
-  Position: {x: 487, y: 523}
+  Position: {x: 462, y: 558}
   RoomTemplateSets: []
   IndividualRoomTemplates:
   - {fileID: 6966731523498046389, guid: b3cd70b78369f7447acd01a745b94291, type: 3}
   serializedGuid: 00000000000000000000000000000000
   EncounterConfiguration: {fileID: 11400000, guid: a13aacc43e3c10b4bb5cc162ec05c429,
     type: 2}
+  TreasureChestsMax: 0
+  TreasureChestsMin: 0
 --- !u!114 &-3930603652926717094
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -165,13 +175,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: Boss
-  Position: {x: 514, y: 54}
+  Position: {x: 489, y: 89}
   RoomTemplateSets: []
   IndividualRoomTemplates:
   - {fileID: 7563476935698307696, guid: a2c66dd2e83afb449b465953854129c0, type: 3}
   serializedGuid: 00000000000000000000000000000000
   EncounterConfiguration: {fileID: 11400000, guid: 1515b941f623fac45955181e5f7a7a28,
     type: 2}
+  TreasureChestsMax: 6
+  TreasureChestsMin: 6
 --- !u!114 &-383646540370159587
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -250,12 +262,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: Room
-  Position: {x: 659, y: 162}
+  Position: {x: 634, y: 197}
   RoomTemplateSets: []
   IndividualRoomTemplates: []
   serializedGuid: 00000000000000000000000000000000
   EncounterConfiguration: {fileID: 11400000, guid: be4db2a6b60b35547b4b0436951daa00,
     type: 2}
+  TreasureChestsMax: 3
+  TreasureChestsMin: 3
 --- !u!114 &4861211084081388202
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -283,9 +297,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: Room
-  Position: {x: 488, y: 384}
+  Position: {x: 463, y: 419}
   RoomTemplateSets: []
   IndividualRoomTemplates: []
   serializedGuid: 00000000000000000000000000000000
   EncounterConfiguration: {fileID: 11400000, guid: be4db2a6b60b35547b4b0436951daa00,
     type: 2}
+  TreasureChestsMax: 1
+  TreasureChestsMin: 1

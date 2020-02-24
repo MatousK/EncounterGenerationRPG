@@ -38,9 +38,9 @@ public class CharacterPortrait : MonoBehaviour, IPointerClickHandler
 
         PortraitImage.sprite = RepresentedHero.Portrait;
 
-        AttackField.ValueToShow = RepresentedHero.Attributes.DealtDamageMultiplier;
-        DefenseField.ValueToShow = RepresentedHero.TotalMaxHitpoints;
-        MaxHealthField.ValueToShow = RepresentedHero.MaxHitpoints;
+        AttackField.ValueToShow = (int)RepresentedHero.Attributes.DealtDamageMultiplier;
+        DefenseField.ValueToShow = (int)((1 - RepresentedHero.Attributes.ReceivedDamageMultiplier) * 100);
+        MaxHealthField.ValueToShow = (int)RepresentedHero.TotalMaxHitpoints;
 
         var maxHealthPercentage = RepresentedHero.MaxHitpoints / RepresentedHero.TotalMaxHitpoints;
         var currentHealthPercentage = RepresentedHero.HitPoints / RepresentedHero.TotalMaxHitpoints;
