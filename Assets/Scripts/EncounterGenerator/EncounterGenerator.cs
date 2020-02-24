@@ -16,7 +16,7 @@ public class EncounterGenerator
             MonsterPriorities = new Dictionary<GameObject, float>()
         };
         var testMonsterTypeDefinition = new MonsterTypeDefinition(MonsterRank.Regular, MonsterRole.Brute);
-        var leaderMonsterTypeDefinition = new MonsterTypeDefinition(MonsterRank.Boss, MonsterRole.Leader);
+        var leaderMonsterTypeDefinition = new MonsterTypeDefinition(MonsterRank.Boss, MonsterRole.Lurker);
         generationParams.RequestedMonsters = new List<KeyValuePair<MonsterTypeDefinition, int>> {
             new KeyValuePair<MonsterTypeDefinition, int>(testMonsterTypeDefinition, (int)targetDifficulty-1),
             new KeyValuePair<MonsterTypeDefinition, int>(leaderMonsterTypeDefinition, 1)

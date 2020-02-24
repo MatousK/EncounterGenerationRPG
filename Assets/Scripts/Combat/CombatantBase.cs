@@ -64,6 +64,18 @@ public class CombatantBase : MonoBehaviour
             return MaxHitpoints <= 0;
         }
     }
+    /// <summary>
+    /// If true, this character cannot currently be damaged, targeted or killed.
+    /// </summary>
+    public bool IsInvincible;
+
+    public bool IsTargetable
+    {
+        get
+        {
+            return !IsDown && !IsInvincible;
+        }
+    }
 
     protected CombatantsManager combatantsManager;
     /// <summary>

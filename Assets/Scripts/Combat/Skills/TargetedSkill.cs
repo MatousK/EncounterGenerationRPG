@@ -15,11 +15,6 @@ public abstract class TargetedSkill : Skill
     /// Target which we are currently using this skill on.
     /// </summary>
     public CombatantBase Target { get; protected set; }
-    /// <summary>
-    /// If true, the skill can target characters who are already dead.
-    /// </summary>
-    [NonSerialized]
-    public bool CanTargetDownedCharacters;
     protected override void Awake()
     {
         base.Awake();
@@ -27,7 +22,7 @@ public abstract class TargetedSkill : Skill
 
     protected override void Update()
     {
-        if (Target && Target.IsDown && !CanTargetDownedCharacters)
+        if (Target && !Target.IsTargetable)
         {
             TryStopSkill();
             return;

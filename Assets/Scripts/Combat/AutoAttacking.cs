@@ -19,9 +19,9 @@ class AutoAttacking : MonoBehaviour
 
     private void Update()
     {
-        if (Target && Target.IsDown)
+        if (Target && !Target.IsTargetable)
         {
-            // Target is dead, no sense in beating a dead horse.
+            // Target is dead or invincible, no sense in beating a dead horse or a god.
             Target = null;
         }
         if (Target == null)

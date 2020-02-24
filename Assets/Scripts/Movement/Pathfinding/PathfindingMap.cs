@@ -55,6 +55,13 @@ public class PathfindingMap
     public bool GetSquareIsPassable(int x, int y)
     {
         var coordinates = GridCoordinatesToLocal(x, y);
+        if (coordinates.x < 0 || 
+            coordinates.y < 0 || 
+            coordinates.x >= PassableTilesMap.GetLength(0) || 
+            coordinates.y >= PassableTilesMap.GetLength(1))
+        {
+            return false;
+        }
         return PassableTilesMap[coordinates.x, coordinates.y];
     }
 
