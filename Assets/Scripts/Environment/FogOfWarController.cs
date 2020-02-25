@@ -39,14 +39,14 @@ public class FogOfWarController : MonoBehaviour
     {
         foreach (var unexploredRoom in roomsLayout.Rooms.Where(room => !room.IsExplored))
         {
-            foreach (var tilePosition in unexploredRoom.RoomSquaresPositions)
+            foreach (var tilePosition in unexploredRoom.RoomSquaresPositions.Concat(unexploredRoom.ConnectedCorridorsSquares))
             {
                 tilemap.SetTile(new Vector3Int(tilePosition.x, tilePosition.y, 0), FogOfWarTile);
             }
         }
         foreach (var exploredRoom in roomsLayout.Rooms.Where(room => room.IsExplored))
         {
-            foreach (var tilePosition in exploredRoom.RoomSquaresPositions)
+            foreach (var tilePosition in exploredRoom.RoomSquaresPositions.Concat(exploredRoom.ConnectedCorridorsSquares))
             {
                 tilemap.SetTile(new Vector3Int(tilePosition.x, tilePosition.y, 0), null);
             }

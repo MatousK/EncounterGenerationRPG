@@ -481,8 +481,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DoorsList: []
   SelectedMode: 0
-  DoorLength: 2
-  DistanceFromCorners: 1
+  DoorLength: 4
+  DistanceFromCorners: 0
 --- !u!1 &6152203163559300869
 GameObject:
   m_ObjectHideFlags: 0

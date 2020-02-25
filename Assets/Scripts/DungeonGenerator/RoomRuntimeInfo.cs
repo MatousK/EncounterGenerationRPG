@@ -18,6 +18,7 @@ public class RoomInfo
     public int TreasureChestsMax;
     public int TreasureChestsMin;
     public List<Vector2Int> RoomSquaresPositions;
+    public List<Vector2Int> ConnectedCorridorsSquares = new List<Vector2Int>();
     public bool IsStartingRoom;
     public event EventHandler<RoomExploredEventArgs> IsExploredChanged;
     [SerializeField]

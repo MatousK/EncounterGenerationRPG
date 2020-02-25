@@ -19,7 +19,6 @@ class PathfindingMapController: MonoBehaviour
         Map = new PathfindingMap(bounds);
         FillPassableTiles();
         FillBlockingTiles();
-        print("Success");
     }
 
     public PathfindingMap GetPassabilityMapForCombatant(CombatantBase navigatingCombatant)
