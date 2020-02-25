@@ -17,10 +17,10 @@ MonoBehaviour:
   FloorSortingLayer: Background
   FloorSortingOrder: 0
   CollidableSortingLayer: Foreground
-  CollidableSortingOrder: 5
+  CollidableSortingOrder: 4
   Other1SortingLayer: Foreground
-  Other1SortingOrder: 0
+  Other1SortingOrder: 1
   Other2SortingLayer: Foreground
-  Other2SortingOrder: 0
+  Other2SortingOrder: 2
   Other3SortingLayer: Foreground
-  Other3SortingOrder: 0
+  Other3SortingOrder: 3

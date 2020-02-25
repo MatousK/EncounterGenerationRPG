@@ -436,22 +436,22 @@ TextureImporter:
     second: door_bottom_6
   - first:
       213: 8278478070383518018
-    second: banner_red_1
+    second: banner_red_1_top
   - first:
       213: 3492729476322768182
-    second: banner_red_2
+    second: banner_red_2_top
   - first:
       213: -7112257812484790273
-    second: banner_blue_1
+    second: banner_blue_1_top
   - first:
       213: 6163609810674171545
-    second: banner_blue_2
+    second: banner_blue_2_top
   - first:
       213: -7970804272384272449
-    second: banner_black_1
+    second: banner_black_1_top
   - first:
       213: 1833094928708852969
-    second: banner_black_2
+    second: banner_black_2_top
   - first:
       213: 4399039978971569717
     second: banner_red_open_1
@@ -529,10 +529,10 @@ TextureImporter:
     second: chair_bottom
   - first:
       213: -1779572522790044833
-    second: table
+    second: table_square_bottom_left
   - first:
       213: 6568911301205420292
-    second: table_long
+    second: table_long_top
   - first:
       213: 3135641930248567998
     second: box_closed
@@ -580,22 +580,22 @@ TextureImporter:
     second: lever_on
   - first:
       213: 3789631751555603324
-    second: altair_man
+    second: altair_man_top
   - first:
       213: 2371633386576825925
-    second: altar_snake
+    second: altar_snake_top
   - first:
       213: 2269968571522010873
-    second: altar_cross
+    second: altar_cross_top
   - first:
       213: 8627681594212596706
     second: altair_empty
   - first:
       213: 218267191556636208
-    second: altair_large_bull
+    second: altar_large_bull_bottom_left
   - first:
       213: -216455374858669357
-    second: altair_large_empty
+    second: altair_large_empty_left
   - first:
       213: 2961407011329992075
     second: gold_few
@@ -905,6 +905,60 @@ TextureImporter:
   - first:
       213: -8283190806034698537
     second: wall_bottom_9
+  - first:
+      213: -3013086580005164526
+    second: altar_man_bottom
+  - first:
+      213: 4957800037092365760
+    second: altair_snake_bottom
+  - first:
+      213: -2816409792115759863
+    second: altair_cross_bottom
+  - first:
+      213: -7311295372636023941
+    second: altair_large_empty_right
+  - first:
+      213: -8678904860116791336
+    second: altar_large_bull_bottom_right
+  - first:
+      213: -4982930997996129515
+    second: altar_large_bull_top_right
+  - first:
+      213: -3400126865949743505
+    second: altar_large_bull_top_left
+  - first:
+      213: -5252581660440919231
+    second: table_square_bottom_right
+  - first:
+      213: 6380407632569008548
+    second: table_square_top_right
+  - first:
+      213: -1952440853224701122
+    second: table_square_top_left
+  - first:
+      213: 3690218000085359581
+    second: table_long_middle
+  - first:
+      213: -8686252484862962771
+    second: table_long_bottom
+  - first:
+      213: -1960065299510136003
+    second: banner_red_1_bottom
+  - first:
+      213: 1002337708189612344
+    second: banner_red_2_bottom
+  - first:
+      213: 5584895997469659555
+    second: banner_blue_1_bottom
+  - first:
+      213: 7763487811910037712
+    second: banner_blue_2_bottom
+  - first:
+      213: 5394964345881984895
+    second: banner_black_1_bottom
+  - first:
+      213: -4394887257449166292
+    second: banner_black_2_bottom
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -4013,13 +4067,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: banner_red_1
+      name: banner_red_1_top
       rect:
         serializedVersion: 2
         x: 288
-        y: 352
+        y: 368
         width: 16
-        height: 32
+        height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -4034,13 +4088,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: banner_red_2
+      name: banner_red_2_top
       rect:
         serializedVersion: 2
         x: 304
-        y: 352
+        y: 368
         width: 16
-        height: 32
+        height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -4055,13 +4109,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: banner_blue_1
+      name: banner_blue_1_top
       rect:
         serializedVersion: 2
         x: 320
-        y: 352
+        y: 368
         width: 16
-        height: 32
+        height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -4076,13 +4130,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: banner_blue_2
+      name: banner_blue_2_top
       rect:
         serializedVersion: 2
         x: 336
-        y: 352
+        y: 368
         width: 16
-        height: 32
+        height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -4097,13 +4151,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: banner_black_1
+      name: banner_black_1_top
       rect:
         serializedVersion: 2
         x: 352
-        y: 352
+        y: 368
         width: 16
-        height: 32
+        height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -4118,13 +4172,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: banner_black_2
+      name: banner_black_2_top
       rect:
         serializedVersion: 2
         x: 368
-        y: 352
+        y: 367
         width: 16
-        height: 32
+        height: 17
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -4563,7 +4617,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 208
-        y: 288
+        y: 281
         width: 16
         height: 32
       alignment: 0
@@ -4583,8 +4637,8 @@ TextureImporter:
       name: chair_right
       rect:
         serializedVersion: 2
-        x: 224
-        y: 288
+        x: 225
+        y: 281
         width: 16
         height: 32
       alignment: 0
@@ -4605,7 +4659,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 240
-        y: 288
+        y: 281
         width: 16
         height: 32
       alignment: 0
@@ -4626,7 +4680,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 256
-        y: 288
+        y: 281
         width: 16
         height: 32
       alignment: 0
@@ -4643,13 +4697,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: table
+      name: table_square_bottom_left
       rect:
         serializedVersion: 2
         x: 288
-        y: 288
-        width: 32
-        height: 32
+        y: 286
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -4664,13 +4718,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: table_long
+      name: table_long_top
       rect:
         serializedVersion: 2
         x: 368
-        y: 272
+        y: 308
         width: 16
-        height: 48
+        height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -5000,13 +5054,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: altair_man
+      name: altair_man_top
       rect:
         serializedVersion: 2
         x: 304
-        y: 224
+        y: 240
         width: 16
-        height: 32
+        height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -5021,13 +5075,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: altar_snake
+      name: altar_snake_top
       rect:
         serializedVersion: 2
         x: 320
-        y: 224
+        y: 240
         width: 16
-        height: 32
+        height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -5042,13 +5096,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: altar_cross
+      name: altar_cross_top
       rect:
         serializedVersion: 2
         x: 336
-        y: 224
+        y: 240
         width: 16
-        height: 32
+        height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -5069,7 +5123,7 @@ TextureImporter:
         x: 352
         y: 224
         width: 16
-        height: 32
+        height: 18
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -5084,13 +5138,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: altair_large_bull
+      name: altar_large_bull_bottom_left
       rect:
         serializedVersion: 2
         x: 384
         y: 224
-        width: 32
-        height: 32
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -5105,13 +5159,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: altair_large_empty
+      name: altair_large_empty_left
       rect:
         serializedVersion: 2
         x: 416
         y: 224
-        width: 32
-        height: 32
+        width: 16
+        height: 18
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -7221,6 +7275,384 @@ TextureImporter:
       bones: []
       spriteID: 164434fab7ae832408f153bcf03faab2
       internalID: -8283190806034698537
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: altar_man_bottom
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 224
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ddd336b4f2602a1429dfe0ccc499e2d2
+      internalID: -3013086580005164526
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: altair_snake_bottom
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 224
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f2f9968e11f5caa408ea8df54b919dac
+      internalID: 4957800037092365760
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: altair_cross_bottom
+      rect:
+        serializedVersion: 2
+        x: 336
+        y: 224
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7e21facbf606e0e4abfa01eb22e0f102
+      internalID: -2816409792115759863
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: altair_large_empty_right
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 224
+        width: 16
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 501711214a304274681b6a17c633eaa4
+      internalID: -7311295372636023941
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: altar_large_bull_bottom_right
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 224
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cfe44eac3d6b2ce4b96d4ca227c8e2cb
+      internalID: -8678904860116791336
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: altar_large_bull_top_right
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 240
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cda94ef63f88faa4bbe41eed02961410
+      internalID: -4982930997996129515
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: altar_large_bull_top_left
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 240
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 388ac5578f0378248afda39887233fb2
+      internalID: -3400126865949743505
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: table_square_bottom_right
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 286
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 22dcec51a573afc49a591417ee5dfe3b
+      internalID: -5252581660440919231
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: table_square_top_right
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 302
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 53043315db7b1994c8f9a17b9df61090
+      internalID: 6380407632569008548
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: table_square_top_left
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 302
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 42339a6eddc8be14580a2d168c2dab96
+      internalID: -1952440853224701122
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: table_long_middle
+      rect:
+        serializedVersion: 2
+        x: 368
+        y: 292
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e338ce4baeb572c49a57e7bd4cc8e38e
+      internalID: 3690218000085359581
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: table_long_bottom
+      rect:
+        serializedVersion: 2
+        x: 368
+        y: 276
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 018bd9a34d6c6174a9680c427fa00a2b
+      internalID: -8686252484862962771
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: banner_red_1_bottom
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 352
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 060f24fa62d01a74d93882eb8380fab8
+      internalID: -1960065299510136003
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: banner_red_2_bottom
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 352
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8e50230a456543f468c370b430ce4b66
+      internalID: 1002337708189612344
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: banner_blue_1_bottom
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 352
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 72898a4b38e7910488751c58a07fbd29
+      internalID: 5584895997469659555
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: banner_blue_2_bottom
+      rect:
+        serializedVersion: 2
+        x: 336
+        y: 352
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 62791302b977f0141b05f9cfad3b0c91
+      internalID: 7763487811910037712
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: banner_black_1_bottom
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 352
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0b5ebd15f25710f469c74f427a0ebcd1
+      internalID: 5394964345881984895
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: banner_black_2_bottom
+      rect:
+        serializedVersion: 2
+        x: 368
+        y: 351
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4a5c74fc485ab1c4fb6bd07b359f305e
+      internalID: -4394887257449166292
       vertices: []
       indices: 
       edges: []

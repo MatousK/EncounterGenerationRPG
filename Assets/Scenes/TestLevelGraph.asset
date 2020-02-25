@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: Room
-  Position: {x: 357, y: 189}
+  Position: {x: 437, y: 169}
   RoomTemplateSets: []
   IndividualRoomTemplates: []
   serializedGuid: 00000000000000000000000000000000
@@ -34,7 +34,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: Room
-  Position: {x: 589, y: 421}
+  Position: {x: 669, y: 401}
   RoomTemplateSets: []
   IndividualRoomTemplates: []
   serializedGuid: 00000000000000000000000000000000
@@ -69,7 +69,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: Room
-  Position: {x: 473, y: 294}
+  Position: {x: 553, y: 274}
   RoomTemplateSets: []
   IndividualRoomTemplates: []
   serializedGuid: 00000000000000000000000000000000
@@ -104,7 +104,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: Room
-  Position: {x: 475, y: 192}
+  Position: {x: 555, y: 172}
   RoomTemplateSets: []
   IndividualRoomTemplates: []
   serializedGuid: 00000000000000000000000000000000
@@ -125,7 +125,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: Start
-  Position: {x: 462, y: 558}
+  Position: {x: 542, y: 538}
   RoomTemplateSets: []
   IndividualRoomTemplates:
   - {fileID: 6966731523498046389, guid: b3cd70b78369f7447acd01a745b94291, type: 3}
@@ -175,7 +175,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: Boss
-  Position: {x: 489, y: 89}
+  Position: {x: 569, y: 69}
   RoomTemplateSets: []
   IndividualRoomTemplates:
   - {fileID: 7563476935698307696, guid: a2c66dd2e83afb449b465953854129c0, type: 3}
@@ -262,7 +262,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: Room
-  Position: {x: 634, y: 197}
+  Position: {x: 714, y: 177}
   RoomTemplateSets: []
   IndividualRoomTemplates: []
   serializedGuid: 00000000000000000000000000000000
@@ -297,7 +297,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: Room
-  Position: {x: 463, y: 419}
+  Position: {x: 543, y: 399}
   RoomTemplateSets: []
   IndividualRoomTemplates: []
   serializedGuid: 00000000000000000000000000000000
