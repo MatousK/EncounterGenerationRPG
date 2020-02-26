@@ -82,12 +82,12 @@ class EnterRoomCutscene : Cutscene
         float crossAxisMovement;
         if (hero == DoorOpener)
         {
-            mainAxisMovement = 3f;
+            mainAxisMovement = 2f;
             crossAxisMovement = 0.5f;
         }
         else
         {
-            mainAxisMovement = 2f;
+            mainAxisMovement = 1f;
             crossAxisMovement = placeBackRowCharacter ? -0.5f : 0.5f;
             placeBackRowCharacter = true;
         }
