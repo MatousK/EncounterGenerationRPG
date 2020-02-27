@@ -9,6 +9,10 @@ public class Hero : CombatantBase
     private CameraMovement cameraMovement;
     private MovementController movementController;
     /// <summary>
+    /// How much should the character heal after combat if dead.
+    /// </summary>
+    public float AfterCombatRevivalHealthPercentage = 0.1f;
+    /// <summary>
     /// The portrait representing this hero.
     /// </summary>
     public Sprite Portrait;
@@ -42,6 +46,17 @@ public class Hero : CombatantBase
     protected override void Update()
     {
         base.Update();
+        // Auto heal if combat over and dead.
+        if (IsDown && !combatantsManager.IsCombatActive)
+        {
+            MaxHitpoints += TotalMaxHitpoints * AfterCombatRevivalHealthPercentage;
+            GetComponent<Animator>().SetBool("Dead", false);
+            GetComponent<Animator>().SetTrigger("Revive");
+        }
+    }
+
+    public void RevivalDoneOrDeathStarted()
+    {
     }
 
     public virtual void SkillAttackUsed(Monster target)

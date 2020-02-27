@@ -43,11 +43,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6165e91a1b57a442a0d26cd08c74773, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ClearTargetAfterUsingSkill: 0
   Cooldown: 0
   Range: 10
   Speed: 1
   Repetitions: 1
-  DamagePerHit: 10
+  DamagePerHit: 0
   ProjectileTemplate: {fileID: 7162674445298583558}
   ProjectileSpeed: 10
 --- !u!1001 &1471517940169170454
@@ -65,7 +66,7 @@ PrefabInstance:
     - target: {fileID: 3794834790201460922, guid: 5bb997eb5e02af8419843853bbfa62c0,
         type: 3}
       propertyPath: TotalMaxHitpoints
-      value: 10
+      value: 75
       objectReference: {fileID: 0}
     - target: {fileID: 3794834790201460922, guid: 5bb997eb5e02af8419843853bbfa62c0,
         type: 3}
@@ -76,6 +77,11 @@ PrefabInstance:
         type: 3}
       propertyPath: Role
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3794834790201460922, guid: 5bb997eb5e02af8419843853bbfa62c0,
+        type: 3}
+      propertyPath: Attributes.DealtDamageMultiplier
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 8426503475732973462, guid: 5bb997eb5e02af8419843853bbfa62c0,
         type: 3}
@@ -154,11 +160,6 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 7084200779910696714, guid: 5bb997eb5e02af8419843853bbfa62c0,
-        type: 3}
-      propertyPath: ActionSkill
-      value: 
-      objectReference: {fileID: 4408836084372411163}
     - target: {fileID: 623900188228665672, guid: 5bb997eb5e02af8419843853bbfa62c0,
         type: 3}
       propertyPath: DamagePerHit
@@ -178,6 +179,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.y
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7084200779910696714, guid: 5bb997eb5e02af8419843853bbfa62c0,
+        type: 3}
+      propertyPath: ActionSkill
+      value: 
+      objectReference: {fileID: 4408836084372411163}
+    - target: {fileID: 4300591738610292810, guid: 5bb997eb5e02af8419843853bbfa62c0,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5bb997eb5e02af8419843853bbfa62c0, type: 3}

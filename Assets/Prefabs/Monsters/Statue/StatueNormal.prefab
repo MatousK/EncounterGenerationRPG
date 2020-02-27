@@ -15,7 +15,7 @@ PrefabInstance:
     - target: {fileID: 3794834790201460922, guid: 5bb997eb5e02af8419843853bbfa62c0,
         type: 3}
       propertyPath: TotalMaxHitpoints
-      value: 10
+      value: 180
       objectReference: {fileID: 0}
     - target: {fileID: 3794834790201460922, guid: 5bb997eb5e02af8419843853bbfa62c0,
         type: 3}
@@ -26,6 +26,11 @@ PrefabInstance:
         type: 3}
       propertyPath: Role
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3794834790201460922, guid: 5bb997eb5e02af8419843853bbfa62c0,
+        type: 3}
+      propertyPath: Attributes.DealtDamageMultiplier
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4624368178504812775, guid: 5bb997eb5e02af8419843853bbfa62c0,
         type: 3}
@@ -119,11 +124,6 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 3.7
       objectReference: {fileID: 0}
-    - target: {fileID: 623900188228665672, guid: 5bb997eb5e02af8419843853bbfa62c0,
-        type: 3}
-      propertyPath: DamagePerHit
-      value: 10
-      objectReference: {fileID: 0}
     - target: {fileID: 8426503475732973455, guid: 5bb997eb5e02af8419843853bbfa62c0,
         type: 3}
       propertyPath: DamagePerHit
@@ -138,6 +138,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.y
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4300591738610292810, guid: 5bb997eb5e02af8419843853bbfa62c0,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5bb997eb5e02af8419843853bbfa62c0, type: 3}

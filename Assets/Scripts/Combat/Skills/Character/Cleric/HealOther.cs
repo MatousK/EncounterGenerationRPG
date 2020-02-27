@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 class HealOther : TargetedGestureSkill
 {
-    public int HealAmount = 100;
+    public float HealPercentage = 100;
     // Start is called before the first frame update
     protected override void Awake()
     {
@@ -20,6 +20,6 @@ class HealOther : TargetedGestureSkill
     }
     protected override void ApplySkillEffects(object sender, EventArgs e)
     {
-        Target.HealDamage(HealAmount, selfCombatant);
+        Target.HealDamage(HealPercentage * Target.TotalMaxHitpoints, selfCombatant);
     }
 }

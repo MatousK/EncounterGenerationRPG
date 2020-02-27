@@ -30,7 +30,7 @@ Transform:
   m_Children:
   - {fileID: 5151186714144575633}
   m_Father: {fileID: 3890477998113513391}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &395927756830671157
 MonoBehaviour:
@@ -203,11 +203,6 @@ PrefabInstance:
       propertyPath: ProjectileTemplate
       value: 
       objectReference: {fileID: 106769759}
-    - target: {fileID: 3369756554141718234, guid: 068e668f700814d44a6384836fd96142,
-        type: 3}
-      propertyPath: DamagePerHit
-      value: 20
-      objectReference: {fileID: 0}
     - target: {fileID: 1260456553613436516, guid: 068e668f700814d44a6384836fd96142,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -473,7 +468,7 @@ PrefabInstance:
     - target: {fileID: 4828470711690574787, guid: 46229661ed166644c8a32b159c483f24,
         type: 3}
       propertyPath: TotalMaxHitpoints
-      value: 100
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 4828470711690574787, guid: 46229661ed166644c8a32b159c483f24,
         type: 3}
@@ -504,7 +499,7 @@ PrefabInstance:
     - target: {fileID: 4828470711690574787, guid: 46229661ed166644c8a32b159c483f24,
         type: 3}
       propertyPath: Attributes.DealtDamageMultiplier
-      value: 5
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 7682667400691751780, guid: 46229661ed166644c8a32b159c483f24,
         type: 3}
@@ -596,7 +591,7 @@ PrefabInstance:
     - target: {fileID: 4569921241031172468, guid: 46229661ed166644c8a32b159c483f24,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7682667400691751805, guid: 46229661ed166644c8a32b159c483f24,
         type: 3}

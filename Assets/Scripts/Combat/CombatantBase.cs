@@ -133,24 +133,27 @@ public class CombatantBase : MonoBehaviour
         if (IsDown)
         {
             GetComponent<Animator>().SetBool("Dead", true);
+            GetComponent<Animator>().SetTrigger("Die");
             CombatantDied?.Invoke(this, new EventArgs());
         }
+        GetComponent<FloatingTextController>().ShowDamageIndicator(damage);
     }
 
-    public virtual void HealDamage(int healAmount, CombatantBase fromCombatant, bool withDefaultAnimation = true)
+    public virtual void HealDamage(float healAmount, CombatantBase fromCombatant, bool withDefaultAnimation = true)
     {
-        float healAmountFloat = healAmount * Attributes.ReceivedHealingMultiplier;
+        healAmount = healAmount * Attributes.ReceivedHealingMultiplier;
         if (fromCombatant != null)
         {
-            healAmountFloat *= (fromCombatant.Attributes.DealtHealingMultiplier);
+            healAmount *= (fromCombatant.Attributes.DealtHealingMultiplier);
         }
-        healAmount = (int)healAmountFloat;
-        HitPoints = HitPoints + healAmount > MaxHitpoints ? MaxHitpoints : HitPoints + healAmount;
-        HealedDamage?.Invoke(this, healAmount);
+        int healAmountInt = (int)healAmount;
+        HitPoints = HitPoints + healAmountInt > MaxHitpoints ? MaxHitpoints : HitPoints + healAmountInt;
+        HealedDamage?.Invoke(this, healAmountInt);
         if (withDefaultAnimation)
         {
             GetComponent<Animator>().SetTrigger("Healed");
         }
+        GetComponent<FloatingTextController>().ShowHealingIndicator(healAmountInt);
     }
 
     public virtual void StartCooldown(float cooldownTime)

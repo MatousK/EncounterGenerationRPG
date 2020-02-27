@@ -43,7 +43,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcddb0311bb8f0d4d882dfefe29370bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Cooldown: 20
+  ClearTargetAfterUsingSkill: 0
+  Cooldown: 15
   Range: 1
   Speed: 1
   Duration: 5

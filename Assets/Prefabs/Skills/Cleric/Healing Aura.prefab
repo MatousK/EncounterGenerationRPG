@@ -43,11 +43,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21ec817e479bf86498e23f5ae66c5c98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Cooldown: 0
+  ClearTargetAfterUsingSkill: 0
+  Cooldown: 5
   Range: 1
   Speed: 1
   Duration: 5
   AuraRange: 3
   HealPulseFrequency: 1
-  HealPulseAmount: 10
+  HealPulsePercentage: 0.1
   AuraInstance: {fileID: 0}

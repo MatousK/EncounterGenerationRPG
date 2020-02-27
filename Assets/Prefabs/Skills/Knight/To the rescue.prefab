@@ -43,10 +43,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74ec426a9ae509d4290e97051c3845a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Cooldown: 5
+  ClearTargetAfterUsingSkill: 0
+  Cooldown: 10
   Range: 3.4028235e+38
   Speed: 1
   Repetitions: 1
   TauntRange: 3
-  TauntDuration: 3
+  TauntDuration: 5
   MovementSpeedMultiplier: 5

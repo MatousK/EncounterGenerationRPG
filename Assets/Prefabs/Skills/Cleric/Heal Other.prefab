@@ -43,8 +43,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d88a933c781fdcc4c907b020788f06f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Cooldown: 0
-  Range: 1
+  ClearTargetAfterUsingSkill: 0
+  Cooldown: 10
+  Range: 10
   Speed: 1
   Repetitions: 1
-  HealAmount: 100
+  HealPercentage: 1

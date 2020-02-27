@@ -43,11 +43,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6165e91a1b57a442a0d26cd08c74773, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ClearTargetAfterUsingSkill: 0
   Cooldown: 0
   Range: 10
   Speed: 1
   Repetitions: 1
-  DamagePerHit: 10
+  DamagePerHit: 1
   ProjectileTemplate: {fileID: 8462169956526499903}
   ProjectileSpeed: 5
 --- !u!1001 &297051455174772760
@@ -122,6 +123,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 524651453, guid: 06e477c094c729a429dfd93b07586391, type: 3}
+      propertyPath: m_Animations.Array.data[0]
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 06e477c094c729a429dfd93b07586391, type: 3}
 --- !u!1 &8462169956526499903 stripped
@@ -151,6 +156,16 @@ PrefabInstance:
         type: 3}
       propertyPath: Rank
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3794834790201460922, guid: 5bb997eb5e02af8419843853bbfa62c0,
+        type: 3}
+      propertyPath: TotalMaxHitpoints
+      value: 400
+      objectReference: {fileID: 0}
+    - target: {fileID: 3794834790201460922, guid: 5bb997eb5e02af8419843853bbfa62c0,
+        type: 3}
+      propertyPath: Attributes.DealtDamageMultiplier
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 8426503475732973462, guid: 5bb997eb5e02af8419843853bbfa62c0,
         type: 3}
@@ -239,6 +254,11 @@ PrefabInstance:
       propertyPath: ActionSkill
       value: 
       objectReference: {fileID: 2252242503085663487}
+    - target: {fileID: 4300591738610292810, guid: 5bb997eb5e02af8419843853bbfa62c0,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5bb997eb5e02af8419843853bbfa62c0, type: 3}
 --- !u!4 &2845431260059686301 stripped

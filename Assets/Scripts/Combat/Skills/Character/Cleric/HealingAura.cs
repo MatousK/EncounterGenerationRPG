@@ -22,7 +22,7 @@ class HealingAura : PersonalSkill
     /// <summary>
     /// How much healing should the aura do per pulse.
     /// </summary>
-    public int HealPulseAmount;
+    public float HealPulsePercentage = 10;
     /// <summary>
     /// The aura object which should be activated while this skill is active.
     /// </summary>
@@ -64,7 +64,8 @@ class HealingAura : PersonalSkill
         {
             if (Vector2.Distance(ally.transform.position, transform.position) < AuraRange)
             {
-                ally.HealDamage(HealPulseAmount, selfCombatant);
+                float healPulseAmount = ally.TotalMaxHitpoints * HealPulsePercentage;
+                ally.HealDamage(healPulseAmount, selfCombatant);
             }
         }
     }
