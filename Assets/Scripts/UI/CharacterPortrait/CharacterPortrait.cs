@@ -24,9 +24,16 @@ public class CharacterPortrait : MonoBehaviour, IPointerClickHandler
     public Image CurrentHealthIndicator;
     public Image Border;
 
+    // Used to detect doubleClick
+    private float lastPortraitClickTime;
+    private const float doubleClickTime = 0.25f;
+
+    private CameraMovement cameraMovement;
+
     void Awake()
     {
         combatantsManager = FindObjectOfType<CombatantsManager>();
+        cameraMovement = FindObjectOfType<CameraMovement>();
     }
 
     public void Update()
@@ -58,9 +65,20 @@ public class CharacterPortrait : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (eventData.button == PointerEventData.InputButton.Left) {
-            SelectHero();
-        } else if (eventData.button == PointerEventData.InputButton.Right)
+        if (eventData.button == PointerEventData.InputButton.Left)
+        {
+            if (Time.realtimeSinceStartup - lastPortraitClickTime < doubleClickTime)
+            {
+                // Double click detected.
+                cameraMovement.QuickFindHero(RepresentedHero);
+            }
+            else
+            {
+                lastPortraitClickTime = Time.realtimeSinceStartup;
+                SelectHero();
+            }
+        }
+        else if (eventData.button == PointerEventData.InputButton.Right)
         {
             DoActionOnHero();
         }
@@ -85,7 +103,7 @@ public class CharacterPortrait : MonoBehaviour, IPointerClickHandler
     void DoActionOnHero()
     {
         var usingSkill = Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl);
-        foreach (var hero in combatantsManager.GetPlayerCharacters(onlySelected:true))
+        foreach (var hero in combatantsManager.GetPlayerCharacters(onlySelected: true))
         {
             if (hero == RepresentedHero)
             {

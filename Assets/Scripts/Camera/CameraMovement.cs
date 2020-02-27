@@ -7,10 +7,23 @@ public class CameraMovement : MonoBehaviour
     public Hero FollowingHero;
     public float ScrollingEdge = 50;
     public float ScrollingSpeed = 0.1f;
+    // Used when we are quickly zooming to some specified hero.
+    public float QuickScrollingSpeed = 100f;
+    bool IsQuickFindHeroInProgress;
 
     // Update is called once per frame
     void LateUpdate()
     {
+        if (IsQuickFindHeroInProgress)
+        {
+            FollowHeroIfPossible();
+            if (Vector2.Distance(transform.position, FollowingHero.transform.position) < 0.1)
+            {
+                IsQuickFindHeroInProgress = false;
+                FollowingHero = null;
+            }
+            return;
+        }
         var mouseY = Input.mousePosition.y;
         var mouseX = Input.mousePosition.x;
 
@@ -42,13 +55,20 @@ public class CameraMovement : MonoBehaviour
         FollowHeroIfPossible();
     }
 
+    public void QuickFindHero(Hero hero)
+    {
+        FollowingHero = hero;
+        IsQuickFindHeroInProgress = true;
+    }
+
     private void FollowHeroIfPossible()
     {
         if (FollowingHero == null)
         {
             return;
         }
-        var newPosition = Vector2.MoveTowards(transform.position, FollowingHero.transform.position, ScrollingSpeed * Time.unscaledDeltaTime);
+        var speed = IsQuickFindHeroInProgress ? QuickScrollingSpeed : ScrollingSpeed;
+        var newPosition = Vector2.MoveTowards(transform.position, FollowingHero.transform.position, speed * Time.unscaledDeltaTime);
         transform.position = new Vector3(newPosition.x, newPosition.y, transform.position.z);
     }
 }

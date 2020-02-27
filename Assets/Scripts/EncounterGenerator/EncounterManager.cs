@@ -31,7 +31,7 @@ class EncounterManager: MonoBehaviour
     {
         foreach (var mosnter in monstersToSpawn)
         {
-            CombatantSpawnManager.SpawnCombatant(mosnter, room, incomingDoors, 3);
+            CombatantSpawnManager.SpawnCombatant(mosnter, room, incomingDoors, 5);
         }
     }
 }

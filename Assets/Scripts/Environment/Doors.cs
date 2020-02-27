@@ -112,12 +112,17 @@ public class Doors : MonoBehaviour
         {
             return;
         }
-        var activeDoorObjects = IsOpened ? OpenDoorsObjects : ClosedDoorsObjects;
-        foreach (var doorObject in activeDoorObjects)
-        {
-            var coordinates = MapGrid.WorldToCell(doorObject.transform.position);
-            map.SetSquareIsPassable(coordinates.x, coordinates.y, IsOpened);
-        }
+        // Doors are 2x2, so the center is right in the middle. So 0.5 in any two directions is also occupied by these doors.
+        SetMapSquareIsPassable(map, -0.5f, -0.5f);
+        SetMapSquareIsPassable(map, -0.5f, 0.5f);
+        SetMapSquareIsPassable(map, 0.5f, -0.5f);
+        SetMapSquareIsPassable(map, 0.5f, 0.5f);
+    }
+
+    void SetMapSquareIsPassable(PathfindingMap map, float xOffset, float yOffset)
+    {
+        var coordinates = MapGrid.WorldToCell(new Vector3(transform.position.x + xOffset, transform.position.y + yOffset, transform.position.z));
+        map.SetSquareIsPassable(coordinates.x, coordinates.y, IsOpened);
     }
 
     void OnDoorOpenedChanged()

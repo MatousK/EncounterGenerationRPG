@@ -52,6 +52,8 @@ public class Hero : CombatantBase
             MaxHitpoints += TotalMaxHitpoints * AfterCombatRevivalHealthPercentage;
             GetComponent<Animator>().SetBool("Dead", false);
             GetComponent<Animator>().SetTrigger("Revive");
+            // TODO: Figure out how to make reviving animations work.
+            // Basically figure out how to not reset animations by calling SetBool.
         }
     }
 
