@@ -133,7 +133,6 @@ public class CombatantBase : MonoBehaviour
         if (IsDown)
         {
             GetComponent<Animator>().SetBool("Dead", true);
-            GetComponent<Animator>().SetTrigger("Die");
             CombatantDied?.Invoke(this, new EventArgs());
         }
         GetComponent<FloatingTextController>().ShowDamageIndicator(damage);

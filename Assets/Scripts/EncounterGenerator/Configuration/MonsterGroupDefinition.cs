@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EncounterGenerator.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,4 +16,9 @@ public abstract class MonsterGroupDefinition: ScriptableObject
     /// <param name="parameters">The parameters for the generation.</param>
     /// <returns>The group of generated monsters. Returns prefabs which should then be instantiated by the generator.</returns>
     public abstract List<GameObject> GenerateMonsterGroup(GenerateMonsterGroupParameters parameters);
+    /// <summary>
+    /// Should return all monster types that can be potentially be in this groups and which the algorithm can request.
+    /// </summary>
+    /// <returns></returns>
+    public abstract List<MonsterType> GetAvailableMonsterTypes();
 }

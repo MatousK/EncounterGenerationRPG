@@ -2,5 +2,6 @@
 {
     Regular,
     Elite, 
-    Boss
+    Boss,
+    Minion
 }

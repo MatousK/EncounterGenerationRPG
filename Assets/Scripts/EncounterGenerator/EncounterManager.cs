@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
+using EncounterGenerator;
 
 class EncounterManager: MonoBehaviour
 {
-    readonly EncounterGenerator EncounterGenerator = new EncounterGenerator();
+    readonly EncounterGenerator.EncounterGenerator EncounterGenerator = new EncounterGenerator.EncounterGenerator();
     CombatantSpawnManager CombatantSpawnManager;
 
     private void Start()

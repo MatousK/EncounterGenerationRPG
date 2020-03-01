@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EncounterGenerator.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,27 +25,39 @@ public class RandomMonsterGroup : MonsterGroupDefinition
     {
         List<GameObject> toReturn = new List<GameObject>();
         var random = new System.Random();
-        foreach (var monsterRequest in parameters.RequestedMonsters)
+        foreach (var monsterRequest in parameters.RequestedMonsters.AllEncounterGroups)
         {
-            var possibleMonsters = GetMonstersFor(monsterRequest.Key);
+            var possibleMonsters = GetMonstersFor(monsterRequest.MonsterType);
             if (!possibleMonsters.Any())
             {
                 // Could not satisfy the request.
                 return null;
             }
-            for (int i = 0; i < monsterRequest.Value; ++i)
+            for (int i = 0; i < monsterRequest.MonsterCount; ++i)
             {
                 toReturn.Add(possibleMonsters[random.Next(possibleMonsters.Count)]);
             }
         }
         return toReturn;
     }
+
+    public override List<MonsterType> GetAvailableMonsterTypes()
+    {
+        HashSet<MonsterType> availableMonsterTypes = new HashSet<MonsterType>();
+        foreach(var monster in AllowedMonsters)
+        {
+            var monsterComponent = monster.GetComponent<Monster>();
+            availableMonsterTypes.Add(new MonsterType(monsterComponent.Rank, monsterComponent.Role));
+        }
+        return availableMonsterTypes.ToList();
+    }
+
     /// <summary>
     /// Filters from the prefabs monsters which satisfy some condition.
     /// </summary>
     /// <param name="monsterTypeDefinition"></param>
     /// <returns></returns>
-    protected List<GameObject> GetMonstersFor(MonsterTypeDefinition monsterTypeDefinition)
+    protected List<GameObject> GetMonstersFor(MonsterType monsterTypeDefinition)
     {
         return AllowedMonsters?.Where(monsterObject =>
         {
