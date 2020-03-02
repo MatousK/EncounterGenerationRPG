@@ -1,0 +1,1062 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-9082426842820852034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a494d71d5580cf478fa65376ba24920, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Room
+  Position: {x: 263, y: 313}
+  RoomTemplateSets: []
+  IndividualRoomTemplates: []
+  serializedGuid: 00000000000000000000000000000000
+  EncounterConfiguration: {fileID: 11400000, guid: be4db2a6b60b35547b4b0436951daa00,
+    type: 2}
+  TreasureChestsMax: 1
+  TreasureChestsMin: 1
+--- !u!114 &-8951008738494874697
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f692f83df7c1b5468af64edd22287dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  From: {fileID: -1108558084845432406}
+  To: {fileID: -4933843254410991786}
+--- !u!114 &-8888697817998012018
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f692f83df7c1b5468af64edd22287dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  From: {fileID: 748033454381541099}
+  To: {fileID: -3451300174025425045}
+--- !u!114 &-8609736823532188714
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a494d71d5580cf478fa65376ba24920, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Room
+  Position: {x: 270, y: 138}
+  RoomTemplateSets: []
+  IndividualRoomTemplates: []
+  serializedGuid: 00000000000000000000000000000000
+  EncounterConfiguration: {fileID: 11400000, guid: be4db2a6b60b35547b4b0436951daa00,
+    type: 2}
+  TreasureChestsMax: 0
+  TreasureChestsMin: 0
+--- !u!114 &-8542592930693778513
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a494d71d5580cf478fa65376ba24920, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Room
+  Position: {x: 273, y: 67}
+  RoomTemplateSets: []
+  IndividualRoomTemplates: []
+  serializedGuid: 00000000000000000000000000000000
+  EncounterConfiguration: {fileID: 11400000, guid: be4db2a6b60b35547b4b0436951daa00,
+    type: 2}
+  TreasureChestsMax: 0
+  TreasureChestsMin: 0
+--- !u!114 &-8307262246717229324
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a494d71d5580cf478fa65376ba24920, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Boss
+  Position: {x: 339, y: 68}
+  RoomTemplateSets: []
+  IndividualRoomTemplates: []
+  serializedGuid: 00000000000000000000000000000000
+  EncounterConfiguration: {fileID: 11400000, guid: 1515b941f623fac45955181e5f7a7a28,
+    type: 2}
+  TreasureChestsMax: 2
+  TreasureChestsMin: 3
+--- !u!114 &-7873431408636103867
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a494d71d5580cf478fa65376ba24920, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Small Boss
+  Position: {x: 334, y: -120}
+  RoomTemplateSets: []
+  IndividualRoomTemplates: []
+  serializedGuid: 00000000000000000000000000000000
+  EncounterConfiguration: {fileID: 11400000, guid: 8ced9e8da8e135349b8a1f7a05004946,
+    type: 2}
+  TreasureChestsMax: 1
+  TreasureChestsMin: 1
+--- !u!114 &-6635565858357670489
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f692f83df7c1b5468af64edd22287dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  From: {fileID: 1686779818428376867}
+  To: {fileID: -8609736823532188714}
+--- !u!114 &-4933843254410991786
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a494d71d5580cf478fa65376ba24920, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Room
+  Position: {x: 731, y: 309}
+  RoomTemplateSets: []
+  IndividualRoomTemplates: []
+  serializedGuid: 00000000000000000000000000000000
+  EncounterConfiguration: {fileID: 11400000, guid: be4db2a6b60b35547b4b0436951daa00,
+    type: 2}
+  TreasureChestsMax: 0
+  TreasureChestsMin: 0
+--- !u!114 &-4790974913439683012
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a494d71d5580cf478fa65376ba24920, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Small Boss
+  Position: {x: 267, y: 207}
+  RoomTemplateSets: []
+  IndividualRoomTemplates: []
+  serializedGuid: 00000000000000000000000000000000
+  EncounterConfiguration: {fileID: 11400000, guid: 8ced9e8da8e135349b8a1f7a05004946,
+    type: 2}
+  TreasureChestsMax: 1
+  TreasureChestsMin: 1
+--- !u!114 &-4633550302470200555
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a494d71d5580cf478fa65376ba24920, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Small Boss
+  Position: {x: 147, y: -39}
+  RoomTemplateSets: []
+  IndividualRoomTemplates:
+  - {fileID: 6966731523498046389, guid: b3cd70b78369f7447acd01a745b94291, type: 3}
+  serializedGuid: 00000000000000000000000000000000
+  EncounterConfiguration: {fileID: 11400000, guid: 8ced9e8da8e135349b8a1f7a05004946,
+    type: 2}
+  TreasureChestsMax: 1
+  TreasureChestsMin: 2
+--- !u!114 &-4512759874458063778
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a494d71d5580cf478fa65376ba24920, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Room
+  Position: {x: 278, y: -180}
+  RoomTemplateSets: []
+  IndividualRoomTemplates: []
+  serializedGuid: 00000000000000000000000000000000
+  EncounterConfiguration: {fileID: 11400000, guid: be4db2a6b60b35547b4b0436951daa00,
+    type: 2}
+  TreasureChestsMax: 0
+  TreasureChestsMin: 0
+--- !u!114 &-4197898277434056138
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a494d71d5580cf478fa65376ba24920, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Room
+  Position: {x: 768, y: 380}
+  RoomTemplateSets: []
+  IndividualRoomTemplates: []
+  serializedGuid: 00000000000000000000000000000000
+  EncounterConfiguration: {fileID: 11400000, guid: be4db2a6b60b35547b4b0436951daa00,
+    type: 2}
+  TreasureChestsMax: 1
+  TreasureChestsMin: 1
+--- !u!114 &-4004599369646938762
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a494d71d5580cf478fa65376ba24920, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Room
+  Position: {x: 588, y: 456}
+  RoomTemplateSets: []
+  IndividualRoomTemplates: []
+  serializedGuid: 00000000000000000000000000000000
+  EncounterConfiguration: {fileID: 11400000, guid: be4db2a6b60b35547b4b0436951daa00,
+    type: 2}
+  TreasureChestsMax: 0
+  TreasureChestsMin: 0
+--- !u!114 &-3930603652926717094
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f692f83df7c1b5468af64edd22287dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  From: {fileID: 7268399952922799257}
+  To: {fileID: -8542592930693778513}
+--- !u!114 &-3451300174025425045
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a494d71d5580cf478fa65376ba24920, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Room
+  Position: {x: 432, y: -262}
+  RoomTemplateSets: []
+  IndividualRoomTemplates: []
+  serializedGuid: 00000000000000000000000000000000
+  EncounterConfiguration: {fileID: 11400000, guid: be4db2a6b60b35547b4b0436951daa00,
+    type: 2}
+  TreasureChestsMax: 1
+  TreasureChestsMin: 1
+--- !u!114 &-2671551922806849086
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f692f83df7c1b5468af64edd22287dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  From: {fileID: -8542592930693778513}
+  To: {fileID: 3839424104441142927}
+--- !u!114 &-2510140742591451227
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f692f83df7c1b5468af64edd22287dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  From: {fileID: -8609736823532188714}
+  To: {fileID: -8542592930693778513}
+--- !u!114 &-2470670147400344557
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f692f83df7c1b5468af64edd22287dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  From: {fileID: -4512759874458063778}
+  To: {fileID: -2373323667990616461}
+--- !u!114 &-2373323667990616461
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a494d71d5580cf478fa65376ba24920, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Start
+  Position: {x: 287, y: -274}
+  RoomTemplateSets: []
+  IndividualRoomTemplates: []
+  serializedGuid: 00000000000000000000000000000000
+  EncounterConfiguration: {fileID: 11400000, guid: a13aacc43e3c10b4bb5cc162ec05c429,
+    type: 2}
+  TreasureChestsMax: 0
+  TreasureChestsMin: 0
+--- !u!114 &-2026176377002038522
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f692f83df7c1b5468af64edd22287dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  From: {fileID: -4197898277434056138}
+  To: {fileID: -4933843254410991786}
+--- !u!114 &-1830513321551502805
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a494d71d5580cf478fa65376ba24920, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: End
+  Position: {x: 661, y: 192}
+  RoomTemplateSets: []
+  IndividualRoomTemplates: []
+  serializedGuid: 00000000000000000000000000000000
+  EncounterConfiguration: {fileID: 11400000, guid: 1515b941f623fac45955181e5f7a7a28,
+    type: 2}
+  TreasureChestsMax: 4
+  TreasureChestsMin: 4
+--- !u!114 &-1612807477973932116
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f692f83df7c1b5468af64edd22287dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  From: {fileID: -8609736823532188714}
+  To: {fileID: -4790974913439683012}
+--- !u!114 &-1278993330117685979
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f692f83df7c1b5468af64edd22287dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  From: {fileID: -4933843254410991786}
+  To: {fileID: -1830513321551502805}
+--- !u!114 &-1108558084845432406
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a494d71d5580cf478fa65376ba24920, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Boss
+  Position: {x: 590, y: 314}
+  RoomTemplateSets: []
+  IndividualRoomTemplates: []
+  serializedGuid: 00000000000000000000000000000000
+  EncounterConfiguration: {fileID: 11400000, guid: 1515b941f623fac45955181e5f7a7a28,
+    type: 2}
+  TreasureChestsMax: 2
+  TreasureChestsMin: 2
+--- !u!114 &-798736707534439380
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a494d71d5580cf478fa65376ba24920, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Room
+  Position: {x: 342, y: 139}
+  RoomTemplateSets: []
+  IndividualRoomTemplates:
+  - {fileID: 7563476935698307696, guid: a2c66dd2e83afb449b465953854129c0, type: 3}
+  serializedGuid: 00000000000000000000000000000000
+  EncounterConfiguration: {fileID: 11400000, guid: be4db2a6b60b35547b4b0436951daa00,
+    type: 2}
+  TreasureChestsMax: 1
+  TreasureChestsMin: 1
+--- !u!114 &-383646540370159587
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f692f83df7c1b5468af64edd22287dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  From: {fileID: -4633550302470200555}
+  To: {fileID: 7268399952922799257}
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8400baee4cafd34091c865089a167b2, type: 3}
+  m_Name: Den005dLevelGraph
+  m_EditorClassIdentifier: 
+  Rooms:
+  - {fileID: -4633550302470200555}
+  - {fileID: 7268399952922799257}
+  - {fileID: -8542592930693778513}
+  - {fileID: -8307262246717229324}
+  - {fileID: -4790974913439683012}
+  - {fileID: -8609736823532188714}
+  - {fileID: 1686779818428376867}
+  - {fileID: -798736707534439380}
+  - {fileID: 3839424104441142927}
+  - {fileID: 9091003821600341144}
+  - {fileID: -9082426842820852034}
+  - {fileID: 3645675428543153798}
+  - {fileID: 8534437125073917000}
+  - {fileID: 2909353355453494773}
+  - {fileID: 4212347600559332412}
+  - {fileID: -1108558084845432406}
+  - {fileID: -4004599369646938762}
+  - {fileID: 5238506989419086493}
+  - {fileID: -4197898277434056138}
+  - {fileID: -4933843254410991786}
+  - {fileID: 111698268370689716}
+  - {fileID: -1830513321551502805}
+  - {fileID: -7873431408636103867}
+  - {fileID: 8519851982783368047}
+  - {fileID: 748033454381541099}
+  - {fileID: -3451300174025425045}
+  - {fileID: -4512759874458063778}
+  - {fileID: -2373323667990616461}
+  Connections:
+  - {fileID: -383646540370159587}
+  - {fileID: -3930603652926717094}
+  - {fileID: -2671551922806849086}
+  - {fileID: 7362626506370768920}
+  - {fileID: -2510140742591451227}
+  - {fileID: -6635565858357670489}
+  - {fileID: 4560745398024047093}
+  - {fileID: -1612807477973932116}
+  - {fileID: 1288186679114199927}
+  - {fileID: 1928984964576680756}
+  - {fileID: 7114892910096443128}
+  - {fileID: 4844190473069444698}
+  - {fileID: 4423426599589909553}
+  - {fileID: 1413028291644843385}
+  - {fileID: 6327599377375905509}
+  - {fileID: 2477081246697377656}
+  - {fileID: 1039819855114617674}
+  - {fileID: 1072766734368627362}
+  - {fileID: -8951008738494874697}
+  - {fileID: -2026176377002038522}
+  - {fileID: 7522739381895858069}
+  - {fileID: -1278993330117685979}
+  - {fileID: 6531884614853537125}
+  - {fileID: 5275099930238746538}
+  - {fileID: 4719222833001396703}
+  - {fileID: -8888697817998012018}
+  - {fileID: 8380105225866818935}
+  - {fileID: -2470670147400344557}
+  RoomsGroups: []
+  DefaultRoomTemplateSets: []
+  DefaultIndividualRoomTemplates:
+  - {fileID: 5577071383263350094, guid: fcdd8aeb35d3d2646b0aa54f911f60fc, type: 3}
+  - {fileID: 5916579234708034811, guid: 025d278e31d33cc438a8a26b559eb23c, type: 3}
+  - {fileID: 3188338634353959213, guid: e3a800d85ab997742a0a700ee8c7f8e1, type: 3}
+  CorridorRoomTemplateSets: []
+  CorridorIndividualRoomTemplates:
+  - {fileID: 6966731523498046389, guid: 6f5551d26d82f3c4289c8e98fc08951f, type: 3}
+  - {fileID: 6966731523498046389, guid: 84f4c337a5c21eb4dbca3631598b7f93, type: 3}
+--- !u!114 &111698268370689716
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a494d71d5580cf478fa65376ba24920, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Small Boss
+  Position: {x: 696, y: 373}
+  RoomTemplateSets: []
+  IndividualRoomTemplates: []
+  serializedGuid: 00000000000000000000000000000000
+  EncounterConfiguration: {fileID: 11400000, guid: 8ced9e8da8e135349b8a1f7a05004946,
+    type: 2}
+  TreasureChestsMax: 1
+  TreasureChestsMin: 2
+--- !u!114 &748033454381541099
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a494d71d5580cf478fa65376ba24920, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Room
+  Position: {x: 410, y: -177}
+  RoomTemplateSets: []
+  IndividualRoomTemplates: []
+  serializedGuid: 00000000000000000000000000000000
+  EncounterConfiguration: {fileID: 11400000, guid: be4db2a6b60b35547b4b0436951daa00,
+    type: 2}
+  TreasureChestsMax: 0
+  TreasureChestsMin: 0
+--- !u!114 &1039819855114617674
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f692f83df7c1b5468af64edd22287dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  From: {fileID: -4004599369646938762}
+  To: {fileID: 5238506989419086493}
+--- !u!114 &1072766734368627362
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f692f83df7c1b5468af64edd22287dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  From: {fileID: 5238506989419086493}
+  To: {fileID: -4197898277434056138}
+--- !u!114 &1288186679114199927
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f692f83df7c1b5468af64edd22287dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  From: {fileID: -4790974913439683012}
+  To: {fileID: 9091003821600341144}
+--- !u!114 &1413028291644843385
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f692f83df7c1b5468af64edd22287dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  From: {fileID: 3645675428543153798}
+  To: {fileID: 4212347600559332412}
+--- !u!114 &1686779818428376867
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a494d71d5580cf478fa65376ba24920, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Small Boss
+  Position: {x: 201, y: 131}
+  RoomTemplateSets: []
+  IndividualRoomTemplates: []
+  serializedGuid: 00000000000000000000000000000000
+  EncounterConfiguration: {fileID: 11400000, guid: 8ced9e8da8e135349b8a1f7a05004946,
+    type: 2}
+  TreasureChestsMax: 1
+  TreasureChestsMin: 2
+--- !u!114 &1928984964576680756
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f692f83df7c1b5468af64edd22287dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  From: {fileID: -4790974913439683012}
+  To: {fileID: -9082426842820852034}
+--- !u!114 &2477081246697377656
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f692f83df7c1b5468af64edd22287dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  From: {fileID: -4004599369646938762}
+  To: {fileID: -1108558084845432406}
+--- !u!114 &2909353355453494773
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a494d71d5580cf478fa65376ba24920, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Boss
+  Position: {x: 448, y: 221}
+  RoomTemplateSets: []
+  IndividualRoomTemplates: []
+  serializedGuid: 00000000000000000000000000000000
+  EncounterConfiguration: {fileID: 11400000, guid: 1515b941f623fac45955181e5f7a7a28,
+    type: 2}
+  TreasureChestsMax: 3
+  TreasureChestsMin: 4
+--- !u!114 &3645675428543153798
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a494d71d5580cf478fa65376ba24920, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Room
+  Position: {x: 437, y: 317}
+  RoomTemplateSets: []
+  IndividualRoomTemplates: []
+  serializedGuid: 00000000000000000000000000000000
+  EncounterConfiguration: {fileID: 0}
+  TreasureChestsMax: 0
+  TreasureChestsMin: 0
+--- !u!114 &3839424104441142927
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a494d71d5580cf478fa65376ba24920, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Room
+  Position: {x: 206, y: 64}
+  RoomTemplateSets: []
+  IndividualRoomTemplates: []
+  serializedGuid: 00000000000000000000000000000000
+  EncounterConfiguration: {fileID: 11400000, guid: be4db2a6b60b35547b4b0436951daa00,
+    type: 2}
+  TreasureChestsMax: 0
+  TreasureChestsMin: 0
+--- !u!114 &4212347600559332412
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a494d71d5580cf478fa65376ba24920, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Room
+  Position: {x: 462, y: 407}
+  RoomTemplateSets: []
+  IndividualRoomTemplates: []
+  serializedGuid: 00000000000000000000000000000000
+  EncounterConfiguration: {fileID: 11400000, guid: be4db2a6b60b35547b4b0436951daa00,
+    type: 2}
+  TreasureChestsMax: 0
+  TreasureChestsMin: 0
+--- !u!114 &4423426599589909553
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f692f83df7c1b5468af64edd22287dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  From: {fileID: 3645675428543153798}
+  To: {fileID: 2909353355453494773}
+--- !u!114 &4560745398024047093
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f692f83df7c1b5468af64edd22287dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  From: {fileID: -8609736823532188714}
+  To: {fileID: -798736707534439380}
+--- !u!114 &4719222833001396703
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f692f83df7c1b5468af64edd22287dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  From: {fileID: -7873431408636103867}
+  To: {fileID: 748033454381541099}
+--- !u!114 &4844190473069444698
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f692f83df7c1b5468af64edd22287dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  From: {fileID: 3645675428543153798}
+  To: {fileID: 8534437125073917000}
+--- !u!114 &5238506989419086493
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a494d71d5580cf478fa65376ba24920, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Room
+  Position: {x: 733, y: 458}
+  RoomTemplateSets: []
+  IndividualRoomTemplates: []
+  serializedGuid: 00000000000000000000000000000000
+  EncounterConfiguration: {fileID: 11400000, guid: be4db2a6b60b35547b4b0436951daa00,
+    type: 2}
+  TreasureChestsMax: 2
+  TreasureChestsMin: 3
+--- !u!114 &5275099930238746538
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f692f83df7c1b5468af64edd22287dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  From: {fileID: -7873431408636103867}
+  To: {fileID: 8519851982783368047}
+--- !u!114 &6327599377375905509
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f692f83df7c1b5468af64edd22287dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  From: {fileID: 3645675428543153798}
+  To: {fileID: -1108558084845432406}
+--- !u!114 &6531884614853537125
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f692f83df7c1b5468af64edd22287dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  From: {fileID: 7268399952922799257}
+  To: {fileID: -7873431408636103867}
+--- !u!114 &7114892910096443128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f692f83df7c1b5468af64edd22287dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  From: {fileID: -9082426842820852034}
+  To: {fileID: 3645675428543153798}
+--- !u!114 &7268399952922799257
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a494d71d5580cf478fa65376ba24920, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Room
+  Position: {x: 269, y: -38}
+  RoomTemplateSets: []
+  IndividualRoomTemplates: []
+  serializedGuid: 00000000000000000000000000000000
+  EncounterConfiguration: {fileID: 11400000, guid: be4db2a6b60b35547b4b0436951daa00,
+    type: 2}
+  TreasureChestsMax: 0
+  TreasureChestsMin: 0
+--- !u!114 &7362626506370768920
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f692f83df7c1b5468af64edd22287dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  From: {fileID: -8542592930693778513}
+  To: {fileID: -8307262246717229324}
+--- !u!114 &7522739381895858069
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f692f83df7c1b5468af64edd22287dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  From: {fileID: 111698268370689716}
+  To: {fileID: -4933843254410991786}
+--- !u!114 &8380105225866818935
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f692f83df7c1b5468af64edd22287dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  From: {fileID: 748033454381541099}
+  To: {fileID: -4512759874458063778}
+--- !u!114 &8519851982783368047
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a494d71d5580cf478fa65376ba24920, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Empty
+  Position: {x: 436, y: 12}
+  RoomTemplateSets: []
+  IndividualRoomTemplates: []
+  serializedGuid: 00000000000000000000000000000000
+  EncounterConfiguration: {fileID: 11400000, guid: a13aacc43e3c10b4bb5cc162ec05c429,
+    type: 2}
+  TreasureChestsMax: 0
+  TreasureChestsMin: 0
+--- !u!114 &8534437125073917000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a494d71d5580cf478fa65376ba24920, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Small Boss
+  Position: {x: 360, y: 404}
+  RoomTemplateSets: []
+  IndividualRoomTemplates: []
+  serializedGuid: 00000000000000000000000000000000
+  EncounterConfiguration: {fileID: 11400000, guid: 8ced9e8da8e135349b8a1f7a05004946,
+    type: 2}
+  TreasureChestsMax: 1
+  TreasureChestsMin: 2
+--- !u!114 &9091003821600341144
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a494d71d5580cf478fa65376ba24920, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Room
+  Position: {x: 346, y: 199}
+  RoomTemplateSets: []
+  IndividualRoomTemplates: []
+  serializedGuid: 00000000000000000000000000000000
+  EncounterConfiguration: {fileID: 0}
+  TreasureChestsMax: 0
+  TreasureChestsMin: 0

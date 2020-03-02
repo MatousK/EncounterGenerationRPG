@@ -9,8 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6260e18d48262f543abdc86ae5f41e54, type: 3}
-  m_Name: FixedInput
+  m_Script: {fileID: 11500000, guid: 2eb29e0d0d6e6244cb499292033ff826, type: 3}
+  m_Name: OnlyMinionsGroup
   m_EditorClassIdentifier: 
-  LevelGraph: {fileID: 11400000, guid: ddf3b0f04083917489dbabc8a188ba8c, type: 2}
-  UseCorridors: 1
+  AllowedMonsters: []
