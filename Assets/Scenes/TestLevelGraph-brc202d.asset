@@ -27,7 +27,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: BigRoom
-  Position: {x: 535, y: 145}
+  Position: {x: 435, y: -79}
   RoomTemplateSets: []
   IndividualRoomTemplates: []
   serializedGuid: 00000000000000000000000000000000
@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: SideRoom
-  Position: {x: 265, y: 303}
+  Position: {x: 165, y: 79}
   RoomTemplateSets: []
   IndividualRoomTemplates: []
   serializedGuid: 00000000000000000000000000000000
@@ -83,7 +83,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: CircleRoom
-  Position: {x: 154, y: 410}
+  Position: {x: 54, y: 186}
   RoomTemplateSets: []
   IndividualRoomTemplates: []
   serializedGuid: 00000000000000000000000000000000
@@ -118,7 +118,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: DeadEnd
-  Position: {x: 383, y: 673}
+  Position: {x: 283, y: 449}
   RoomTemplateSets: []
   IndividualRoomTemplates: []
   serializedGuid: 00000000000000000000000000000000
@@ -152,7 +152,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: SmallRoom
-  Position: {x: 498, y: 594}
+  Position: {x: 398, y: 370}
   RoomTemplateSets: []
   IndividualRoomTemplates: []
   serializedGuid: 00000000000000000000000000000000
@@ -172,7 +172,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: BigRoom
-  Position: {x: 594, y: 431}
+  Position: {x: 494, y: 207}
   RoomTemplateSets: []
   IndividualRoomTemplates: []
   serializedGuid: 00000000000000000000000000000000
@@ -220,7 +220,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: SmallRoom
-  Position: {x: 279, y: 597}
+  Position: {x: 179, y: 373}
   RoomTemplateSets: []
   IndividualRoomTemplates: []
   serializedGuid: 00000000000000000000000000000000
@@ -254,7 +254,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: T-Crossroad
-  Position: {x: 389, y: 257}
+  Position: {x: 289, y: 33}
   RoomTemplateSets: []
   IndividualRoomTemplates: []
   serializedGuid: c78fac221e6efd42b4aa102b31e78245
@@ -274,7 +274,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: SmallRoom
-  Position: {x: 605, y: 246}
+  Position: {x: 505, y: 22}
   RoomTemplateSets: []
   IndividualRoomTemplates: []
   serializedGuid: 00000000000000000000000000000000
@@ -294,7 +294,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: Start (brc202d)
-  Position: {x: 155, y: 89}
+  Position: {x: 55, y: -135}
   RoomTemplateSets: []
   IndividualRoomTemplates:
   - {fileID: 6966731523498046389, guid: b3cd70b78369f7447acd01a745b94291, type: 3}
@@ -330,7 +330,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: SmallRoom
-  Position: {x: 33, y: 182}
+  Position: {x: -67, y: -42}
   RoomTemplateSets: []
   IndividualRoomTemplates: []
   serializedGuid: 00000000000000000000000000000000
@@ -378,7 +378,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: SmallRoom
-  Position: {x: 722, y: 55}
+  Position: {x: 622, y: -169}
   RoomTemplateSets: []
   IndividualRoomTemplates: []
   serializedGuid: 00000000000000000000000000000000
@@ -412,7 +412,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: Boss
-  Position: {x: 722, y: 560}
+  Position: {x: 622, y: 336}
   RoomTemplateSets: []
   IndividualRoomTemplates:
   - {fileID: 7563476935698307696, guid: a2c66dd2e83afb449b465953854129c0, type: 3}
@@ -459,7 +459,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b8400baee4cafd34091c865089a167b2, type: 3}
-  m_Name: TestLevelGraphNew
+  m_Name: TestLevelGraph-brc202d
   m_EditorClassIdentifier: 
   Rooms:
   - {fileID: -4633550302470200555}
@@ -522,21 +522,6 @@ MonoBehaviour:
     - {fileID: 6401141074986927710, guid: e9eabf876b6a4504d94b9e81b9351ef0, type: 3}
     - {fileID: 6401141074986927710, guid: 20bd8015c94802940a6b76b1d9d3b284, type: 3}
     serializedGuid: c78fac221e6efd42b4aa102b31e78245
-  - Name: X-Crossroads
-    RoomTemplateSets: []
-    IndividualRoomTemplates:
-    - {fileID: 6401141074986927710, guid: 5914e44733458a84e9322e0dfe64cfe9, type: 3}
-    serializedGuid: c78fac221e6efd42b4aa102b31e78245
-  - Name: BOGUS
-    RoomTemplateSets: []
-    IndividualRoomTemplates:
-    - {fileID: 6401141074986927710, guid: 5914e44733458a84e9322e0dfe64cfe9, type: 3}
-    serializedGuid: c78fac221e6efd42b4aa102b31e78245
-  - Name: BOGUSa
-    RoomTemplateSets: []
-    IndividualRoomTemplates:
-    - {fileID: 6401141074986927710, guid: 5914e44733458a84e9322e0dfe64cfe9, type: 3}
-    serializedGuid: c78fac221e6efd42b4aa102b31e78245
   DefaultRoomTemplateSets: []
   DefaultIndividualRoomTemplates:
   - {fileID: 5577071383263350094, guid: fcdd8aeb35d3d2646b0aa54f911f60fc, type: 3}
@@ -573,7 +558,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: MediumRoom
-  Position: {x: 156, y: 184}
+  Position: {x: 56, y: -40}
   RoomTemplateSets: []
   IndividualRoomTemplates: []
   serializedGuid: 00000000000000000000000000000000
@@ -593,7 +578,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: T-Crossroad
-  Position: {x: 385, y: 447}
+  Position: {x: 285, y: 223}
   RoomTemplateSets: []
   IndividualRoomTemplates: []
   serializedGuid: c78fac221e6efd42b4aa102b31e78245
@@ -613,7 +598,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: SmallRoom
-  Position: {x: 593, y: 341}
+  Position: {x: 493, y: 117}
   RoomTemplateSets: []
   IndividualRoomTemplates: []
   serializedGuid: 00000000000000000000000000000000
@@ -647,7 +632,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: T-Crossroad
-  Position: {x: 722, y: 248}
+  Position: {x: 622, y: 24}
   RoomTemplateSets: []
   IndividualRoomTemplates: []
   serializedGuid: c78fac221e6efd42b4aa102b31e78245
@@ -667,7 +652,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: T-Crossroad
-  Position: {x: 721, y: 429}
+  Position: {x: 621, y: 205}
   RoomTemplateSets: []
   IndividualRoomTemplates: []
   serializedGuid: c78fac221e6efd42b4aa102b31e78245
@@ -715,7 +700,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: Crossroad
-  Position: {x: 384, y: 590}
+  Position: {x: 284, y: 366}
   RoomTemplateSets: []
   IndividualRoomTemplates:
   - {fileID: 6401141074986927710, guid: 5914e44733458a84e9322e0dfe64cfe9, type: 3}
@@ -750,7 +735,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: SmallRoom
-  Position: {x: 266, y: 184}
+  Position: {x: 166, y: -40}
   RoomTemplateSets: []
   IndividualRoomTemplates: []
   serializedGuid: 00000000000000000000000000000000
@@ -770,7 +755,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: SideRoom
-  Position: {x: 48, y: 306}
+  Position: {x: -52, y: 82}
   RoomTemplateSets: []
   IndividualRoomTemplates: []
   serializedGuid: 00000000000000000000000000000000
@@ -790,7 +775,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: Crossroad
-  Position: {x: 724, y: 149}
+  Position: {x: 624, y: -75}
   RoomTemplateSets: []
   IndividualRoomTemplates:
   - {fileID: 6401141074986927710, guid: 5914e44733458a84e9322e0dfe64cfe9, type: 3}
@@ -811,7 +796,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: SmallRoom
-  Position: {x: 854, y: 149}
+  Position: {x: 754, y: -75}
   RoomTemplateSets: []
   IndividualRoomTemplates: []
   serializedGuid: 00000000000000000000000000000000
@@ -873,7 +858,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: BigRoom
-  Position: {x: 153, y: 306}
+  Position: {x: 53, y: 82}
   RoomTemplateSets: []
   IndividualRoomTemplates: []
   serializedGuid: 00000000000000000000000000000000
@@ -950,7 +935,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: SmallRoom
-  Position: {x: 594, y: 556}
+  Position: {x: 494, y: 332}
   RoomTemplateSets: []
   IndividualRoomTemplates: []
   serializedGuid: 00000000000000000000000000000000
