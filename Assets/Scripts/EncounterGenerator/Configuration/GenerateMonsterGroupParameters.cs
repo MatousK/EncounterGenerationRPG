@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EncounterGenerator.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,7 +13,7 @@ public struct GenerateMonsterGroupParameters
     /// <summary>
     /// How monsters with which roles should be generated.
     /// </summary>
-    public List<KeyValuePair<MonsterTypeDefinition, int>> RequestedMonsters;
+    public EncounterDefinition RequestedMonsters;
     /// <summary>
     /// Which monsters should be more likely to appear. 0 is neutral, positive is they should appear more likely, negative is that they should not appear if possible.
     /// </summary>
@@ -21,15 +22,4 @@ public struct GenerateMonsterGroupParameters
     /// How difficult should the target encounter be.
     /// </summary>
     public float TargetEncounterDifficulty;
-}
-
-public struct MonsterTypeDefinition
-{
-    public MonsterTypeDefinition(MonsterRank Rank, MonsterRole Role)
-    {
-        this.Rank = Rank;
-        this.Role = Role;
-    }
-    public MonsterRank Rank;
-    public MonsterRole Role;
 }
