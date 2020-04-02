@@ -5,16 +5,19 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 using EncounterGenerator;
+using EncounterGenerator.Model;
 
 class EncounterManager: MonoBehaviour
 {
     readonly EncounterGenerator.EncounterGenerator EncounterGenerator = new EncounterGenerator.EncounterGenerator();
     CombatantSpawnManager CombatantSpawnManager;
+    CombatantsManager CombatantsManager;
 
     private void Start()
     {
         var roomsLayout = FindObjectOfType<RoomsLayout>();
         CombatantSpawnManager = FindObjectOfType<CombatantSpawnManager>();
+        CombatantsManager = FindObjectOfType<CombatantsManager>();
         foreach (var room in roomsLayout.Rooms)
         {
             room.IsExploredChanged += OnRoomExplored;
@@ -24,7 +27,9 @@ class EncounterManager: MonoBehaviour
     private void OnRoomExplored(object sender, RoomExploredEventArgs exploredEventArgs)
     {
         var exploredRoom = sender as RoomInfo;
-        var encounter = EncounterGenerator.GenerateEncounters(exploredRoom.RoomEncounter);
+        var allHeroes = CombatantsManager.PlayerCharacters;
+        var partyDefinition = new PartyDefinition { PartyMembers = allHeroes };
+        var encounter = EncounterGenerator.GenerateEncounters(exploredRoom.RoomEncounter, partyDefinition);
         SpawnMonsters(encounter, sender as RoomInfo, exploredEventArgs.IncomingDoors);
     }
 

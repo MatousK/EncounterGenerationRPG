@@ -12,5 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc055a579459a35469524ee318c88641, type: 3}
   m_Name: OnlyMinionsEncounter
   m_EditorClassIdentifier: 
-  EncounterDifficulty: {fileID: 0}
-  MonsterGroupDefinition: []
+  EncounterDifficulty: {fileID: 11400000, guid: 230035813f58e5a4ab88a649e79312d7,
+    type: 2}
+  MonsterGroupDefinitions:
+  - {fileID: 11400000, guid: 0dd04263fe56efb46983abe745ee4be3, type: 2}

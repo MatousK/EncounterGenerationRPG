@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EncounterDifficulty: {fileID: 11400000, guid: a97b810d578d52242b8efa8855ded09a,
     type: 2}
-  MonsterGroupDefinition:
+  MonsterGroupDefinitions:
   - {fileID: 11400000, guid: 49525f9cacb38f449ba68a175d7f7c8b, type: 2}

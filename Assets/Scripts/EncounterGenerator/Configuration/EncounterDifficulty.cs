@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EncounterGenerator.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,7 +13,7 @@ public abstract class EncounterDifficulty: ScriptableObject
     /// <summary>
     /// Calculates the target encounter difficulty for the specified party strength.
     /// </summary>
-    /// <param name="partyStrength">Estimated strength of the party collapsed to a single number.</param>
+    /// <param name="party">The party that is currently fighting.</param>
     /// <returns>The target difficulty of the encounter.</returns>
-    public abstract float GetDifficultyForPartyStrength(float partyStrength);
+    public abstract float GetDifficultyForParty(PartyDefinition party);
 }

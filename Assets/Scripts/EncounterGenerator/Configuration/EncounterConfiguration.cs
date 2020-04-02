@@ -14,5 +14,5 @@ public class EncounterConfiguration : ScriptableObject
     /// <summary>
     /// Specifies which monsters should spawn in this room.
     /// </summary>
-    public List<MonsterGroupDefinition> MonsterGroupDefinition;
+    public List<MonsterGroupDefinition> MonsterGroupDefinitions;
 }

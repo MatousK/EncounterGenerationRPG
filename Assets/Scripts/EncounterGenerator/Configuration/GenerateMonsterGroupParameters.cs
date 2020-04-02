@@ -18,8 +18,4 @@ public struct GenerateMonsterGroupParameters
     /// Which monsters should be more likely to appear. 0 is neutral, positive is they should appear more likely, negative is that they should not appear if possible.
     /// </summary>
     public Dictionary<GameObject, float> MonsterPriorities;
-    /// <summary>
-    /// How difficult should the target encounter be.
-    /// </summary>
-    public float TargetEncounterDifficulty;
 }

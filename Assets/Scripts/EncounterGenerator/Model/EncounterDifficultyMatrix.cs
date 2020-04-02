@@ -22,10 +22,11 @@ namespace EncounterGenerator.Model
             }
         }
         // TODO: Algorithms here are quite inefficient for now, but, well, we must first find out if it works at all.
-        public List<EncounterDifficultyMatrixElement> MatrixElements;
+        public List<EncounterDifficultyMatrixElement> MatrixElements = new List<EncounterDifficultyMatrixElement>();
 
-        public float GetDifficultyFor(EncounterDefinition encounter, float partyPower, EncounterGeneratorConfiguration configuration)
+        public float GetDifficultyFor(EncounterDefinition encounter, PartyDefinition party, EncounterGeneratorConfiguration configuration)
         {
+            float partyPower = party.GetPartyStrength();
             // TODO: We need to check this thoroughly to figure out which is more important - closeness in encounter type or closeness in party power. For now we treat them 50/50.
             List<DifficultyCandidate> candidates = new List<DifficultyCandidate>(6);
             foreach (var element in MatrixElements)
@@ -47,12 +48,13 @@ namespace EncounterGenerator.Model
             return candidates.Sum(candidate => candidate.ResourcesLost * (candidate.GetCandidateWeight() / totalWeight));
         }
 
-        public EncounterDifficultyMatrixElement? GetExampleEncounter(float partyPower, float desiredResourcesLost)
+        public EncounterDifficultyMatrixElement GetExampleEncounter(PartyDefinition party, float desiredResourcesLost)
         {
+            float partyPower = party.GetPartyStrength();
             //TODO: Normalize units. If party power worked in thousands and resources lost in hundreds, this would not really work.
             // Find an encounter with the lowest possible difference
             float currentMinResult = float.PositiveInfinity;
-            EncounterDifficultyMatrixElement? currentBestCandidate = null;
+            EncounterDifficultyMatrixElement currentBestCandidate = null;
             foreach (var element in MatrixElements)
             {
                 var cost = Math.Abs(GetPartyPowerBucket(element.PartyPower) - GetPartyPowerBucket(partyPower))*10 + Math.Abs(desiredResourcesLost - element.ResourcesLost);

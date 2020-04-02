@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EncounterGenerator.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,7 +10,7 @@ using UnityEngine;
 public class EncounterDifficultyConstant : EncounterDifficulty
 {
     public float ConstantDifficulty;
-    public override float GetDifficultyForPartyStrength(float partyStrength)
+    public override float GetDifficultyForParty(PartyDefinition party)
     {
         return ConstantDifficulty;
     }

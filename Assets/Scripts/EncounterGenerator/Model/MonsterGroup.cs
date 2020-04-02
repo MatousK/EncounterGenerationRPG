@@ -5,10 +5,18 @@ namespace EncounterGenerator.Model
     /// <summary>
     /// Represents a group of monsters of the same type that might be spawned in an encounter.
     /// </summary>
-    public struct MonsterGroup
+    public class MonsterGroup
     {
         public MonsterType MonsterType;
         public int MonsterCount;
+
+        public MonsterGroup Clone()
+        {
+            return new MonsterGroup {
+                MonsterType = MonsterType,
+                MonsterCount = MonsterCount
+            };
+        }
 
         public override bool Equals(object obj)
         {
