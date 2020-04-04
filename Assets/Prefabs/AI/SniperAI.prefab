@@ -1,5 +1,50 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &402181481942319879
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2959911882091877811}
+  m_Layer: 0
+  m_Name: Sniper Skills
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2959911882091877811
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 402181481942319879}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 9107555823948999596}
+  m_Father: {fileID: 2285441940233967380}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7634665171745954014
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7600682684542514438}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 314053773f717474196e432e72afdd8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EliteSkillHPThreshold: 0.5
+  AdvancedSkill: {fileID: 4426991127076997311}
 --- !u!1001 &5719484240965938449
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10,7 +55,7 @@ PrefabInstance:
     - target: {fileID: 2748528641031165975, guid: 572ef8aba45ac2647a4e9f48db4a5918,
         type: 3}
       propertyPath: m_Name
-      value: AIBase
+      value: SniperAI
       objectReference: {fileID: 0}
     - target: {fileID: 5829968854152182277, guid: 572ef8aba45ac2647a4e9f48db4a5918,
         type: 3}
@@ -69,3 +114,107 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 572ef8aba45ac2647a4e9f48db4a5918, type: 3}
+--- !u!1 &7600682684542514438 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2748528641031165975, guid: 572ef8aba45ac2647a4e9f48db4a5918,
+    type: 3}
+  m_PrefabInstance: {fileID: 5719484240965938449}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &2285441940233967380 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5829968854152182277, guid: 572ef8aba45ac2647a4e9f48db4a5918,
+    type: 3}
+  m_PrefabInstance: {fileID: 5719484240965938449}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &5777413430953930622
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 2959911882091877811}
+    m_Modifications:
+    - target: {fileID: 8083064930099477572, guid: 2945a0dc2076b144c9087480583b6602,
+        type: 3}
+      propertyPath: m_Name
+      value: Hunters Focus
+      objectReference: {fileID: 0}
+    - target: {fileID: 7873042145927456705, guid: 2945a0dc2076b144c9087480583b6602,
+        type: 3}
+      propertyPath: Cooldown
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3335468730117342418, guid: 2945a0dc2076b144c9087480583b6602,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3335468730117342418, guid: 2945a0dc2076b144c9087480583b6602,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3335468730117342418, guid: 2945a0dc2076b144c9087480583b6602,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3335468730117342418, guid: 2945a0dc2076b144c9087480583b6602,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3335468730117342418, guid: 2945a0dc2076b144c9087480583b6602,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3335468730117342418, guid: 2945a0dc2076b144c9087480583b6602,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3335468730117342418, guid: 2945a0dc2076b144c9087480583b6602,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3335468730117342418, guid: 2945a0dc2076b144c9087480583b6602,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3335468730117342418, guid: 2945a0dc2076b144c9087480583b6602,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3335468730117342418, guid: 2945a0dc2076b144c9087480583b6602,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3335468730117342418, guid: 2945a0dc2076b144c9087480583b6602,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 2945a0dc2076b144c9087480583b6602, type: 3}
+--- !u!4 &9107555823948999596 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3335468730117342418, guid: 2945a0dc2076b144c9087480583b6602,
+    type: 3}
+  m_PrefabInstance: {fileID: 5777413430953930622}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4426991127076997311 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7873042145927456705, guid: 2945a0dc2076b144c9087480583b6602,
+    type: 3}
+  m_PrefabInstance: {fileID: 5777413430953930622}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f31adf364af54547af85d3c48c6612f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

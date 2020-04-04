@@ -10,6 +10,7 @@ namespace EncounterGenerator.Model
     /// <summary>
     /// Represents all monsters that should spawn in an encounter.
     /// </summary>
+    [Serializable]
     public class EncounterDefinition
     {
         /// <summary>

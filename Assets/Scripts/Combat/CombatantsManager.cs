@@ -16,6 +16,25 @@ public class CombatantsManager : MonoBehaviour
             return Enemies.Any();
         }
     }
+    public IEnumerable<CombatantBase> GetAlliesFor(CombatantBase combatant, bool onlyAlive = false, bool onlySelected = false)
+    {
+        IEnumerable<CombatantBase> opponents = null;
+        if (combatant is Hero)
+        {
+            return GetPlayerCharacters(onlyAlive, onlySelected);
+        }
+        else if (combatant is Monster)
+        {
+            return GetEnemies(onlyAlive);
+        }
+        if (opponents == null)
+        {
+            Debug.Assert(false, "Asked for allies for unknown combatant.");
+            return null;
+        }
+        return null;
+    }
+
     public IEnumerable<CombatantBase> GetOpponentsFor(CombatantBase combatant, bool onlyAlive = false, bool onlySelected = false)
     {
         IEnumerable<CombatantBase> opponents = null;

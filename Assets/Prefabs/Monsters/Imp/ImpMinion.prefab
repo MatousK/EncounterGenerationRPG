@@ -32,6 +32,11 @@ PrefabInstance:
       propertyPath: Attributes.DealtDamageMultiplier
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 3794834790201460922, guid: 5bb997eb5e02af8419843853bbfa62c0,
+        type: 3}
+      propertyPath: Rank
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4624368178504812775, guid: 5bb997eb5e02af8419843853bbfa62c0,
         type: 3}
       propertyPath: m_Offset.y
@@ -114,6 +119,11 @@ PrefabInstance:
       propertyPath: m_WasSpriteAssigned
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4300591738610292810, guid: 5bb997eb5e02af8419843853bbfa62c0,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 2379371922131582341, guid: 5bb997eb5e02af8419843853bbfa62c0,
         type: 3}
       propertyPath: m_RootOrder
@@ -138,11 +148,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.y
       value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4300591738610292810, guid: 5bb997eb5e02af8419843853bbfa62c0,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5bb997eb5e02af8419843853bbfa62c0, type: 3}

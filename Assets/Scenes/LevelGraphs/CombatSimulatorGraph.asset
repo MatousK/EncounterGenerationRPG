@@ -1,0 +1,82 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-5956861048594432971
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f692f83df7c1b5468af64edd22287dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  From: {fileID: -4702602742671827370}
+  To: {fileID: 7130688112631102481}
+--- !u!114 &-4702602742671827370
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a494d71d5580cf478fa65376ba24920, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Room
+  Position: {x: 558, y: 323}
+  RoomTemplateSets: []
+  IndividualRoomTemplates:
+  - {fileID: 6966731523498046389, guid: 80b4b36fbd8fe064db8749815e9b87bc, type: 3}
+  serializedGuid: 00000000000000000000000000000000
+  EncounterConfiguration: {fileID: 11400000, guid: a13aacc43e3c10b4bb5cc162ec05c429,
+    type: 2}
+  TreasureChestsMax: 0
+  TreasureChestsMin: 0
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8400baee4cafd34091c865089a167b2, type: 3}
+  m_Name: CombatSimulatorGraph
+  m_EditorClassIdentifier: 
+  Rooms:
+  - {fileID: -4702602742671827370}
+  - {fileID: 7130688112631102481}
+  Connections:
+  - {fileID: -5956861048594432971}
+  RoomsGroups: []
+  DefaultRoomTemplateSets: []
+  DefaultIndividualRoomTemplates: []
+  CorridorRoomTemplateSets: []
+  CorridorIndividualRoomTemplates: []
+--- !u!114 &7130688112631102481
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a494d71d5580cf478fa65376ba24920, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Room
+  Position: {x: 555, y: 226}
+  RoomTemplateSets: []
+  IndividualRoomTemplates:
+  - {fileID: 6966731523498046389, guid: 80b4b36fbd8fe064db8749815e9b87bc, type: 3}
+  serializedGuid: 00000000000000000000000000000000
+  EncounterConfiguration: {fileID: 11400000, guid: a13aacc43e3c10b4bb5cc162ec05c429,
+    type: 2}
+  TreasureChestsMax: 0
+  TreasureChestsMin: 0

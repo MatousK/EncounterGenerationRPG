@@ -18,7 +18,7 @@ public abstract class Skill: MonoBehaviour
     /// If true, this attack is considered to be a basic attack for some purposes, like auto attacking.
     /// </summary>
     [NonSerialized]
-    public bool isBasicAttack;
+    public bool IsBasicAttack;
     /// <summary>
     /// If true, the player cannot start another skill while this skill is being executed.
     /// </summary>
@@ -164,7 +164,7 @@ public abstract class Skill: MonoBehaviour
     // Return true if this skill can be used at this moment.
     public bool CanUseSkill()
     {
-        return !IsBeingUsed() && (isBasicAttack || ( selfCombatant.LastSkillRemainingCooldown ?? 0) <= 0);
+        return !IsBeingUsed() && (IsBasicAttack || ( selfCombatant.LastSkillRemainingCooldown ?? 0) <= 0);
     }
     /// <summary>
     /// Called when the skill animation hits the point where the effects should be applied

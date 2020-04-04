@@ -269,6 +269,11 @@ PrefabInstance:
       propertyPath: Attributes.DealtDamageMultiplier
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: 4828470711690574787, guid: 46229661ed166644c8a32b159c483f24,
+        type: 3}
+      propertyPath: MaxHitpoints
+      value: 250
+      objectReference: {fileID: 0}
     - target: {fileID: 7682667400691751780, guid: 46229661ed166644c8a32b159c483f24,
         type: 3}
       propertyPath: m_Sprite
@@ -304,17 +309,17 @@ PrefabInstance:
     - target: {fileID: 7682667400691751783, guid: 46229661ed166644c8a32b159c483f24,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -15.49
+      value: 7.5
       objectReference: {fileID: 0}
     - target: {fileID: 7682667400691751783, guid: 46229661ed166644c8a32b159c483f24,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -14.97
+      value: 8.5
       objectReference: {fileID: 0}
     - target: {fileID: 7682667400691751783, guid: 46229661ed166644c8a32b159c483f24,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7682667400691751783, guid: 46229661ed166644c8a32b159c483f24,
         type: 3}
@@ -361,15 +366,15 @@ PrefabInstance:
       propertyPath: IsVisible
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2720280181028979899, guid: 46229661ed166644c8a32b159c483f24,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 4
-      objectReference: {fileID: 0}
     - target: {fileID: 2058538311236303016, guid: 46229661ed166644c8a32b159c483f24,
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2720280181028979899, guid: 46229661ed166644c8a32b159c483f24,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2581712192772269775, guid: 46229661ed166644c8a32b159c483f24,
         type: 3}

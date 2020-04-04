@@ -10549,6 +10549,7 @@ MonoBehaviour:
   FollowingHero: {fileID: 0}
   ScrollingEdge: 50
   ScrollingSpeed: 10
+  QuickScrollingSpeed: 100
 --- !u!114 &264610530
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13053,7 +13054,7 @@ Tilemap:
       - {fileID: 2593339637163778369, guid: 655dfe2baf3f57344b6822071fadb925, type: 3}
       - {fileID: 5574466617446608020, guid: 655dfe2baf3f57344b6822071fadb925, type: 3}
       - {fileID: -6625049759122955413, guid: 655dfe2baf3f57344b6822071fadb925, type: 3}
-      m_AnimationSpeed: 5
+      m_AnimationSpeed: 5.0000005
       m_AnimationTimeOffset: 0
       m_IsLooping: 1
   m_TileAssetArray:
@@ -62530,6 +62531,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1731994163}
   - component: {fileID: 1731994162}
+  - component: {fileID: 1731994164}
   m_Layer: 0
   m_Name: Encounter Manager
   m_TagString: Untagged
@@ -62563,6 +62565,28 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1731994164
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1731994161}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2ae4f8e3b89069418c9787f1e0b474f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  StaticEncounter:
+    AllEncounterGroups:
+    - MonsterType:
+        Rank: 2
+        Role: 4
+      MonsterCount: 1
+    - MonsterType:
+        Rank: 1
+        Role: 1
+      MonsterCount: 2
 --- !u!1 &1745358098
 GameObject:
   m_ObjectHideFlags: 0

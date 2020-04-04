@@ -10,7 +10,7 @@ class BasicAttack : Attack
     BasicAttack()
     {
         BlocksManualMovement = false;
-        isBasicAttack = true;
+        IsBasicAttack = true;
     }
     protected override void Awake()
     {

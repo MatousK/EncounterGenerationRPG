@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 namespace EncounterGenerator.Model
 {
     // In our case, monster's type is defined by its rank and role, e.g. Elite Sniper.
+    [Serializable]
     public struct MonsterType
     {
         public MonsterType(MonsterRank rank, MonsterRole role)

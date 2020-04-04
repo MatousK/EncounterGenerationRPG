@@ -1,10 +1,12 @@
 ﻿using EncounterGenerator.Configuration;
+using System;
 
 namespace EncounterGenerator.Model
 {
     /// <summary>
     /// Represents a group of monsters of the same type that might be spawned in an encounter.
     /// </summary>
+    [Serializable]
     public class MonsterGroup
     {
         public MonsterType MonsterType;

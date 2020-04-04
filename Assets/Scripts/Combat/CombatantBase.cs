@@ -87,7 +87,7 @@ public class CombatantBase : MonoBehaviour
     /// <returns>True if a blocking skill is in progress.</returns>
     public bool IsBlockingSkillInProgress(bool isBasicAttackBlocking)
     {
-        return CombatantSkills.Any(skill => skill.IsBeingUsed() && skill.BlocksOtherSkills && (!skill.isBasicAttack || isBasicAttackBlocking));
+        return CombatantSkills.Any(skill => skill.IsBeingUsed() && skill.BlocksOtherSkills && (!skill.IsBasicAttack || isBasicAttackBlocking));
     }
 
     public bool IsMoving()
@@ -165,7 +165,7 @@ public class CombatantBase : MonoBehaviour
     {
         MaxHitpoints = TotalMaxHitpoints;
         HitPoints = TotalMaxHitpoints;
-        CombatantSkills = GetComponentsInChildren<Skill>();
+        CombatantSkills = GetComponentsInChildren<Skill>().Where(skill => skill.gameObject.activeSelf).ToArray();
         combatantsManager = FindObjectOfType<CombatantsManager>();
     }
 
@@ -182,6 +182,12 @@ public class CombatantBase : MonoBehaviour
         Destroy(gameObject);
     }
 
+    public void ResetCooldown()
+    {
+        LastSkillRemainingCooldown = 0;
+        LastSkillCooldown = null;
+    }
+
     private void ApplyHealthRegeneration()
     {
         float regenerationRate = combatantsManager.IsCombatActive ? Attributes.CombatHealthRegeneration : Attributes.OutOfCombatHealthRegeneration;
@@ -193,8 +199,7 @@ public class CombatantBase : MonoBehaviour
     {
         if (!combatantsManager.IsCombatActive)
         {
-            LastSkillRemainingCooldown = 0;
-            LastSkillCooldown = null;
+            ResetCooldown();
         }
     }
 

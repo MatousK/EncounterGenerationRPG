@@ -3,6 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
+public enum AITargetPriority
+{
+    Low,
+    Medium,
+    High
+}
 
 public class Hero : CombatantBase
 {
@@ -19,7 +25,7 @@ public class Hero : CombatantBase
     /// <summary>
     /// The higher the priority, the more likely is the AI to target this hero.
     /// </summary>
-    public int AITargetPriority;
+    public AITargetPriority AITargetPriority;
     /// <summary>
     /// A skill that should be used when using a skill on self.
     /// </summary>

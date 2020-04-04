@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ClearTargetAfterUsingSkill: 1
-  Cooldown: 15
+  Cooldown: 10
   Range: 1
   Speed: 1
   Repetitions: 1

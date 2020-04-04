@@ -43,9 +43,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2ca0d0afb4d8544884d2417886731fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ClearTargetAfterUsingSkill: 0
   Cooldown: 10
   Range: 1
   Speed: 1
   Duration: 5
-  DamageMultiplier: 4
-  SpeedMultiplier: 4
+  DamageMultiplier: 1
+  SpeedMultiplier: 2

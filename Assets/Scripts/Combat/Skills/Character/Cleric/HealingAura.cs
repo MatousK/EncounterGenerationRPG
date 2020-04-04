@@ -60,9 +60,9 @@ class HealingAura : PersonalSkill
     private void HealPulse()
     {
         timeToNextPulse = PulseTime;
-        foreach (var ally in combatantsManager.PlayerCharacters)
+        foreach (var ally in combatantsManager.GetAlliesFor(selfCombatant))
         {
-            if (Vector2.Distance(ally.transform.position, transform.position) < AuraRange)
+             if (Vector2.Distance(ally.transform.position, transform.position) < AuraRange)
             {
                 float healPulseAmount = ally.TotalMaxHitpoints * HealPulsePercentage;
                 ally.HealDamage(healPulseAmount, selfCombatant);

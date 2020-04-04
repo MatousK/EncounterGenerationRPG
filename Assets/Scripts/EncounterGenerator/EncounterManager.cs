@@ -9,12 +9,15 @@ using EncounterGenerator.Model;
 
 class EncounterManager: MonoBehaviour
 {
+    // TODO: Debug, remove in release builds.
+    private StaticEncounterGenerator StaticEncounterGenerator;
     readonly EncounterGenerator.EncounterGenerator EncounterGenerator = new EncounterGenerator.EncounterGenerator();
     CombatantSpawnManager CombatantSpawnManager;
     CombatantsManager CombatantsManager;
 
     private void Start()
     {
+        StaticEncounterGenerator = GetComponent<StaticEncounterGenerator>();
         var roomsLayout = FindObjectOfType<RoomsLayout>();
         CombatantSpawnManager = FindObjectOfType<CombatantSpawnManager>();
         CombatantsManager = FindObjectOfType<CombatantsManager>();
@@ -29,7 +32,15 @@ class EncounterManager: MonoBehaviour
         var exploredRoom = sender as RoomInfo;
         var allHeroes = CombatantsManager.PlayerCharacters;
         var partyDefinition = new PartyDefinition { PartyMembers = allHeroes };
-        var encounter = EncounterGenerator.GenerateEncounters(exploredRoom.RoomEncounter, partyDefinition);
+        List<GameObject> encounter;
+        if (StaticEncounterGenerator != null && StaticEncounterGenerator.isActiveAndEnabled)
+        {
+            encounter = StaticEncounterGenerator.GenerateEncounters(exploredRoom.RoomEncounter, partyDefinition);
+        }
+        else
+        {
+            encounter = EncounterGenerator.GenerateEncounters(exploredRoom.RoomEncounter, partyDefinition);
+        }
         SpawnMonsters(encounter, sender as RoomInfo, exploredEventArgs.IncomingDoors);
     }
 

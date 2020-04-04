@@ -9,7 +9,7 @@ class RangedBasicAttack: ProjectileAttack
     RangedBasicAttack()
     {
         BlocksManualMovement = false;
-        isBasicAttack = true;
+        IsBasicAttack = true;
     }
     protected override void Awake()
     {
