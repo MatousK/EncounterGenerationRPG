@@ -112,7 +112,7 @@ PrefabInstance:
     - target: {fileID: 4300591738610292810, guid: 5bb997eb5e02af8419843853bbfa62c0,
         type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 2379371922131582341, guid: 5bb997eb5e02af8419843853bbfa62c0,
         type: 3}
@@ -154,6 +154,75 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 528afea00030cf148921a2ed70c342b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1001 &4312096096233843196
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 6961181293527521664}
+    m_Modifications:
+    - target: {fileID: 5829764992022885380, guid: c0cea10946c0ba7478ec8708a47b151a,
+        type: 3}
+      propertyPath: m_Name
+      value: ClothFootsteps
+      objectReference: {fileID: 0}
+    - target: {fileID: 50550842270560926, guid: c0cea10946c0ba7478ec8708a47b151a,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 50550842270560926, guid: c0cea10946c0ba7478ec8708a47b151a,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 50550842270560926, guid: c0cea10946c0ba7478ec8708a47b151a,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 50550842270560926, guid: c0cea10946c0ba7478ec8708a47b151a,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 50550842270560926, guid: c0cea10946c0ba7478ec8708a47b151a,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 50550842270560926, guid: c0cea10946c0ba7478ec8708a47b151a,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 50550842270560926, guid: c0cea10946c0ba7478ec8708a47b151a,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 50550842270560926, guid: c0cea10946c0ba7478ec8708a47b151a,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 50550842270560926, guid: c0cea10946c0ba7478ec8708a47b151a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 50550842270560926, guid: c0cea10946c0ba7478ec8708a47b151a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 50550842270560926, guid: c0cea10946c0ba7478ec8708a47b151a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c0cea10946c0ba7478ec8708a47b151a, type: 3}
 --- !u!1001 &7013614004367113378
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -301,11 +370,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4392198525076416986, guid: 3985e5e4fc38d684db5b6abd0bf9d343,
-        type: 3}
-      propertyPath: ActionSkill
-      value: 
-      objectReference: {fileID: 2072614805915475806}
     - target: {fileID: 6255006407851099432, guid: 3985e5e4fc38d684db5b6abd0bf9d343,
         type: 3}
       propertyPath: TargetHeroSkill
@@ -316,6 +380,11 @@ PrefabInstance:
       propertyPath: AuraInstance
       value: 
       objectReference: {fileID: 37306504736524231}
+    - target: {fileID: 4392198525076416986, guid: 3985e5e4fc38d684db5b6abd0bf9d343,
+        type: 3}
+      propertyPath: ActionSkill
+      value: 
+      objectReference: {fileID: 2072614805915475806}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3985e5e4fc38d684db5b6abd0bf9d343, type: 3}
 --- !u!114 &625934951651752771 stripped

@@ -10,6 +10,7 @@ namespace Assets.Scripts.Animations
     {
         public event EventHandler ApplySkillEffect;
         public event EventHandler SkillAnimationFinished;
+        public event EventHandler<SoundEffectType> SoundCompleted;
 
         public void AnimationCallbackApplySkillEffect()
         {
@@ -20,5 +21,15 @@ namespace Assets.Scripts.Animations
         {
             SkillAnimationFinished?.Invoke(this, new EventArgs());
         }
+
+        public void OnSoundCompleted(SoundEffectType soundEffect)
+        {
+            SoundCompleted?.Invoke(this, soundEffect);
+        }
+    }
+
+    public enum SoundEffectType
+    {
+        Footstep
     }
 }

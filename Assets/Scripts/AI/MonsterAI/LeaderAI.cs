@@ -31,6 +31,7 @@ namespace Assets.Scripts.AI.MonsterAI
             if (target == null)
             {
                 // Heroes are dead.
+                return;
             }
             var alliedMonsters = CombatantsManager.GetOpponentsFor(ControlledCombatant, onlyAlive: true).ToArray();
             // Targeting is unnecessary when fighting alongside a low amount of monsters.
