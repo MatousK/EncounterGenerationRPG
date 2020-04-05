@@ -1,6 +1,7 @@
 ﻿using System;
 using Assets.Scripts.Animations;
 using Assets.Scripts.Movement;
+using Assets.Scripts.Sound.CombatSounds;
 using UnityEngine;
 
 namespace Assets.Scripts.Combat.Skills
@@ -43,6 +44,10 @@ namespace Assets.Scripts.Combat.Skills
         /// </summary>
         public float Speed = 1;
         /// <summary>
+        /// The type of sound this skill will make.
+        /// </summary>
+        public CombatSoundType SkillSoundType;
+        /// <summary>
         /// The name of the animation that should be played while this skill is being used.
         /// </summary>
         [NonSerialized]
@@ -67,12 +72,17 @@ namespace Assets.Scripts.Combat.Skills
         /// Combatant who is using this skill.
         /// </summary>
         protected CombatantBase SelfCombatant;
+        /// <summary>
+        /// Class responsible for playing sounds when the skill hits specified moments.
+        /// </summary>
+        protected CombatSoundsController CombatSoundsController;
         // Start is called before the first frame update
         protected virtual void Awake()
         {
             // First, travel the tree to find the combatant object.
             SelfCombatant = GetComponentInParent<CombatantBase>();
             AnimationEventListener = SelfCombatant.GetComponent<AnimationEventsListener>();
+            CombatSoundsController = SelfCombatant.GetComponentInChildren<CombatSoundsController>();
         }
 
         // Update is called once per frame
@@ -167,19 +177,25 @@ namespace Assets.Scripts.Combat.Skills
         {
             return !IsBeingUsed() && (IsBasicAttack || ( SelfCombatant.LastSkillRemainingCooldown ?? 0) <= 0);
         }
+
         /// <summary>
         /// Called when the skill animation hits the point where the effects should be applied
         /// </summary>
-        protected abstract void ApplySkillEffects(object sender, EventArgs e);
+        protected virtual void ApplySkillEffects(object sender, EventArgs e)
+        {
+            CombatSoundsController.AnimationEffectApplied(SkillSoundType);
+        }
         /// <summary>
         /// Called when the skill animation completes.
         /// </summary>
         protected virtual void AnimationCompleted(object sender, EventArgs e)
         {
+            CombatSoundsController.AnimationEnded(SkillSoundType);
         }
 
         protected virtual void StartSkillAnimation()
         {
+            CombatSoundsController.AnimationStarted(SkillSoundType);
             SelfCombatant.GetComponent<MovementController>().StopMovement();
             // In range, start using the skill - orient toward the target and start dishing out attacks.
             if (GetTargetLocation() != null)

@@ -44,6 +44,7 @@ namespace Assets.Scripts.Combat.Skills.Monster.Lurker
                 fireTeleportEffect.StartFire();
                 startedFireAnimation = true;
             }
+            base.ApplySkillEffects(sender, e);
         }
 
         protected override void AnimationCompleted(object sender, EventArgs e)

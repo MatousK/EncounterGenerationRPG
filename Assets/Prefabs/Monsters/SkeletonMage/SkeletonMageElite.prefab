@@ -47,6 +47,8 @@ MonoBehaviour:
   Cooldown: 0
   Range: 10
   Speed: 1
+  SkillSoundType: 5
+  ShouldShowAttackIndicator: 1
   Repetitions: 1
   DamagePerHit: 1
   ProjectileTemplate: {fileID: 3649418549116087660}
@@ -257,18 +259,28 @@ PrefabInstance:
     - target: {fileID: 4300591738610292810, guid: 5bb997eb5e02af8419843853bbfa62c0,
         type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 5093483423519843717, guid: 5bb997eb5e02af8419843853bbfa62c0,
         type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8299358849406847016, guid: 5bb997eb5e02af8419843853bbfa62c0,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 7084200779910696714, guid: 5bb997eb5e02af8419843853bbfa62c0,
         type: 3}
       propertyPath: ActionSkill
       value: 
       objectReference: {fileID: 95972103752711939}
+    - target: {fileID: 5834844054933715619, guid: 5bb997eb5e02af8419843853bbfa62c0,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5bb997eb5e02af8419843853bbfa62c0, type: 3}
 --- !u!4 &1243533878233351852 stripped

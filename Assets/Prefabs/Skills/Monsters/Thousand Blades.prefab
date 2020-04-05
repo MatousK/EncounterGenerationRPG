@@ -43,8 +43,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6daa4625a4f98804d93b75566ea21527, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ClearTargetAfterUsingSkill: 0
   Cooldown: 5
   Range: 1
   Speed: 5
+  SkillSoundType: 8
+  ShouldShowAttackIndicator: 1
   Repetitions: 10
   DamagePerHit: 1

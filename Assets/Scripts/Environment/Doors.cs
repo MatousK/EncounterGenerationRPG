@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Assets.Scripts.Combat;
 using Assets.Scripts.Cutscenes;
 using Assets.Scripts.DungeonGenerator;
+using Assets.Scripts.Extension;
 using Assets.Scripts.Input;
 using Assets.Scripts.Movement.Pathfinding;
 using UnityEngine;
@@ -39,6 +40,8 @@ namespace Assets.Scripts.Environment
         /// All game objects which should be enabled iff these doors are closed.
         /// </summary>
         public List<GameObject> ClosedDoorsObjects = new List<GameObject>();
+
+        public List<AudioClip> OpenDoorsAudioClips = new List<AudioClip>();
 
         public Grid MapGrid;
         private PathfindingMapController pathfindingMapController;
@@ -92,6 +95,13 @@ namespace Assets.Scripts.Environment
             {
                 // Never open doors more than once.
                 return;
+            }
+
+            var audioClipToPlay = OpenDoorsAudioClips.GetWeightedRandomElementOrDefault(clip => 1);
+            var audioSource = GetComponent<AudioSource>();
+            if (audioSource != null && audioClipToPlay != null)
+            {
+                audioSource.PlayOneShot(audioClipToPlay);
             }
             doorOpener = e;
             didPlayerOpenDoors = true;

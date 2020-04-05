@@ -19,6 +19,7 @@ namespace Assets.Scripts.Combat.Skills.Character.Cleric
         protected override void ApplySkillEffects(object sender, EventArgs e)
         {
             Target.HealDamage(HealPercentage * Target.TotalMaxHitpoints, SelfCombatant);
+            base.ApplySkillEffects(sender, e);
         }
     }
 }

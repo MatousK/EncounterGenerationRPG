@@ -47,6 +47,7 @@ MonoBehaviour:
   Cooldown: 5
   Range: 1
   Speed: 1
+  SkillSoundType: 6
   Duration: 5
   AuraRange: 3
   HealPulseFrequency: 1

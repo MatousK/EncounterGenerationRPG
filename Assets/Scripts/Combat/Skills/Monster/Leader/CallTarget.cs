@@ -39,6 +39,7 @@ namespace Assets.Scripts.Combat.Skills.Monster.Leader
                 addedCondition.RemainingDuration = Duration;
                 addedCondition.TargetForcedBy = SelfCombatant;
             }
+            base.ApplySkillEffects(sender, e);
         }
     }
 }

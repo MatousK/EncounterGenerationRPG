@@ -231,7 +231,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 869250211914322633}
+    m_TransformParent: {fileID: 2889413146687123452}
     m_Modifications:
     - target: {fileID: 9009671241196817248, guid: ccaab62f7bd912b4d889857f80303732,
         type: 3}
@@ -281,7 +281,7 @@ PrefabInstance:
     - target: {fileID: 3268526618586172922, guid: ccaab62f7bd912b4d889857f80303732,
         type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3268526618586172922, guid: ccaab62f7bd912b4d889857f80303732,
         type: 3}
@@ -448,7 +448,12 @@ PrefabInstance:
     - target: {fileID: 2720280181028979899, guid: 46229661ed166644c8a32b159c483f24,
         type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1641048478542421433, guid: 46229661ed166644c8a32b159c483f24,
+        type: 3}
+      propertyPath: SkillSoundType
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2581712192772269775, guid: 46229661ed166644c8a32b159c483f24,
         type: 3}
@@ -480,6 +485,16 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 5663033329130382930, guid: 46229661ed166644c8a32b159c483f24,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6840494116074943717, guid: 46229661ed166644c8a32b159c483f24,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 46229661ed166644c8a32b159c483f24, type: 3}
 --- !u!4 &869250211914322633 stripped
@@ -491,6 +506,12 @@ Transform:
 --- !u!4 &6477860828858968282 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4569921241031172468, guid: 46229661ed166644c8a32b159c483f24,
+    type: 3}
+  m_PrefabInstance: {fileID: 7389953155286600110}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &2889413146687123452 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5663033329130382930, guid: 46229661ed166644c8a32b159c483f24,
     type: 3}
   m_PrefabInstance: {fileID: 7389953155286600110}
   m_PrefabAsset: {fileID: 0}

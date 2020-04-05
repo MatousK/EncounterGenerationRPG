@@ -30,11 +30,13 @@ namespace Assets.Scripts.Combat.Skills
             // Target could change before the projectile hits, so put it in a variable just to be sure.
             var originalTarget = Target;
             newProjectile.GetComponent<Projectile>().StartProjectile(Target, ProjectileSpeed, () => OnProjectileHit(originalTarget));
+            base.ApplySkillEffects(sender, e);
         }
 
-        protected virtual void OnProjectileHit(CombatantBase originalTaget)
+        protected virtual void OnProjectileHit(CombatantBase originalTarget)
         {
-            originalTaget.TakeDamage(DamagePerHit, SelfCombatant);
+            originalTarget.TakeDamage(DamagePerHit, SelfCombatant);
+            CombatSoundsController.ProjectileHit(SkillSoundType);
         }
     }
 }

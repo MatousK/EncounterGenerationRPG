@@ -21,6 +21,7 @@ namespace Assets.Scripts.Combat.Skills.Character.Cleric
         {
             var sleepCondition = Target.GetComponent<ConditionManager>().AddCondition<SleepCondition>();
             sleepCondition.RemainingDuration = SleepDuration;
+            base.ApplySkillEffects(sender, e);
         }
     }
 }

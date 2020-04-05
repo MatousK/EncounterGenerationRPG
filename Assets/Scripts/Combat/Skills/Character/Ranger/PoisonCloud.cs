@@ -24,6 +24,7 @@ namespace Assets.Scripts.Combat.Skills.Character.Ranger
 
         protected override void ApplySkillEffects(object sender, EventArgs e)
         {
+            base.ApplySkillEffects(sender, e);
             var poisonCloudEffect = Instantiate(PoisonCloudEffect, Target.transform, false);
             poisonCloudEffect.SetActive(true);
             foreach (var enemy in combatantsManager.GetEnemies(onlyAlive:true))

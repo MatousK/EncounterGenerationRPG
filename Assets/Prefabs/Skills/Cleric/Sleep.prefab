@@ -47,5 +47,7 @@ MonoBehaviour:
   Cooldown: 10
   Range: 1
   Speed: 1
+  SkillSoundType: 7
+  ShouldShowAttackIndicator: 1
   Repetitions: 1
   SleepDuration: 6

@@ -47,6 +47,8 @@ MonoBehaviour:
   Cooldown: 15
   Range: 15
   Speed: 1
+  SkillSoundType: 4
+  ShouldShowAttackIndicator: 1
   Repetitions: 1
   DamagePerHit: 4
   ProjectileTemplate: {fileID: 0}

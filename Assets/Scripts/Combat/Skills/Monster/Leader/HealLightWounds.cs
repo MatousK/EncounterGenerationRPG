@@ -19,6 +19,7 @@ namespace Assets.Scripts.Combat.Skills.Monster.Leader
         protected override void ApplySkillEffects(object sender, EventArgs e)
         {
             Target.HealDamage(HealAmount, SelfCombatant);
+            base.ApplySkillEffects(sender, e);
         }
     }
 }

@@ -47,6 +47,8 @@ MonoBehaviour:
   Cooldown: 5
   Range: 1
   Speed: 3
+  SkillSoundType: 1
+  ShouldShowAttackIndicator: 1
   Repetitions: 1
   DamagePerHit: 2
   StunDuration: 1

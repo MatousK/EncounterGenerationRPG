@@ -30,6 +30,7 @@ namespace Assets.Scripts.Combat.Skills
             {
                 Target.TakeDamage(DamagePerHit, SelfCombatant);
             }
+            base.ApplySkillEffects(sender, e);
         }
     }
 }

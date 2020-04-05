@@ -47,5 +47,7 @@ MonoBehaviour:
   Cooldown: 10
   Range: 10
   Speed: 1
+  SkillSoundType: 6
+  ShouldShowAttackIndicator: 1
   Repetitions: 1
   HealPercentage: 1
