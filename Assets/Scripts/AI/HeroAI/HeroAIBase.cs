@@ -73,7 +73,7 @@ namespace Assets.Scripts.AI.HeroAI
                     roleDanger = 0;
                     break;
                 case MonsterRole.Sniper:
-                    roleDanger = 1;
+                    roleDanger = 1.2f;
                     break;
                 case MonsterRole.Leader:
                     roleDanger = 1.5f;

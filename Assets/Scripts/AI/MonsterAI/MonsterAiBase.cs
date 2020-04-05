@@ -42,7 +42,6 @@ namespace Assets.Scripts.AI.MonsterAI
             {
                 return;
             }
-            Debug.Assert(false, "Monster AI should always handle this, calling bas implementation should be unnecessary");
             base.OnActionRequired();
         }
 

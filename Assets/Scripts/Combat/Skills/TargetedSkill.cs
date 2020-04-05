@@ -1,4 +1,5 @@
 ﻿using System;
+using Assets.Scripts.UI;
 using UnityEngine;
 
 namespace Assets.Scripts.Combat.Skills
@@ -9,6 +10,10 @@ namespace Assets.Scripts.Combat.Skills
     public abstract class TargetedSkill : Skill
     {
         /// <summary>
+        /// If true, a sword icon will be displayed and will point towards the target.
+        /// </summary>
+        public bool ShouldShowAttackIndicator = true;
+        /// <summary>
         /// How many times does the animation repeat as part of one skill usage.
         /// </summary>
         public int Repetitions = 1;
@@ -16,9 +21,12 @@ namespace Assets.Scripts.Combat.Skills
         /// Target which we are currently using this skill on.
         /// </summary>
         public CombatantBase Target { get; protected set; }
+
+        private AttackDirectionIndicator attackDirectionIndicator;
         protected override void Awake()
         {
             base.Awake();
+            attackDirectionIndicator = SelfCombatant.GetComponentInChildren<AttackDirectionIndicator>();
         }
 
         protected override void Update()
@@ -70,6 +78,20 @@ namespace Assets.Scripts.Combat.Skills
             }
             return didStopSkill;
         }
+
+        protected override void StartSkillAnimation()
+        {
+            if (ShouldShowAttackIndicator)
+            {
+                if (attackDirectionIndicator != null)
+                {
+                    attackDirectionIndicator.IndicateAttackOnTarget(Target);
+                }
+            }
+
+            base.StartSkillAnimation();
+        }
+
         /// <summary>
         /// Called when the skill animation completes.
         /// Default implementation will stop using the skill if this method was called sufficient amount of times, <see cref="Repetitions"/>

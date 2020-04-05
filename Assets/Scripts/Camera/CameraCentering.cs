@@ -11,11 +11,9 @@ namespace Assets.Scripts.Camera
     /// </summary>
     public class CameraCentering : MonoBehaviour
     {
-        CombatantsManager combatantsManager;
         private Grid grid;
         private void Awake()
         {
-            combatantsManager = FindObjectOfType<CombatantsManager>();
             grid = FindObjectOfType<Grid>();
         }
         // Start is called before the first frame update

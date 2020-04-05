@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Assets.Scripts.AI.MonsterAI
 {
-    public class LeaderAi: MonsterAiBase
+    public class LeaderAi : MonsterAiBase
     {
         public float HealingAuraMoveToRange = 2;
         public TargetedSkill TargetHeroSkill;
@@ -28,6 +28,10 @@ namespace Assets.Scripts.AI.MonsterAI
         protected override void OnActionRequired()
         {
             var target = GetCurrentTarget() as Hero;
+            if (target == null)
+            {
+                // Heroes are dead.
+            }
             var alliedMonsters = CombatantsManager.GetOpponentsFor(ControlledCombatant, onlyAlive: true).ToArray();
             // Targeting is unnecessary when fighting alongside a low amount of monsters.
             if (target.AiTargetPriority == AiTargetPriority.High && alliedMonsters.Length >= 3)
