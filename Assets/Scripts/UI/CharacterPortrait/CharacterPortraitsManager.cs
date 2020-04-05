@@ -1,42 +1,42 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using Assets.Scripts.Combat;
 using UnityEngine;
 
-public class CharacterPortraitsManager: MonoBehaviour
+namespace Assets.Scripts.UI.CharacterPortrait
 {
-    public List<CharacterPortrait> AvailablePortraitWidgets;
-    private CombatantsManager combatantsManager;
+    public class CharacterPortraitsManager: MonoBehaviour
+    {
+        public List<CharacterPortrait> AvailablePortraitWidgets;
+        private CombatantsManager combatantsManager;
 
-    void Awake() 
-    {
-        combatantsManager = FindObjectOfType<CombatantsManager>();
-    }
-    void Start()
-    {
-        UpdatePortraits();
-    }
-
-    void Update()
-    {
-        UpdatePortraits();
-    }
-
-    void UpdatePortraits()
-    {
-        var currentPartyMembers = combatantsManager.PlayerCharacters;
-        for (int i = 0; i < AvailablePortraitWidgets.Count; ++i)
+        void Awake() 
         {
-            if (i < currentPartyMembers.Count)
+            combatantsManager = FindObjectOfType<CombatantsManager>();
+        }
+        void Start()
+        {
+            UpdatePortraits();
+        }
+
+        void Update()
+        {
+            UpdatePortraits();
+        }
+
+        void UpdatePortraits()
+        {
+            var currentPartyMembers = combatantsManager.PlayerCharacters;
+            for (int i = 0; i < AvailablePortraitWidgets.Count; ++i)
             {
-                AvailablePortraitWidgets[i].gameObject.SetActive(true);
-                AvailablePortraitWidgets[i].RepresentedHero = currentPartyMembers[i];
-            }
-            else
-            {
-                AvailablePortraitWidgets[i].gameObject.SetActive(false);
+                if (i < currentPartyMembers.Count)
+                {
+                    AvailablePortraitWidgets[i].gameObject.SetActive(true);
+                    AvailablePortraitWidgets[i].RepresentedHero = currentPartyMembers[i];
+                }
+                else
+                {
+                    AvailablePortraitWidgets[i].gameObject.SetActive(false);
+                }
             }
         }
     }

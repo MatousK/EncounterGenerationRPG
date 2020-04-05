@@ -10,8 +10,6 @@ namespace Assets.ProceduralLevelGenerator.Scripts.GeneratorPipeline.DungeonGener
 	public class DungeonGeneratorPipelineInspector : Editor
 	{
 		private ReorderableList list;
-		private bool showPipelineSettings = true;
-		private bool showAdvancedSettings;
 
 		private void OnEnable()
 		{

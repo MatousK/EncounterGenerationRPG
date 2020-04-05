@@ -16,9 +16,9 @@
 
 		public Action OnDelete;
 
-		private GUIStyle handleStyle;
+		private readonly GUIStyle handleStyle;
 
-		private int handleWidth;
+		private readonly int handleWidth;
 
 		private bool isClickAfterContextMenu;
 

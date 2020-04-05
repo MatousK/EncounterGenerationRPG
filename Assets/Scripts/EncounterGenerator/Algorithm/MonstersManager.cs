@@ -1,33 +1,31 @@
-﻿using EncounterGenerator.Model;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Assets.Scripts.EncounterGenerator.Configuration;
+using Assets.Scripts.EncounterGenerator.Model;
 using UnityEngine;
 
-namespace EncounterGenerator.Algorithm
+namespace Assets.Scripts.EncounterGenerator.Algorithm
 {
     public class MonstersManager
     {
-        private Dictionary<GameObject, float> MonsterPriorities = new Dictionary<GameObject, float>();
+        private readonly Dictionary<GameObject, float> monsterPriorities = new Dictionary<GameObject, float>();
 
         public List<GameObject> GenerateMonsters(EncounterDefinition encounterDefinition, MonsterGroupDefinition monsterGroupDefinition)
         {
             var parameters = new GenerateMonsterGroupParameters
             {
                 RequestedMonsters = encounterDefinition,
-                MonsterPriorities = MonsterPriorities
+                MonsterPriorities = monsterPriorities
             };
             var generatedMonsters = monsterGroupDefinition.GenerateMonsterGroup(parameters);
             // Raise the chance of generating monsters that were not generated right now and reset chances of those already generated.
-            foreach (var existingMonster in MonsterPriorities.Keys.ToList())
+            foreach (var existingMonster in monsterPriorities.Keys.ToList())
             {
-                MonsterPriorities[existingMonster]++;
+                monsterPriorities[existingMonster]++;
             }
             foreach (var monster in generatedMonsters)
             {
-                MonsterPriorities[monster] = 0;
+                monsterPriorities[monster] = 0;
             }
             return generatedMonsters;
         }

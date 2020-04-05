@@ -7,20 +7,20 @@
 
 	public class NodeBasedEditorBaseOld : EditorWindow
 	{
-		public Rect windowRect = new Rect(20, 20, 120, 50);
+		public Rect WindowRect = new Rect(20, 20, 120, 50);
 
-		protected List<IEditorNodeBase> nodes;
-		protected List<ConnectionLegacy> connections;
+		protected List<IEditorNodeBase> Nodes;
+		protected List<ConnectionLegacy> Connections;
 
-		protected GUIStyle nodeStyle;
-		protected GUIStyle selectedNodeStyle;
-		protected readonly Dictionary<ConnectionPointType, GUIStyle> connectionStyles = new Dictionary<ConnectionPointType, GUIStyle>();
+		protected GUIStyle NodeStyle;
+		protected GUIStyle SelectedNodeStyle;
+		protected readonly Dictionary<ConnectionPointType, GUIStyle> ConnectionStyles = new Dictionary<ConnectionPointType, GUIStyle>();
 
-		protected Node selectedToNode;
-		protected Node selectedFromNode;
+		protected Node SelectedToNode;
+		protected Node SelectedFromNode;
 
-		protected Vector2 offset;
-		protected Vector2 drag;
+		protected Vector2 Offset;
+		protected Vector2 Drag;
 
 		public NodeBasedEditorBaseOld()
 		{
@@ -29,38 +29,49 @@
 
 		public virtual void OnEnable()
 		{
-			nodeStyle = new GUIStyle();
-			nodeStyle.normal.background = EditorGUIUtility.Load("builtin skins/darkskin/images/node3.png") as Texture2D;
-			nodeStyle.border = new RectOffset(12, 12, 12, 12);
-			nodeStyle.alignment = TextAnchor.MiddleCenter;
-			nodeStyle.normal.textColor = Color.white;
+            NodeStyle = new GUIStyle
+            {
+                normal =
+                {
+                    background = EditorGUIUtility.Load("builtin skins/darkskin/images/node3.png") as Texture2D
+                },
+                border = new RectOffset(12, 12, 12, 12),
+                alignment = TextAnchor.MiddleCenter
+            };
+            NodeStyle.normal.textColor = Color.white;
 
-			selectedNodeStyle = new GUIStyle();
-			selectedNodeStyle.normal.background = EditorGUIUtility.Load("builtin skins/darkskin/images/node1 on.png") as Texture2D;
-			selectedNodeStyle.border = new RectOffset(12, 12, 12, 12);
+            SelectedNodeStyle = new GUIStyle
+            {
+                normal =
+                {
+                    background =
+                        EditorGUIUtility.Load("builtin skins/darkskin/images/node1 on.png") as Texture2D
+                },
+                border = new RectOffset(12, 12, 12, 12)
+            };
 
-			connectionStyles.Add(ConnectionPointType.Left, new GUIStyle
+            ConnectionStyles.Add(ConnectionPointType.Left, new GUIStyle
 			{
 				normal = {background = EditorGUIUtility.Load("builtin skins/darkskin/images/btn left.png") as Texture2D},
 				active = {background = EditorGUIUtility.Load("builtin skins/darkskin/images/btn left on.png") as Texture2D},
 				border = new RectOffset(4, 4, 12, 12)
 			});
 
-			connectionStyles.Add(ConnectionPointType.Right, new GUIStyle
+			ConnectionStyles.Add(ConnectionPointType.Right, new GUIStyle
 			{
 				normal = { background = EditorGUIUtility.Load("builtin skins/darkskin/images/btn right.png") as Texture2D },
 				active = { background = EditorGUIUtility.Load("builtin skins/darkskin/images/btn right on.png") as Texture2D },
 				border = new RectOffset(4, 4, 12, 12)
 			});
 
-			connectionStyles.Add(ConnectionPointType.Top, new GUIStyle
+			ConnectionStyles.Add(ConnectionPointType.Top, new GUIStyle
 			{
 				normal = { background = EditorGUIUtility.Load("builtin skins/darkskin/images/btn right.png") as Texture2D},
 				active = { background = EditorGUIUtility.Load("builtin skins/darkskin/images/btn right on.png") as Texture2D},
 				border = new RectOffset(4, 4, 12, 12)
 			});
 
-			connectionStyles.Add(ConnectionPointType.Bottom, new GUIStyle
+			ConnectionStyles.Add(ConnectionPointType.Bottom, new GUIStyle
 			{
 				normal = { background = EditorGUIUtility.Load("builtin skins/darkskin/images/btn right.png") as Texture2D },
 				active = { background = EditorGUIUtility.Load("builtin skins/darkskin/images/btn right on.png") as Texture2D },
@@ -93,8 +104,8 @@
 			Handles.BeginGUI();
 			Handles.color = new Color(gridColor.r, gridColor.g, gridColor.b, gridOpacity);
 
-			offset += drag * 0.5f;
-			Vector3 newOffset = new Vector3(offset.x % gridSpacing, offset.y % gridSpacing, 0);
+			Offset += Drag * 0.5f;
+			Vector3 newOffset = new Vector3(Offset.x % gridSpacing, Offset.y % gridSpacing, 0);
 
 			for (int i = 0; i < widthDivs; i++)
 			{
@@ -111,30 +122,26 @@
 		}
 
 		private void DrawNodes()
-		{
-			if (nodes != null)
-			{
-				for (int i = 0; i < nodes.Count; i++)
-				{
-					nodes[i].Draw();
-				}
-			}
-		}
+        {
+            if (Nodes == null) return;
+            foreach (var node in Nodes)
+            {
+                node.Draw();
+            }
+        }
 
 		private void DrawConnections()
-		{
-			if (connections != null)
-			{
-				for (int i = 0; i < connections.Count; i++)
-				{
-					connections[i].Draw();
-				}
-			}
-		}
+        {
+            if (Connections == null) return;
+            foreach (var connection in Connections)
+            {
+                connection.Draw();
+            }
+        }
 
 		protected virtual void ProcessEvents(Event e)
 		{
-			drag = Vector2.zero;
+			Drag = Vector2.zero;
 
 			switch (e.type)
 			{
@@ -161,45 +168,17 @@
 
 		private void ProcessNodeEvents(Event e)
 		{
-			if (nodes != null)
+			if (Nodes != null)
 			{
-				for (int i = nodes.Count - 1; i >= 0; i--)
+				for (int i = Nodes.Count - 1; i >= 0; i--)
 				{
-					bool guiChanged = nodes[i].ProcessEvents(e);
+					bool guiChanged = Nodes[i].ProcessEvents(e);
 
 					if (guiChanged)
 					{
 						GUI.changed = true;
 					}
 				}
-			}
-		}
-
-		private void DrawConnectionLine(Event e)
-		{
-			if (selectedToNode != null && selectedFromNode == null)
-			{
-				Handles.DrawLine(
-					selectedToNode.rect.center,
-					e.mousePosition
-				);
-
-				GUI.changed = true;
-			}
-
-			if (selectedFromNode != null && selectedToNode == null)
-			{
-				Handles.DrawBezier(
-					selectedFromNode.rect.center,
-					e.mousePosition,
-					selectedFromNode.rect.center - Vector2.left * 50f,
-					e.mousePosition + Vector2.left * 50f,
-					Color.white,
-					null,
-					2f
-				);
-
-				GUI.changed = true;
 			}
 		}
 
@@ -210,43 +189,43 @@
 
 		private void OnDrag(Vector2 delta)
 		{
-			drag = delta;
+			Drag = delta;
 
-			if (nodes != null)
-			{
-				for (int i = 0; i < nodes.Count; i++)
-				{
-					nodes[i].Drag(delta);
-				}
-			}
+			if (Nodes != null)
+            {
+                foreach (var node in Nodes)
+                {
+                    node.Drag(delta);
+                }
+            }
 
 			GUI.changed = true;
 		}
 
 		protected void OnClickNode(Node node)
 		{
-			if (node.isSelected)
+			if (node.IsSelected)
 			{
-				if (selectedFromNode == null)
+				if (SelectedFromNode == null)
 				{
 					Debug.Log("select from");
-					selectedFromNode = node;
+					SelectedFromNode = node;
 				}
 				else
 				{
-					selectedToNode = node;
+					SelectedToNode = node;
 					CreateConnection();
 					ClearConnectionSelection();
 				}
 			}
-			else if (selectedFromNode == node)
+			else if (SelectedFromNode == node)
 			{
 				Debug.Log("reset from");
-				selectedFromNode = null;
+				SelectedFromNode = null;
 			}
 		}
 
-		protected void OnClickConnectionPoint(ConnectionPoint point)
+		protected void OnClickConnectionPoint()
 		{
 			//if (selectedToNode == null)
 			//{
@@ -264,7 +243,7 @@
 			//}
 		}
 
-		protected void OnClickRemoveNode(Node node)
+		protected void OnClickRemoveNode()
 		{
 			//if (connections != null)
 			//{
@@ -291,26 +270,26 @@
 
 		protected void OnClickRemoveConnection(ConnectionLegacy connection)
 		{
-			connections.Remove(connection);
+			Connections.Remove(connection);
 		}
 
 		private void CreateConnection()
 		{
-			if (connections == null)
+			if (Connections == null)
 			{
-				connections = new List<ConnectionLegacy>();
+				Connections = new List<ConnectionLegacy>();
 			}
 
-			connections.Add(new ConnectionLegacy(selectedToNode, selectedFromNode, OnClickRemoveConnection));
+			Connections.Add(new ConnectionLegacy(SelectedToNode, SelectedFromNode, OnClickRemoveConnection));
 		}
 
 		private void ClearConnectionSelection()
 		{
-			selectedFromNode?.SetSelected(false);
-			selectedToNode?.SetSelected(false);
+			SelectedFromNode?.SetSelected(false);
+			SelectedToNode?.SetSelected(false);
 			
-			selectedToNode = null;
-			selectedFromNode = null;
+			SelectedToNode = null;
+			SelectedFromNode = null;
 		}
 	}
 }

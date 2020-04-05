@@ -1,4 +1,6 @@
-﻿namespace Assets.ProceduralLevelGenerator.Scripts.Data.Graphs
+﻿using Assets.Scripts.DungeonGenerator;
+
+namespace Assets.ProceduralLevelGenerator.Scripts.Data.Graphs
 {
 	using UnityEngine;
 

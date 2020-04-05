@@ -1,8 +1,11 @@
-﻿public enum MonsterRole
+﻿namespace Assets.Scripts.Combat
 {
-    Sniper,
-    Brute,
-    Lurker,
-    Minion,
-    Leader
+    public enum MonsterRole
+    {
+        Sniper,
+        Brute,
+        Lurker,
+        Minion,
+        Leader
+    }
 }

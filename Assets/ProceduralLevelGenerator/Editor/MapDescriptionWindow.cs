@@ -7,7 +7,7 @@
 
 	public class MapDescriptionWindow : EditorWindow
 	{
-		public Rect windowRect = new Rect(20, 20, 120, 50);
+		public Rect WindowRect = new Rect(20, 20, 120, 50);
 
 		private List<Node> nodes;
 		private List<ConnectionLegacy> connections;
@@ -29,15 +29,26 @@
 
 		private void OnEnable()
 		{
-			nodeStyle = new GUIStyle();
-			nodeStyle.normal.background = EditorGUIUtility.Load("builtin skins/darkskin/images/node1.png") as Texture2D;
-			nodeStyle.border = new RectOffset(12, 12, 12, 12);
+            nodeStyle = new GUIStyle
+            {
+                normal =
+                {
+                    background = EditorGUIUtility.Load("builtin skins/darkskin/images/node1.png") as Texture2D
+                },
+                border = new RectOffset(12, 12, 12, 12)
+            };
 
-			selectedNodeStyle = new GUIStyle();
-			selectedNodeStyle.normal.background = EditorGUIUtility.Load("builtin skins/darkskin/images/node1 on.png") as Texture2D;
-			selectedNodeStyle.border = new RectOffset(12, 12, 12, 12);
+            selectedNodeStyle = new GUIStyle
+            {
+                normal =
+                {
+                    background =
+                        EditorGUIUtility.Load("builtin skins/darkskin/images/node1 on.png") as Texture2D
+                },
+                border = new RectOffset(12, 12, 12, 12)
+            };
 
-			connectionStyles.Add(ConnectionPointType.Left, new GUIStyle
+            connectionStyles.Add(ConnectionPointType.Left, new GUIStyle
 			{
 				normal = {background = EditorGUIUtility.Load("builtin skins/darkskin/images/btn left.png") as Texture2D},
 				active = {background = EditorGUIUtility.Load("builtin skins/darkskin/images/btn left on.png") as Texture2D},
@@ -109,26 +120,22 @@
 		}
 
 		private void DrawNodes()
-		{
-			if (nodes != null)
-			{
-				for (int i = 0; i < nodes.Count; i++)
-				{
-					nodes[i].Draw();
-				}
-			}
-		}
+        {
+            if (nodes == null) return;
+            foreach (var node in nodes)
+            {
+                node.Draw();
+            }
+        }
 
 		private void DrawConnections()
-		{
-			if (connections != null)
-			{
-				for (int i = 0; i < connections.Count; i++)
-				{
-					connections[i].Draw();
-				}
-			}
-		}
+        {
+            if (connections == null) return;
+            foreach (var connection in connections)
+            {
+                connection.Draw();
+            }
+        }
 
 		private void ProcessEvents(Event e)
 		{
@@ -173,34 +180,6 @@
 			}
 		}
 
-		private void DrawConnectionLine(Event e)
-		{
-			if (selectedToNode != null && selectedFromNode == null)
-			{
-				Handles.DrawLine(
-					selectedToNode.rect.center,
-					e.mousePosition
-				);
-
-				GUI.changed = true;
-			}
-
-			if (selectedFromNode != null && selectedToNode == null)
-			{
-				Handles.DrawBezier(
-					selectedFromNode.rect.center,
-					e.mousePosition,
-					selectedFromNode.rect.center - Vector2.left * 50f,
-					e.mousePosition + Vector2.left * 50f,
-					Color.white,
-					null,
-					2f
-				);
-
-				GUI.changed = true;
-			}
-		}
-
 		private void ProcessContextMenu(Vector2 mousePosition)
 		{
 			GenericMenu genericMenu = new GenericMenu();
@@ -213,12 +192,12 @@
 			drag = delta;
 
 			if (nodes != null)
-			{
-				for (int i = 0; i < nodes.Count; i++)
-				{
-					nodes[i].Drag(delta);
-				}
-			}
+            {
+                foreach (var node in nodes)
+                {
+                    node.Drag(delta);
+                }
+            }
 
 			GUI.changed = true;
 		}
@@ -235,7 +214,7 @@
 
 		private void OnClickNode(Node node)
 		{
-			if (node.isSelected)
+			if (node.IsSelected)
 			{
 				if (selectedFromNode == null)
 				{

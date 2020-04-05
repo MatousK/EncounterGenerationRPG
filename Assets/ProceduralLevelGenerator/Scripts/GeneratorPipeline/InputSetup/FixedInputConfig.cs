@@ -1,4 +1,6 @@
-﻿namespace Assets.ProceduralLevelGenerator.Scripts.GeneratorPipeline.InputSetup
+﻿using Assets.Scripts.DungeonGenerator;
+
+namespace Assets.ProceduralLevelGenerator.Scripts.GeneratorPipeline.InputSetup
 {
 	using System;
 	using System.Collections.Generic;

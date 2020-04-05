@@ -1,74 +1,74 @@
-﻿using Assets.ProceduralLevelGenerator.Scripts.GeneratorPipeline.Payloads.Interfaces;
-using Assets.ProceduralLevelGenerator.Scripts.Pipeline;
-using System.Collections;
-using System.Linq;
+﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using Assets.ProceduralLevelGenerator.Scripts.GeneratorPipeline.Payloads.Interfaces;
+using Assets.ProceduralLevelGenerator.Scripts.Pipeline;
 using UnityEngine;
 using UnityEngine.Tilemaps;
-using Assets.ProceduralLevelGenerator.Scripts.Data.Graphs;
-using Assets.ProceduralLevelGenerator.Scripts.GeneratorPipeline.Payloads;
-using System;
 
-public class RoomExporterTask<TPayload> : ConfigurablePipelineTask<TPayload, RoomExporterConfig>
-    where TPayload : class, IGeneratorPayload, IGraphBasedGeneratorPayload, INamedTilemapsPayload, IRoomToIntMappingPayload<RoomWithEncounter>
+namespace Assets.Scripts.DungeonGenerator
 {
-    public override void Process()
+    public class RoomExporterTask<TPayload> : ConfigurablePipelineTask<TPayload, RoomExporterConfig>
+        where TPayload : class, IGeneratorPayload, IGraphBasedGeneratorPayload, INamedTilemapsPayload, IRoomToIntMappingPayload<RoomWithEncounter>
     {
-        var roomsLayout = Payload.GameObject.AddComponent<RoomsLayout>();
-        var roomsData = Payload.Layout.GetAllRoomInfo();
-        bool isFirstRoom = true;
-        foreach (var room in roomsData.Where(room => !room.IsCorridor))
+        public override void Process()
         {
-            var roomInfo = new RoomInfo
+            var roomsLayout = Payload.GameObject.AddComponent<RoomsLayout>();
+            var roomsData = Payload.Layout.GetAllRoomInfo();
+            bool isFirstRoom = true;
+            foreach (var room in roomsData.Where(room => !room.IsCorridor))
             {
-                IsStartingRoom = isFirstRoom
-            };
-            if (isFirstRoom)
-            {
-                roomInfo.ExploreRoom();
-            }
-            var roomGraphData = GetRoomData(room.GeneratorData.Node);
-            roomInfo.RoomEncounter = roomGraphData.EncounterConfiguration;
-            roomInfo.TreasureChestsMax = roomGraphData.TreasureChestsMax;
-            roomInfo.TreasureChestsMin = roomGraphData.TreasureChestsMin;
-            isFirstRoom = false;
-            roomInfo.RoomSquaresPositions = GetRoomSquares(room).ToList();
-            roomsLayout.Rooms.Add(roomInfo);
-        }
-
-        foreach (var corridor in roomsData.Where(room => room.IsCorridor))
-        {
-            foreach (var connectingRoom in corridor.Doors.Select(doors => doors.ConnectedRoom))
-            {
-                var roomInfo = roomsLayout.Rooms[connectingRoom];
-                roomInfo.ConnectedCorridorsSquares.AddRange(GetRoomSquares(corridor));
-            }
-        }
-    }
-
-    HashSet<Vector2Int> GetRoomSquares(Assets.ProceduralLevelGenerator.Scripts.GeneratorPipeline.RoomTemplates.RoomInfo<int> room)
-    {
-        var allTilemaps = room.Room.gameObject.GetComponentsInChildren<Tilemap>();
-        HashSet<Vector2Int> roomSquares = new HashSet<Vector2Int>();
-        foreach (var tilemap in allTilemaps)
-        {
-            foreach (var position in tilemap.cellBounds.allPositionsWithin)
-            {
-                if (tilemap.GetTile(position) != null)
+                var roomInfo = new RoomInfo
                 {
-                    roomSquares.Add(new Vector2Int(position.x + room.Position.x, position.y + room.Position.y));
+                    IsStartingRoom = isFirstRoom
+                };
+                if (isFirstRoom)
+                {
+                    roomInfo.ExploreRoom();
+                }
+                var roomGraphData = GetRoomData(room.GeneratorData.Node);
+                roomInfo.RoomEncounter = roomGraphData.EncounterConfiguration;
+                roomInfo.TreasureChestsMax = roomGraphData.TreasureChestsMax;
+                roomInfo.TreasureChestsMin = roomGraphData.TreasureChestsMin;
+                isFirstRoom = false;
+                roomInfo.RoomSquaresPositions = GetRoomSquares(room).ToList();
+                roomsLayout.Rooms.Add(roomInfo);
+            }
+
+            foreach (var corridor in roomsData.Where(room => room.IsCorridor))
+            {
+                foreach (var connectingRoom in corridor.Doors.Select(doors => doors.ConnectedRoom))
+                {
+                    var roomInfo = roomsLayout.Rooms[connectingRoom];
+                    roomInfo.ConnectedCorridorsSquares.AddRange(GetRoomSquares(corridor));
                 }
             }
         }
-        return roomSquares;
-    }
 
-    RoomWithEncounter GetRoomData(int index)
-    {
-        if (!Payload.RoomToIntMapping.TryGetKey(index, out RoomWithEncounter roomGraphData))
+        HashSet<Vector2Int> GetRoomSquares(Assets.ProceduralLevelGenerator.Scripts.GeneratorPipeline.RoomTemplates.RoomInfo<int> room)
         {
-            throw new ArgumentException("Room graph data invalid");
+            var allTilemaps = room.Room.gameObject.GetComponentsInChildren<Tilemap>();
+            HashSet<Vector2Int> roomSquares = new HashSet<Vector2Int>();
+            foreach (var tilemap in allTilemaps)
+            {
+                foreach (var position in tilemap.cellBounds.allPositionsWithin)
+                {
+                    if (tilemap.GetTile(position) != null)
+                    {
+                        roomSquares.Add(new Vector2Int(position.x + room.Position.x, position.y + room.Position.y));
+                    }
+                }
+            }
+            return roomSquares;
         }
-        return roomGraphData;
+
+        RoomWithEncounter GetRoomData(int index)
+        {
+            if (!Payload.RoomToIntMapping.TryGetKey(index, out RoomWithEncounter roomGraphData))
+            {
+                throw new ArgumentException("Room graph data invalid");
+            }
+            return roomGraphData;
+        }
     }
 }

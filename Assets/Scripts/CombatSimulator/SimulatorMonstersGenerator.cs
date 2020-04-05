@@ -1,17 +1,17 @@
-﻿using EncounterGenerator.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using Assets.Scripts.EncounterGenerator.Configuration;
+using Assets.Scripts.EncounterGenerator.Model;
 using UnityEngine;
 
-public class SimulatorMonstersGenerator : MonoBehaviour
+namespace Assets.Scripts.CombatSimulator
 {
-    public MonsterGroupDefinition AvailableMonsters;
-
-    public List<GameObject> GenerateMonsters(EncounterDefinition encounter)
+    public class SimulatorMonstersGenerator : MonoBehaviour
     {
-        return AvailableMonsters.GenerateMonsterGroup(new GenerateMonsterGroupParameters { RequestedMonsters = encounter });
+        public MonsterGroupDefinition AvailableMonsters;
+
+        public List<GameObject> GenerateMonsters(EncounterDefinition encounter)
+        {
+            return AvailableMonsters.GenerateMonsterGroup(new GenerateMonsterGroupParameters { RequestedMonsters = encounter });
+        }
     }
 }

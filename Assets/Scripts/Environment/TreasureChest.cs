@@ -3,70 +3,75 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Assets.Scripts.Combat;
+using Assets.Scripts.Input;
 using UnityEngine;
 
-[Serializable]
-class DropProbability
+namespace Assets.Scripts.Environment
 {
-    public GameObject ObjectToDrop;
-    /// <summary>
-    /// Weight influences the probability of the drop. If one object has weight 6 and second weight 2, the first one will be 3x as likely to drop.
-    /// </summary>
-    public int Weight;
-}
-
-class TreasureChest : MonoBehaviour
-{
-    public DropProbability[] DropTable;
-    public Sprite OpenedSprite;
-    public Sprite ClosedSprite;
-    GameObject droppedPowerup;
-    bool isOpened;
-
-    private void Awake()
+    [Serializable]
+    class DropProbability
     {
-        GetComponent<InteractableObject>().OnInteractionTriggered += OnChestClicked;
-        UpdateSprite();
+        public GameObject ObjectToDrop = null;
+        /// <summary>
+        /// Weight influences the probability of the drop. If one object has weight 6 and second weight 2, the first one will be 3x as likely to drop.
+        /// </summary>
+        public int Weight = 0;
     }
 
-    private void OnChestClicked(object chest, Hero openingHero)
+    class TreasureChest : MonoBehaviour
     {
-        if (!isOpened)
+        public DropProbability[] DropTable = null;
+        public Sprite OpenedSprite = null;
+        public Sprite ClosedSprite = null;
+        GameObject droppedPowerup;
+        bool isOpened;
+
+        private void Awake()
         {
-            isOpened = true;
+            GetComponent<InteractableObject>().OnInteractionTriggered += OnChestClicked;
             UpdateSprite();
-            SpawnDrop();
         }
-        else if (droppedPowerup != null)
+
+        private void OnChestClicked(object chest, Hero openingHero)
         {
-            // The chest is opened, and powerup not applied - apply it.
-            droppedPowerup.GetComponent<PowerUp>().ApplyPowerup(openingHero);
-            Destroy(droppedPowerup);
+            if (!isOpened)
+            {
+                isOpened = true;
+                UpdateSprite();
+                SpawnDrop();
+            }
+            else if (droppedPowerup != null)
+            {
+                // The chest is opened, and powerup not applied - apply it.
+                droppedPowerup.GetComponent<PowerUp>().ApplyPowerup(openingHero);
+                Destroy(droppedPowerup);
+            }
         }
-    }
 
-    void SpawnDrop()
-    {
-        var random = new System.Random();
-        var totalProbability = DropTable.Sum(dropDefinition => dropDefinition.Weight);
-        var itemToDrop = random.Next(totalProbability);
-        // We simulate each element being in the array Weight times.
-        var itemToDropIndex = 0;
-        while (itemToDrop >= DropTable[itemToDropIndex].Weight)
+        void SpawnDrop()
         {
-            itemToDrop -= DropTable[itemToDropIndex].Weight;
-            itemToDropIndex++;
+            var random = new System.Random();
+            var totalProbability = DropTable.Sum(dropDefinition => dropDefinition.Weight);
+            var itemToDrop = random.Next(totalProbability);
+            // We simulate each element being in the array Weight times.
+            var itemToDropIndex = 0;
+            while (itemToDrop >= DropTable[itemToDropIndex].Weight)
+            {
+                itemToDrop -= DropTable[itemToDropIndex].Weight;
+                itemToDropIndex++;
+            }
+            SpawnDrop(DropTable[itemToDropIndex].ObjectToDrop);
         }
-        SpawnDrop(DropTable[itemToDropIndex].ObjectToDrop);
-    }
 
-    void SpawnDrop(GameObject toSpawn)
-    {
-        droppedPowerup = Instantiate(toSpawn, transform, false);
-    }
+        void SpawnDrop(GameObject toSpawn)
+        {
+            droppedPowerup = Instantiate(toSpawn, transform, false);
+        }
 
-    void UpdateSprite()
-    {
-        GetComponent<SpriteRenderer>().sprite = isOpened ? OpenedSprite : ClosedSprite;
+        void UpdateSprite()
+        {
+            GetComponent<SpriteRenderer>().sprite = isOpened ? OpenedSprite : ClosedSprite;
+        }
     }
 }

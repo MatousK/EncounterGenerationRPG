@@ -1,57 +1,56 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class FloatingTextController : MonoBehaviour
+namespace Assets.Scripts.UI
 {
-    public GameObject TextTemplate;
-    public GameObject DialogText;
-
-    double? hideDialogInSeconds;
-    private void Update()
+    public class FloatingTextController : MonoBehaviour
     {
-        if (hideDialogInSeconds == null)
+        public GameObject TextTemplate;
+        public GameObject DialogText;
+
+        double? hideDialogInSeconds;
+        private void Update()
         {
-            return;
+            if (hideDialogInSeconds == null)
+            {
+                return;
+            }
+            hideDialogInSeconds = hideDialogInSeconds.Value - Time.deltaTime;
+            if (hideDialogInSeconds <= 0)
+            {
+                DialogText.SetActive(false);
+                hideDialogInSeconds = null;
+            }
         }
-        hideDialogInSeconds = hideDialogInSeconds.Value - Time.deltaTime;
-        if (hideDialogInSeconds <= 0)
+
+        public void ShowDamageIndicator(int damage)
         {
-            DialogText.SetActive(false);
-            hideDialogInSeconds = null;
+            ShowDisappearingText("-" + damage.ToString(), Color.red);
         }
-    }
 
-    public void ShowDamageIndicator(int damage)
-    {
-        ShowDisappearingText("-" + damage.ToString(), Color.red);
-    }
+        public void ShowHealingIndicator(int healAmount)
+        {
+            ShowDisappearingText("+ " + healAmount.ToString(), Color.green);
+        }
 
-    public void ShowHealingIndicator(int healAmount)
-    {
-        ShowDisappearingText("+ " + healAmount.ToString(), Color.green);
-    }
+        public void ShowTextLine(String text, Color textColor, double? secondsToBeShown = 2)
+        {
+            var textComponent = DialogText.GetComponentInChildren<Text>();
+            textComponent.text = text;
+            textComponent.color = textColor;
+            hideDialogInSeconds = secondsToBeShown;
+            DialogText.SetActive(true);
+        }
 
-    public void ShowTextLine(String text, Color textColor, double? secondsToBeShown = 2)
-    {
-        var textComponent = DialogText.GetComponentInChildren<Text>();
-        textComponent.text = text;
-        textComponent.color = textColor;
-        hideDialogInSeconds = secondsToBeShown;
-        DialogText.SetActive(true);
-    }
-
-    void ShowDisappearingText(String text, Color textColor)
-    {
-        var textToShow = Instantiate(TextTemplate, transform, false);
-        var textComponent = textToShow.GetComponentInChildren<Text>();
-        textComponent.color = textColor;
-        textComponent.text = text;
-        textToShow.SetActive(true);
-        textToShow.GetComponent<Animator>().SetTrigger("Disappear");
+        void ShowDisappearingText(String text, Color textColor)
+        {
+            var textToShow = Instantiate(TextTemplate, transform, false);
+            var textComponent = textToShow.GetComponentInChildren<Text>();
+            textComponent.color = textColor;
+            textComponent.text = text;
+            textToShow.SetActive(true);
+            textToShow.GetComponent<Animator>().SetTrigger("Disappear");
+        }
     }
 }

@@ -1,33 +1,36 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Assets.Scripts.Camera;
+using Assets.Scripts.DungeonGenerator;
 using UnityEngine;
-/// <summary>
-/// Responsible for spawning the party when the game starts.
-/// </summary>
-public class InitialPartyManager: MonoBehaviour
+
+namespace Assets.Scripts.Combat
 {
-    public List<GameObject> InitialParty;
-
-    private CameraCentering cameraCentering;
-    private CombatantSpawnManager spawnManager;
-    private RoomsLayout roomsLayout;
-    private void Awake()
+    /// <summary>
+    /// Responsible for spawning the party when the game starts.
+    /// </summary>
+    public class InitialPartyManager: MonoBehaviour
     {
-        cameraCentering = FindObjectOfType<CameraCentering>();
-        spawnManager = FindObjectOfType<CombatantSpawnManager>();
-        roomsLayout = FindObjectOfType<RoomsLayout>();
-    }
+        public List<GameObject> InitialParty;
 
-    private void Start()
-    {
-        var startingRoom = roomsLayout.Rooms.First(room => room.IsStartingRoom);
-        foreach (var partyMember in InitialParty)
+        private CameraCentering cameraCentering;
+        private CombatantSpawnManager spawnManager;
+        private RoomsLayout roomsLayout;
+        private void Awake()
         {
-            spawnManager.SpawnCombatant(partyMember, startingRoom);
+            cameraCentering = FindObjectOfType<CameraCentering>();
+            spawnManager = FindObjectOfType<CombatantSpawnManager>();
+            roomsLayout = FindObjectOfType<RoomsLayout>();
         }
-        cameraCentering.Center();
+
+        private void Start()
+        {
+            var startingRoom = roomsLayout.Rooms.First(room => room.IsStartingRoom);
+            foreach (var partyMember in InitialParty)
+            {
+                spawnManager.SpawnCombatant(partyMember, startingRoom);
+            }
+            cameraCentering.Center(startingRoom);
+        }
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace Assets.ProceduralLevelGenerator.Editor.LevelGraphEditor
+﻿using Assets.Scripts.DungeonGenerator;
+
+namespace Assets.ProceduralLevelGenerator.Editor.LevelGraphEditor
 {
 	using System.Collections.Generic;
 	using System.Linq;
@@ -26,8 +28,6 @@
 		private ConnectionProgressNode connectionProgress;
 
 		private EditorMode editorMode = EditorMode.Drag;
-
-		private int selectedToolbar = 0;
 
 		private int currentPickerWindow;
 
@@ -72,17 +72,21 @@
 
 		protected void SetupStyles()
 		{
-			roomNodeStyle = new GUIStyle();
-			roomNodeStyle.normal.background = MakeTex(1, 1, new Color(0.2f, 0.2f, 0.2f, 0.85f));
-			roomNodeStyle.border = new RectOffset(12, 12, 12, 12);
-			roomNodeStyle.normal.textColor = Color.white;
+            roomNodeStyle = new GUIStyle
+            {
+                normal = {background = MakeTex(1, 1, new Color(0.2f, 0.2f, 0.2f, 0.85f))},
+                border = new RectOffset(12, 12, 12, 12)
+            };
+            roomNodeStyle.normal.textColor = Color.white;
 			roomNodeStyle.fontSize = 12;
 			roomNodeStyle.alignment = TextAnchor.MiddleCenter;
 
-			connectionHandleStyle = new GUIStyle();
-			connectionHandleStyle.normal.background = MakeTex(1, 1, new Color(0.3f, 0.3f, 0.3f, 0.6f));
-			connectionHandleStyle.border = new RectOffset(12, 12, 12, 12);
-			connectionHandleStyle.normal.textColor = Color.white;
+            connectionHandleStyle = new GUIStyle
+            {
+                normal = {background = MakeTex(1, 1, new Color(0.3f, 0.3f, 0.3f, 0.6f))},
+                border = new RectOffset(12, 12, 12, 12)
+            };
+            connectionHandleStyle.normal.textColor = Color.white;
 			connectionHandleStyle.fontSize = 12;
 			connectionHandleStyle.alignment = TextAnchor.MiddleCenter;
 		}
@@ -122,16 +126,9 @@
 			GUILayout.BeginArea(menuBar, EditorStyles.toolbar);
 			GUILayout.BeginHorizontal();
 
-			if (Data != null)
-			{
-				GUILayout.Label($"Selected graph: {Data.name}"); 
-			}
-			else
-			{
-				GUILayout.Label($"No graph selected");
-			}
+            GUILayout.Label(Data != null ? $"Selected graph: {Data.name}" : $"No graph selected");
 
-			if (GUILayout.Button(new GUIContent("Select in inspector"), EditorStyles.toolbarButton, GUILayout.Width(150)))
+            if (GUILayout.Button(new GUIContent("Select in inspector"), EditorStyles.toolbarButton, GUILayout.Width(150)))
 			{
 				if (Data != null)
 				{
@@ -236,17 +233,19 @@
 			CreateNode(room);
 		}
 
-		protected void OnStartConnection(RoomNode roomNode, Event e)
-		{
+		protected void OnStartConnection(RoomNode roomNode)
+        {
 			if (connectionFrom == null)
 			{
 				connectionFrom = roomNode;
-				connectionProgress = new ConnectionProgressNode();
-				connectionProgress.From = roomNode.Rect.center;
+				connectionProgress = new ConnectionProgressNode
+				{
+					From = roomNode.Rect.center
+				};
 			}
 		}
 
-		protected void OnEndConnection(RoomNode roomNode, Event e)
+		protected void OnEndConnection(RoomNode roomNode)
 		{
 			if (connectionFrom == null)
 				return;
@@ -276,8 +275,8 @@
 			var node = new RoomNode(data, 40, 40, roomNodeStyle, editorMode);
 
 			node.OnDelete += () => OnDeleteRoomNode(node);
-			node.OnStartConnection += (e) => OnStartConnection(node, e);
-			node.OnEndConnection += (e) => OnEndConnection(node, e);
+			node.OnStartConnection += (e) => OnStartConnection(node);
+			node.OnEndConnection += (e) => OnEndConnection(node);
 			roomNodes.Add(node);
 
 			return node;

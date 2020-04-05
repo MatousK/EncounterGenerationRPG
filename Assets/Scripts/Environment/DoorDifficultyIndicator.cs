@@ -3,41 +3,46 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Assets.Scripts.DungeonGenerator;
+using Assets.Scripts.EncounterGenerator.Configuration;
 using UnityEngine;
 
-public class DoorDifficultyIndicator : MonoBehaviour
+namespace Assets.Scripts.Environment
 {
-    public List<DifficultyColorPair> DifficultyIndicators;
-    RoomInfo ConnectedRoom;
-    Doors Doors;
-
-    private void Start()
+    public class DoorDifficultyIndicator : MonoBehaviour
     {
-        Doors = GetComponent<Doors>();
-        var allRooms = FindObjectOfType<RoomsLayout>().Rooms;
-        ConnectedRoom = allRooms[Doors.ConnectingRooms[0]];
-        UpdateDoorColor();
-    }
+        public List<DifficultyColorPair> DifficultyIndicators;
+        private RoomInfo connectedRoom;
+        Doors doors;
 
-    void UpdateDoorColor()
-    {
-        foreach (var indicator in DifficultyIndicators)
-        { 
-            if (indicator.EncounterDifficulty == ConnectedRoom.RoomEncounter.EncounterDifficulty)
-            {
-                var doorRenderers = transform.GetComponentsInChildren<SpriteRenderer>(true);
-                foreach (var renderer in doorRenderers)
+        private void Start()
+        {
+            doors = GetComponent<Doors>();
+            var allRooms = FindObjectOfType<RoomsLayout>().Rooms;
+            connectedRoom = allRooms[doors.ConnectingRooms[0]];
+            UpdateDoorColor();
+        }
+
+        void UpdateDoorColor()
+        {
+            foreach (var indicator in DifficultyIndicators)
+            { 
+                if (indicator.EncounterDifficulty == connectedRoom.RoomEncounter.EncounterDifficulty)
                 {
-                    renderer.color = indicator.Color;
+                    var doorRenderers = transform.GetComponentsInChildren<SpriteRenderer>(true);
+                    foreach (var renderer in doorRenderers)
+                    {
+                        renderer.color = indicator.Color;
+                    }
                 }
             }
         }
     }
-}
 
-[Serializable]
-public struct DifficultyColorPair
-{
-    public Color Color;
-    public EncounterDifficulty EncounterDifficulty;
+    [Serializable]
+    public struct DifficultyColorPair
+    {
+        public Color Color;
+        public EncounterDifficulty EncounterDifficulty;
+    }
 }

@@ -1,147 +1,150 @@
-﻿using Priority_Queue;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Priority_Queue;
 using UnityEngine;
 
-public abstract class AStarBase
+namespace Assets.Scripts.Movement.Pathfinding
 {
-    public AStarBase(bool[,] map, Vector2Int startPosition)
+    public abstract class AStarBase
     {
-        this.map = map;
-        this.startPosition = startPosition;
-        allNodes = new AStarNode[map.GetLength(0), map.GetLength(1)];
-        closedSet = new HashSet<Vector2Int>();
-        openSet = new FastPriorityQueue<AStarNode>(map.GetLength(0) * map.GetLength(1));
-    }
-    readonly AStarNode[,] allNodes;
-    readonly bool[,] map;
-    Vector2Int startPosition;
-    readonly HashSet<Vector2Int> closedSet;
-    readonly FastPriorityQueue<AStarNode> openSet;
-    readonly float sqrt2 = (float)(Math.Sqrt(2));
-    AStarNode closestToTarget;
-
-    public List<Vector2Int> FindPath()
-    {
-        AddToOpenSetIfBetter(startPosition, 0, null);
-        var targetNode = RunAStarLoop();
-        return ExtractPathFromTargetNode(targetNode ?? closestToTarget);
-    }
-
-    List<Vector2Int> ExtractPathFromTargetNode(AStarNode targetNode)
-    {
-        List<Vector2Int> toReturn = new List<Vector2Int>();
-        var currentNode = targetNode;
-        while (currentNode != null)
+        protected AStarBase(bool[,] map, Vector2Int startPosition)
         {
-            toReturn.Add(currentNode.Position);
-            currentNode = currentNode.PreviousNode;
+            this.map = map;
+            this.startPosition = startPosition;
+            allNodes = new AStarNode[map.GetLength(0), map.GetLength(1)];
+            closedSet = new HashSet<Vector2Int>();
+            openSet = new FastPriorityQueue<AStarNode>(map.GetLength(0) * map.GetLength(1));
         }
-        toReturn.Reverse();
-        return toReturn;
-    }
+        readonly AStarNode[,] allNodes;
+        readonly bool[,] map;
+        readonly Vector2Int startPosition;
+        readonly HashSet<Vector2Int> closedSet;
+        readonly FastPriorityQueue<AStarNode> openSet;
+        readonly float sqrt2 = (float)(Math.Sqrt(2));
+        AStarNode closestToTarget;
 
-    AStarNode RunAStarLoop()
-    {
-        while (openSet.Count != 0)
+        public List<Vector2Int> FindPath()
         {
-            var currentNode = openSet.Dequeue();
-            if (FoundTarget(currentNode.Position))
+            AddToOpenSetIfBetter(startPosition, 0, null);
+            var targetNode = RunAStarLoop();
+            return ExtractPathFromTargetNode(targetNode ?? closestToTarget);
+        }
+
+        List<Vector2Int> ExtractPathFromTargetNode(AStarNode targetNode)
+        {
+            List<Vector2Int> toReturn = new List<Vector2Int>();
+            var currentNode = targetNode;
+            while (currentNode != null)
             {
-                return currentNode;
+                toReturn.Add(currentNode.Position);
+                currentNode = currentNode.PreviousNode;
             }
-            closedSet.Add(currentNode.Position);
-            AddNeighboursToOpenSetIfBetter(currentNode);
+            toReturn.Reverse();
+            return toReturn;
         }
-        return null;
-    }
 
-    void AddNeighboursToOpenSetIfBetter(AStarNode node)
-    {
-        TryAddNeighbourToOpenSetIfBetter(node, -1, 0);
-        TryAddNeighbourToOpenSetIfBetter(node, 1, 0);
-        TryAddNeighbourToOpenSetIfBetter(node, -1, -1);
-        TryAddNeighbourToOpenSetIfBetter(node, 0, -1);
-        TryAddNeighbourToOpenSetIfBetter(node, 1, -1);
-        TryAddNeighbourToOpenSetIfBetter(node, -1, 1);
-        TryAddNeighbourToOpenSetIfBetter(node, 0, 1);
-        TryAddNeighbourToOpenSetIfBetter(node, 1, 1);
-    }
-
-    void TryAddNeighbourToOpenSetIfBetter(AStarNode node, int xModifier, int yModifier)
-    {
-        Vector2Int newPosition = new Vector2Int(node.Position.x + xModifier, node.Position.y + yModifier);
-        // Check if the target place is passable, if it is within bounds and if it is not yet in the closed set.
-        if (closedSet.Contains(newPosition) ||
-            newPosition.x < 0 ||
-            newPosition.y < 0 || 
-            newPosition.x >= map.GetLength(0) ||
-            newPosition.y >= map.GetLength(1) || 
-            !map[newPosition.x, newPosition.y])
+        AStarNode RunAStarLoop()
         {
-            return;
+            while (openSet.Count != 0)
+            {
+                var currentNode = openSet.Dequeue();
+                if (FoundTarget(currentNode.Position))
+                {
+                    return currentNode;
+                }
+                closedSet.Add(currentNode.Position);
+                AddNeighboursToOpenSetIfBetter(currentNode);
+            }
+            return null;
         }
-        bool isDiagonal = xModifier != 0 && yModifier != 0;
-        if (isDiagonal)
+
+        void AddNeighboursToOpenSetIfBetter(AStarNode node)
         {
-            // Diagonal movement is impossible if the squares between them are not also free - for example, north-west is only possible if both north and west are free.
-            if (!map[newPosition.x - xModifier, newPosition.y] || !map[newPosition.x, newPosition.y - yModifier])
+            TryAddNeighbourToOpenSetIfBetter(node, -1, 0);
+            TryAddNeighbourToOpenSetIfBetter(node, 1, 0);
+            TryAddNeighbourToOpenSetIfBetter(node, -1, -1);
+            TryAddNeighbourToOpenSetIfBetter(node, 0, -1);
+            TryAddNeighbourToOpenSetIfBetter(node, 1, -1);
+            TryAddNeighbourToOpenSetIfBetter(node, -1, 1);
+            TryAddNeighbourToOpenSetIfBetter(node, 0, 1);
+            TryAddNeighbourToOpenSetIfBetter(node, 1, 1);
+        }
+
+        void TryAddNeighbourToOpenSetIfBetter(AStarNode node, int xModifier, int yModifier)
+        {
+            Vector2Int newPosition = new Vector2Int(node.Position.x + xModifier, node.Position.y + yModifier);
+            // Check if the target place is passable, if it is within bounds and if it is not yet in the closed set.
+            if (closedSet.Contains(newPosition) ||
+                newPosition.x < 0 ||
+                newPosition.y < 0 || 
+                newPosition.x >= map.GetLength(0) ||
+                newPosition.y >= map.GetLength(1) || 
+                !map[newPosition.x, newPosition.y])
             {
                 return;
             }
-        }
-        var costToNeighbour = node.CostToHere + (isDiagonal ? sqrt2 : 1);
-        AddToOpenSetIfBetter(newPosition, costToNeighbour, node);
-    }
-
-    void AddToOpenSetIfBetter(Vector2Int position, float costToHere, AStarNode previousNode)
-    {
-        var oldNode = allNodes[position.x, position.y];
-        // If there was a node here, we are updating, otherwise we are adding.
-        if (oldNode != null)
-        {
-            // Heuristics are the same, enough to just compare the cost to get here.
-            if (costToHere < oldNode.CostToHere)
+            bool isDiagonal = xModifier != 0 && yModifier != 0;
+            if (isDiagonal)
             {
-                oldNode.CostToHere = costToHere;
-                oldNode.PreviousNode = previousNode;
-                openSet.UpdatePriority(oldNode, costToHere + oldNode.HeuristicEstimate);
+                // Diagonal movement is impossible if the squares between them are not also free - for example, north-west is only possible if both north and west are free.
+                if (!map[newPosition.x - xModifier, newPosition.y] || !map[newPosition.x, newPosition.y - yModifier])
+                {
+                    return;
+                }
+            }
+            var costToNeighbour = node.CostToHere + (isDiagonal ? sqrt2 : 1);
+            AddToOpenSetIfBetter(newPosition, costToNeighbour, node);
+        }
+
+        void AddToOpenSetIfBetter(Vector2Int position, float costToHere, AStarNode previousNode)
+        {
+            var oldNode = allNodes[position.x, position.y];
+            // If there was a node here, we are updating, otherwise we are adding.
+            if (oldNode != null)
+            {
+                // Heuristics are the same, enough to just compare the cost to get here.
+                if (costToHere < oldNode.CostToHere)
+                {
+                    oldNode.CostToHere = costToHere;
+                    oldNode.PreviousNode = previousNode;
+                    openSet.UpdatePriority(oldNode, costToHere + oldNode.HeuristicEstimate);
+                }
+            }
+            else
+            {
+                float heuristicEstimate = CalculateHeuristic(position);
+                allNodes[position.x, position.y] = new AStarNode(costToHere, heuristicEstimate, position, previousNode);
+                openSet.Enqueue(allNodes[position.x, position.y], allNodes[position.x, position.y].Priority);
+                // Distance to target does not change, so finding the closest position to target should be possible here.
+                float closestToTargetDistance = closestToTarget?.HeuristicEstimate ?? float.MaxValue;
+                if (closestToTargetDistance > heuristicEstimate)
+                {
+                    closestToTarget = allNodes[position.x, position.y];
+                }
             }
         }
-        else
-        {
-            float heuristicEstimate = CalculateHeuristic(position);
-            allNodes[position.x, position.y] = new AStarNode(costToHere, heuristicEstimate, position, previousNode);
-            openSet.Enqueue(allNodes[position.x, position.y], allNodes[position.x, position.y].Priority);
-            // Distance to target does not change, so finding the closest position to target should be possible here.
-            float closestToTargetDistance = closestToTarget?.HeuristicEstimate ?? float.MaxValue;
-            if (closestToTargetDistance > heuristicEstimate)
-            {
-                closestToTarget = allNodes[position.x, position.y];
-            }
-        }
+
+        protected abstract float CalculateHeuristic(Vector2Int position);
+
+        protected abstract bool FoundTarget(Vector2Int position);
     }
 
-    protected abstract float CalculateHeuristic(Vector2Int position);
-
-    protected abstract bool FoundTarget(Vector2Int position);
-}
-
-class AStarNode: FastPriorityQueueNode
-{
-    public AStarNode(float costToHere, float heuristicEstimate, Vector2Int position, AStarNode previousNode) 
+    class AStarNode: FastPriorityQueueNode
     {
-        CostToHere = costToHere;
-        HeuristicEstimate = heuristicEstimate;
-        Position = position;
-        PreviousNode = previousNode;
-        Priority = CostToHere + HeuristicEstimate;
+        public AStarNode(float costToHere, float heuristicEstimate, Vector2Int position, AStarNode previousNode) 
+        {
+            CostToHere = costToHere;
+            HeuristicEstimate = heuristicEstimate;
+            Position = position;
+            PreviousNode = previousNode;
+            Priority = CostToHere + HeuristicEstimate;
+        }
+        public float CostToHere;
+        public float HeuristicEstimate;
+        public Vector2Int Position;
+        public AStarNode PreviousNode;
     }
-    public float CostToHere;
-    public float HeuristicEstimate;
-    public Vector2Int Position;
-    public AStarNode PreviousNode;
 }

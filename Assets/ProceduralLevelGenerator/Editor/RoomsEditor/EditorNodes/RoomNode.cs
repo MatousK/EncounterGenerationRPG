@@ -1,4 +1,6 @@
-﻿namespace Assets.ProceduralLevelGenerator.Editor.RoomsEditor.EditorNodes
+﻿using System.Data;
+
+namespace Assets.ProceduralLevelGenerator.Editor.RoomsEditor.EditorNodes
 {
 	using System;
 	using System.Linq;
@@ -91,8 +93,8 @@
 		{
 			if (Data.Tilemap == null)
 				return;
-
-			GUI.Box(Rect, Data.Tilemap?.name, style);
+            var name = Data.Tilemap == null ? null : Data.Tilemap.name;
+			GUI.Box(Rect, name, style);
 
 			if (Data.Tilemap != null)
 			{

@@ -1,25 +1,26 @@
-﻿using EncounterGenerator.Configuration;
-using EncounterGenerator.Model;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Assets.Scripts.Combat;
+using Assets.Scripts.EncounterGenerator.Configuration;
+using Assets.Scripts.EncounterGenerator.Model;
+using Assets.Scripts.Extension;
 
-namespace EncounterGenerator.Algorithm
+namespace Assets.Scripts.EncounterGenerator.Algorithm
 {
     // This class can create an encounter definition based on an encounter type. It does not keep history at this moment.
     class EncounterDefinitionManager
     {
         public EncounterDefinitionManager(EncounterGeneratorConfiguration configuration, List<MonsterType> availableMonsterTypes, EncounterType encounterType)
         {
-            Configuration = configuration;
-            AvailableMonsterTypes = availableMonsterTypes;
-            EncounterType = encounterType;
+            this.configuration = configuration;
+            this.availableMonsterTypes = availableMonsterTypes;
+            this.encounterType = encounterType;
         }
-        EncounterGeneratorConfiguration Configuration;
-        List<MonsterType> AvailableMonsterTypes;
-        EncounterType EncounterType;
+
+        readonly EncounterGeneratorConfiguration configuration;
+        readonly List<MonsterType> availableMonsterTypes;
+        readonly EncounterType encounterType;
 
         /// <summary>
         /// Creates an encounter with similar overall difficulty as the encounter provided.
@@ -29,14 +30,14 @@ namespace EncounterGenerator.Algorithm
         /// <returns></returns>
         public EncounterDefinition GenerateEncounter(EncounterDefinition exampleEncounter)
         {
-            var adjustedMonsterCountToGenerate = exampleEncounter.GetAdjustedMonsterCount(Configuration);
+            var adjustedMonsterCountToGenerate = exampleEncounter.GetAdjustedMonsterCount(configuration);
             var toReturn = new EncounterDefinition { AllEncounterGroups = new List<MonsterGroup>() };
             float currentAdjustedMonsterWeight = 0;
             // We are only adding new and new monsters, so we cann
             while (currentAdjustedMonsterWeight < adjustedMonsterCountToGenerate)
             {
                 AddValidMonsterToEncounter(toReturn, adjustedMonsterCountToGenerate - currentAdjustedMonsterWeight);
-                currentAdjustedMonsterWeight = toReturn.GetAdjustedMonsterCount(Configuration);
+                currentAdjustedMonsterWeight = toReturn.GetAdjustedMonsterCount(configuration);
             }
             return toReturn;
         }
@@ -108,27 +109,27 @@ namespace EncounterGenerator.Algorithm
         {
             var hasBoss = encounter.AllEncounterGroups.Any(group => group.MonsterType.Rank == MonsterRank.Boss);
             var hasLeader = encounter.AllEncounterGroups.Any(group => group.MonsterType.Role == MonsterRole.Leader);
-            var currentOffenseDefenseRatio = encounter.GetAttackDefenseRatio(Configuration);
+            var currentOffenseDefenseRatio = encounter.GetAttackDefenseRatio(configuration);
 
-            var candidates = new List<MonsterType>(AvailableMonsterTypes);
-            candidates = FilterCandidatesResettingIfEmpty(candidates, candidate => Configuration.MonsterRankWeights[candidate.Rank] <= maxMonsterWeight);
+            var candidates = new List<MonsterType>(availableMonsterTypes);
+            candidates = FilterCandidatesResettingIfEmpty(candidates, candidate => configuration.MonsterRankWeights[candidate.Rank] <= maxMonsterWeight);
 
-            bool shouldSpawnLeader = !hasLeader && EncounterType.HasLeader;
+            bool shouldSpawnLeader = !hasLeader && encounterType.HasLeader;
             candidates = FilterCandidatesResettingIfEmpty(candidates, candidate => (candidate.Role == MonsterRole.Leader) == shouldSpawnLeader);
 
-            bool shouldSpawnBoss = !hasBoss && EncounterType.SpawnBossIfPossible;
+            bool shouldSpawnBoss = !hasBoss && encounterType.SpawnBossIfPossible;
             candidates = FilterCandidatesResettingIfEmpty(candidates, candidate => (candidate.Rank == MonsterRank.Boss) == shouldSpawnBoss);
 
-            var offenseDefenseRatioDifference = EncounterType.AttackDefenseRatio - currentOffenseDefenseRatio;
+            var offenseDefenseRatioDifference = encounterType.AttackDefenseRatio - currentOffenseDefenseRatio;
             if (offenseDefenseRatioDifference < 0)
             {
                 // Too attack oriented, spawn something more defense oriented.
-                FilterCandidatesResettingIfEmpty(candidates, candidate => Configuration.MonsterRoleAttackDefenseRatios[candidate.Role] <= currentOffenseDefenseRatio);
+                FilterCandidatesResettingIfEmpty(candidates, candidate => configuration.MonsterRoleAttackDefenseRatios[candidate.Role] <= currentOffenseDefenseRatio);
             }
             else
             {
                 // Too defense oriented, spawn something attack oriented.
-                FilterCandidatesResettingIfEmpty(candidates, candidate => Configuration.MonsterRoleAttackDefenseRatios[candidate.Role] >= currentOffenseDefenseRatio);
+                FilterCandidatesResettingIfEmpty(candidates, candidate => configuration.MonsterRoleAttackDefenseRatios[candidate.Role] >= currentOffenseDefenseRatio);
             }
 
             // Okay, so now we hopefully have a list of valid candidates.  Pick one.
@@ -161,7 +162,7 @@ namespace EncounterGenerator.Algorithm
                 relevantGroup = new MonsterGroup { MonsterType = monsterToAdd };
                 encounter.AllEncounterGroups.Add(relevantGroup);
             }
-            var selectedMonsterWeight = Configuration.MonsterRankWeights[monsterToAdd.Rank];
+            var selectedMonsterWeight = configuration.MonsterRankWeights[monsterToAdd.Rank];
             // If adding minions (or any other monster with below one weight), add it enough times that it is one standard monster
             relevantGroup.MonsterCount += selectedMonsterWeight < 1 ? (int)(1 / selectedMonsterWeight) : 1;
         }
@@ -170,7 +171,7 @@ namespace EncounterGenerator.Algorithm
         {
             var candidatesBackup = new List<MonsterType>(candidates);
             // Try to filter based on the predicate.
-            candidates = candidates.Where(candidate => predicate(candidate)).ToList();
+            candidates = candidates.Where(predicate).ToList();
             // If no matches were found, reset to previous state.
             return candidates.Any() ? candidates : candidatesBackup;
         }
@@ -182,7 +183,7 @@ namespace EncounterGenerator.Algorithm
         private bool CanDowngradeMonster(MonsterType toDowngrade)
         {
             var newRank = toDowngrade.Rank - 1;
-            return AvailableMonsterTypes.Any(monsterType => monsterType.Rank == MonsterRank.Regular && monsterType.Role == toDowngrade.Role);
+            return availableMonsterTypes.Any(monsterType => monsterType.Rank == MonsterRank.Regular && monsterType.Role == toDowngrade.Role);
         }
     }
 }

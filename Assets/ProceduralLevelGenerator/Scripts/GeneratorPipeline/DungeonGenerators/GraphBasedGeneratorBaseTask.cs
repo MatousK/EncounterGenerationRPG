@@ -102,26 +102,30 @@
 		}
 
 		protected DoorInfo<TRoom> TransformDoorInfo(IDoorInfo<TRoom> oldDoorInfo)
-		{
-			var doorLine = oldDoorInfo.DoorLine;
+        {
+            var doorLine = oldDoorInfo.DoorLine;
 
-			switch (doorLine.GetDirection())
-			{
-				case OrthogonalLine.Direction.Right:
-					return new DoorInfo<TRoom>(new Utils.OrthogonalLine(doorLine.From.ToUnityIntVector3(), doorLine.To.ToUnityIntVector3()), Vector2Int.up, oldDoorInfo.Node);
-
-				case OrthogonalLine.Direction.Left:
-					return new DoorInfo<TRoom>(new Utils.OrthogonalLine(doorLine.To.ToUnityIntVector3(), doorLine.From.ToUnityIntVector3()), Vector2Int.down, oldDoorInfo.Node);
-
-				case OrthogonalLine.Direction.Top:
-					return new DoorInfo<TRoom>(new Utils.OrthogonalLine(doorLine.From.ToUnityIntVector3(), doorLine.To.ToUnityIntVector3()), Vector2Int.left, oldDoorInfo.Node);
-
-				case OrthogonalLine.Direction.Bottom:
-					return new DoorInfo<TRoom>(new Utils.OrthogonalLine(doorLine.To.ToUnityIntVector3(), doorLine.From.ToUnityIntVector3()), Vector2Int.right, oldDoorInfo.Node);
-
-				default:
-					throw new ArgumentOutOfRangeException();
-			}
-		}
+            switch (doorLine.GetDirection())
+            {
+                case OrthogonalLine.Direction.Right:
+                    return new DoorInfo<TRoom>(
+                        new Utils.OrthogonalLine(doorLine.From.ToUnityIntVector3(), doorLine.To.ToUnityIntVector3()),
+                        Vector2Int.up, oldDoorInfo.Node);
+                case OrthogonalLine.Direction.Left:
+                    return new DoorInfo<TRoom>(
+                        new Utils.OrthogonalLine(doorLine.To.ToUnityIntVector3(), doorLine.From.ToUnityIntVector3()),
+                        Vector2Int.down, oldDoorInfo.Node);
+                case OrthogonalLine.Direction.Top:
+                    return new DoorInfo<TRoom>(
+                        new Utils.OrthogonalLine(doorLine.From.ToUnityIntVector3(), doorLine.To.ToUnityIntVector3()),
+                        Vector2Int.left, oldDoorInfo.Node);
+                case OrthogonalLine.Direction.Bottom:
+                    return new DoorInfo<TRoom>(
+                        new Utils.OrthogonalLine(doorLine.To.ToUnityIntVector3(), doorLine.From.ToUnityIntVector3()),
+                        Vector2Int.right, oldDoorInfo.Node);
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+        }
 	}
 }

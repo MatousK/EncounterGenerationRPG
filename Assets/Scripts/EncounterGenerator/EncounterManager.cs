@@ -1,54 +1,56 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using Assets.Scripts.Combat;
+using Assets.Scripts.DungeonGenerator;
+using Assets.Scripts.EncounterGenerator.Development;
+using Assets.Scripts.EncounterGenerator.Model;
+using Assets.Scripts.Environment;
 using UnityEngine;
-using EncounterGenerator;
-using EncounterGenerator.Model;
 
-class EncounterManager: MonoBehaviour
+namespace Assets.Scripts.EncounterGenerator
 {
-    // TODO: Debug, remove in release builds.
-    private StaticEncounterGenerator StaticEncounterGenerator;
-    readonly EncounterGenerator.EncounterGenerator EncounterGenerator = new EncounterGenerator.EncounterGenerator();
-    CombatantSpawnManager CombatantSpawnManager;
-    CombatantsManager CombatantsManager;
-
-    private void Start()
+    class EncounterManager: MonoBehaviour
     {
-        StaticEncounterGenerator = GetComponent<StaticEncounterGenerator>();
-        var roomsLayout = FindObjectOfType<RoomsLayout>();
-        CombatantSpawnManager = FindObjectOfType<CombatantSpawnManager>();
-        CombatantsManager = FindObjectOfType<CombatantsManager>();
-        foreach (var room in roomsLayout.Rooms)
-        {
-            room.IsExploredChanged += OnRoomExplored;
-        }
-    }
+        // TODO: Debug, remove in release builds.
+        private StaticEncounterGenerator staticEncounterGenerator;
+        readonly Assets.Scripts.EncounterGenerator.EncounterGenerator encounterGenerator = new Assets.Scripts.EncounterGenerator.EncounterGenerator();
+        CombatantSpawnManager combatantSpawnManager;
+        CombatantsManager combatantsManager;
 
-    private void OnRoomExplored(object sender, RoomExploredEventArgs exploredEventArgs)
-    {
-        var exploredRoom = sender as RoomInfo;
-        var allHeroes = CombatantsManager.PlayerCharacters;
-        var partyDefinition = new PartyDefinition { PartyMembers = allHeroes };
-        List<GameObject> encounter;
-        if (StaticEncounterGenerator != null && StaticEncounterGenerator.isActiveAndEnabled)
+        private void Start()
         {
-            encounter = StaticEncounterGenerator.GenerateEncounters(exploredRoom.RoomEncounter, partyDefinition);
+            staticEncounterGenerator = GetComponent<StaticEncounterGenerator>();
+            var roomsLayout = FindObjectOfType<RoomsLayout>();
+            combatantSpawnManager = FindObjectOfType<CombatantSpawnManager>();
+            combatantsManager = FindObjectOfType<CombatantsManager>();
+            foreach (var room in roomsLayout.Rooms)
+            {
+                room.IsExploredChanged += OnRoomExplored;
+            }
         }
-        else
-        {
-            encounter = EncounterGenerator.GenerateEncounters(exploredRoom.RoomEncounter, partyDefinition);
-        }
-        SpawnMonsters(encounter, sender as RoomInfo, exploredEventArgs.IncomingDoors);
-    }
 
-    private void SpawnMonsters(List<GameObject> monstersToSpawn, RoomInfo room, Doors incomingDoors)
-    {
-        foreach (var mosnter in monstersToSpawn)
+        private void OnRoomExplored(object sender, RoomExploredEventArgs exploredEventArgs)
         {
-            CombatantSpawnManager.SpawnCombatant(mosnter, room, incomingDoors, 5);
+            var exploredRoom = sender as RoomInfo;
+            var allHeroes = combatantsManager.PlayerCharacters;
+            var partyDefinition = new PartyDefinition { PartyMembers = allHeroes };
+            List<GameObject> encounter;
+            if (staticEncounterGenerator != null && staticEncounterGenerator.isActiveAndEnabled)
+            {
+                encounter = staticEncounterGenerator.GenerateEncounters(exploredRoom.RoomEncounter);
+            }
+            else
+            {
+                encounter = encounterGenerator.GenerateEncounters(exploredRoom.RoomEncounter, partyDefinition);
+            }
+            SpawnMonsters(encounter, sender as RoomInfo, exploredEventArgs.IncomingDoors);
+        }
+
+        private void SpawnMonsters(List<GameObject> monstersToSpawn, RoomInfo room, Doors incomingDoors)
+        {
+            foreach (var mosnter in monstersToSpawn)
+            {
+                combatantSpawnManager.SpawnCombatant(mosnter, room, incomingDoors, 5);
+            }
         }
     }
 }

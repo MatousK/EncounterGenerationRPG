@@ -1,54 +1,58 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using Assets.Scripts.Combat;
+using Assets.Scripts.Combat.Conditions;
+using Assets.Scripts.Cutscenes;
 using UnityEngine;
 
-public class AggressiveBehavior : MonoBehaviour
+namespace Assets.Scripts.AI
 {
-    CombatantsManager combatantsManager;
-    AutoAttacking autoAttacking;
-    CombatantBase selfCombatant;
-    CutsceneManager cutsceneManager;
+    public class AggressiveBehavior : MonoBehaviour
+    {
+        CombatantsManager combatantsManager;
+        AutoAttacking autoAttacking;
+        CombatantBase selfCombatant;
+        CutsceneManager cutsceneManager;
 
-    private void Awake()
-    {
-        combatantsManager = FindObjectOfType<CombatantsManager>();
-        autoAttacking = GetComponent<AutoAttacking>();
-        selfCombatant = GetComponent<CombatantBase>();
-        cutsceneManager = FindObjectOfType<CutsceneManager>();
-    }
-    // Update is called once per frame
-    void Update()
-    {
-        if (cutsceneManager.IsCutsceneActive)
+        private void Awake()
         {
-            autoAttacking.Target = null;
-            return;
+            combatantsManager = FindObjectOfType<CombatantsManager>();
+            autoAttacking = GetComponent<AutoAttacking>();
+            selfCombatant = GetComponent<CombatantBase>();
+            cutsceneManager = FindObjectOfType<CutsceneManager>();
         }
-        if (autoAttacking.Target == null && !selfCombatant.IsDoingNonAutoAttackAction())
+        // Update is called once per frame
+        void Update()
         {
-            AttackClosestOpponent();
-        }
-    }
-
-    void AttackClosestOpponent()
-    {
-        var collider = GetComponent<Collider2D>();
-        float closestDistance = float.PositiveInfinity;
-        CombatantBase closestTarget = null;
-        foreach (var opponent in combatantsManager.GetOpponentsFor(selfCombatant, onlyAlive: true))
-        {
-            if (opponent.GetComponent<ConditionManager>().HasCondition<SleepCondition>())
+            if (cutsceneManager.IsCutsceneActive)
             {
-                // Do not auto attack sleeping opponents.
-                continue;
+                autoAttacking.Target = null;
+                return;
             }
-            var distanceToOpponent = opponent.GetComponent<Collider2D>().Distance(collider).distance;
-            if (distanceToOpponent < closestDistance)
+            if (autoAttacking.Target == null && !selfCombatant.IsDoingNonAutoAttackAction())
             {
-                closestDistance = distanceToOpponent;
-                closestTarget = opponent;
+                AttackClosestOpponent();
             }
         }
-        autoAttacking.Target = closestTarget;
+
+        void AttackClosestOpponent()
+        {
+            var collider = GetComponent<Collider2D>();
+            float closestDistance = float.PositiveInfinity;
+            CombatantBase closestTarget = null;
+            foreach (var opponent in combatantsManager.GetOpponentsFor(selfCombatant, onlyAlive: true))
+            {
+                if (opponent.GetComponent<ConditionManager>().HasCondition<SleepCondition>())
+                {
+                    // Do not auto attack sleeping opponents.
+                    continue;
+                }
+                var distanceToOpponent = opponent.GetComponent<Collider2D>().Distance(collider).distance;
+                if (distanceToOpponent < closestDistance)
+                {
+                    closestDistance = distanceToOpponent;
+                    closestTarget = opponent;
+                }
+            }
+            autoAttacking.Target = closestTarget;
+        }
     }
 }

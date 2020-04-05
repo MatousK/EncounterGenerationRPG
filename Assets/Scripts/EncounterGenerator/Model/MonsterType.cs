@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-namespace EncounterGenerator.Model
+using Assets.Scripts.Combat;
+
+namespace Assets.Scripts.EncounterGenerator.Model
 {
     // In our case, monster's type is defined by its rank and role, e.g. Elite Sniper.
     [Serializable]

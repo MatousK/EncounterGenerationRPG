@@ -7,15 +7,15 @@ namespace Assets.ProceduralLevelGenerator.Editor.NodeBasedEditor
 
 	public class ConnectionLegacy
 	{
-		public Node inPoint;
-		public Node outPoint;
+		public Node InPoint;
+		public Node OutPoint;
 		public Action<ConnectionLegacy> OnClickRemoveConnection;
 
-		public ConnectionLegacy(Node inPoint, Node outPoint, Action<ConnectionLegacy> OnClickRemoveConnection)
+		public ConnectionLegacy(Node inPoint, Node outPoint, Action<ConnectionLegacy> onClickRemoveConnection)
 		{
-			this.inPoint = inPoint;
-			this.outPoint = outPoint;
-			this.OnClickRemoveConnection = OnClickRemoveConnection;
+			this.InPoint = inPoint;
+			this.OutPoint = outPoint;
+			this.OnClickRemoveConnection = onClickRemoveConnection;
 		}
 
 		public void Draw()
@@ -30,14 +30,12 @@ namespace Assets.ProceduralLevelGenerator.Editor.NodeBasedEditor
 			//	2f
 			//);
 
-			Handles.DrawLine(inPoint.rect.center, outPoint.rect.center);
-
-			if (Handles.Button((inPoint.rect.center + outPoint.rect.center) * 0.5f, Quaternion.identity, 4, 8, Handles.RectangleCap))
+			Handles.DrawLine(InPoint.Rect.center, OutPoint.Rect.center);
+#pragma warning disable CS0618 // Type or member is obsolete
+			if (Handles.Button((InPoint.Rect.center + OutPoint.Rect.center) * 0.5f, Quaternion.identity, 4, 8, Handles.RectangleCap))
+#pragma warning restore CS0618 // Type or member is obsolete
 			{
-				if (OnClickRemoveConnection != null)
-				{
-					OnClickRemoveConnection(this);
-				}
+				OnClickRemoveConnection?.Invoke(this);
 			}
 		}
 	}

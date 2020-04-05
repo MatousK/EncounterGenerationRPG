@@ -7,61 +7,58 @@
 
 	public class ConnectionPoint
 	{
-		public Rect rect;
+		public Rect Rect;
 
-		public ConnectionPointType type;
+		public ConnectionPointType Type;
 
-		public Node node;
+		public Node Node;
 
-		public GUIStyle style;
+		public GUIStyle Style;
 
 		public Action<ConnectionPoint> OnClickConnectionPoint;
 
-		public ConnectionPoint(Node node, ConnectionPointType type, GUIStyle style, Action<ConnectionPoint> OnClickConnectionPoint)
+		public ConnectionPoint(Node node, ConnectionPointType type, GUIStyle style, Action<ConnectionPoint> onClickConnectionPoint)
 		{
-			this.node = node;
-			this.type = type;
-			this.style = style;
-			this.OnClickConnectionPoint = OnClickConnectionPoint;
-			rect = new Rect(0, 0, 10f, 20f);
+			this.Node = node;
+			this.Type = type;
+			this.Style = style;
+			this.OnClickConnectionPoint = onClickConnectionPoint;
+			Rect = new Rect(0, 0, 10f, 20f);
 		}
 
 		public void Draw()
 		{
 		
 
-			switch (type)
+			switch (Type)
 			{
 				case ConnectionPointType.Left:
-					rect.x = node.rect.x - rect.width + 8f;
-					rect.y = node.rect.y + (node.rect.height * 0.5f) - rect.height * 0.5f;
+					Rect.x = Node.Rect.x - Rect.width + 8f;
+					Rect.y = Node.Rect.y + (Node.Rect.height * 0.5f) - Rect.height * 0.5f;
 					break;
 
 				case ConnectionPointType.Right:
-					rect.x = node.rect.x + node.rect.width - 8f;
-					rect.y = node.rect.y + (node.rect.height * 0.5f) - rect.height * 0.5f;
+					Rect.x = Node.Rect.x + Node.Rect.width - 8f;
+					Rect.y = Node.Rect.y + (Node.Rect.height * 0.5f) - Rect.height * 0.5f;
 					break;
 
 				case ConnectionPointType.Top:
-					rect.y = node.rect.y + rect.height + 8f;
-					rect.x = node.rect.x + (node.rect.width * 0.5f) - rect.width * 0.5f;
+					Rect.y = Node.Rect.y + Rect.height + 8f;
+					Rect.x = Node.Rect.x + (Node.Rect.width * 0.5f) - Rect.width * 0.5f;
 					break;
 
 				case ConnectionPointType.Bottom:
-					rect.y = node.rect.y - rect.height + 8f;
-					rect.x = node.rect.x + (node.rect.width * 0.5f) - rect.width * 0.5f;
+					Rect.y = Node.Rect.y - Rect.height + 8f;
+					Rect.x = Node.Rect.x + (Node.Rect.width * 0.5f) - Rect.width * 0.5f;
 					break;
 
 				default:
 					throw new ArgumentOutOfRangeException();
 			}
 
-			if (GUI.Button(rect, "", style))
-			{
-				if (OnClickConnectionPoint != null)
-				{
-					OnClickConnectionPoint(this);
-				}
+            if (GUI.Button(Rect, "", Style))
+			{ 
+                OnClickConnectionPoint?.Invoke(this);
 			}
 		}
 	}

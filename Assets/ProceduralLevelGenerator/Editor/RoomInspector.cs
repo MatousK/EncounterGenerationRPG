@@ -1,4 +1,6 @@
-﻿namespace Assets.ProceduralLevelGenerator.Editor
+﻿using Assets.Scripts.DungeonGenerator;
+
+namespace Assets.ProceduralLevelGenerator.Editor
 {
 	using System;
 	using System.Linq;
@@ -31,14 +33,7 @@
 
 				selected = EditorGUILayout.Popup("Rooms group", selected, options);
 
-				if (selected == 0)
-				{
-					room.RoomsGroupGuid = Guid.Empty;
-				}
-				else
-				{
-					room.RoomsGroupGuid = roomsGroups[selected - 1].Guid;
-				}
+				room.RoomsGroupGuid = selected == 0 ? Guid.Empty : roomsGroups[selected - 1].Guid;
 			}
 
 			serializedObject.ApplyModifiedProperties(); 

@@ -9,43 +9,43 @@ namespace Assets.ProceduralLevelGenerator.Editor.NodeBasedEditor
 
 	public class Node
 	{
-		public Rect rect;
-		public string title;
+		public Rect Rect;
+		public string Title;
 
-		public bool isDragged;
-		public bool isSelected;
+		public bool IsDragged;
+		public bool IsSelected;
 
 		public ConnectionPoint LeftConnectionPoint;
 		public ConnectionPoint RightConnectionPoint;
 		public ConnectionPoint TopConnectionPoint;
 		public ConnectionPoint BottomConnectionPoint;
 
-		public GUIStyle style;
-		public GUIStyle defaultNodeStyle;
-		public GUIStyle selectedNodeStyle;
+		public GUIStyle Style;
+		public GUIStyle DefaultNodeStyle;
+		public GUIStyle SelectedNodeStyle;
 
 		public Action<Node> OnRemoveNode;
 		public Action<Node> OnClickNode;
 
-		private Stopwatch stopwatch = new Stopwatch();
+		private readonly Stopwatch stopwatch = new Stopwatch();
 
-		public Node(Vector2 position, float width, float height, GUIStyle nodeStyle, GUIStyle selectedStyle, Dictionary<ConnectionPointType, GUIStyle> connectionStyles, Action<ConnectionPoint> onClickConnectionPoint, Action<Node> OnClickRemoveNode, Action<Node> onClickNode)
+		public Node(Vector2 position, float width, float height, GUIStyle nodeStyle, GUIStyle selectedStyle, Dictionary<ConnectionPointType, GUIStyle> connectionStyles, Action<ConnectionPoint> onClickConnectionPoint, Action<Node> onClickRemoveNode, Action<Node> onClickNode)
 		{
-			rect = new Rect(position.x, position.y, width, height);
-			style = nodeStyle;
+			Rect = new Rect(position.x, position.y, width, height);
+			Style = nodeStyle;
 			LeftConnectionPoint = new ConnectionPoint(this, ConnectionPointType.Left, connectionStyles[ConnectionPointType.Left], onClickConnectionPoint);
 			RightConnectionPoint = new ConnectionPoint(this, ConnectionPointType.Right, connectionStyles[ConnectionPointType.Right], onClickConnectionPoint);
 			TopConnectionPoint = new ConnectionPoint(this, ConnectionPointType.Top, connectionStyles[ConnectionPointType.Top], onClickConnectionPoint);
 			BottomConnectionPoint = new ConnectionPoint(this, ConnectionPointType.Bottom, connectionStyles[ConnectionPointType.Bottom], onClickConnectionPoint);
-			defaultNodeStyle = nodeStyle;
-			selectedNodeStyle = selectedStyle;
-			OnRemoveNode = OnClickRemoveNode;
+			DefaultNodeStyle = nodeStyle;
+			SelectedNodeStyle = selectedStyle;
+			OnRemoveNode = onClickRemoveNode;
 			OnClickNode = onClickNode;
 		}
 
 		public void Drag(Vector2 delta)
 		{
-			rect.position += delta;
+			Rect.position += delta;
 		}
 
 		public void Draw()
@@ -54,7 +54,7 @@ namespace Assets.ProceduralLevelGenerator.Editor.NodeBasedEditor
 			//RightConnectionPoint.Draw();
 			//TopConnectionPoint.Draw();
 			//BottomConnectionPoint.Draw();
-			GUI.Box(rect, title, style);
+			GUI.Box(Rect, Title, Style);
 		}
 
 		public bool ProcessEvents(Event e)
@@ -64,10 +64,10 @@ namespace Assets.ProceduralLevelGenerator.Editor.NodeBasedEditor
 				case EventType.MouseDown:
 					if (e.button == 0)
 					{
-						if (rect.Contains(e.mousePosition))
+						if (Rect.Contains(e.mousePosition))
 						{
 							stopwatch.Restart();
-							isDragged = true;
+							IsDragged = true;
 						}
 						/*else
 					{
@@ -78,7 +78,7 @@ namespace Assets.ProceduralLevelGenerator.Editor.NodeBasedEditor
 					}*/
 					}
 
-					if (e.button == 1 && isSelected && rect.Contains(e.mousePosition))
+					if (e.button == 1 && IsSelected && Rect.Contains(e.mousePosition))
 					{
 						ProcessContextMenu();
 						e.Use();
@@ -88,19 +88,19 @@ namespace Assets.ProceduralLevelGenerator.Editor.NodeBasedEditor
 				case EventType.MouseUp:
 					if (e.button == 0)
 					{
-						if (stopwatch.ElapsedMilliseconds < 250 && rect.Contains(e.mousePosition))
+						if (stopwatch.ElapsedMilliseconds < 250 && Rect.Contains(e.mousePosition))
 						{
-							SetSelected(!isSelected);
+							SetSelected(!IsSelected);
 							GUI.changed = true;
 							OnClickNode(this);
 						}
 					}
 
-					isDragged = false;
+					IsDragged = false;
 					break;
 
 				case EventType.MouseDrag:
-					if (e.button == 0 && isDragged)
+					if (e.button == 0 && IsDragged)
 					{
 						Drag(e.delta);
 						e.Use();
@@ -114,8 +114,8 @@ namespace Assets.ProceduralLevelGenerator.Editor.NodeBasedEditor
 
 		public void SetSelected(bool selected)
 		{
-			isSelected = selected;
-			style = isSelected ? selectedNodeStyle : defaultNodeStyle;
+			IsSelected = selected;
+			Style = IsSelected ? SelectedNodeStyle : DefaultNodeStyle;
 		}
 
 		private void ProcessContextMenu()
@@ -127,10 +127,7 @@ namespace Assets.ProceduralLevelGenerator.Editor.NodeBasedEditor
 
 		private void OnClickRemoveNode()
 		{
-			if (OnRemoveNode != null)
-			{
-				OnRemoveNode(this);
-			}
+			OnRemoveNode?.Invoke(this);
 		}
 	}
 }

@@ -1,32 +1,33 @@
 ﻿using Assets.ProceduralLevelGenerator.Scripts.GeneratorPipeline.Payloads.Interfaces;
 using Assets.ProceduralLevelGenerator.Scripts.Pipeline;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-public class RestoreNonTilemapGameObjectsTask<TPayload> : ConfigurablePipelineTask<TPayload, RestoreNonTilemapGameObjectsConfig>
-    where TPayload : class, IGeneratorPayload, IGraphBasedGeneratorPayload, INamedTilemapsPayload
+namespace Assets.Scripts.DungeonGenerator
 {
-    public override void Process()
+    public class RestoreNonTilemapGameObjectsTask<TPayload> : ConfigurablePipelineTask<TPayload, RestoreNonTilemapGameObjectsConfig>
+        where TPayload : class, IGeneratorPayload, IGraphBasedGeneratorPayload, INamedTilemapsPayload
     {
-        var roomsData = Payload.Layout.GetAllRoomInfo();
-        foreach (var room in roomsData)
+        public override void Process()
         {
-            foreach (Transform childTransform in room.Room.transform)
+            var roomsData = Payload.Layout.GetAllRoomInfo();
+            foreach (var room in roomsData)
             {
-                var childObject = childTransform.gameObject;
-                if (childObject.GetComponent<Tilemap>() != null)
+                foreach (Transform childTransform in room.Room.transform)
                 {
-                    continue;
-                }
-                var childClone = Object.Instantiate(childObject, Payload.GameObject.transform);
-                var originalPositon = childClone.transform.localPosition;
-                childClone.transform.localPosition = new Vector3(originalPositon.x + room.Position.x, originalPositon.y + room.Position.y, originalPositon.z);
-                var roomInfoComponent = childClone.GetComponent<RoomInfoComponent>();
-                if (roomInfoComponent != null)
-                {
-                    roomInfoComponent.RoomIndex = room.GeneratorData.Node;
+                    var childObject = childTransform.gameObject;
+                    if (childObject.GetComponent<Tilemap>() != null)
+                    {
+                        continue;
+                    }
+                    var childClone = Object.Instantiate(childObject, Payload.GameObject.transform);
+                    var originalPositon = childClone.transform.localPosition;
+                    childClone.transform.localPosition = new Vector3(originalPositon.x + room.Position.x, originalPositon.y + room.Position.y, originalPositon.z);
+                    var roomInfoComponent = childClone.GetComponent<RoomInfoComponent>();
+                    if (roomInfoComponent != null)
+                    {
+                        roomInfoComponent.RoomIndex = room.GeneratorData.Node;
+                    }
                 }
             }
         }

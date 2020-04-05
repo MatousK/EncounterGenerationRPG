@@ -1,84 +1,86 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-/// <summary>
-/// Represents a skill that can target a single character and has animations.
-/// </summary>
-public abstract class TargetedSkill : Skill
+
+namespace Assets.Scripts.Combat.Skills
 {
     /// <summary>
-    /// How many times does the animation repeat as part of one skill usage.
+    /// Represents a skill that can target a single character and has animations.
     /// </summary>
-    public int Repetitions = 1;
-    /// <summary>
-    /// Target which we are currently using this skill on.
-    /// </summary>
-    public CombatantBase Target { get; protected set; }
-    protected override void Awake()
+    public abstract class TargetedSkill : Skill
     {
-        base.Awake();
-    }
-
-    protected override void Update()
-    {
-        if (Target && !Target.IsTargetable)
+        /// <summary>
+        /// How many times does the animation repeat as part of one skill usage.
+        /// </summary>
+        public int Repetitions = 1;
+        /// <summary>
+        /// Target which we are currently using this skill on.
+        /// </summary>
+        public CombatantBase Target { get; protected set; }
+        protected override void Awake()
         {
-            TryStopSkill();
-            return;
+            base.Awake();
         }
-        base.Update();
-    }
 
-    public override float GetDistanceToTargetLocation()
-    {
-        if (Target == null)
+        protected override void Update()
         {
-            // Sometimes target dies before reaching him.
-            return float.MaxValue;
+            if (Target && !Target.CanBeTargeted)
+            {
+                TryStopSkill();
+                return;
+            }
+            base.Update();
         }
-        return selfCombatant.GetComponent<Collider2D>().Distance(Target.GetComponent<Collider2D>()).distance;
-    }
 
-    public override Vector2? GetTargetLocation()
-    {
-        return Target.transform.position;
-    }
-
-    public override bool IsBeingUsed()
-    {
-        return Target != null;
-    }
-
-    public virtual bool UseSkillOn(CombatantBase target)
-    {
-        var toReturn = TryStartUsingSkill();
-        if (toReturn)
+        public override float GetDistanceToTargetLocation()
         {
-            Target = target;
+            if (Target == null)
+            {
+                // Sometimes target dies before reaching him.
+                return float.MaxValue;
+            }
+            return SelfCombatant.GetComponent<Collider2D>().Distance(Target.GetComponent<Collider2D>()).distance;
         }
-        return toReturn;
-    }
 
-    public override bool TryStopSkill()
-    {
-        var didStopSkill = base.TryStopSkill();
-        if (didStopSkill)
+        public override Vector2? GetTargetLocation()
         {
-            Target = null;
+            return Target.transform.position;
         }
-        return didStopSkill;
-    }
-    /// <summary>
-    /// Called when the skill animation completes.
-    /// Default implementation will stop using the skill if this method was called sufficient amount of times, <see cref="Repetitions"/>
-    /// </summary>
-    protected override void AnimationCompleted(object sender, EventArgs e)
-    {
-        animationCompletedCount++;
-        if (animationCompletedCount >= Repetitions)
+
+        public override bool IsBeingUsed()
         {
-            TryStopSkill();
+            return Target != null;
+        }
+
+        public virtual bool UseSkillOn(CombatantBase target)
+        {
+            var toReturn = TryStartUsingSkill();
+            if (toReturn)
+            {
+                Target = target;
+            }
+            return toReturn;
+        }
+
+        public override bool TryStopSkill()
+        {
+            var didStopSkill = base.TryStopSkill();
+            if (didStopSkill)
+            {
+                Target = null;
+            }
+            return didStopSkill;
+        }
+        /// <summary>
+        /// Called when the skill animation completes.
+        /// Default implementation will stop using the skill if this method was called sufficient amount of times, <see cref="Repetitions"/>
+        /// </summary>
+        protected override void AnimationCompleted(object sender, EventArgs e)
+        {
+            AnimationCompletedCount++;
+            if (AnimationCompletedCount >= Repetitions)
+            {
+                TryStopSkill();
+            }
         }
     }
 }

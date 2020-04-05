@@ -1,64 +1,68 @@
-﻿using EncounterGenerator.Model;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Assets.Scripts.CombatSimulator.PartyConfigurationProvider;
+using Assets.Scripts.EncounterGenerator.Model;
 
-public class TestGenerator
+namespace Assets.Scripts.CombatSimulator
 {
-    int testIndex = 0;
-    public void ReadyNextTest()
+    public class TestGenerator
     {
-        testIndex++;
-    }
-
-    public PartyConfiguration GetCurrentPartyConfiguration()
-    {
-        return new PartyConfiguration
+        public TestGenerator()
         {
-            KnightStats = new PartyMemberConfiguration { MaxHP = 250, AttackModifier = 15 },
-            RangerStats = new PartyMemberConfiguration { MaxHP = 50, AttackModifier = 30 },
-            ClericStats = new PartyMemberConfiguration { MaxHP = 125, AttackModifier = 10 },
-        };
-    }
+            partyProviders.Add(new NoPowerupsPartyConfigurationProvider());
 
-    public EncounterDefinition GetCurrentTestEncounter()
-    {
-        return new EncounterDefinition
-        {
-            AllEncounterGroups = new List<MonsterGroup>
+            for (int tier = 1; tier <= PowerupTiers; ++tier)
             {
-                new MonsterGroup
-                {
-                    MonsterType = new MonsterType(MonsterRank.Elite, MonsterRole.Leader),
-                    MonsterCount = 1
-                },
-                new MonsterGroup
-                {
-                    MonsterType = new MonsterType(MonsterRank.Regular, MonsterRole.Brute),
-                    MonsterCount = 1
-                },
-                new MonsterGroup
-                {
-                    MonsterType = new MonsterType(MonsterRank.Minion, MonsterRole.Minion),
-                    MonsterCount = testIndex * 4
-                }
+                partyProviders.Add(new MinMaxPartyConfigurationProvider { TierIncrement = PowerupTierIncrement, TierIndex = tier });
+                partyProviders.Add(new BalancedPartyConfigurationProvider { TierIncrement = PowerupTierIncrement, TierIndex = tier });
+                partyProviders.Add(new RandomPartyConfigurationProvider { TierIncrement = PowerupTierIncrement, TierIndex = tier });
             }
-        };
+        }
+
+        readonly List<PartyConfigurationProvider.PartyConfigurationProvider> partyProviders = new List<PartyConfigurationProvider.PartyConfigurationProvider>();
+        readonly SimulatorEncounterProvider encounterProvider = new SimulatorEncounterProvider();
+
+        const int TotalTestCount = 20000;
+        const int MonsterCountTiers = 10;
+        const int MonsterTierMonsterCountIncrement = 2;
+        const int PowerupTiers = 4;
+        const int PowerupTierIncrement = 4;
+        const int EncountersPerMonsterCount = TotalTestCount / MonsterCountTiers;
+
+        public PartyConfigurationProvider.PartyConfigurationProvider CurrentPartyProvider
+        { get; private set; }
+        public PartyConfiguration CurrentPartyConfiguration { get; private set; }
+        public EncounterDefinition CurrentEncounter { get; private set; }
+        public int MonsterTier { get; private set; }
+
+        public void ReadyNextTest(int testIndex)
+        {
+            var partyProviderIndex = testIndex % partyProviders.Count;
+            CurrentPartyProvider = partyProviders[partyProviderIndex];
+            CurrentPartyConfiguration = CurrentPartyProvider.GetPartyConfiguration();
+            if (partyProviderIndex == 0 || CurrentEncounter == null)
+            {
+                MonsterTier = testIndex / EncountersPerMonsterCount + 1;
+                CurrentEncounter = encounterProvider.GetEncounter(MonsterTier * MonsterTierMonsterCountIncrement);
+            }
+            UnityEngine.Debug.Log("Monster tier: " + MonsterTier.ToString());
+            UnityEngine.Debug.Log("Party provider: " + CurrentPartyProvider.ToString());
+        }
     }
 
-}
+    public struct PartyConfiguration
+    {
+        public PartyMemberConfiguration KnightStats;
+        public PartyMemberConfiguration RangerStats;
+        public PartyMemberConfiguration ClericStats;
+    }
 
-public struct PartyConfiguration
-{
-    public PartyMemberConfiguration KnightStats;
-    public PartyMemberConfiguration RangerStats;
-    public PartyMemberConfiguration ClericStats;
-}
-
-public struct PartyMemberConfiguration
-{
-    public int MaxHP;
-    public float AttackModifier;
+    public struct PartyMemberConfiguration
+    {
+        public int MaxHp;
+        public float AttackModifier;
+    }
 }

@@ -1,43 +1,43 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Assets.Scripts.Combat;
+using Assets.Scripts.Extension;
 
-class SniperAI: MonsterAIBase
+namespace Assets.Scripts.AI.MonsterAI
 {
-    // Sniper lock to a random target and fire at it until it is dead.
-    private CombatantBase LockedRandomTarget;
-    protected override void Update()
+    public class SniperAi: MonsterAiBase
     {
-        base.Update();
-    }
-
-    protected override void Awake()
-    {
-        base.Awake();
-    }
-
-    protected override CombatantBase GetCurrentTarget()
-    {
-        if (ForcedTarget != null)
+        // Sniper lock to a random target and fire at it until it is dead.
+        private CombatantBase lockedRandomTarget;
+        protected override void Update()
         {
-            return ForcedTarget;
+            base.Update();
         }
-        if (LockedRandomTarget == null || LockedRandomTarget.IsDown)
+
+        protected override void Awake()
         {
-            var opponents = CombatantsManager.GetOpponentsFor(ControlledCombatant, onlyAlive: true);
-            var randomTarget = opponents.GetWeightedRandomElementOrDefault(opponent => 1);
-            // Regular monsters do not lock targets and instead shoot all over the place randomly.
-            if (((Monster)ControlledCombatant).Rank != MonsterRank.Regular)
+            base.Awake();
+        }
+
+        protected override CombatantBase GetCurrentTarget()
+        {
+            if (ForcedTarget != null)
             {
-                LockedRandomTarget = randomTarget;
-            } 
-            else 
-            {
-                return randomTarget;
+                return ForcedTarget;
             }
+            if (lockedRandomTarget == null || lockedRandomTarget.IsDown)
+            {
+                var opponents = CombatantsManager.GetOpponentsFor(ControlledCombatant, onlyAlive: true);
+                var randomTarget = opponents.GetWeightedRandomElementOrDefault(opponent => 1);
+                // Regular monsters do not lock targets and instead shoot all over the place randomly.
+                if (((Monster)ControlledCombatant).Rank != MonsterRank.Regular)
+                {
+                    lockedRandomTarget = randomTarget;
+                } 
+                else 
+                {
+                    return randomTarget;
+                }
+            }
+            return lockedRandomTarget;
         }
-        return LockedRandomTarget;
     }
 }

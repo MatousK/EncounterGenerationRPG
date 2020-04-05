@@ -1,24 +1,24 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 
-public class HealLightWounds : TargetedGestureSkill
+namespace Assets.Scripts.Combat.Skills.Monster.Leader
 {
-    public int HealAmount;
-    // Start is called before the first frame update
-    protected override void Awake()
+    public class HealLightWounds : TargetedGestureSkill
     {
-        base.Awake();
-    }
+        public int HealAmount;
+        // Start is called before the first frame update
+        protected override void Awake()
+        {
+            base.Awake();
+        }
 
-    // Update is called once per frame
-    protected override void Update()
-    {
-        base.Update();
-    }
-    protected override void ApplySkillEffects(object sender, EventArgs e)
-    {
-        Target.HealDamage(HealAmount, selfCombatant);
+        // Update is called once per frame
+        protected override void Update()
+        {
+            base.Update();
+        }
+        protected override void ApplySkillEffects(object sender, EventArgs e)
+        {
+            Target.HealDamage(HealAmount, SelfCombatant);
+        }
     }
 }

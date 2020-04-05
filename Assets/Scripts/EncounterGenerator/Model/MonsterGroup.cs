@@ -1,7 +1,7 @@
-﻿using EncounterGenerator.Configuration;
-using System;
+﻿using System;
+using Assets.Scripts.EncounterGenerator.Configuration;
 
-namespace EncounterGenerator.Model
+namespace Assets.Scripts.EncounterGenerator.Model
 {
     /// <summary>
     /// Represents a group of monsters of the same type that might be spawned in an encounter.
@@ -34,8 +34,11 @@ namespace EncounterGenerator.Model
             return MonsterCount.GetHashCode() + MonsterType.GetHashCode() * 100;
         }
 
-        public static bool operator ==(MonsterGroup first, MonsterGroup second)
-        {
+        public static bool operator ==(MonsterGroup first, MonsterGroup second)        {
+            if (first is null || second is null)
+            {
+                return first is null == second is null;
+            }
             return first.MonsterCount == second.MonsterCount && first.MonsterType == second.MonsterType;
         }
 

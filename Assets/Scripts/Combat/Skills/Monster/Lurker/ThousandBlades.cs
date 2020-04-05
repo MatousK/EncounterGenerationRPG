@@ -1,25 +1,24 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class ThousandBlades : Attack
+﻿namespace Assets.Scripts.Combat.Skills.Monster.Lurker
 {
-    public ThousandBlades()
+    public class ThousandBlades : Attack
     {
-        Cooldown = 5;
-        Repetitions = 10;
-        Speed = 5;
-        DamagePerHit = 1;
-    }
-    // Start is called before the first frame update
-    protected override void Awake()
-    {
-        base.Awake();
-    }
+        public ThousandBlades()
+        {
+            Cooldown = 5;
+            Repetitions = 10;
+            Speed = 5;
+            DamagePerHit = 1;
+        }
+        // Start is called before the first frame update
+        protected override void Awake()
+        {
+            base.Awake();
+        }
 
-    // Update is called once per frame
-    protected override void Update()
-    {
-        base.Update();
+        // Update is called once per frame
+        protected override void Update()
+        {
+            base.Update();
+        }
     }
 }

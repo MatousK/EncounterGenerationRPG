@@ -40,32 +40,32 @@
 		/// <summary>
 		/// Whether the default editor Script field should be shown.
 		/// </summary>
-		private static bool SHOW_SCRIPT_FIELD = false;
+		private static readonly bool ShowScriptField = false;
 
 		/// <summary>
 		/// The spacing on the inside of the background rect.
 		/// </summary>
-		private static float INNER_SPACING = 6.0f;
+		private static readonly float InnerSpacing = 6.0f;
 
 		/// <summary>
 		/// The spacing on the outside of the background rect.
 		/// </summary>
-		private static float OUTER_SPACING = 4.0f;
+		private static readonly float OuterSpacing = 4.0f;
 
-		/// <summary>
-		/// The style the background uses.
-		/// </summary>
-		private static BackgroundStyles BACKGROUND_STYLE = BackgroundStyles.HelpBox;
+        /// <summary>
+        /// The style the background uses.
+        /// </summary>
+        private const BackgroundStyles BackgroundStyle = BackgroundStyles.HelpBox;
 
-		/// <summary>
+        /// <summary>
 		/// The colour that is used to darken the background.
 		/// </summary>
-		private static Color DARKEN_COLOUR = new Color(0.0f, 0.0f, 0.0f, 0.2f);
+		private static readonly Color DarkenColour = new Color(0.0f, 0.0f, 0.0f, 0.2f);
 
 		/// <summary>
 		/// The colour that is used to lighten the background.
 		/// </summary>
-		private static Color LIGHTEN_COLOUR = new Color(1.0f, 1.0f, 1.0f, 0.2f);
+		private static readonly Color LightenColour = new Color(1.0f, 1.0f, 1.0f, 0.2f);
 		#endregion
 
 		public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
@@ -89,7 +89,7 @@
 
 			field.NextVisible(true);
 
-			if (SHOW_SCRIPT_FIELD)
+			if (ShowScriptField)
 			{
 				totalHeight += EditorGUIUtility.singleLineHeight + EditorGUIUtility.standardVerticalSpacing;
 			}
@@ -99,18 +99,17 @@
 				totalHeight += EditorGUI.GetPropertyHeight(field, true) + EditorGUIUtility.standardVerticalSpacing;
 			}
 
-			totalHeight += INNER_SPACING * 2;
-			totalHeight += OUTER_SPACING * 2;
+			totalHeight += InnerSpacing * 2;
+			totalHeight += OuterSpacing * 2;
 
 			return totalHeight;
 		}
 
 		public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
 		{
-			Rect fieldRect = new Rect(position);
-			fieldRect.height = EditorGUIUtility.singleLineHeight;
+            Rect fieldRect = new Rect(position) {height = EditorGUIUtility.singleLineHeight};
 
-			EditorGUI.PropertyField(fieldRect, property, label, true);
+            EditorGUI.PropertyField(fieldRect, property, label, true);
 
 			if (property.objectReferenceValue == null)
 				return;
@@ -134,14 +133,14 @@
 			Rect bodyRect = new Rect(fieldRect);
 			bodyRect.xMin += EditorGUI.indentLevel * 14;
 			bodyRect.yMin += EditorGUIUtility.singleLineHeight + EditorGUIUtility.standardVerticalSpacing
-			                                                   + OUTER_SPACING;
+			                                                   + OuterSpacing;
 
 			SerializedProperty field = targetObject.GetIterator();
 			field.NextVisible(true);
 
-			marchingRect.y += INNER_SPACING + OUTER_SPACING;
+			marchingRect.y += InnerSpacing + OuterSpacing;
 
-			if (SHOW_SCRIPT_FIELD)
+			if (ShowScriptField)
 			{
 				propertyRects.Add(marchingRect);
 				marchingRect.y += EditorGUIUtility.singleLineHeight + EditorGUIUtility.standardVerticalSpacing;
@@ -154,7 +153,7 @@
 				propertyRects.Add(marchingRect);
 			}
 
-			marchingRect.y += INNER_SPACING;
+			marchingRect.y += InnerSpacing;
 
 			bodyRect.yMax = marchingRect.yMax;
 			#endregion
@@ -168,7 +167,7 @@
 			field = targetObject.GetIterator();
 			field.NextVisible(true);
 
-			if (SHOW_SCRIPT_FIELD)
+			if (ShowScriptField)
 			{
 				//Show the disabled script field
 				EditorGUI.BeginDisabledGroup(true);
@@ -206,7 +205,7 @@
 		/// <param name="rect">The Rect where the background is drawn.</param>
 		private void DrawBackground(Rect rect)
 		{
-			switch (BACKGROUND_STYLE)
+			switch (BackgroundStyle)
 			{
 
 				case BackgroundStyles.HelpBox:
@@ -214,11 +213,11 @@
 					break;
 
 				case BackgroundStyles.Darken:
-					EditorGUI.DrawRect(rect, DARKEN_COLOUR);
+					EditorGUI.DrawRect(rect, DarkenColour);
 					break;
 
 				case BackgroundStyles.Lighten:
-					EditorGUI.DrawRect(rect, LIGHTEN_COLOUR);
+					EditorGUI.DrawRect(rect, LightenColour);
 					break;
 			}
 		}

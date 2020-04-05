@@ -1,4 +1,6 @@
-﻿namespace Assets.ProceduralLevelGenerator.Editor.LevelGraphEditor.EditorNodes
+﻿using Assets.Scripts.DungeonGenerator;
+
+namespace Assets.ProceduralLevelGenerator.Editor.LevelGraphEditor.EditorNodes
 {
 	using System;
 	using NodeBasedEditor;

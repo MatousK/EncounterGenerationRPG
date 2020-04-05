@@ -4,7 +4,6 @@
 	using System.Collections.Generic;
 	using Rooms;
 	using UnityEngine;
-	using Utils;
 
 	/// <summary>
 	/// Represents a room in a level graph.

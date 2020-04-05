@@ -1,36 +1,35 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-public abstract class Attack : TargetedSkill
+namespace Assets.Scripts.Combat.Skills
 {
-    /// <summary>
-    /// How much damage does the attack do per hit.
-    /// </summary>
-    public int DamagePerHit = 1;
-
-    public Attack()
+    public abstract class Attack : TargetedSkill
     {
-        SkillAnimationName = "Attacking";
-    }
+        /// <summary>
+        /// How much damage does the attack do per hit.
+        /// </summary>
+        public int DamagePerHit = 1;
 
-    protected override void Awake()
-    {
-        base.Awake();
-    }
-
-    protected override void Update()
-    {
-        base.Update();
-    }
-
-    protected override void ApplySkillEffects(object sender, EventArgs e)
-    {
-          if (Target != null)
+        protected Attack()
         {
-            Target.TakeDamage(DamagePerHit, selfCombatant);
+            SkillAnimationName = "Attacking";
+        }
+
+        protected override void Awake()
+        {
+            base.Awake();
+        }
+
+        protected override void Update()
+        {
+            base.Update();
+        }
+
+        protected override void ApplySkillEffects(object sender, EventArgs e)
+        {
+            if (Target != null)
+            {
+                Target.TakeDamage(DamagePerHit, SelfCombatant);
+            }
         }
     }
 }

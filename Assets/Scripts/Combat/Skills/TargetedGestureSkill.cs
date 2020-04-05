@@ -1,25 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEngine;
-
-public abstract class TargetedGestureSkill : TargetedSkill
+﻿namespace Assets.Scripts.Combat.Skills
 {
-
-    public TargetedGestureSkill()
+    public abstract class TargetedGestureSkill : TargetedSkill
     {
-        SkillAnimationName = "Gesturing";
-    }
+        protected TargetedGestureSkill()
+        {
+            SkillAnimationName = "Gesturing";
+        }
 
-    protected override void Awake()
-    {
-        base.Awake();
-    }
+        protected override void Awake()
+        {
+            base.Awake();
+        }
 
-    protected override void Update()
-    {
-        base.Update();
+        protected override void Update()
+        {
+            base.Update();
+        }
     }
 }

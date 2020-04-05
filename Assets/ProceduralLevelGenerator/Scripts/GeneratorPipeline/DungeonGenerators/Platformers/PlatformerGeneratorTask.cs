@@ -45,7 +45,7 @@
 			var mapDescription = Payload.MapDescription;
 
 			// Generate layout
-			var layout = GenerateLayout(mapDescription, GetGenerator(mapDescription), Config.Timeout, Config.ShowDebugInfo);
+			var layout = GenerateLayout(mapDescription, GetGenerator(), Config.Timeout, Config.ShowDebugInfo);
 
 			// Setup room templates
 			Payload.Layout = TransformLayout(layout, Payload.RoomDescriptionsToRoomTemplates);
@@ -69,7 +69,7 @@
 			}
 		}
 
-		protected IBenchmarkableLayoutGenerator<MapDescription<int>, IMapLayout<int>> GetGenerator(MapDescription<int> mapDescription)
+		protected IBenchmarkableLayoutGenerator<MapDescription<int>, IMapLayout<int>> GetGenerator()
 		{
 			var generator = PlatformerGeneratorFactory.GetPlatformerGenerator<int>();
 			generator.InjectRandomGenerator(Payload.Random);

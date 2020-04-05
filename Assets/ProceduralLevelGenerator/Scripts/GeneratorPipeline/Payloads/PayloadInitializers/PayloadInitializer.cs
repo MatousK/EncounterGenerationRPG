@@ -1,4 +1,6 @@
 ﻿
+using Assets.Scripts.DungeonGenerator;
+
 namespace Assets.ProceduralLevelGenerator.Scripts.GeneratorPipeline.Payloads.PayloadInitializers
 {
 	using System.Linq;

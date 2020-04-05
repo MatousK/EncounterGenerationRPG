@@ -1,41 +1,39 @@
-﻿using Assets.ProceduralLevelGenerator.Scripts.Data.Graphs;
+﻿using System.Collections.Generic;
 using Assets.ProceduralLevelGenerator.Scripts.GeneratorPipeline.Payloads.Interfaces;
-using Assets.ProceduralLevelGenerator.Scripts.GeneratorPipeline.RoomTemplates.Doors;
 using Assets.ProceduralLevelGenerator.Scripts.Pipeline;
-using Assets.ProceduralLevelGenerator.Scripts.Utils;
-using MapGeneration.Interfaces.Core.MapLayouts;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using Assets.Scripts.Movement.Pathfinding;
 using UnityEngine.Tilemaps;
 
-public class PathfindingHelperTask<TPayload> : ConfigurablePipelineTask<TPayload, PathfindingConfig>
-    where TPayload : class, IGeneratorPayload, IGraphBasedGeneratorPayload, INamedTilemapsPayload
+namespace Assets.Scripts.DungeonGenerator
 {
-    public override void Process()
+    public class PathfindingHelperTask<TPayload> : ConfigurablePipelineTask<TPayload, PathfindingConfig>
+        where TPayload : class, IGeneratorPayload, IGraphBasedGeneratorPayload, INamedTilemapsPayload
     {
-        List<Tilemap> blockingTilemaps = new List<Tilemap>();
-        List<Tilemap> walkableTilemaps = new List<Tilemap>();
-        HandleTilemap(Payload.FloorTilemap, Config.FloorNavigation, blockingTilemaps, walkableTilemaps);
-        HandleTilemap(Payload.CollideableTilemap, Config.ColliderNavigation, blockingTilemaps, walkableTilemaps);
-        HandleTilemap(Payload.WallsTilemap, Config.WallsNavigation, blockingTilemaps, walkableTilemaps);
-        PathfindingMapController controllerComponent = Payload.GameObject.AddComponent<PathfindingMapController>();
-        controllerComponent.CollisionTilemaps = blockingTilemaps;
-        controllerComponent.WalkableTilemaps = walkableTilemaps;
-    }
-
-    void HandleTilemap(Tilemap tilemap, LayerNavigationType tilemapNavigationType, List<Tilemap> blockingTilemaps, List<Tilemap> walkableTilemaps)
-    {
-        switch (tilemapNavigationType)
+        public override void Process()
         {
-            case LayerNavigationType.Blocking:
-                blockingTilemaps.Add(tilemap);
-                break;
-            case LayerNavigationType.Walkable:
-                walkableTilemaps.Add(tilemap);
-                break;
-            case LayerNavigationType.DoesNotAffectNavigation:
-                break;
+            List<Tilemap> blockingTilemaps = new List<Tilemap>();
+            List<Tilemap> walkableTilemaps = new List<Tilemap>();
+            HandleTilemap(Payload.FloorTilemap, Config.FloorNavigation, blockingTilemaps, walkableTilemaps);
+            HandleTilemap(Payload.CollideableTilemap, Config.ColliderNavigation, blockingTilemaps, walkableTilemaps);
+            HandleTilemap(Payload.WallsTilemap, Config.WallsNavigation, blockingTilemaps, walkableTilemaps);
+            PathfindingMapController controllerComponent = Payload.GameObject.AddComponent<PathfindingMapController>();
+            controllerComponent.CollisionTilemaps = blockingTilemaps;
+            controllerComponent.WalkableTilemaps = walkableTilemaps;
+        }
+
+        void HandleTilemap(Tilemap tilemap, LayerNavigationType tilemapNavigationType, List<Tilemap> blockingTilemaps, List<Tilemap> walkableTilemaps)
+        {
+            switch (tilemapNavigationType)
+            {
+                case LayerNavigationType.Blocking:
+                    blockingTilemaps.Add(tilemap);
+                    break;
+                case LayerNavigationType.Walkable:
+                    walkableTilemaps.Add(tilemap);
+                    break;
+                case LayerNavigationType.DoesNotAffectNavigation:
+                    break;
+            }
         }
     }
 }

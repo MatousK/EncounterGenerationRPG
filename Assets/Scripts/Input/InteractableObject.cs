@@ -1,57 +1,58 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Assets.Scripts.Combat;
 using UnityEngine;
-/// <summary>
-/// Object on which on which it is possible to right click. The character will go to this object on right click and once close enough he will trigger the interaction
-/// </summary>
-public class InteractableObject: MonoBehaviour
+
+namespace Assets.Scripts.Input
 {
     /// <summary>
-    /// If true, it is possible to use this item in combat.
+    /// Object on which on which it is possible to right click. The character will go to this object on right click and once close enough he will trigger the interaction
     /// </summary>
-    public bool AllowedInCombat = false;
-    /// <summary>
-    /// How close must the character be to trigger the interaction.
-    /// </summary>
-    public float MaxDistanceToInteract = 1;
-    /// <summary>
-    /// Called when a character gets close enough to trigger the interaction. The argument is the character who triggered the interaction.
-    /// </summary>
-    public event EventHandler<Hero> OnInteractionTriggered;
-
-    private CombatantsManager combatantsManager;
-    public void Start()
+    public class InteractableObject: MonoBehaviour
     {
-        combatantsManager = FindObjectOfType<CombatantsManager>();
-    }
-    /// <summary>
-    /// Starts the interaction with this object by the hero if possible.
-    /// </summary>
-    /// <param name="interactingHero">The hero who wishes to interact with this object.</param>
-    /// <returns>True if the interaction was successful, otherwise false.</returns>
-    public bool TryInteract(Hero interactingHero)
-    { 
-        if ((!AllowedInCombat && combatantsManager.IsCombatActive) || !IsHeroCloseToInteract(interactingHero))
+        /// <summary>
+        /// If true, it is possible to use this item in combat.
+        /// </summary>
+        public bool AllowedInCombat = false;
+        /// <summary>
+        /// How close must the character be to trigger the interaction.
+        /// </summary>
+        public float MaxDistanceToInteract = 1;
+        /// <summary>
+        /// Called when a character gets close enough to trigger the interaction. The argument is the character who triggered the interaction.
+        /// </summary>
+        public event EventHandler<Hero> OnInteractionTriggered;
+
+        private CombatantsManager combatantsManager;
+        public void Start()
         {
-            return false;
+            combatantsManager = FindObjectOfType<CombatantsManager>();
+        }
+        /// <summary>
+        /// Starts the interaction with this object by the hero if possible.
+        /// </summary>
+        /// <param name="interactingHero">The hero who wishes to interact with this object.</param>
+        /// <returns>True if the interaction was successful, otherwise false.</returns>
+        public bool TryInteract(Hero interactingHero)
+        { 
+            if ((!AllowedInCombat && combatantsManager.IsCombatActive) || !IsHeroCloseToInteract(interactingHero))
+            {
+                return false;
+            }
+
+            if (OnInteractionTriggered == null)
+            {
+                throw new InvalidOperationException("Trying to interact with an object that does not have any interaction handler registered.");
+            }
+            OnInteractionTriggered(this, interactingHero);
+            return true;
         }
 
-        if (OnInteractionTriggered == null)
+        public bool IsHeroCloseToInteract(Hero hero)
         {
-            throw new InvalidOperationException("Trying to interact with an object that does not have any interaction handler registered.");
+            Vector2 heroPosition2D = hero.transform.position;
+            Vector2 selfPosition2D = transform.position;
+            return Vector2.Distance(heroPosition2D, selfPosition2D) <= MaxDistanceToInteract;
         }
-        OnInteractionTriggered(this, interactingHero);
-        return true;
-    }
-
-    public bool IsHeroCloseToInteract(Hero hero)
-    {
-        Vector2 heroPosition2D = hero.transform.position;
-        Vector2 selfPosition2D = transform.position;
-        return Vector2.Distance(heroPosition2D, selfPosition2D) <= MaxDistanceToInteract;
     }
 }
     

@@ -1,111 +1,114 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
+﻿using Assets.Scripts.Combat;
+using Assets.Scripts.Cutscenes;
+using Assets.Scripts.Movement;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class RightClickController : MonoBehaviour
+namespace Assets.Scripts.Input
 {
-    CombatantsManager combatantsManager;
-    CutsceneManager cutsceneManager;
-    private void Awake()
+    public class RightClickController : MonoBehaviour
     {
-        combatantsManager = FindObjectOfType<CombatantsManager>();
-        cutsceneManager = FindObjectOfType<CutsceneManager>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (cutsceneManager.IsCutsceneActive)
+        CombatantsManager combatantsManager;
+        CutsceneManager cutsceneManager;
+        private void Awake()
         {
-            return;
+            combatantsManager = FindObjectOfType<CombatantsManager>();
+            cutsceneManager = FindObjectOfType<CutsceneManager>();
         }
-        if (EventSystem.current.IsPointerOverGameObject())
-        {
-            // We are over UI, do not do commands.
-            return;
-        }
-        if (Input.GetMouseButtonUp(1))
-        {
-            var usingSkill = Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl);
-            Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
 
-            RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
-
-            var hitEnemy = hit.collider != null ? hit.collider.GetComponent<Monster>() : null;
-            var hitFriend = hit.collider != null ? hit.collider.GetComponent<Hero>() : null;
-            var hitInteractableObject = hit.collider != null ? hit.collider.GetComponent<InteractableObject>() : null;
-            // Hacky - basically we need to make sure that if one character opened doors, others won't try to go through them.
-            // So if one suceeds in using an interactive item straight away, others won't try it.
-            bool didUserInteractableObject = false;
-            foreach (var character in combatantsManager.GetPlayerCharacters(onlySelected: true))
+        // Update is called once per frame
+        void Update()
+        {
+            if (cutsceneManager.IsCutsceneActive)
             {
-                if (hitInteractableObject)
+                return;
+            }
+            if (EventSystem.current.IsPointerOverGameObject())
+            {
+                // We are over UI, do not do commands.
+                return;
+            }
+            if (UnityEngine.Input.GetMouseButtonUp(1))
+            {
+                var usingSkill = UnityEngine.Input.GetKey(KeyCode.LeftControl) || UnityEngine.Input.GetKey(KeyCode.RightControl);
+                Vector3 mousePos = UnityEngine.Camera.main.ScreenToWorldPoint(UnityEngine.Input.mousePosition);
+                Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
+
+                RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
+
+                var hitEnemy = hit.collider != null ? hit.collider.GetComponent<Monster>() : null;
+                var hitFriend = hit.collider != null ? hit.collider.GetComponent<Hero>() : null;
+                var hitInteractableObject = hit.collider != null ? hit.collider.GetComponent<InteractableObject>() : null;
+                // Hacky - basically we need to make sure that if one character opened doors, others won't try to go through them.
+                // So if one suceeds in using an interactive item straight away, others won't try it.
+                bool didUserInteractableObject = false;
+                foreach (var character in combatantsManager.GetPlayerCharacters(onlySelected: true))
                 {
-                    if (hitInteractableObject.IsHeroCloseToInteract(character))
+                    if (hitInteractableObject)
                     {
-                        didUserInteractableObject = hitInteractableObject.TryInteract(character);
-                    }
-                    else if (!didUserInteractableObject)
-                    {
-                        // We cache a temporary reference to the object, as we will be clearing
-                        // it before the completion completes.
-                        var interactableObject = hitInteractableObject;
-                        character.GetComponent<MovementController>().MoveToPosition(hit.collider.transform.position, onMoveToSuccessful: moveSuccess =>
+                        if (hitInteractableObject.IsHeroCloseToInteract(character))
                         {
-                            if (moveSuccess)
+                            didUserInteractableObject = hitInteractableObject.TryInteract(character);
+                        }
+                        else if (!didUserInteractableObject)
+                        {
+                            // We cache a temporary reference to the object, as we will be clearing
+                            // it before the completion completes.
+                            var interactableObject = hitInteractableObject;
+                            character.GetComponent<MovementController>().MoveToPosition(hit.collider.transform.position, onMoveToSuccessful: moveSuccess =>
                             {
-                                interactableObject.TryInteract(character);
-                            }
-                        });
+                                if (moveSuccess)
+                                {
+                                    interactableObject.TryInteract(character);
+                                }
+                            });
+                        }
+                        // Else nothing - the interactive item was used by someone else, this character has nothing to do.
                     }
-                    // Else nothing - the interactive item was used by someone else, this character has nothing to do.
-                }
-                else if (hitEnemy)
-                {
-                    if (usingSkill)
+                    else if (hitEnemy)
                     {
-                        character.SkillAttackUsed(hitEnemy);
+                        if (usingSkill)
+                        {
+                            character.SkillAttackUsed(hitEnemy);
+                        }
+                        else
+                        {
+                            character.AttackUsed(hitEnemy);
+                        }
                     }
-                    else
+                    else if (hitFriend == character)
                     {
-                        character.AttackUsed(hitEnemy);
+                        if (usingSkill)
+                        {
+                            character.SelfSkillUsed();
+                        }
+                        else
+                        {
+                            character.SelfClicked();
+                        }
                     }
-                }
-                else if (hitFriend == character)
-                {
-                    if (usingSkill)
+                    else if (hitFriend)
                     {
-                        character.SelfSkillUsed();
-                    }
-                    else
-                    {
-                        character.SelfClicked();
-                    }
-                }
-                else if (hitFriend)
-                {
-                    if (usingSkill)
-                    {
-                        character.FriendlySkillUsed(hitFriend);
-                    }
-                    else
-                    {
-                        character.FriendlyClicked(hitFriend);
-                    }
-                }
-                else
-                {
-                    var clickTarget = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                    if (usingSkill)
-                    {
-                        character.LocationSkillClick(clickTarget);
+                        if (usingSkill)
+                        {
+                            character.FriendlySkillUsed(hitFriend);
+                        }
+                        else
+                        {
+                            character.FriendlyClicked(hitFriend);
+                        }
                     }
                     else
                     {
-                        character.LocationClick(clickTarget);
+                        var clickTarget = UnityEngine.Camera.main.ScreenToWorldPoint(UnityEngine.Input.mousePosition);
+                        if (usingSkill)
+                        {
+                            character.LocationSkillClick(clickTarget);
+                        }
+                        else
+                        {
+                            character.LocationClick(clickTarget);
+                        }
                     }
                 }
             }

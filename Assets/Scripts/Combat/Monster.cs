@@ -1,29 +1,28 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class Monster : CombatantBase
+﻿namespace Assets.Scripts.Combat
 {
-    public MonsterRole Role;
-    public MonsterRank Rank;
-    protected override void Awake()
+    public class Monster : CombatantBase
     {
-        base.Awake();
-        combatantsManager.Enemies.Add(this);
-        DamageMaxHitPointsDirectly = true;
-    }
-    // Update is called once per frame
-    protected override void Update()
-    {
-        base.Update();
-    }
-
-    public override void TakeDamage(int damage, CombatantBase FromCombatant)
-    {
-        base.TakeDamage(damage, FromCombatant);
-        if (IsDown)
+        public MonsterRole Role;
+        public MonsterRank Rank;
+        protected override void Awake()
         {
-            combatantsManager.Enemies.Remove(this);
+            base.Awake();
+            CombatantsManager.Enemies.Add(this);
+            DamageMaxHitPointsDirectly = true;
+        }
+        // Update is called once per frame
+        protected override void Update()
+        {
+            base.Update();
+        }
+
+        public override void TakeDamage(int damage, CombatantBase fromCombatant)
+        {
+            base.TakeDamage(damage, fromCombatant);
+            if (IsDown)
+            {
+                CombatantsManager.Enemies.Remove(this);
+            }
         }
     }
 }

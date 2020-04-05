@@ -1,26 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEngine;
-using Priority_Queue;
+﻿using UnityEngine;
 
-public class AStar : AStarBase
+namespace Assets.Scripts.Movement.Pathfinding
 {
-    public AStar(bool[,] map, Vector2Int startPosition, Vector2Int endPosition) : base(map, startPosition)
+    public class AStar : AStarBase
     {
-        this.endPosition = endPosition;
-    }
-    Vector2Int endPosition;
+        public AStar(bool[,] map, Vector2Int startPosition, Vector2Int endPosition) : base(map, startPosition)
+        {
+            this.endPosition = endPosition;
+        }
 
-    protected override float CalculateHeuristic(Vector2Int position)
-    {
-        return Vector2Int.Distance(position, endPosition);
-    }
+        readonly Vector2Int endPosition;
 
-    protected override bool FoundTarget(Vector2Int position)
-    {
-        return position == endPosition;
+        protected override float CalculateHeuristic(Vector2Int position)
+        {
+            return Vector2Int.Distance(position, endPosition);
+        }
+
+        protected override bool FoundTarget(Vector2Int position)
+        {
+            return position == endPosition;
+        }
     }
 }

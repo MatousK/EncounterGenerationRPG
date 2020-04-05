@@ -1,84 +1,77 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEngine;
+﻿using UnityEngine;
 
-class HealingAura : PersonalSkill
+namespace Assets.Scripts.Combat.Skills.Character.Cleric
 {
-    public HealingAura()
+    class HealingAura : PersonalSkill
     {
-        SkillAnimationName = "";
-    }
-    /// <summary>
-    /// How far must the character be for the aura to work.
-    /// </summary>
-    public float AuraRange;
-    /// <summary>
-    ///  How many times per second should the heal pulse fire.
-    /// </summary>
-    public float HealPulseFrequency;
-    /// <summary>
-    /// How much healing should the aura do per pulse.
-    /// </summary>
-    public float HealPulsePercentage = 10;
-    /// <summary>
-    /// The aura object which should be activated while this skill is active.
-    /// </summary>
-    public GameObject AuraInstance;
-    /// <summary>
-    /// Returns how much time is between heal pulses.
-    /// </summary>
-    private float PulseTime
-    {
-        get
+        public HealingAura()
         {
-            return 1 / HealPulseFrequency;
+            SkillAnimationName = "";
         }
-    }
-    private float timeToNextPulse = float.PositiveInfinity;
-    private CombatantsManager combatantsManager;
-    // Start is called before the first frame update
-    protected override void Awake()
-    {
-        combatantsManager = FindObjectOfType<CombatantsManager>();
-        base.Awake();
-    }
+        /// <summary>
+        /// How far must the character be for the aura to work.
+        /// </summary>
+        public float AuraRange = 0;
+        /// <summary>
+        ///  How many times per second should the heal pulse fire.
+        /// </summary>
+        public float HealPulseFrequency = 0;
+        /// <summary>
+        /// How much healing should the aura do per pulse.
+        /// </summary>
+        public float HealPulsePercentage = 10;
+        /// <summary>
+        /// The aura object which should be activated while this skill is active.
+        /// </summary>
+        public GameObject AuraInstance = null;
+        /// <summary>
+        /// Returns how much time is between heal pulses.
+        /// </summary>
+        private float PulseTime => 1 / HealPulseFrequency;
 
-    // Update is called once per frame
-    protected override void Update()
-    {
-        timeToNextPulse -= Time.deltaTime;
-        if (timeToNextPulse <= 0)
+        private float timeToNextPulse = float.PositiveInfinity;
+        private CombatantsManager combatantsManager;
+        // Start is called before the first frame update
+        protected override void Awake()
         {
-            HealPulse();
+            combatantsManager = FindObjectOfType<CombatantsManager>();
+            base.Awake();
         }
-        base.Update();
-    }
 
-    private void HealPulse()
-    {
-        timeToNextPulse = PulseTime;
-        foreach (var ally in combatantsManager.GetAlliesFor(selfCombatant))
+        // Update is called once per frame
+        protected override void Update()
         {
-             if (Vector2.Distance(ally.transform.position, transform.position) < AuraRange)
+            timeToNextPulse -= Time.deltaTime;
+            if (timeToNextPulse <= 0)
             {
-                float healPulseAmount = ally.TotalMaxHitpoints * HealPulsePercentage;
-                ally.HealDamage(healPulseAmount, selfCombatant);
+                HealPulse();
+            }
+            base.Update();
+        }
+
+        private void HealPulse()
+        {
+            timeToNextPulse = PulseTime;
+            foreach (var ally in combatantsManager.GetAlliesFor(SelfCombatant))
+            {
+                if (Vector2.Distance(ally.transform.position, transform.position) < AuraRange)
+                {
+                    float healPulseAmount = ally.TotalMaxHitpoints * HealPulsePercentage;
+                    ally.HealDamage(healPulseAmount, SelfCombatant);
+                }
             }
         }
-    }
 
-    protected override void OnPersonalSkillStarted()
-    {
-        AuraInstance.SetActive(true);
-        HealPulse();
-    }
+        protected override void OnPersonalSkillStarted()
+        {
+            AuraInstance.SetActive(true);
+            HealPulse();
+        }
 
-    protected override void OnPersonalSkillStopped()
-    {
-        AuraInstance.SetActive(false);
-        timeToNextPulse = float.PositiveInfinity;
+        protected override void OnPersonalSkillStopped()
+        {
+            AuraInstance.SetActive(false);
+            timeToNextPulse = float.PositiveInfinity;
+        }
     }
 }

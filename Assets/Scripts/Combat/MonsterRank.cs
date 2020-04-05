@@ -1,7 +1,10 @@
-﻿public enum MonsterRank
+﻿namespace Assets.Scripts.Combat
 {
-    Regular,
-    Elite, 
-    Boss,
-    Minion
+    public enum MonsterRank
+    {
+        Regular,
+        Elite, 
+        Boss,
+        Minion
+    }
 }

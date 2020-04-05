@@ -1,28 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class AttributeField: MonoBehaviour
+namespace Assets.Scripts.UI.CharacterPortrait
 {
-    public float ValueToShow;
-    public Text Label;
-
-    public void Start()
+    public class AttributeField: MonoBehaviour
     {
-        UpdateLabel();
-    }
+        public float ValueToShow;
+        public Text Label;
 
-    public void Update()
-    {
-        UpdateLabel();
-    }
+        public void Start()
+        {
+            UpdateLabel();
+        }
 
-    void UpdateLabel()
-    {
-        Label.text = ValueToShow.ToString();
+        public void Update()
+        {
+            UpdateLabel();
+        }
+
+        void UpdateLabel()
+        {
+            Label.text = ValueToShow.ToString();
+        }
     }
 }

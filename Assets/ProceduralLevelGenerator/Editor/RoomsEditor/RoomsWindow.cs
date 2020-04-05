@@ -18,7 +18,7 @@
 
 		public void Initialize()
 		{
-			nodes = new List<IEditorNodeBase>();
+			Nodes = new List<IEditorNodeBase>();
 
 			RemoveDestroyedTemplates();
 			CreateNode(Data);
@@ -48,18 +48,18 @@
 
 		public override void OnEnable()
 		{
-			nodeStyle = new GUIStyle();
-			nodeStyle.normal.background = MakeTex(1, 1, new Color(0.2f, 0.2f, 0.2f, 0.85f));
-			nodeStyle.border = new RectOffset(12, 12, 12, 12);
-			nodeStyle.normal.textColor = Color.white;
-			nodeStyle.fontSize = 16;
-			nodeStyle.alignment = TextAnchor.MiddleCenter;
+            NodeStyle = new GUIStyle
+            {
+                normal = {background = MakeTex(1, 1, new Color(0.2f, 0.2f, 0.2f, 0.85f))},
+                border = new RectOffset(12, 12, 12, 12)
+            };
+            NodeStyle.normal.textColor = Color.white;
+			NodeStyle.fontSize = 16;
+			NodeStyle.alignment = TextAnchor.MiddleCenter;
 
-			roomNodeStyle = new GUIStyle(nodeStyle);
-			roomNodeStyle.alignment = TextAnchor.UpperCenter;
-			roomNodeStyle.fontSize = 13;
+            roomNodeStyle = new GUIStyle(NodeStyle) {alignment = TextAnchor.UpperCenter, fontSize = 13};
 
-			RemoveDestroyedTemplates();
+            RemoveDestroyedTemplates();
 		}
 
 		private Texture2D MakeTex(int width, int height, Color col)
@@ -101,10 +101,10 @@
 
 		protected RoomSetNode CreateNode(RoomTemplatesSet data)
 		{
-			var node = new RoomSetNode(data, 150, 50, nodeStyle, roomNodeStyle);
+			var node = new RoomSetNode(data, 150, 50, NodeStyle, roomNodeStyle);
 			// node.OnDeleted += OnDeleteNode;
 
-			nodes.Add(node);
+			Nodes.Add(node);
 
 			return node;
 		}

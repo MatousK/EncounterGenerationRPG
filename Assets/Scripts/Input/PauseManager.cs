@@ -1,20 +1,21 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class PauseManager : MonoBehaviour
+namespace Assets.Scripts.Input
 {
-    // Update is called once per frame
-    void Update()
+    public class PauseManager : MonoBehaviour
     {
-        if (Input.GetKeyUp(KeyCode.Space))
+        // Update is called once per frame
+        void Update()
         {
-            ToggleGamePaused();
+            if (UnityEngine.Input.GetKeyUp(KeyCode.Space))
+            {
+                ToggleGamePaused();
+            }
         }
-    }
 
-    void ToggleGamePaused()
-    {
-        Time.timeScale = Time.timeScale == 1 ? 0 : 1;
+        void ToggleGamePaused()
+        {
+            Time.timeScale = Time.timeScale == 1 ? 0 : 1;
+        }
     }
 }

@@ -7,26 +7,24 @@
 
 	public class NodeBasedEditorWindow : EditorWindow
 	{
-		private List<Node> nodes;
+		private readonly List<Node> nodes = new List<Node>();
 
 		public void OnGUI()
 		{
 			DrawNodes();
-			ProcessEvents(Event.current);
+			ProcessEvents();
 		}
 
 		private void DrawNodes()
-		{
-			if (nodes != null)
-			{
-				for (int i = 0; i < nodes.Count; i++)
-				{
-					nodes[i].Draw();
-				}
-			}
-		}
+        {
+            if (nodes == null) return;
+            foreach (var node in nodes)
+            {
+                node.Draw();
+            }
+        }
 
-		private void ProcessEvents(Event e)
+		private void ProcessEvents()
 		{
 		}
 	}

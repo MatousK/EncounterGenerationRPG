@@ -1,61 +1,60 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using UnityEngine;
+﻿using System.Linq;
 
-public class Rage : PersonalSkill
+namespace Assets.Scripts.Combat.Skills.Monster.Brute
 {
-    public int DamageMultiplier = 4;
-    public float SpeedMultiplier = 4;
-
-    CombatantsManager combatantsManager;
-    SelectableObject selectableComponent;
-
-    public Rage()
+    public class Rage : PersonalSkill
     {
-        Duration = 5;
-        Cooldown = 10;
-    }
+        public int DamageMultiplier = 4;
+        public float SpeedMultiplier = 4;
 
-    protected override void Update()
-    {
-        base.Update();
-        if (IsActive && !combatantsManager.GetOpponentsFor(selfCombatant, onlyAlive:true).Any())
+        CombatantsManager combatantsManager;
+        SelectableObject selectableComponent;
+
+        public Rage()
         {
-            // Everyone is dead, noone to attack.
-            TryStopSkill();
-        }
-    }
-    protected override void Awake()
-    {
-        base.Awake();
-        combatantsManager = FindObjectOfType<CombatantsManager>();
-        selectableComponent = selfCombatant.GetComponent<SelectableObject>();
-    }
-    protected override void OnPersonalSkillStarted()
-    {
-        if (selectableComponent != null)
-        {
-            selectableComponent.IsSelected = false;
-            selectableComponent.IsSelectionEnabled = false;
+            Duration = 5;
+            Cooldown = 10;
         }
 
-        selfCombatant.Attributes.MovementSpeedMultiplier *= SpeedMultiplier;
-        selfCombatant.Attributes.AttackSpeedMultiplier *= SpeedMultiplier;
-        selfCombatant.Attributes.DealtDamageMultiplier *= DamageMultiplier;
-    }
-
-    protected override void OnPersonalSkillStopped()
-    {
-        if (selectableComponent != null)
+        protected override void Update()
         {
-            selectableComponent.enabled = true;
-            selectableComponent.IsSelectionEnabled = true;
+            base.Update();
+            if (IsActive && !combatantsManager.GetOpponentsFor(SelfCombatant, onlyAlive:true).Any())
+            {
+                // Everyone is dead, noone to attack.
+                TryStopSkill();
+            }
+        }
+        protected override void Awake()
+        {
+            base.Awake();
+            combatantsManager = FindObjectOfType<CombatantsManager>();
+            selectableComponent = SelfCombatant.GetComponent<SelectableObject>();
+        }
+        protected override void OnPersonalSkillStarted()
+        {
+            if (selectableComponent != null)
+            {
+                selectableComponent.IsSelected = false;
+                selectableComponent.IsSelectionEnabled = false;
+            }
+
+            SelfCombatant.Attributes.MovementSpeedMultiplier *= SpeedMultiplier;
+            SelfCombatant.Attributes.AttackSpeedMultiplier *= SpeedMultiplier;
+            SelfCombatant.Attributes.DealtDamageMultiplier *= DamageMultiplier;
         }
 
-        selfCombatant.Attributes.MovementSpeedMultiplier /= SpeedMultiplier;
-        selfCombatant.Attributes.AttackSpeedMultiplier /= SpeedMultiplier;
-        selfCombatant.Attributes.DealtDamageMultiplier /= DamageMultiplier;
+        protected override void OnPersonalSkillStopped()
+        {
+            if (selectableComponent != null)
+            {
+                selectableComponent.enabled = true;
+                selectableComponent.IsSelectionEnabled = true;
+            }
+
+            SelfCombatant.Attributes.MovementSpeedMultiplier /= SpeedMultiplier;
+            SelfCombatant.Attributes.AttackSpeedMultiplier /= SpeedMultiplier;
+            SelfCombatant.Attributes.DealtDamageMultiplier /= DamageMultiplier;
+        }
     }
 }

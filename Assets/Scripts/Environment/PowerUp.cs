@@ -1,40 +1,39 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Assets.Scripts.Combat;
 using UnityEngine;
 
-public class PowerUp : MonoBehaviour
+namespace Assets.Scripts.Environment
 {
-    public float AttackModifierAddition;
-    public float AttackModifierMultiplier = 1;
-    public float DefenseModifierSubstraction;
-    public float DefenseModifierMultiplier = 1;
-    public float TotalMaxHPAddition;
-    public float TotalMaxHPMultiplier = 1;
-    public float HealedMaxHP;
-    public void ApplyPowerup(Hero forHero)
+    public class PowerUp : MonoBehaviour
     {
-        forHero.Attributes.DealtDamageMultiplier += AttackModifierAddition;
-        forHero.Attributes.DealtDamageMultiplier *= AttackModifierMultiplier;
-
-        forHero.Attributes.ReceivedDamageMultiplier -= DefenseModifierSubstraction;
-        forHero.Attributes.ReceivedDamageMultiplier *= DefenseModifierMultiplier;
-
-        var oldTotalMaxHP = forHero.TotalMaxHitpoints;
-        forHero.TotalMaxHitpoints += TotalMaxHPAddition;
-        forHero.TotalMaxHitpoints *= TotalMaxHPMultiplier;
-
-        var toAddMaxHP = forHero.TotalMaxHitpoints - oldTotalMaxHP + HealedMaxHP;
-        forHero.MaxHitpoints += toAddMaxHP;
-        if (toAddMaxHP != 0)
+        public float AttackModifierAddition;
+        public float AttackModifierMultiplier = 1;
+        public float DefenseModifierSubtraction;
+        public float DefenseModifierMultiplier = 1;
+        public float TotalMaxHpAddition;
+        public float TotalMaxHpMultiplier = 1;
+        public float HealedMaxHpPercentage;
+        public void ApplyPowerup(Hero forHero)
         {
-            if (forHero.MaxHitpoints > forHero.TotalMaxHitpoints)
+            forHero.Attributes.DealtDamageMultiplier += AttackModifierAddition;
+            forHero.Attributes.DealtDamageMultiplier *= AttackModifierMultiplier;
+
+            forHero.Attributes.ReceivedDamageMultiplier -= DefenseModifierSubtraction;
+            forHero.Attributes.ReceivedDamageMultiplier *= DefenseModifierMultiplier;
+
+            var oldTotalMaxHp = forHero.TotalMaxHitpoints;
+            forHero.TotalMaxHitpoints += TotalMaxHpAddition;
+            forHero.TotalMaxHitpoints *= TotalMaxHpMultiplier;
+
+            var toAddMaxHp = forHero.TotalMaxHitpoints - oldTotalMaxHp + forHero.TotalMaxHitpoints * HealedMaxHpPercentage;
+            forHero.MaxHitpoints += toAddMaxHp;
+            if (toAddMaxHp != 0)
             {
-                forHero.MaxHitpoints = forHero.TotalMaxHitpoints;
+                if (forHero.MaxHitpoints > forHero.TotalMaxHitpoints)
+                {
+                    forHero.MaxHitpoints = forHero.TotalMaxHitpoints;
+                }
+                forHero.HealDamage((int)toAddMaxHp, null, true);
             }
-            forHero.HealDamage((int)toAddMaxHP, null, true);
         }
     }
 }

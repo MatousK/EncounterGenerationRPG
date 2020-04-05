@@ -1,36 +1,36 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 
-class ConditionManager: MonoBehaviour
+namespace Assets.Scripts.Combat.Conditions
 {
-    public List<ConditionBase> ActiveConditions = new List<ConditionBase>();
-
-    public T AddCondition<T>() where T: ConditionBase
+    class ConditionManager: MonoBehaviour
     {
-        var conditionToAdd = gameObject.AddComponent<T>();
-        ActiveConditions.Add(conditionToAdd);
-        conditionToAdd.ConditionEnded += OnConditionEnded;
-        return conditionToAdd;
-    }
+        public List<ConditionBase> ActiveConditions = new List<ConditionBase>();
 
-    public bool HasCondition<T>() where T: ConditionBase
-    {
-        return GetComponent<T>() != null;
-    }
+        public T AddCondition<T>() where T: ConditionBase
+        {
+            var conditionToAdd = gameObject.AddComponent<T>();
+            ActiveConditions.Add(conditionToAdd);
+            conditionToAdd.ConditionEnded += OnConditionEnded;
+            return conditionToAdd;
+        }
 
-    public void RemoveCondition(ConditionBase conditionToRemove)
-    {
-        ActiveConditions.Remove(conditionToRemove);
-        Destroy(conditionToRemove);
-    }
+        public bool HasCondition<T>() where T: ConditionBase
+        {
+            return GetComponent<T>() != null;
+        }
 
-    private void OnConditionEnded(object sender, EventArgs e)
-    {
-        var endedCondition = sender as ConditionBase;
-        RemoveCondition(endedCondition);
+        public void RemoveCondition(ConditionBase conditionToRemove)
+        {
+            ActiveConditions.Remove(conditionToRemove);
+            Destroy(conditionToRemove);
+        }
+
+        private void OnConditionEnded(object sender, EventArgs e)
+        {
+            var endedCondition = sender as ConditionBase;
+            RemoveCondition(endedCondition);
+        }
     }
 }

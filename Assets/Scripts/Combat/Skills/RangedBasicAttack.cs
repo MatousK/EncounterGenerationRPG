@@ -1,23 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-class RangedBasicAttack: ProjectileAttack
+﻿namespace Assets.Scripts.Combat.Skills
 {
-    RangedBasicAttack()
+    class RangedBasicAttack: ProjectileAttack
     {
-        BlocksManualMovement = false;
-        IsBasicAttack = true;
-    }
-    protected override void Awake()
-    {
-        base.Awake();
-    }
+        RangedBasicAttack()
+        {
+            BlocksManualMovement = false;
+            IsBasicAttack = true;
+        }
+        protected override void Awake()
+        {
+            base.Awake();
+        }
 
-    protected override void Update()
-    {
-        base.Update();
+        protected override void Update()
+        {
+            base.Update();
+        }
     }
 }

@@ -1,18 +1,17 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class SniperShot : ProjectileAttack
+﻿namespace Assets.Scripts.Combat.Skills.Character.Ranger
 {
-    // Start is called before the first frame update
-    protected override void Awake()
+    public class SniperShot : ProjectileAttack
     {
-        base.Awake();
-    }
+        // Start is called before the first frame update
+        protected override void Awake()
+        {
+            base.Awake();
+        }
 
-    // Update is called once per frame
-    protected override void Update()
-    {
-        base.Update();
+        // Update is called once per frame
+        protected override void Update()
+        {
+            base.Update();
+        }
     }
 }

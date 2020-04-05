@@ -13,15 +13,13 @@
 
 		public BoundsInt Bounds
 		{
-			get { return bounds; }
-			set { bounds = value; }
-		}
+			get => bounds;
+            set => bounds = value;
+        }
 
 		public Marker GetMarker(Vector3Int position)
 		{
-			Marker marker;
-
-			if (Markers.TryGetValue(position, out marker))
+            if (Markers.TryGetValue(position, out var marker))
 			{
 				return marker;
 			}

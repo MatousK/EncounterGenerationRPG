@@ -232,23 +232,24 @@
 		/// <returns></returns>
 		[Pure]
 		public Vector3Int GetDirectionVector()
-		{
-			switch (GetDirection())
-			{
-				case Direction.Top:
-					return new Vector3Int(0, 1, 0);
-				case Direction.Right:
-					return new Vector3Int(1, 0, 0);
-				case Direction.Bottom:
-					return new Vector3Int(0, -1, 0);
-				case Direction.Left:
-					return new Vector3Int(-1, 0, 0);
-				case Direction.Undefined:
-					throw new InvalidOperationException("Degenerated lines without a direction set do not have a direction vector.");
-				default:
-					throw new ArgumentOutOfRangeException();
-			}
-		}
+        {
+            switch (GetDirection())
+            {
+                case Direction.Top:
+                    return new Vector3Int(0, 1, 0);
+                case Direction.Right:
+                    return new Vector3Int(1, 0, 0);
+                case Direction.Bottom:
+                    return new Vector3Int(0, -1, 0);
+                case Direction.Left:
+                    return new Vector3Int(-1, 0, 0);
+                case Direction.Undefined:
+                    throw new InvalidOperationException(
+                        "Degenerated lines without a direction set do not have a direction vector.");
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+        }
 
 		#region Operators
 
