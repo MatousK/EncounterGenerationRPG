@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b904d75e30e7a24db07ed8c3789cb33, type: 3}
+  m_Name: Voice_EvilCleric
+  m_EditorClassIdentifier: 
+  SelectedSounds: []
+  MoveOrderSounds: []
+  AttackOrderSounds: []
+  EnemySkillOrderSounds: []
+  PersonalSkillOrderSounds: []
+  FriendlySkillOrderSounds: []
+  SkillUsedSounds: []
+  AlternateSkillUsedSounds:
+  - {fileID: 8300000, guid: 3a49422b0d57c1e43949463aadf92d40, type: 3}
+  - {fileID: 8300000, guid: a71f993c55247f2459978edddafac94d, type: 3}
+  - {fileID: 8300000, guid: 911a09f12e276e24b8094150ffd0b2c3, type: 3}
+  HealedSounds: []
+  AttackGrunts: []
+  MinorDamageGrunts:
+  - {fileID: 8300000, guid: a4e7a458d4a7c1f4496f47494cb841e4, type: 3}
+  - {fileID: 8300000, guid: 67a593e3d27f8c74da61243f71911f7d, type: 3}
+  - {fileID: 8300000, guid: aa6c817d1ced40f408dc874772622020, type: 3}
+  MajorDamageGrunts:
+  - {fileID: 8300000, guid: 9c7ccccdfe491684a9a4b63d48570bd7, type: 3}
+  - {fileID: 8300000, guid: 52f8267ecdbba9f4a9d67c1d5f18b8c2, type: 3}
+  HeroStartsLosingMaxHpSounds: []
+  CombatantDiedSounds:
+  - {fileID: 8300000, guid: 8b29777cd79429f45b2fe460cac8a621, type: 3}
+  - {fileID: 8300000, guid: 1f9d4ed1502361648aa39982bb66adfa, type: 3}
+  RoomEnteredSounds: []
+  FightOverSounds: []

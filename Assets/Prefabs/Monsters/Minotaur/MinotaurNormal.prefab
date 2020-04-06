@@ -188,11 +188,22 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 4647983268431915028, guid: 5bb997eb5e02af8419843853bbfa62c0,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 623900188228665672, guid: 5bb997eb5e02af8419843853bbfa62c0,
         type: 3}
       propertyPath: SkillSoundType
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 8477207567400456895, guid: 5bb997eb5e02af8419843853bbfa62c0,
+        type: 3}
+      propertyPath: CombatantSounds
+      value: 
+      objectReference: {fileID: 11400000, guid: 715e9e4ff6d21fd47b5032d0e71e81fb,
+        type: 2}
     - target: {fileID: 8426503475732973455, guid: 5bb997eb5e02af8419843853bbfa62c0,
         type: 3}
       propertyPath: DamagePerHit
@@ -207,11 +218,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.y
       value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4647983268431915028, guid: 5bb997eb5e02af8419843853bbfa62c0,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5bb997eb5e02af8419843853bbfa62c0, type: 3}

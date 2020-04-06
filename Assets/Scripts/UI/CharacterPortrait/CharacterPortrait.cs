@@ -1,5 +1,7 @@
-﻿using Assets.Scripts.Camera;
+﻿using System.Linq;
+using Assets.Scripts.Camera;
 using Assets.Scripts.Combat;
+using Assets.Scripts.Sound.CharacterSounds;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -28,6 +30,7 @@ namespace Assets.Scripts.UI.CharacterPortrait
         private const float DoubleClickTime = 0.25f;
 
         private CameraMovement cameraMovement;
+        private CharacterVoiceController heroVoiceController;
 
         void Awake()
         {
@@ -39,9 +42,11 @@ namespace Assets.Scripts.UI.CharacterPortrait
         {
             if (RepresentedHero == null)
             {
+                heroVoiceController = null;
                 return;
             }
 
+            heroVoiceController = RepresentedHero.GetComponentInChildren<CharacterVoiceController>();
             PortraitImage.sprite = RepresentedHero.Portrait;
 
             AttackField.ValueToShow = (int)RepresentedHero.Attributes.DealtDamageMultiplier;
@@ -74,6 +79,7 @@ namespace Assets.Scripts.UI.CharacterPortrait
                 else
                 {
                     lastPortraitClickTime = Time.realtimeSinceStartup;
+                    heroVoiceController.PlayOnSelectedSound();
                     SelectHero();
                 }
             }
@@ -102,12 +108,22 @@ namespace Assets.Scripts.UI.CharacterPortrait
         void DoActionOnHero()
         {
             var usingSkill = UnityEngine.Input.GetKey(KeyCode.LeftControl) || UnityEngine.Input.GetKey(KeyCode.RightControl);
-            foreach (var hero in combatantsManager.GetPlayerCharacters(onlySelected: true))
+            var selectedCharacters = combatantsManager.GetPlayerCharacters(onlySelected: true).ToList();
+            var speakingHero = selectedCharacters.FirstOrDefault();
+            var speakingCharacterVoice = speakingHero != null
+                ? speakingHero.GetComponentInChildren<CharacterVoiceController>()
+                : null;
+            VoiceOrderType? voiceOrderType = null;
+            foreach (var hero in selectedCharacters)
             {
                 if (hero == RepresentedHero)
                 {
                     if (usingSkill)
                     {
+                        if (hero == speakingHero)
+                        {
+                            voiceOrderType = VoiceOrderType.SelfSkill;
+                        }
                         hero.SelfSkillUsed();
                     }
                     else
@@ -119,6 +135,10 @@ namespace Assets.Scripts.UI.CharacterPortrait
                 {
                     if (usingSkill)
                     {
+                        if (hero == speakingHero)
+                        {
+                            voiceOrderType = VoiceOrderType.FriendlySkill;
+                        }
                         hero.FriendlySkillUsed(RepresentedHero);
                     }
                     else
@@ -126,6 +146,11 @@ namespace Assets.Scripts.UI.CharacterPortrait
                         hero.FriendlyClicked(RepresentedHero);
                     }
                 }
+            }
+
+            if (voiceOrderType != null && speakingCharacterVoice != null)
+            {
+                speakingCharacterVoice.OnOrderGiven(voiceOrderType.Value);
             }
         }
     }

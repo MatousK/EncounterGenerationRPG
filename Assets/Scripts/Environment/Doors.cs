@@ -97,7 +97,7 @@ namespace Assets.Scripts.Environment
                 return;
             }
 
-            var audioClipToPlay = OpenDoorsAudioClips.GetWeightedRandomElementOrDefault(clip => 1);
+            var audioClipToPlay = OpenDoorsAudioClips.GetRandomElementOrDefault();
             var audioSource = GetComponent<AudioSource>();
             if (audioSource != null && audioClipToPlay != null)
             {

@@ -7,6 +7,10 @@ namespace Assets.Scripts.Extension
     {
         public delegate float WeightSelector<in T>(T element);
 
+        public static T GetRandomElementOrDefault<T>(this IEnumerable<T> sequence)
+        {
+            return sequence.GetWeightedRandomElementOrDefault(p => 1);
+        }
         public static T GetWeightedRandomElementOrDefault<T>(this IEnumerable<T> sequence, WeightSelector<T> weightSelector)
         {
             sequence = sequence.Where(element => weightSelector(element) > 0);

@@ -1,5 +1,7 @@
-﻿using Assets.Scripts.Combat;
+﻿using System.Linq;
+using Assets.Scripts.Combat;
 using Assets.Scripts.Cutscenes;
+using Assets.Scripts.Sound.CharacterSounds;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -63,6 +65,7 @@ namespace Assets.Scripts.Input
         private void SelectPlayerCharacters(Vector2 selectionStart, Vector2 selectionEnd)
         {
             var selectionBoxBounds = GetWorldBounds(selectionStart, selectionEnd);
+            
             foreach (var character in combatantsManager.GetPlayerCharacters(onlyAlive: true))
             {
                 var selectableComponent = character.GetComponent<SelectableObject>();
@@ -77,6 +80,12 @@ namespace Assets.Scripts.Input
                 }
                 var characterBounds = character.GetComponent<SpriteRenderer>().bounds;
                 selectableComponent.IsSelected = characterBounds.Intersects(selectionBoxBounds);
+            }
+
+            var selectedCharacter = combatantsManager.GetPlayerCharacters(onlySelected: true).FirstOrDefault();
+            if (selectedCharacter != null)
+            {
+                selectedCharacter.GetComponentInChildren<CharacterVoiceController>().PlayOnSelectedSound();
             }
         }
         // MARK: Screen space transformations.

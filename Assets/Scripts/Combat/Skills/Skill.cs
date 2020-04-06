@@ -1,6 +1,7 @@
 ﻿using System;
 using Assets.Scripts.Animations;
 using Assets.Scripts.Movement;
+using Assets.Scripts.Sound.CharacterSounds;
 using Assets.Scripts.Sound.CombatSounds;
 using UnityEngine;
 
@@ -46,7 +47,11 @@ namespace Assets.Scripts.Combat.Skills
         /// <summary>
         /// The type of sound this skill will make.
         /// </summary>
-        public CombatSoundType SkillSoundType;
+        public CombatSoundType SkillSoundType = CombatSoundType.None;
+        /// <summary>
+        /// The type of sound that should be played for this skill.
+        /// </summary>
+        public SkillVoiceType VoiceSkillType = SkillVoiceType.SkillNormal;
         /// <summary>
         /// The name of the animation that should be played while this skill is being used.
         /// </summary>
@@ -76,6 +81,10 @@ namespace Assets.Scripts.Combat.Skills
         /// Class responsible for playing sounds when the skill hits specified moments.
         /// </summary>
         protected CombatSoundsController CombatSoundsController;
+        /// <summary>
+        /// Can play a sound for a specific character
+        /// </summary>
+        protected CharacterVoiceController CharacterVoiceController;
         // Start is called before the first frame update
         protected virtual void Awake()
         {
@@ -83,6 +92,7 @@ namespace Assets.Scripts.Combat.Skills
             SelfCombatant = GetComponentInParent<CombatantBase>();
             AnimationEventListener = SelfCombatant.GetComponent<AnimationEventsListener>();
             CombatSoundsController = SelfCombatant.GetComponentInChildren<CombatSoundsController>();
+            CharacterVoiceController = SelfCombatant.GetComponentInChildren<CharacterVoiceController>();
         }
 
         // Update is called once per frame
@@ -195,6 +205,7 @@ namespace Assets.Scripts.Combat.Skills
 
         protected virtual void StartSkillAnimation()
         {
+            CharacterVoiceController.SkillAnimationStartedStarted(VoiceSkillType);
             CombatSoundsController.AnimationStarted(SkillSoundType);
             SelfCombatant.GetComponent<MovementController>().StopMovement();
             // In range, start using the skill - orient toward the target and start dishing out attacks.

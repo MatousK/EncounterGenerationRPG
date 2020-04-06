@@ -26,7 +26,7 @@ namespace Assets.Scripts.AI.MonsterAI
             if (lockedRandomTarget == null || lockedRandomTarget.IsDown)
             {
                 var opponents = CombatantsManager.GetOpponentsFor(ControlledCombatant, onlyAlive: true);
-                var randomTarget = opponents.GetWeightedRandomElementOrDefault(opponent => 1);
+                var randomTarget = opponents.GetRandomElementOrDefault();
                 // Regular monsters do not lock targets and instead shoot all over the place randomly.
                 if (((Monster)ControlledCombatant).Rank != MonsterRank.Regular)
                 {

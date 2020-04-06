@@ -1,6 +1,8 @@
-﻿using Assets.Scripts.Combat;
+﻿using System.Linq;
+using Assets.Scripts.Combat;
 using Assets.Scripts.Cutscenes;
 using Assets.Scripts.Movement;
+using Assets.Scripts.Sound.CharacterSounds;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -42,10 +44,15 @@ namespace Assets.Scripts.Input
                 // Hacky - basically we need to make sure that if one character opened doors, others won't try to go through them.
                 // So if one suceeds in using an interactive item straight away, others won't try it.
                 bool didUserInteractableObject = false;
-                foreach (var character in combatantsManager.GetPlayerCharacters(onlySelected: true))
+                var selectedCharacters = combatantsManager.GetPlayerCharacters(onlySelected: true).ToList();
+                var speakingCharacter = selectedCharacters.FirstOrDefault();
+                var speakingCharacterVoice = speakingCharacter != null ? speakingCharacter.GetComponentInChildren<CharacterVoiceController>() : null;
+                VoiceOrderType? orderType = null;
+                foreach (var character in selectedCharacters)
                 {
                     if (hitInteractableObject)
                     {
+                        orderType = VoiceOrderType.Move;
                         if (hitInteractableObject.IsHeroCloseToInteract(character))
                         {
                             didUserInteractableObject = hitInteractableObject.TryInteract(character);
@@ -69,10 +76,12 @@ namespace Assets.Scripts.Input
                     {
                         if (usingSkill)
                         {
+                            orderType = VoiceOrderType.EnemySkill;
                             character.SkillAttackUsed(hitEnemy);
                         }
                         else
                         {
+                            orderType = VoiceOrderType.Attack;
                             character.AttackUsed(hitEnemy);
                         }
                     }
@@ -80,6 +89,10 @@ namespace Assets.Scripts.Input
                     {
                         if (usingSkill)
                         {
+                            if (character == speakingCharacter)
+                            {
+                                orderType = VoiceOrderType.SelfSkill;
+                            }
                             character.SelfSkillUsed();
                         }
                         else
@@ -91,6 +104,10 @@ namespace Assets.Scripts.Input
                     {
                         if (usingSkill)
                         {
+                            if (character == speakingCharacter)
+                            {
+                                orderType = VoiceOrderType.FriendlySkill;
+                            }
                             character.FriendlySkillUsed(hitFriend);
                         }
                         else
@@ -100,6 +117,7 @@ namespace Assets.Scripts.Input
                     }
                     else
                     {
+                        orderType = VoiceOrderType.Move;
                         var clickTarget = UnityEngine.Camera.main.ScreenToWorldPoint(UnityEngine.Input.mousePosition);
                         if (usingSkill)
                         {
@@ -110,6 +128,11 @@ namespace Assets.Scripts.Input
                             character.LocationClick(clickTarget);
                         }
                     }
+                }
+
+                if (orderType != null && speakingCharacterVoice != null)
+                {
+                    speakingCharacterVoice.OnOrderGiven(orderType.Value);
                 }
             }
         }

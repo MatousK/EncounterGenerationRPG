@@ -48,6 +48,7 @@ MonoBehaviour:
   Range: 10
   Speed: 1
   SkillSoundType: 4
+  VoiceSkillType: 0
   ShouldShowAttackIndicator: 1
   Repetitions: 1
   DamagePerHit: 1
@@ -395,26 +396,32 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 6
       objectReference: {fileID: 0}
-    - target: {fileID: 5093483423519843717, guid: 5bb997eb5e02af8419843853bbfa62c0,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8299358849406847016, guid: 5bb997eb5e02af8419843853bbfa62c0,
         type: 3}
       propertyPath: m_RootOrder
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 4647983268431915028, guid: 5bb997eb5e02af8419843853bbfa62c0,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5093483423519843717, guid: 5bb997eb5e02af8419843853bbfa62c0,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8477207567400456895, guid: 5bb997eb5e02af8419843853bbfa62c0,
+        type: 3}
+      propertyPath: CombatantSounds
+      value: 
+      objectReference: {fileID: 11400000, guid: 32631425be7ca9b47add5ad080a422d4,
+        type: 2}
     - target: {fileID: 7084200779910696714, guid: 5bb997eb5e02af8419843853bbfa62c0,
         type: 3}
       propertyPath: ActionSkill
       value: 
       objectReference: {fileID: 1690631651462913980}
-    - target: {fileID: 4647983268431915028, guid: 5bb997eb5e02af8419843853bbfa62c0,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5bb997eb5e02af8419843853bbfa62c0, type: 3}
 --- !u!4 &2845431260059686301 stripped

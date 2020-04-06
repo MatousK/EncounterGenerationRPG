@@ -70,11 +70,11 @@ namespace Assets.Scripts.EncounterGenerator.Algorithm
             // If we can rank down a monster, we make it fifty/fifty whether we downgrade a monster or remove it.
             if (eliteRankDownCandidates.Any() && UnityEngine.Random.value < 0.5)
             {
-                DowngradeMonster(encounter, eliteRankDownCandidates.GetWeightedRandomElementOrDefault(p => 1).MonsterType);
+                DowngradeMonster(encounter, eliteRankDownCandidates.GetRandomElementOrDefault().MonsterType);
             }
             else if (removeMonsterCandidates.Any())
             {
-                RemoveSpecificMonsterFromEncounter(encounter, removeMonsterCandidates.GetWeightedRandomElementOrDefault(p => 1).MonsterType);
+                RemoveSpecificMonsterFromEncounter(encounter, removeMonsterCandidates.GetRandomElementOrDefault().MonsterType);
             }
             else
             {
@@ -134,7 +134,7 @@ namespace Assets.Scripts.EncounterGenerator.Algorithm
 
             // Okay, so now we hopefully have a list of valid candidates.  Pick one.
             // TODO: Bigger probabilities for those close to to what we want.
-            var selectedMonster = candidates.GetWeightedRandomElementOrDefault(candidate => 1);
+            var selectedMonster = candidates.GetRandomElementOrDefault();
             AddSpecificMonsterToEncounter(encounter, selectedMonster);   
         }
 

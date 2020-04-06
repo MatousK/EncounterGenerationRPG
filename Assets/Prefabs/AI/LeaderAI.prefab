@@ -79,6 +79,9 @@ MonoBehaviour:
   Cooldown: 10
   Range: 10
   Speed: 1
+  SkillSoundType: 0
+  VoiceSkillType: 2
+  ShouldShowAttackIndicator: 1
   Repetitions: 1
   Duration: 5
 --- !u!114 &6255006407851099432
@@ -93,7 +96,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 631dfd7b2dc692945b92704f62aac869, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EliteSkillHPThreshold: 0.5
+  EliteSkillHpThreshold: 0.5
   AdvancedSkill: {fileID: 7301300947267621779}
   HealingAuraMoveToRange: 2
   TargetHeroSkill: {fileID: 8360038318411149901}

@@ -139,16 +139,22 @@ PrefabInstance:
       propertyPath: m_SpriteTilingProperty.oldSize.y
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 4647983268431915028, guid: 5bb997eb5e02af8419843853bbfa62c0,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5834844054933715619, guid: 5bb997eb5e02af8419843853bbfa62c0,
         type: 3}
       propertyPath: m_RootOrder
       value: 7
       objectReference: {fileID: 0}
-    - target: {fileID: 4647983268431915028, guid: 5bb997eb5e02af8419843853bbfa62c0,
+    - target: {fileID: 8477207567400456895, guid: 5bb997eb5e02af8419843853bbfa62c0,
         type: 3}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
+      propertyPath: CombatantSounds
+      value: 
+      objectReference: {fileID: 11400000, guid: 32631425be7ca9b47add5ad080a422d4,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5bb997eb5e02af8419843853bbfa62c0, type: 3}
 --- !u!4 &6961181293527521664 stripped
@@ -391,11 +397,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6255006407851099432, guid: 3985e5e4fc38d684db5b6abd0bf9d343,
-        type: 3}
-      propertyPath: TargetHeroSkill
-      value: 
-      objectReference: {fileID: 625934951651752771}
     - target: {fileID: 7301300947267621779, guid: 3985e5e4fc38d684db5b6abd0bf9d343,
         type: 3}
       propertyPath: AuraInstance
@@ -406,6 +407,11 @@ PrefabInstance:
       propertyPath: ActionSkill
       value: 
       objectReference: {fileID: 2072614805915475806}
+    - target: {fileID: 6255006407851099432, guid: 3985e5e4fc38d684db5b6abd0bf9d343,
+        type: 3}
+      propertyPath: TargetHeroSkill
+      value: 
+      objectReference: {fileID: 625934951651752771}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3985e5e4fc38d684db5b6abd0bf9d343, type: 3}
 --- !u!114 &625934951651752771 stripped

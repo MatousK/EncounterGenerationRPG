@@ -93,6 +93,7 @@ MonoBehaviour:
   Range: 5
   Speed: 1
   SkillSoundType: 4
+  VoiceSkillType: 1
   ShouldShowAttackIndicator: 1
   Repetitions: 1
   DamagePerHit: 1
@@ -582,6 +583,11 @@ PrefabInstance:
       propertyPath: MaxHitpoints
       value: 50
       objectReference: {fileID: 0}
+    - target: {fileID: 4828470711690574787, guid: 46229661ed166644c8a32b159c483f24,
+        type: 3}
+      propertyPath: AiTargetPriority
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 7682667400691751780, guid: 46229661ed166644c8a32b159c483f24,
         type: 3}
       propertyPath: m_Sprite
@@ -679,11 +685,22 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6840494116074943717, guid: 46229661ed166644c8a32b159c483f24,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6395416173296597364, guid: 46229661ed166644c8a32b159c483f24,
         type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7767498046215310926, guid: 46229661ed166644c8a32b159c483f24,
+        type: 3}
+      propertyPath: CombatantSounds
+      value: 
+      objectReference: {fileID: 11400000, guid: e880f4f43e6c2e7498033ad099512746,
+        type: 2}
     - target: {fileID: 7682667400691751805, guid: 46229661ed166644c8a32b159c483f24,
         type: 3}
       propertyPath: m_Offset.x
@@ -707,11 +724,6 @@ PrefabInstance:
     - target: {fileID: 7682667400691751805, guid: 46229661ed166644c8a32b159c483f24,
         type: 3}
       propertyPath: m_Size.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6840494116074943717, guid: 46229661ed166644c8a32b159c483f24,
-        type: 3}
-      propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []

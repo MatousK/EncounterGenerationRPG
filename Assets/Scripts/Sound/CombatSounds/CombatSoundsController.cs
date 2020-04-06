@@ -42,7 +42,7 @@ namespace Assets.Scripts.Sound.CombatSounds
                 return;
             }
 
-            var toPlay = soundListSelector(relevantSkillSounds).GetWeightedRandomElementOrDefault(clip => 1);
+            var toPlay = soundListSelector(relevantSkillSounds).GetRandomElementOrDefault();
             if (toPlay != null && audioSource != null)
             {
                 audioSource.PlayOneShot(toPlay);

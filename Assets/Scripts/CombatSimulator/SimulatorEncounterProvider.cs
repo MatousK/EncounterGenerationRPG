@@ -25,7 +25,7 @@ namespace Assets.Scripts.CombatSimulator
             int currentIteration = 0;
             while (remainingMonsterCount > 0 && currentIteration++ < maxIterationCount)
             {
-                var monsterCandidate = allMonsterTypes.GetWeightedRandomElementOrDefault(monster => 1);
+                var monsterCandidate = allMonsterTypes.GetRandomElementOrDefault();
                 var monsterWeight = GetMonsterWeight(monsterCandidate);
                 // First condition makes sure that we do not make the encounter more difficult than we thought,
                 if (monsterWeight > remainingMonsterCount || remainingMonsterCount > monsterWeight * MaxMonsterCount)

@@ -203,6 +203,11 @@ PrefabInstance:
       propertyPath: MaxHitpoints
       value: 125
       objectReference: {fileID: 0}
+    - target: {fileID: 4828470711690574787, guid: 46229661ed166644c8a32b159c483f24,
+        type: 3}
+      propertyPath: AiTargetPriority
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7682667400691751780, guid: 46229661ed166644c8a32b159c483f24,
         type: 3}
       propertyPath: m_Sprite
@@ -288,8 +293,25 @@ PrefabInstance:
     - target: {fileID: 6840494116074943717, guid: 46229661ed166644c8a32b159c483f24,
         type: 3}
       propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7767498046215310926, guid: 46229661ed166644c8a32b159c483f24,
+        type: 3}
+      propertyPath: CombatantSounds
+      value: 
+      objectReference: {fileID: 11400000, guid: f66cfe9d89d2ae744b2e744fd05b9463,
+        type: 2}
+    - target: {fileID: 1297150249728348877, guid: 46229661ed166644c8a32b159c483f24,
+        type: 3}
+      propertyPath: m_Volume
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1297150249728348877, guid: 46229661ed166644c8a32b159c483f24,
+        type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: -1929781823717376655, guid: 059fe5ccc9b42b14ca411ac91bf3c9f1,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 46229661ed166644c8a32b159c483f24, type: 3}
 --- !u!4 &6075353783388316613 stripped

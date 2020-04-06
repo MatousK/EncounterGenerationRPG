@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b904d75e30e7a24db07ed8c3789cb33, type: 3}
+  m_Name: Voice_cleric
+  m_EditorClassIdentifier: 
+  SelectedSounds:
+  - {fileID: 8300000, guid: 153b207ea31fb4b4280247bafd54873e, type: 3}
+  - {fileID: 8300000, guid: 9bc0e9a7d124c0846b35abbdcb84c06a, type: 3}
+  - {fileID: 8300000, guid: 7eeab036a41639246b8676235691dd7b, type: 3}
+  MoveOrderSounds:
+  - {fileID: 8300000, guid: 9bb1984b959ebb04bb48aa03e32fabc6, type: 3}
+  - {fileID: 8300000, guid: 3bcf517c87680f54f95ca593d40d24ce, type: 3}
+  AttackOrderSounds:
+  - {fileID: 8300000, guid: a7f4ecf079a58b544b75231ec5919a2e, type: 3}
+  - {fileID: 8300000, guid: ae05936a805e89f4188e33b5185d6001, type: 3}
+  - {fileID: 8300000, guid: 053155f2edd94d8489d05468ab7f80e6, type: 3}
+  - {fileID: 8300000, guid: d594c645602fff945a934afa6da0e411, type: 3}
+  EnemySkillOrderSounds:
+  - {fileID: 8300000, guid: 7f8e45a0c624397489acbdf103473dee, type: 3}
+  PersonalSkillOrderSounds:
+  - {fileID: 8300000, guid: 01ef7120033755c4885aace1f9c19efd, type: 3}
+  FriendlySkillOrderSounds:
+  - {fileID: 8300000, guid: 01ef7120033755c4885aace1f9c19efd, type: 3}
+  SkillUsedSounds: []
+  AlternateSkillUsedSounds: []
+  HealedSounds: []
+  AttackGrunts: []
+  MinorDamageGrunts:
+  - {fileID: 8300000, guid: 7e11b1346ae32314287c5b9cc489d5f8, type: 3}
+  - {fileID: 8300000, guid: 5525a5385cbd52b4d9a38afbdf3a7c5c, type: 3}
+  MajorDamageGrunts:
+  - {fileID: 8300000, guid: bedaf3d1cee6cfd46a9f98865cf5daef, type: 3}
+  HeroStartsLosingMaxHpSounds:
+  - {fileID: 8300000, guid: c5f1207df03d46a42986273d537616c6, type: 3}
+  CombatantDiedSounds:
+  - {fileID: 8300000, guid: b71c60b7d4925cf4aa9071a2fec36cbe, type: 3}
+  FightOverSounds:
+  - {fileID: 8300000, guid: ac87f0d1d91d0f84e8a93a1d2966d7d5, type: 3}

@@ -1,0 +1,65 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b904d75e30e7a24db07ed8c3789cb33, type: 3}
+  m_Name: Voice_Ranger
+  m_EditorClassIdentifier: 
+  SelectedSounds:
+  - {fileID: 8300000, guid: a8d64e835b4b0c446a4309686e9d9cc8, type: 3}
+  - {fileID: 8300000, guid: da914bfbd4f14f44694facc71217a00e, type: 3}
+  - {fileID: 8300000, guid: 19582b3eb3441ed4da6eedd381b82671, type: 3}
+  - {fileID: 8300000, guid: e7b2262ff6bae6945ae508b431613b95, type: 3}
+  MoveOrderSounds:
+  - {fileID: 8300000, guid: 47230cb8194569c48b1bfffc0c8e2daf, type: 3}
+  - {fileID: 8300000, guid: 80e57f667eddac049ae0e9ddbfac3537, type: 3}
+  AttackOrderSounds:
+  - {fileID: 8300000, guid: 6b37d578ae633ab478b678b9f1cb7786, type: 3}
+  - {fileID: 8300000, guid: 889024f77e7b6e545be5ce7feed0e310, type: 3}
+  - {fileID: 8300000, guid: 8a944679ef2a7a04e9d7751a567d9fc5, type: 3}
+  EnemySkillOrderSounds:
+  - {fileID: 8300000, guid: a359d30ed83338a4493786ebc244ba45, type: 3}
+  PersonalSkillOrderSounds:
+  - {fileID: 8300000, guid: df46b8cffdc295c40ba78c15ef9a21ea, type: 3}
+  FriendlySkillOrderSounds:
+  - {fileID: 8300000, guid: eaf47a918442878439306d608c5414ab, type: 3}
+  SkillUsedSounds: []
+  AlternateSkillUsedSounds: []
+  HealedSounds: []
+  AttackGrunts:
+  - {fileID: 8300000, guid: 647882ad7617ad84191c29b66f0f4443, type: 3}
+  - {fileID: 8300000, guid: 5b59d88a4adf95f42a373bed6b930eb9, type: 3}
+  - {fileID: 8300000, guid: b310fc38ee2443342b0990d56d1f39b5, type: 3}
+  - {fileID: 8300000, guid: 8070af4c10a28b449acffce931a03e21, type: 3}
+  - {fileID: 8300000, guid: 4718ad87171336d4fb3017b8ca7a44bc, type: 3}
+  MinorDamageGrunts:
+  - {fileID: 8300000, guid: c8c95cb1c876a99418ead5cf26d7c1ec, type: 3}
+  - {fileID: 8300000, guid: 63e3c2c0bda29d84d877187ba5e783d9, type: 3}
+  - {fileID: 8300000, guid: 15ef9ae5c64894d4caeb3ed8955c7676, type: 3}
+  - {fileID: 8300000, guid: e8bd7d46f1122614eb7bc2997d05e214, type: 3}
+  - {fileID: 8300000, guid: 4df3a3ed5cf65a14b9acbd3003e6627e, type: 3}
+  MajorDamageGrunts:
+  - {fileID: 8300000, guid: c8c95cb1c876a99418ead5cf26d7c1ec, type: 3}
+  - {fileID: 8300000, guid: 63e3c2c0bda29d84d877187ba5e783d9, type: 3}
+  - {fileID: 8300000, guid: 15ef9ae5c64894d4caeb3ed8955c7676, type: 3}
+  - {fileID: 8300000, guid: e8bd7d46f1122614eb7bc2997d05e214, type: 3}
+  - {fileID: 8300000, guid: 4df3a3ed5cf65a14b9acbd3003e6627e, type: 3}
+  HeroStartsLosingMaxHpSounds:
+  - {fileID: 8300000, guid: 004d88621cf3d29489b9219d6f17e357, type: 3}
+  - {fileID: 8300000, guid: 460d3bc411c802840ba221dbbc551054, type: 3}
+  - {fileID: 8300000, guid: a83d1fad65ed98a47a366b4ebe684c66, type: 3}
+  CombatantDiedSounds:
+  - {fileID: 8300000, guid: 0223b177f631eb24a9f3aa633e1a5cf5, type: 3}
+  - {fileID: 8300000, guid: 1a6621cb452d6754487e8923ce6ea439, type: 3}
+  - {fileID: 8300000, guid: 427e59bdcbf71e841aad1b26376fcb94, type: 3}
+  - {fileID: 8300000, guid: c2f3deba168b3ed44a17b2836bdcbc98, type: 3}
+  - {fileID: 8300000, guid: 09bb81520e9e64e4b8bd2d7e1b420bc4, type: 3}
+  FightOverSounds:
+  - {fileID: 8300000, guid: 10eade6f3c1d136419d1bd84feccce79, type: 3}
