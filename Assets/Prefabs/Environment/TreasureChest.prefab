@@ -140,15 +140,12 @@ MonoBehaviour:
   - ObjectToDrop: {fileID: 6304724851592906147, guid: 999d494f0507f5d47af6f6402eab21eb,
       type: 3}
     Weight: 1
-  - ObjectToDrop: {fileID: 5601413935479413444, guid: d4b715b2c628c6541898fb44ad390a67,
-      type: 3}
-    Weight: 1
-  - ObjectToDrop: {fileID: 2311198323424215018, guid: f1ebf95746f4c1a4abac5cc8d9df82fb,
-      type: 3}
-    Weight: 1
   - ObjectToDrop: {fileID: 6269795100277062249, guid: 6062154cafb5be242a740c091db03987,
       type: 3}
     Weight: 2
+  - ObjectToDrop: {fileID: 2311198323424215018, guid: f1ebf95746f4c1a4abac5cc8d9df82fb,
+      type: 3}
+    Weight: 1
   OpenedSprite: {fileID: 412613743517803815, guid: 655dfe2baf3f57344b6822071fadb925,
     type: 3}
   ClosedSprite: {fileID: -8120013951494304172, guid: 655dfe2baf3f57344b6822071fadb925,

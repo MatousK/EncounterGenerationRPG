@@ -12,17 +12,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: HealPowerup
       objectReference: {fileID: 0}
-    - target: {fileID: 4554031708928139882, guid: ba13c84c02df0fb43b8bd0d7de61f94a,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 2084425220788299959, guid: 655dfe2baf3f57344b6822071fadb925,
-        type: 3}
-    - target: {fileID: 4554031708928139882, guid: ba13c84c02df0fb43b8bd0d7de61f94a,
-        type: 3}
-      propertyPath: m_WasSpriteAssigned
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3075390798166201143, guid: ba13c84c02df0fb43b8bd0d7de61f94a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -78,6 +67,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4554031708928139882, guid: ba13c84c02df0fb43b8bd0d7de61f94a,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 2084425220788299959, guid: 655dfe2baf3f57344b6822071fadb925,
+        type: 3}
+    - target: {fileID: 4554031708928139882, guid: ba13c84c02df0fb43b8bd0d7de61f94a,
+        type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1740251802620228723, guid: ba13c84c02df0fb43b8bd0d7de61f94a,
         type: 3}
       propertyPath: HealedMaxHP
@@ -87,6 +87,11 @@ PrefabInstance:
         type: 3}
       propertyPath: HealedMaxHPPercentage
       value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 1740251802620228723, guid: ba13c84c02df0fb43b8bd0d7de61f94a,
+        type: 3}
+      propertyPath: HealedMaxHpPercentage
+      value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ba13c84c02df0fb43b8bd0d7de61f94a, type: 3}

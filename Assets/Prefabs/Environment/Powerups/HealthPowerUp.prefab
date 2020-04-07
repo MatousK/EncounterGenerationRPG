@@ -12,17 +12,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: HealthPowerUp
       objectReference: {fileID: 0}
-    - target: {fileID: 4554031708928139882, guid: ba13c84c02df0fb43b8bd0d7de61f94a,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 2939112200592159984, guid: 90dafbd1043b2cc4d8f76eb755b159a2,
-        type: 3}
-    - target: {fileID: 4554031708928139882, guid: ba13c84c02df0fb43b8bd0d7de61f94a,
-        type: 3}
-      propertyPath: m_WasSpriteAssigned
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3075390798166201143, guid: ba13c84c02df0fb43b8bd0d7de61f94a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -78,6 +67,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4554031708928139882, guid: ba13c84c02df0fb43b8bd0d7de61f94a,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 2939112200592159984, guid: 90dafbd1043b2cc4d8f76eb755b159a2,
+        type: 3}
+    - target: {fileID: 4554031708928139882, guid: ba13c84c02df0fb43b8bd0d7de61f94a,
+        type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1740251802620228723, guid: ba13c84c02df0fb43b8bd0d7de61f94a,
         type: 3}
       propertyPath: MaxHPMultiplier
@@ -91,6 +91,11 @@ PrefabInstance:
     - target: {fileID: 1740251802620228723, guid: ba13c84c02df0fb43b8bd0d7de61f94a,
         type: 3}
       propertyPath: TotalMaxHPMultiplier
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1740251802620228723, guid: ba13c84c02df0fb43b8bd0d7de61f94a,
+        type: 3}
+      propertyPath: TotalMaxHpMultiplier
       value: 1.2
       objectReference: {fileID: 0}
     m_RemovedComponents: []

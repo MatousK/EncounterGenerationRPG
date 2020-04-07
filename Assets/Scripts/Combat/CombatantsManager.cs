@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -8,8 +9,24 @@ namespace Assets.Scripts.Combat
     {
         public List<Monster> Enemies = new List<Monster>();
         public List<Hero> PlayerCharacters = new List<Hero>();
+        public event EventHandler CombatStarted;
+        public event EventHandler CombatOver;
 
+        private bool lastFrameCombatActive = false;
         public bool IsCombatActive => Enemies.Any();
+
+        public void Update()
+        {
+            if (!lastFrameCombatActive && IsCombatActive)
+            {
+                CombatStarted?.Invoke(this, new EventArgs());
+            }
+            if (lastFrameCombatActive && !IsCombatActive)
+            {
+                CombatOver?.Invoke(this,new EventArgs());
+            }
+            lastFrameCombatActive = IsCombatActive;
+        }
 
         public IEnumerable<CombatantBase> GetAlliesFor(CombatantBase combatant, bool onlyAlive = false, bool onlySelected = false)
         {

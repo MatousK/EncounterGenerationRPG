@@ -17,7 +17,6 @@ namespace Assets.Scripts.Sound.CharacterSounds
         private CombatantBase representedCombatant;
         private CombatantsManager combatantsManager;
         private bool IsHero => representedCombatant is Hero;
-        private bool lastFrameCombatActive = false;
         private AudioSource audioSource;
         private bool didPlayBloodiedClip;
         void Awake()
@@ -32,21 +31,14 @@ namespace Assets.Scripts.Sound.CharacterSounds
             audioSource.loop = false;
             representedCombatant.TookDamage += CombatantHurt;
             representedCombatant.HealedDamage += CombatantHealed;
+            combatantsManager.CombatStarted += OnCombatStarted;
+            combatantsManager.CombatOver += OnCombatEnded;
         }
 
-        private void Update()
+        private void OnDestroy()
         {
-            var combatActive = combatantsManager.IsCombatActive;
-            if (combatActive && !lastFrameCombatActive)
-            {
-                OnCombatStarted();
-            }
-            else if (!combatActive && lastFrameCombatActive)
-            {
-                OnCombatEnded();
-            }
-
-            lastFrameCombatActive = combatantsManager.IsCombatActive;
+            combatantsManager.CombatStarted -= OnCombatStarted;
+            combatantsManager.CombatOver -= OnCombatEnded;
         }
 
         public void PlayOnSelectedSound()
@@ -96,12 +88,12 @@ namespace Assets.Scripts.Sound.CharacterSounds
             }
         }
 
-        private void OnCombatStarted()
+        private void OnCombatStarted(object sender, EventArgs e)
         {
             didPlayBloodiedClip = false;
         }
 
-        private void OnCombatEnded()
+        private void OnCombatEnded(object sender, EventArgs e)
         {
             // TODO: Figure out a better way to select who will play the clip.
             if (representedCombatant == combatantsManager.PlayerCharacters.First())
