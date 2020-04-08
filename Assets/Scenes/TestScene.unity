@@ -11759,7 +11759,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 7.9
+  orthographic size: 13
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -11801,7 +11801,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ee462c0fa7eca84a8cc1a0d43c96c01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FollowingHero: {fileID: 0}
+  FollowingTransform: {fileID: 0}
   MaxSquaredDistanceFromMap: 2
   ScrollingEdge: 50
   ScrollingSpeed: 10
@@ -63120,7 +63120,7 @@ Tilemap:
       - {fileID: 2593339637163778369, guid: 655dfe2baf3f57344b6822071fadb925, type: 3}
       - {fileID: 5574466617446608020, guid: 655dfe2baf3f57344b6822071fadb925, type: 3}
       - {fileID: -6625049759122955413, guid: 655dfe2baf3f57344b6822071fadb925, type: 3}
-      m_AnimationSpeed: 5.0000005
+      m_AnimationSpeed: 5
       m_AnimationTimeOffset: 0
       m_IsLooping: 1
   m_TileAssetArray:
@@ -96717,7 +96717,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TimeBeforeGameOver: 2
   GameOverScreenUi: {fileID: 1963032548}
-  TryAgainOverlay: {fileID: 0}
+  TryAgainOverlay: {fileID: 1361809799}
 --- !u!222 &2105110144
 CanvasRenderer:
   m_ObjectHideFlags: 0

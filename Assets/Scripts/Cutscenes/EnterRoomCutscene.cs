@@ -40,7 +40,7 @@ namespace Assets.Scripts.Cutscenes
         {
             if (IsCutsceneActive())
             {
-                cameraMovement.FollowingHero = DoorOpener;
+                cameraMovement.FollowingTransform = DoorOpener.transform;
             }
         }
         public override bool IsCutsceneActive()
@@ -63,7 +63,7 @@ namespace Assets.Scripts.Cutscenes
         public override void EndCutscene()
         {
             OpenedDoors.CloseInCombat = true;
-            cameraMovement.FollowingHero = null;
+            cameraMovement.FollowingTransform = null;
         }
 
         private Vector2 GetHeroTargetPosition(Hero hero)

@@ -144,7 +144,7 @@ namespace Assets.Scripts.Combat
             GetComponent<AutoAttacking>().Target = null;
             if (!CombatantsManager.IsCombatActive)
             {
-                cameraMovement.FollowingHero = this;
+                cameraMovement.FollowingTransform = transform;
                 movementController.MoveToPosition(position);
             }
             else

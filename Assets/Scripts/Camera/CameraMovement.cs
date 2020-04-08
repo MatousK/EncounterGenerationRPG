@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.Combat;
+using Assets.Scripts.Cutscenes;
 using Assets.Scripts.Environment;
 using UnityEngine;
 
@@ -6,7 +7,7 @@ namespace Assets.Scripts.Camera
 {
     public class CameraMovement : MonoBehaviour
     {
-        public Hero FollowingHero;
+        public Transform FollowingTransform;
         public float MaxSquaredDistanceFromMap = 2;
         public float ScrollingEdge = 50;
         public float ScrollingSpeed = 0.1f;
@@ -14,9 +15,11 @@ namespace Assets.Scripts.Camera
         public float QuickScrollingSpeed = 100f;
         bool isQuickFindHeroInProgress;
         FogOfWarController fogOfWarController;
+        private CutsceneManager cutsceneManager;
 
         private void Awake()
         {
+            cutsceneManager = FindObjectOfType<CutsceneManager>();
             fogOfWarController = FindObjectOfType<FogOfWarController>();
         }
 
@@ -24,16 +27,24 @@ namespace Assets.Scripts.Camera
         void LateUpdate()
         {
             Vector3 oldPosition = transform.position;
-            if (isQuickFindHeroInProgress && FollowingHero != null)
+            var isCutsceneActive = cutsceneManager.IsCutsceneActive;
+            if ((isQuickFindHeroInProgress || isCutsceneActive) && FollowingTransform != null)
             {
                 FollowHeroIfPossible();
-                if (Vector2.Distance(transform.position, FollowingHero.transform.position) < 0.1)
+                if (Vector2.Distance(transform.position, FollowingTransform.position) < 0.1)
                 {
                     isQuickFindHeroInProgress = false;
-                    FollowingHero = null;
+                    FollowingTransform = null;
                 }
                 return;
             }
+
+            if (isCutsceneActive)
+            {
+                // Do not allow manual camera movement during a cutscene.
+                return;
+            }
+
             var mouseY = UnityEngine.Input.mousePosition.y;
             var mouseX = UnityEngine.Input.mousePosition.x;
 
@@ -44,22 +55,22 @@ namespace Assets.Scripts.Camera
             }
             if (mouseX < ScrollingEdge)
             {
-                FollowingHero = null;
+                FollowingTransform = null;
                 transform.Translate(new Vector3(-ScrollingSpeed * Time.unscaledDeltaTime, 0, 0));
             }
             else if (mouseX > Screen.width - ScrollingEdge)
             {
-                FollowingHero = null;
+                FollowingTransform = null;
                 transform.Translate(new Vector3(ScrollingSpeed * Time.unscaledDeltaTime, 0, 0));
             }
             if (mouseY < ScrollingEdge)
             {
-                FollowingHero = null;
+                FollowingTransform = null;
                 transform.Translate(new Vector3(0, -ScrollingSpeed * Time.unscaledDeltaTime, 0));
             }
             else if (mouseY > Screen.height - ScrollingEdge)
             {
-                FollowingHero = null;
+                FollowingTransform = null;
                 transform.Translate(new Vector3(0, ScrollingSpeed * Time.unscaledDeltaTime, 0));
             }
             FollowHeroIfPossible();
@@ -68,7 +79,7 @@ namespace Assets.Scripts.Camera
 
         public void QuickFindHero(Hero hero)
         {
-            FollowingHero = hero;
+            FollowingTransform = hero.transform;
             isQuickFindHeroInProgress = true;
         }
 
@@ -88,12 +99,12 @@ namespace Assets.Scripts.Camera
 
         private void FollowHeroIfPossible()
         {
-            if (FollowingHero == null)
+            if (FollowingTransform == null)
             {
                 return;
             }
             var speed = isQuickFindHeroInProgress ? QuickScrollingSpeed : ScrollingSpeed;
-            var newPosition = Vector2.MoveTowards(transform.position, FollowingHero.transform.position, speed * Time.unscaledDeltaTime);
+            var newPosition = Vector2.MoveTowards(transform.position, FollowingTransform.position, speed * Time.unscaledDeltaTime);
             transform.position = new Vector3(newPosition.x, newPosition.y, transform.position.z);
         }
     }
