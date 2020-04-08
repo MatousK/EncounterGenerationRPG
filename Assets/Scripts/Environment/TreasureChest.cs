@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Assets.Scripts.Combat;
+using Assets.Scripts.GameFlow;
 using Assets.Scripts.Input;
 using UnityEngine;
 
@@ -26,9 +27,12 @@ namespace Assets.Scripts.Environment
         public Sprite ClosedSprite = null;
         GameObject droppedPowerup;
         bool isOpened;
+        private GameStateManager gameStateManager;
 
         private void Awake()
         {
+            gameStateManager = FindObjectOfType<GameStateManager>();
+            gameStateManager.GameReloaded += GameStateManager_GameReloaded;
             GetComponent<InteractableObject>().OnInteractionTriggered += OnChestClicked;
             UpdateSprite();
         }
@@ -72,6 +76,12 @@ namespace Assets.Scripts.Environment
         void UpdateSprite()
         {
             GetComponent<SpriteRenderer>().sprite = isOpened ? OpenedSprite : ClosedSprite;
+        }
+
+        private void GameStateManager_GameReloaded(object sender, EventArgs e)
+        {
+            isOpened = false;
+            UpdateSprite();
         }
     }
 }

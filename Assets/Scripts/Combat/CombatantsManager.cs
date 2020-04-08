@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Assets.Scripts.GameFlow;
 using UnityEngine;
 
 namespace Assets.Scripts.Combat
@@ -13,6 +14,7 @@ namespace Assets.Scripts.Combat
         public event EventHandler CombatOver;
 
         private bool lastFrameCombatActive = false;
+        private GameStateManager gameStateManager;
         public bool IsCombatActive => Enemies.Any();
 
         public void Update()
@@ -26,6 +28,17 @@ namespace Assets.Scripts.Combat
                 CombatOver?.Invoke(this,new EventArgs());
             }
             lastFrameCombatActive = IsCombatActive;
+            gameStateManager = FindObjectOfType<GameStateManager>();
+            gameStateManager.GameReloaded += GameStateManager_GameReloaded;
+        }
+
+        public void DestroyPlayerCharacters()
+        {
+            foreach (var playerCharacter in PlayerCharacters)
+            {
+                Destroy(playerCharacter.gameObject);
+            }
+            PlayerCharacters.Clear();
         }
 
         public IEnumerable<CombatantBase> GetAlliesFor(CombatantBase combatant, bool onlyAlive = false, bool onlySelected = false)
@@ -81,6 +94,16 @@ namespace Assets.Scripts.Combat
         public IEnumerable<Monster> GetEnemies(bool onlyAlive = false)
         {
             return Enemies.Where(opponent => (!onlyAlive || !opponent.IsDown));
+        }
+
+        private void GameStateManager_GameReloaded(object sender, EventArgs e)
+        {
+            // Game is being reloaded - kill all monsters, restore players.
+            foreach (var monster in Enemies)
+            {
+                Destroy(monster.gameObject);
+            }
+            Enemies.Clear();
         }
     }
 }

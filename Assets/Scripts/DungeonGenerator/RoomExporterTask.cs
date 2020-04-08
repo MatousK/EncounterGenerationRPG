@@ -24,7 +24,7 @@ namespace Assets.Scripts.DungeonGenerator
                 };
                 if (isFirstRoom)
                 {
-                    roomInfo.ExploreRoom();
+                    roomInfo.SetRoomExplored(true);
                 }
                 var roomGraphData = GetRoomData(room.GeneratorData.Node);
                 roomInfo.RoomEncounter = roomGraphData.EncounterConfiguration;

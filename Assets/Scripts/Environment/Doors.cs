@@ -4,6 +4,7 @@ using Assets.Scripts.Combat;
 using Assets.Scripts.Cutscenes;
 using Assets.Scripts.DungeonGenerator;
 using Assets.Scripts.Extension;
+using Assets.Scripts.GameFlow;
 using Assets.Scripts.Input;
 using Assets.Scripts.Movement.Pathfinding;
 using UnityEngine;
@@ -53,6 +54,7 @@ namespace Assets.Scripts.Environment
         // The hero who opened this door if any.
         private Hero doorOpener;
         private bool isOpened;
+        private GameStateManager gameStateManager;
         public bool IsOpened
         {
             get => isOpened;
@@ -65,12 +67,14 @@ namespace Assets.Scripts.Environment
         }
         void Awake()
         {
+            gameStateManager = FindObjectOfType<GameStateManager>();
             combatantstManager = FindObjectOfType<CombatantsManager>();
             cutsceneManager = FindObjectOfType<CutsceneManager>();
             roomsLayout = FindObjectOfType<RoomsLayout>();
             pathfindingMapController = FindObjectOfType<PathfindingMapController>();
             MapGrid = MapGrid != null ? MapGrid : FindObjectOfType<Grid>();
             GetComponent<InteractableObject>().OnInteractionTriggered += OnDoorsInteractedWith;
+            gameStateManager.GameReloaded += GameStateManager_GameReloaded;
         }
 
         // Start is called before the first frame update
@@ -110,7 +114,7 @@ namespace Assets.Scripts.Environment
             {
                 if (!roomsLayout.Rooms[roomIndex].IsExplored)
                 {
-                    roomsLayout.Rooms[roomIndex].ExploreRoom(this);
+                    roomsLayout.Rooms[roomIndex].SetRoomExplored(this);
                     var openDoorsCutscene = cutsceneManager.InstantiateCutscene<EnterRoomCutscene>();
                     openDoorsCutscene.DoorOpener = doorOpener;
                     openDoorsCutscene.OpenedDoors = this;
@@ -152,6 +156,12 @@ namespace Assets.Scripts.Environment
             {
                 UpdatePathfindingMap(pathfindingMapController.Map);
             }
+        }
+
+        private void GameStateManager_GameReloaded(object sender, System.EventArgs e)
+        {
+            didPlayerOpenDoors = false;
+            IsOpened = false;
         }
     }
 }

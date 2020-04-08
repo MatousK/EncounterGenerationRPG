@@ -31,6 +31,11 @@ namespace Assets.Scripts.EncounterGenerator
         private void OnRoomExplored(object sender, RoomExploredEventArgs exploredEventArgs)
         {
             var exploredRoom = sender as RoomInfo;
+            if (!exploredRoom.IsExplored)
+            {
+                // Room got changed to not explored, does not really interest us.
+                return;
+            }
             var allHeroes = combatantsManager.PlayerCharacters;
             var partyDefinition = new PartyDefinition { PartyMembers = allHeroes };
             List<GameObject> encounter;

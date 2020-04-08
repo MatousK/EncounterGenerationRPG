@@ -33,11 +33,10 @@ namespace Assets.Scripts.Sound.Music
             foreach (var audioSource in musicAudioSources)
             {
                 audioSource.outputAudioMixerGroup = MixerGroup;
-                audioSource.loop = true;
             }
         }
 
-        public void PlayMusicClip(AudioClip musicClip)
+        public void PlayMusicClip(AudioClip musicClip, bool loop = true)
         {
             if (musicClip == null)
             {
@@ -55,6 +54,7 @@ namespace Assets.Scripts.Sound.Music
             // Now we will be definitely playing something. Set the new active index and the new played clip.
             activeAudioSourceIndex = nextSourceIndex;
             musicAudioSources[nextSourceIndex].clip = musicClip;
+            musicAudioSources[nextSourceIndex].loop = loop;
             musicAudioSources[nextSourceIndex].Play();
 
             if (currentSourceIndex < 0)

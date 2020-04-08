@@ -34,9 +34,9 @@ namespace Assets.Scripts.DungeonGenerator
         /// Sets this room as explored, optionally setting from which doors the room was explored.
         /// </summary>
         /// <param name="incomingDoors">The doors whose opening explored this room.</param>
-        public void ExploreRoom(Doors incomingDoors = null)
+        public void SetRoomExplored(bool isExplored, Doors incomingDoors = null)
         {
-            isExplored = true;
+            this.isExplored = isExplored;
             IsExploredChanged?.Invoke(this, new RoomExploredEventArgs(incomingDoors));
         }
 

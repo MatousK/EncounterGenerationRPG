@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Assets.Scripts.Combat;
 using Assets.Scripts.Extension;
+using Assets.Scripts.GameFlow;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
@@ -20,12 +21,20 @@ namespace Assets.Scripts.Sound.Music
     {
         public GameMusicClips MusicClips;
         private MusicTransitionManger transitionManger;
+        private GameStateManager gameStateManager;
 
         private void Start()
         {
             transitionManger = FindObjectOfType<MusicTransitionManger>();
+            gameStateManager = FindObjectOfType<GameStateManager>();
             OnSceneFirstEntered();
             SceneManager.activeSceneChanged += SceneManager_activeSceneChanged;
+            gameStateManager.GameOver += GameStateManager_GameOver;
+        }
+
+        private void GameStateManager_GameOver(object sender, EventArgs e)
+        {
+            transitionManger.PlayMusicClip(MusicClips.GameOverMusic.GetRandomElementOrDefault(), loop: false);
         }
 
         private void SceneManager_activeSceneChanged(Scene arg0, Scene arg1)

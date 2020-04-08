@@ -13,6 +13,7 @@ namespace Assets.Scripts.Sound.Music
         public List<AudioClip> IdleMusic = new List<AudioClip>();
         public List<AudioClip> CombatMusic = new List<AudioClip>();
         public List<AudioClip> BossFightMusic = new List<AudioClip>();
+        public List<AudioClip> GameOverMusic = new List<AudioClip>();
         public AudioClip CreditsMusic;
         public AudioClip MainMenuMusic;
     }

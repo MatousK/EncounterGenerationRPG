@@ -12,8 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4c81234738718a429a30bfd19c868cc, type: 3}
   m_Name: GameMusic
   m_EditorClassIdentifier: 
-  IdleMusic: []
-  CombatMusic: []
-  BossFightMusic: []
-  CreditsMusic: {fileID: 0}
-  MainMenuMusic: {fileID: 0}
+  IdleMusic:
+  - {fileID: 8300000, guid: c9db73d1a6ceb2043b319ee28ea3d000, type: 3}
+  - {fileID: 8300000, guid: 509b714987751894ea3ae2ac980e7304, type: 3}
+  CombatMusic:
+  - {fileID: 8300000, guid: c7bd3f612533f8d44bcf1fbec5300b13, type: 3}
+  BossFightMusic:
+  - {fileID: 8300000, guid: b5eeef0b353a9334bab458724e62e1ed, type: 3}
+  GameOverMusic:
+  - {fileID: 8300000, guid: 10eac0b6a54af9f4d95a5abcb012f476, type: 3}
+  CreditsMusic: {fileID: 8300000, guid: db1c93a6efe2c6f45923fd4641074569, type: 3}
+  MainMenuMusic: {fileID: 8300000, guid: 013251c2b047f564ba21cb7da2daf341, type: 3}
