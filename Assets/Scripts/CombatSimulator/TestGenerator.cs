@@ -16,9 +16,9 @@ namespace Assets.Scripts.CombatSimulator
 
             for (int tier = 1; tier <= PowerupTiers; ++tier)
             {
-                partyProviders.Add(new MinMaxPartyConfigurationProvider { TierIncrement = PowerupTierIncrement, TierIndex = tier });
-                partyProviders.Add(new BalancedPartyConfigurationProvider { TierIncrement = PowerupTierIncrement, TierIndex = tier });
-                partyProviders.Add(new RandomPartyConfigurationProvider { TierIncrement = PowerupTierIncrement, TierIndex = tier });
+                partyProviders.Add(new RangerPowerupsOnlyPartConfigurationProvider { TierIncrement = PowerupTierIncrement, TierIndex = tier });
+                partyProviders.Add(new ClericPowerupsOnlyPartyConfigurationProvider { TierIncrement = PowerupTierIncrement, TierIndex = tier });
+                partyProviders.Add(new KnightPowerupsOnlyPartyConfigurationProvider { TierIncrement = PowerupTierIncrement, TierIndex = tier });
             }
         }
 
@@ -40,6 +40,7 @@ namespace Assets.Scripts.CombatSimulator
 
         public void ReadyNextTest(int testIndex)
         {
+            testIndex -= 26602; // Next round of simulations, we want to start it at zero.
             var partyProviderIndex = testIndex % partyProviders.Count;
             CurrentPartyProvider = partyProviders[partyProviderIndex];
             CurrentPartyConfiguration = CurrentPartyProvider.GetPartyConfiguration();

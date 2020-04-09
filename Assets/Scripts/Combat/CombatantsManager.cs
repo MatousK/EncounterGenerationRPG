@@ -17,7 +17,16 @@ namespace Assets.Scripts.Combat
         private GameStateManager gameStateManager;
         public bool IsCombatActive => Enemies.Any();
 
-        public void Update()
+        private void Awake()
+        {
+            gameStateManager = FindObjectOfType<GameStateManager>();
+            if (gameStateManager != null)
+            {
+                gameStateManager.GameReloaded += GameStateManager_GameReloaded;
+            }
+        }
+
+        private void Update()
         {
             if (!lastFrameCombatActive && IsCombatActive)
             {
@@ -25,11 +34,9 @@ namespace Assets.Scripts.Combat
             }
             if (lastFrameCombatActive && !IsCombatActive)
             {
-                CombatOver?.Invoke(this,new EventArgs());
+                CombatOver?.Invoke(this, new EventArgs());
             }
             lastFrameCombatActive = IsCombatActive;
-            gameStateManager = FindObjectOfType<GameStateManager>();
-            gameStateManager.GameReloaded += GameStateManager_GameReloaded;
         }
 
         public void DestroyPlayerCharacters()
