@@ -31,57 +31,12 @@ ExportedObj/
 # Unity3D Generated File On Crash Reports
 sysinfo.txt
 
+# Assets
+Assets/Magic Spells Sound Effects LITE/.wav
+Assets/Medieval Combat Sounds/*.wav
+Assets/Action RPG Music 1.3/*.wav
+
 # Builds
 *.apk
 *.unitypackage
-/Assets/Action RPG Music 1.3/03bar2NL.wav
-/Assets/Action RPG Music 1.3/03bar1.wav
-/Assets/Action RPG Music 1.3/02store2.wav
-/Assets/Action RPG Music 1.3/02store1.wav
-/Assets/Action RPG Music 1.3/01town4.wav
-/Assets/Action RPG Music 1.3/01town2.wav
-/Assets/Action RPG Music 1.3/01town1.wav
-/Assets/Action RPG Music 1.3/01Town0.wav
-/Assets/Action RPG Music 1.3/14short4NL.wav
-/Assets/Action RPG Music 1.3/14short3NL.wav
-/Assets/Action RPG Music 1.3/14short2NL.wav
-/Assets/Action RPG Music 1.3/14short1NL.wav
-/Assets/Action RPG Music 1.3/14secret1NL.wav
-/Assets/Action RPG Music 1.3/14levelup2NL.wav
-/Assets/Action RPG Music 1.3/14levelup1NL.wav
-/Assets/Action RPG Music 1.3/14entranceNL.wav
-/Assets/Action RPG Music 1.3/14doorNL.wav
-/Assets/Action RPG Music 1.3/13gameover9NL.wav
-/Assets/Action RPG Music 1.3/13gameover8NL.wav
-/Assets/Action RPG Music 1.3/13gameover6NL.wav
-/Assets/Action RPG Music 1.3/13gameover5NL.wav
-/Assets/Action RPG Music 1.3/13gameover4NL.wav
-/Assets/Action RPG Music 1.3/13gameover3NL.wav
-/Assets/Action RPG Music 1.3/13gameover2NL.wav
-/Assets/Action RPG Music 1.3/13gameover1V2NL.wav
-/Assets/Action RPG Music 1.3/13gameover1V1NL.wav
-/Assets/Action RPG Music 1.3/12win8NL.wav
-/Assets/Action RPG Music 1.3/12win5NL.wav
-/Assets/Action RPG Music 1.3/12win2NL.wav
-/Assets/Action RPG Music 1.3/12win1NL.wav
-/Assets/Action RPG Music 1.3/11minigame1.wav
-/Assets/Action RPG Music 1.3/10credits1.wav
-/Assets/Action RPG Music 1.3/09battle8.wav
-/Assets/Action RPG Music 1.3/09battle3.wav
-/Assets/Action RPG Music 1.3/09battle2.wav
-/Assets/Action RPG Music 1.3/08travel4.wav
-/Assets/Action RPG Music 1.3/08travel2.wav
-/Assets/Action RPG Music 1.3/08travel1.wav
-/Assets/Action RPG Music 1.3/08sail1.wav
-/Assets/Action RPG Music 1.3/07island2.wav
-/Assets/Action RPG Music 1.3/07island1v2.wav
-/Assets/Action RPG Music 1.3/07island1v1.wav
-/Assets/Action RPG Music 1.3/06castle2.wav
-/Assets/Action RPG Music 1.3/06castle1.wav
-/Assets/Action RPG Music 1.3/05cave3.wav
-/Assets/Action RPG Music 1.3/05cave1.wav
-/Assets/Action RPG Music 1.3/04forest6.wav
-/Assets/Action RPG Music 1.3/04forest5.wav
-/Assets/Action RPG Music 1.3/04forest3.wav
-/Assets/Action RPG Music 1.3/04forest2.wav
-/Assets/Action RPG Music 1.3/04forest1.wav
+
