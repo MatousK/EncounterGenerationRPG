@@ -8,6 +8,10 @@ namespace Assets.Scripts.Combat.Skills
         /// How much damage does the attack do per hit.
         /// </summary>
         public int DamagePerHit = 1;
+        /// <summary>
+        /// If true, damage will be automatically dealt when ApplySkillEffects is called.
+        /// </summary>
+        protected bool DealDamageOnApplySkillEffects = true;
 
         protected Attack()
         {
@@ -26,7 +30,7 @@ namespace Assets.Scripts.Combat.Skills
 
         protected override void ApplySkillEffects(object sender, EventArgs e)
         {
-            if (Target != null)
+            if (Target != null && DealDamageOnApplySkillEffects)
             {
                 Target.TakeDamage(DamagePerHit, SelfCombatant);
             }

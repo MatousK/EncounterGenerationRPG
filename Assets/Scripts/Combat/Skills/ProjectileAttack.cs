@@ -14,6 +14,7 @@ namespace Assets.Scripts.Combat.Skills
         public float ProjectileSpeed;
         protected override void Awake()
         {
+            DealDamageOnApplySkillEffects = false;
             base.Awake();
         }
 

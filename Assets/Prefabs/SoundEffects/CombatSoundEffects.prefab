@@ -46,65 +46,111 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RegisteredSounds:
   - CombatSoundType: 4
-    AnimationStartAudioClips: []
+    AnimationStartAudioClips:
+    - {fileID: 8300000, guid: 841b543105d850a44b3670b9030631fd, type: 3}
+    - {fileID: 8300000, guid: ed2a8cc4605d7c340b0b01afebd37e88, type: 3}
+    - {fileID: 8300000, guid: 17f519148f8f5ab458e48bbb08231378, type: 3}
+    - {fileID: 8300000, guid: 5617a4b166b2f0b46866ebf66b8e48c1, type: 3}
+    - {fileID: 8300000, guid: be5b9e6ec8412fd4ab5a65f91cdcb331, type: 3}
     AnimationApplyEffectAudioClips:
-    - {fileID: 8300000, guid: e9341f5a1bb7754418e3c35fe8e8fadc, type: 3}
+    - {fileID: 8300000, guid: 54a587867c38073428a81b90bc696a60, type: 3}
+    - {fileID: 8300000, guid: 6c49fd65c974d2746a882e864ddce7a4, type: 3}
+    - {fileID: 8300000, guid: e2e2cfd2d3af77d44bc2314e0a7a315d, type: 3}
+    - {fileID: 8300000, guid: 59dbc563d0022c144a037053c4696efa, type: 3}
+    - {fileID: 8300000, guid: 249a2cb29eaa28c4991179d6b7fae01f, type: 3}
     AnimationEndAudioClips: []
     ProjectileHitAudioClips:
-    - {fileID: 8300000, guid: 9f348de6fbebc7c4380c1416c1b9fecd, type: 3}
+    - {fileID: 8300000, guid: 2b479ea7e44fadf43a957a7268eff182, type: 3}
+    - {fileID: 8300000, guid: b0b7f1ec4436abd42bc4132866704d76, type: 3}
+    - {fileID: 8300000, guid: 72704be511a711844ab1d884a31203a7, type: 3}
+    - {fileID: 8300000, guid: 98f8fa951b92c824e918efaf5a53fb4b, type: 3}
+    - {fileID: 8300000, guid: 03b90ebd4a7674442ae9891b19002836, type: 3}
   - CombatSoundType: 3
     AnimationStartAudioClips: []
     AnimationApplyEffectAudioClips:
-    - {fileID: 8300000, guid: 85f8eb853a12eec4b82beb92253f0d79, type: 3}
-    - {fileID: 8300000, guid: 31f69d0e1495f5a4f8005b6a73db2a27, type: 3}
-    - {fileID: 8300000, guid: b9a600bf2feeade42aa8f05ee12d9e65, type: 3}
-    - {fileID: 8300000, guid: e5819127769c8474eadcef218bfbada4, type: 3}
-    - {fileID: 8300000, guid: be06fc8cff77be14c91fb4fb71d02ef4, type: 3}
+    - {fileID: 8300000, guid: 907d276b85cd1c14b8822f4ceae37d1c, type: 3}
+    - {fileID: 8300000, guid: fab4d62875995e14490f8545583bdfb7, type: 3}
+    - {fileID: 8300000, guid: 6ad86e57bffe2ca498d79bb30e450295, type: 3}
+    - {fileID: 8300000, guid: 3f07ea72518c30c4180bfe1a495766d6, type: 3}
+    - {fileID: 8300000, guid: d5b5045642e67fb41b038096b520c160, type: 3}
     AnimationEndAudioClips: []
     ProjectileHitAudioClips: []
   - CombatSoundType: 1
-    AnimationStartAudioClips:
-    - {fileID: 8300000, guid: 6075e59c8825a8f4488be300e2550cd2, type: 3}
-    - {fileID: 8300000, guid: fd7ac0b822732034b84c570f50449ecd, type: 3}
-    - {fileID: 8300000, guid: 164f72330f18e4940ba2f2beb222b49c, type: 3}
-    AnimationApplyEffectAudioClips: []
+    AnimationStartAudioClips: []
+    AnimationApplyEffectAudioClips:
+    - {fileID: 8300000, guid: f49f197b138e8b047bdecee7c765acad, type: 3}
+    - {fileID: 8300000, guid: b2edfa016ca33db47bb9de07ec951d48, type: 3}
+    - {fileID: 8300000, guid: f5e66147d924ac14682c617f7e6b7cb2, type: 3}
+    - {fileID: 8300000, guid: b7c30189c7b8d2946820ace73efb6e74, type: 3}
+    - {fileID: 8300000, guid: e7bbe4b1e48f1534791f101d48f17c9b, type: 3}
+    - {fileID: 8300000, guid: 2b6ac6f105f253645b3a1dd38a6fa4f4, type: 3}
+    - {fileID: 8300000, guid: f1c8969de4df46147a274052c88c8ea5, type: 3}
+    - {fileID: 8300000, guid: 44feb298d53241d4099f9111e37a2906, type: 3}
+    - {fileID: 8300000, guid: a88e34f23b3af124e94782267c369c64, type: 3}
+    - {fileID: 8300000, guid: f1470bb75b516b64b9968ad0b9fed1c4, type: 3}
+    - {fileID: 8300000, guid: 5fc401c5e04c4a649afe9dd60aeb3254, type: 3}
+    - {fileID: 8300000, guid: 1badcb4d97f89654cb7466e48f9cec45, type: 3}
+    - {fileID: 8300000, guid: c0bb79cb1dc1b8349af61edcb0f1b3fd, type: 3}
+    - {fileID: 8300000, guid: 0ffb5be3f98cc7642a1f6ac2b2f05c51, type: 3}
+    - {fileID: 8300000, guid: 6a4e9fdbe9f99ed4a8045a561e129a7f, type: 3}
+    - {fileID: 8300000, guid: f3a472d2015958741b762040aa0a7869, type: 3}
+    - {fileID: 8300000, guid: 5fc3da5cbeec9b14dbbbe059d84064f5, type: 3}
+    - {fileID: 8300000, guid: f29272ef97903b04dad04bdc513c2d01, type: 3}
+    - {fileID: 8300000, guid: 565f80f0dda98c040813fc0f99f8c00e, type: 3}
+    - {fileID: 8300000, guid: 2c8c01a574d70ae4ebda6958815a779d, type: 3}
     AnimationEndAudioClips: []
     ProjectileHitAudioClips: []
   - CombatSoundType: 5
     AnimationStartAudioClips: []
     AnimationApplyEffectAudioClips:
-    - {fileID: 8300000, guid: c5b847ca06ebe1b46a77bacaaf1e7b86, type: 3}
+    - {fileID: 8300000, guid: 80148791db78ea24cb4f091ba98c80b1, type: 3}
+    - {fileID: 8300000, guid: cbdd96bee51b1cc4ba020375fc883bcd, type: 3}
+    - {fileID: 8300000, guid: 76a28ec84776b8745a13892061ca598b, type: 3}
+    - {fileID: 8300000, guid: 9b6f8df5017e05b4a814658f53cc9cf2, type: 3}
     AnimationEndAudioClips: []
     ProjectileHitAudioClips:
-    - {fileID: 8300000, guid: 0553576f2c2e3ac448e0919c93559d6d, type: 3}
+    - {fileID: 8300000, guid: c5757b30a26d1a44ba5cd2d214ac7352, type: 3}
   - CombatSoundType: 8
-    AnimationStartAudioClips:
-    - {fileID: 8300000, guid: 6075e59c8825a8f4488be300e2550cd2, type: 3}
-    - {fileID: 8300000, guid: fd7ac0b822732034b84c570f50449ecd, type: 3}
-    - {fileID: 8300000, guid: 164f72330f18e4940ba2f2beb222b49c, type: 3}
+    AnimationStartAudioClips: []
     AnimationApplyEffectAudioClips: []
-    AnimationEndAudioClips: []
+    AnimationEndAudioClips:
+    - {fileID: 8300000, guid: 72944b9327284cb41b4c0d855fcf34fc, type: 3}
+    - {fileID: 8300000, guid: ba519497aad5ca345b2740213c7a983f, type: 3}
+    - {fileID: 8300000, guid: 3236dccdef2b6a64c961e087d3353461, type: 3}
+    - {fileID: 8300000, guid: eb09675a054341d4a97188f997c26cc1, type: 3}
+    - {fileID: 8300000, guid: 0c97aa306d260614e842dfd52dc88977, type: 3}
     ProjectileHitAudioClips: []
   - CombatSoundType: 2
     AnimationStartAudioClips: []
     AnimationApplyEffectAudioClips:
-    - {fileID: 8300000, guid: 85f8eb853a12eec4b82beb92253f0d79, type: 3}
-    - {fileID: 8300000, guid: 31f69d0e1495f5a4f8005b6a73db2a27, type: 3}
-    - {fileID: 8300000, guid: b9a600bf2feeade42aa8f05ee12d9e65, type: 3}
-    - {fileID: 8300000, guid: e5819127769c8474eadcef218bfbada4, type: 3}
-    - {fileID: 8300000, guid: be06fc8cff77be14c91fb4fb71d02ef4, type: 3}
+    - {fileID: 8300000, guid: 830e980cc1bc07646a4be549e43a5460, type: 3}
+    - {fileID: 8300000, guid: faf0aeaadd075fa40903a3a82a530b29, type: 3}
+    - {fileID: 8300000, guid: 1d46243f62435cc48b54c743e279fc4b, type: 3}
+    - {fileID: 8300000, guid: 3292b5bbedfc116449b978e059bb5a00, type: 3}
+    - {fileID: 8300000, guid: d075edd62e938944e8c4f75d31fc27e7, type: 3}
+    - {fileID: 8300000, guid: 80a7cb62d264da143a8241db85a0f913, type: 3}
+    - {fileID: 8300000, guid: ca47089141a31da49ac6fe52c2220b12, type: 3}
+    - {fileID: 8300000, guid: 83908ff54a7a98545ab4cc7dcc4efb6f, type: 3}
+    - {fileID: 8300000, guid: 23af1ef8c7d9d644689c049e7c7f6439, type: 3}
+    - {fileID: 8300000, guid: 3a7e0e4f9c0c823489c194b3e767ab2f, type: 3}
     AnimationEndAudioClips: []
     ProjectileHitAudioClips: []
   - CombatSoundType: 6
     AnimationStartAudioClips: []
     AnimationApplyEffectAudioClips:
-    - {fileID: 8300000, guid: b11c0b7152cd2144bbb475ee2f21af19, type: 3}
+    - {fileID: 8300000, guid: 7bee6304dab1c1848bff8b3f81776ec3, type: 3}
+    - {fileID: 8300000, guid: e77e96bfff75f3c4eb1fb46aed37f9bd, type: 3}
+    - {fileID: 8300000, guid: a367d6d0514b34b4c8f6d0e4ed6ad200, type: 3}
+    - {fileID: 8300000, guid: d334b387a61c74148b5f3cee0ab7ecb3, type: 3}
+    - {fileID: 8300000, guid: 6fcb4859f49135143aa69fccc872c942, type: 3}
     AnimationEndAudioClips: []
     ProjectileHitAudioClips: []
   - CombatSoundType: 7
     AnimationStartAudioClips: []
     AnimationApplyEffectAudioClips:
-    - {fileID: 8300000, guid: b11c0b7152cd2144bbb475ee2f21af19, type: 3}
+    - {fileID: 8300000, guid: 7f6afabbb3449f44da95b59f91d0bbfa, type: 3}
+    - {fileID: 8300000, guid: d73f8e1d4e361574daf4c29d9dab0813, type: 3}
+    - {fileID: 8300000, guid: 15e1b2fa9dbb5774685059ad526f5608, type: 3}
     AnimationEndAudioClips: []
     ProjectileHitAudioClips: []
 --- !u!82 &1195752425948933542
