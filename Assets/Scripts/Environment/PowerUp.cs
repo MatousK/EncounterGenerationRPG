@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.Combat;
+using Assets.Scripts.GameFlow;
 using UnityEngine;
 
 namespace Assets.Scripts.Environment
@@ -12,6 +13,25 @@ namespace Assets.Scripts.Environment
         public float TotalMaxHpAddition;
         public float TotalMaxHpMultiplier = 1;
         public float HealedMaxHpPercentage;
+
+        private GameStateManager gameStateManager;
+
+        void Start()
+        {
+            gameStateManager = FindObjectOfType<GameStateManager>();
+            gameStateManager.GameOver += GameStateManager_GameOver;
+        }
+
+        private void GameStateManager_GameOver(object sender, System.EventArgs e)
+        {
+            Destroy(this);
+        }
+
+        private void OnDestroy()
+        {
+            gameStateManager.GameOver -= GameStateManager_GameOver;
+        }
+
         public void ApplyPowerup(Hero forHero)
         {
             forHero.Attributes.DealtDamageMultiplier += AttackModifierAddition;
