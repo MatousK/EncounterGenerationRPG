@@ -22,14 +22,22 @@ namespace Assets.Scripts.Sound.Music
         public GameMusicClips MusicClips;
         private MusicTransitionManger transitionManger;
         private GameStateManager gameStateManager;
+        private bool isInMainMenuMode;
 
         private void Start()
         {
             transitionManger = FindObjectOfType<MusicTransitionManger>();
-            gameStateManager = FindObjectOfType<GameStateManager>();
             OnSceneFirstEntered();
             SceneManager.activeSceneChanged += SceneManager_activeSceneChanged;
-            gameStateManager.GameOver += GameStateManager_GameOver;
+        }
+
+        private void Update()
+        {
+            if (isInMainMenuMode && FindObjectOfType<CombatantsManager>() != null)
+            {
+                // Bit hacky, basically once the level loads we want to turn the music on.
+                OnSceneFirstEntered();
+            }
         }
 
         private void GameStateManager_GameOver(object sender, EventArgs e)
@@ -45,12 +53,15 @@ namespace Assets.Scripts.Sound.Music
         private void OnSceneFirstEntered()
         {
             var combatantsManager = FindObjectOfType<CombatantsManager>();
-            if (combatantsManager == null)
+            isInMainMenuMode = combatantsManager == null;
+            if (isInMainMenuMode)
             {
                 // Probably credits or main menu.
                 // TODO: Create an object that will define main menu and credits song, place it here.
                 return;
             }
+            gameStateManager = FindObjectOfType<GameStateManager>();
+            gameStateManager.GameOver += GameStateManager_GameOver;
             transitionManger.PlayMusicClip(MusicClips.IdleMusic.GetRandomElementOrDefault());
             combatantsManager.CombatStarted += CombatantsManager_CombatStarted;
             combatantsManager.CombatOver += CombatantsManager_CombatOver;

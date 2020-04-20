@@ -9,14 +9,18 @@ namespace Assets.Scripts.UI.CharacterPortrait
         public List<CharacterPortrait> AvailablePortraitWidgets;
         private CombatantsManager combatantsManager;
 
-        void Start()
-        {
-            combatantsManager = FindObjectOfType<CombatantsManager>();
-            UpdatePortraits();
-        }
-
+        
         void Update()
         {
+            if (combatantsManager == null)
+            {
+                combatantsManager = FindObjectOfType<CombatantsManager>();
+                if (combatantsManager == null)
+                {
+                    // Game is probably not loaded yet;
+                    return;
+                }
+            }
             UpdatePortraits();
         }
 
