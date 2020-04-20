@@ -7,22 +7,18 @@ namespace Assets.Scripts.Movement.Pathfinding
     class Pathfinder: MonoBehaviour
     {
         PathfindingMapController pathfindingMapController;
-        public Grid MapGrid;
-        private void Awake()
-        {
-            pathfindingMapController = FindObjectOfType<PathfindingMapController>();
-            MapGrid = MapGrid != null ? MapGrid : FindObjectOfType<Grid>();
-        }
+        Grid mapGrid;
 
         public List<Vector2Int> FindPath(Vector2 originWorldSpace, Vector2Int targetGridSpace, CombatantBase combatant, bool ignoreOtherCombatants = false)
         {
+            EnsureDependenciesReady();
             var mapData = ignoreOtherCombatants ? pathfindingMapController.Map : pathfindingMapController.GetPassabilityMapForCombatant(combatant);
             Debug.Assert(mapData != null);
             if (mapData == null)
             {
                 return null;
             }
-            var originSquare3D = MapGrid.WorldToCell(originWorldSpace);
+            var originSquare3D = mapGrid.WorldToCell(originWorldSpace);
             var originSquare = new Vector2Int(originSquare3D.x, originSquare3D.y);
             if (!mapData.IsSquareInBounds(originSquare) || 
                 !mapData.IsSquareInBounds(targetGridSpace))
@@ -46,6 +42,15 @@ namespace Assets.Scripts.Movement.Pathfinding
                 toReturn.Add(gridCoordinates);
             }
             return toReturn;
+        }
+
+        private void EnsureDependenciesReady()
+        {
+            if (mapGrid == null || pathfindingMapController == null)
+            {
+                pathfindingMapController = FindObjectOfType<PathfindingMapController>();
+                mapGrid = mapGrid != null ? mapGrid : FindObjectOfType<Grid>();
+            }
         }
     }
 }

@@ -3,6 +3,7 @@ using System.Linq;
 using Assets.Scripts.Camera;
 using Assets.Scripts.DungeonGenerator;
 using Assets.Scripts.GameFlow;
+using Assets.Scripts.Movement.Pathfinding;
 using UnityEngine;
 
 namespace Assets.Scripts.Combat
@@ -28,6 +29,8 @@ namespace Assets.Scripts.Combat
             gameStateManager = FindObjectOfType<GameStateManager>();
             gameStateManager.GameReloaded += GameStateManager_GameReloaded;
             combatantsManager = FindObjectOfType<CombatantsManager>();
+            // TODO: Move to generator.
+            FindObjectOfType<PathfindingMapController>().Init();
             SpawnPartyAndRecenterCamera();
         }
 

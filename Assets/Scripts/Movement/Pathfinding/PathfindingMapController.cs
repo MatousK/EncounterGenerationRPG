@@ -12,8 +12,12 @@ namespace Assets.Scripts.Movement.Pathfinding
         public List<Tilemap> CollisionTilemaps;
         public PathfindingMap Map;
         CombatantsManager combatantsManager;
-        void Awake()
+        void Start()
         { 
+        }
+        // We cannot use Start or Awake methods, because this must be called in a very precise moment of initialization. Sucks, I know.
+        public void Init()
+        {
             combatantsManager = FindObjectOfType<CombatantsManager>();
             var bounds = CalculateMapBounds();
             Map = new PathfindingMap(bounds);

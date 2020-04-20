@@ -19,7 +19,7 @@ namespace Assets.Scripts.EncounterGenerator
         /// </summary>
         public bool IsInMainMenu;
 
-        private void Start()
+        private void Awake()
         {
             if (FindObjectsOfType<DifficultyMatrixProvider>().Length > 1)
             {
