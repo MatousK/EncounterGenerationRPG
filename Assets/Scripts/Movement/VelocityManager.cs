@@ -7,7 +7,7 @@ namespace Assets.Scripts.Movement
         private Vector2? previousFramePosition = null;
         private Vector2 velocity = Vector2.zero;
         // Start is called before the first frame update
-        void Awake()
+        void Start()
         {
             previousFramePosition = transform.position;
         }

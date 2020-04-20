@@ -9,12 +9,9 @@ namespace Assets.Scripts.UI.CharacterPortrait
         public List<CharacterPortrait> AvailablePortraitWidgets;
         private CombatantsManager combatantsManager;
 
-        void Awake() 
-        {
-            combatantsManager = FindObjectOfType<CombatantsManager>();
-        }
         void Start()
         {
+            combatantsManager = FindObjectOfType<CombatantsManager>();
             UpdatePortraits();
         }
 

@@ -32,7 +32,7 @@ namespace Assets.Scripts.UI.CharacterPortrait
         private CameraMovement cameraMovement;
         private CharacterVoiceController heroVoiceController;
 
-        void Awake()
+        void Start()
         {
             combatantsManager = FindObjectOfType<CombatantsManager>();
             cameraMovement = FindObjectOfType<CameraMovement>();

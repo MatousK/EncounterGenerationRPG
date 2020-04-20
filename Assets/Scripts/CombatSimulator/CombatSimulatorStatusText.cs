@@ -10,8 +10,12 @@ namespace Assets.Scripts.CombatSimulator
 
         private void Awake()
         {
-            combatSimulator = FindObjectOfType<global::Assets.Scripts.CombatSimulator.CombatSimulator>();
             statusTextfield = GetComponent<Text>();
+        }
+
+        private void Start()
+        {
+            combatSimulator = FindObjectOfType<CombatSimulator>();
         }
 
         private void Update()

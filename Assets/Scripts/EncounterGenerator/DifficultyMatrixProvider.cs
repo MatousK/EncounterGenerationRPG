@@ -13,8 +13,13 @@ namespace Assets.Scripts.EncounterGenerator
     class DifficultyMatrixProvider : MonoBehaviour
     {
         public EncounterDifficultyMatrix CurrentDifficultyMatrix { get; private set; }
+        /// <summary>
+        /// This is mainly for testing - if we are in the main menu, we can do all the loading and precomputations on a separate thread, we have plenty of time.
+        /// If it is not in the menu, we must load it immediately. That should happen mostly when debugging a scene directly.
+        /// </summary>
+        public bool IsInMainMenu;
 
-        private void Awake()
+        private void Start()
         {
             if (FindObjectsOfType<DifficultyMatrixProvider>().Length > 1)
             {
@@ -22,7 +27,14 @@ namespace Assets.Scripts.EncounterGenerator
                 return;
             }
             DontDestroyOnLoad(this);
-            LoadMatrix();
+            if (IsInMainMenu)
+            {
+                Task.Run(LoadMatrix);
+            }
+            else
+            {
+                LoadMatrix();
+            }
         }
 
         private void LoadMatrix()

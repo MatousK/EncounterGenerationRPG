@@ -7,13 +7,18 @@ namespace Assets.Scripts.DungeonGenerator
     public class RoomsLayout : MonoBehaviour
     {
         private GameStateManager gameStateManager;
-        private void Awake()
+        private void Start()
         {
             gameStateManager = FindObjectOfType<GameStateManager>();
             if (gameStateManager != null)
             {
                 gameStateManager.GameReloaded += GameStateManager_GameReloaded;
             }
+        }
+
+        private void OnDestroy()
+        {
+            gameStateManager.GameReloaded -= GameStateManager_GameReloaded;
         }
 
         public List<RoomInfo> Rooms = new List<RoomInfo>();

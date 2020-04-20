@@ -20,7 +20,7 @@ namespace Assets.Scripts.Movement
         public Grid MapGrid;
         public bool IsMoving => currentMoveToTarget != null;
 
-        private void Awake()
+        private void Start()
         { 
             pathfindingMapController = FindObjectOfType<PathfindingMapController>();
             MapGrid = FindObjectOfType<Grid>();
@@ -137,6 +137,14 @@ namespace Assets.Scripts.Movement
         private void MovementComponent_CombatantDied(object sender, System.EventArgs e)
         {
             StopMovement(movementSuccessful: false);
+        }
+
+        private void OnDestroy()
+        {
+            if (selfCombatant != null)
+            {
+                selfCombatant.CombatantDied -= MovementComponent_CombatantDied;
+            }
         }
     }
 }

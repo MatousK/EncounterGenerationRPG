@@ -17,7 +17,7 @@ namespace Assets.Scripts.GameFlow
         /// </summary>
         private bool isGameOverInProgress = false;
         private GameStateManager gameStateManager;
-        private void Awake()
+        private void Start()
         {
             combatantsManager = FindObjectOfType<CombatantsManager>();
             gameStateManager = FindObjectOfType<GameStateManager>();

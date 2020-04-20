@@ -30,14 +30,9 @@ namespace Assets.Scripts.Cutscenes
         private bool placeBackRowCharacter;
         private bool HeroesInPosition => movingHeroes == 0;
 
-        private void Awake()
-        {
-            combatantsManager = FindObjectOfType<CombatantsManager>();
-            cameraMovement = FindObjectOfType<CameraMovement>();
-        }
-
         private void Update()
         {
+            EnsureDependenciesLinked();
             if (IsCutsceneActive())
             {
                 cameraMovement.FollowingTransform = DoorOpener.transform;
@@ -50,6 +45,7 @@ namespace Assets.Scripts.Cutscenes
 
         public override void StartCutscene()
         {
+            EnsureDependenciesLinked();
             OpenedDoors.CloseInCombat = false;
             foreach (var hero in combatantsManager.GetPlayerCharacters(onlyAlive: true))
             {
@@ -62,6 +58,7 @@ namespace Assets.Scripts.Cutscenes
 
         public override void EndCutscene()
         {
+            EnsureDependenciesLinked();
             OpenedDoors.CloseInCombat = true;
             cameraMovement.FollowingTransform = null;
         }
@@ -96,6 +93,15 @@ namespace Assets.Scripts.Cutscenes
                     return new Vector2(doorsPosition.x + crossAxisMovement, doorsPosition.y + mainAxisMovement);
             }
             throw new ArgumentException("Door orientation invalid.");
+        }
+
+        private void EnsureDependenciesLinked()
+        {
+            if (combatantsManager == null || cameraMovement == null)
+            {
+                combatantsManager = FindObjectOfType<CombatantsManager>();
+                cameraMovement = FindObjectOfType<CameraMovement>();
+            }
         }
     }
 }

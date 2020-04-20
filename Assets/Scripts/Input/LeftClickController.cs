@@ -15,17 +15,21 @@ namespace Assets.Scripts.Input
         Vector2? selectionStart;
         CutsceneManager cutsceneManager;
         // Start is called before the first frame update
-        void Awake()
+        private void Awake()
         {
             whiteTexture = new Texture2D(1, 1);
             whiteTexture.SetPixel(0, 0, Color.white);
             whiteTexture.Apply();
+        }
+
+        private void Start()
+        {
             combatantsManager = FindObjectOfType<CombatantsManager>();
             cutsceneManager = FindObjectOfType<CutsceneManager>();
         }
 
         // Update is called once per frame
-        void Update()
+        private void Update()
         {
             if (cutsceneManager.IsCutsceneActive)
             {

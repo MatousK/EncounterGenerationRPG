@@ -21,6 +21,11 @@ namespace Assets.Scripts.Sound
             animationEventsListener.SoundCompleted += AnimationEventsListener_SoundCompleted;
         }
 
+        private void OnDestroy()
+        {
+            animationEventsListener.SoundCompleted -= AnimationEventsListener_SoundCompleted;
+        }
+
         private void AnimationEventsListener_SoundCompleted(object sender, SoundEffectType e)
         {
             if (e == SoundEffectType.Footstep)

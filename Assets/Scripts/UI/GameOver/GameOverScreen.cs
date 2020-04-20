@@ -16,11 +16,17 @@ namespace Assets.Scripts.UI.GameOver
         public TryAgainOverlay TryAgainOverlay;
         private GameStateManager gameStateManager;
 
-        private void Awake()
+        private void Start()
         {
             gameStateManager = FindObjectOfType<GameStateManager>();
             gameStateManager.GameOver += GameStateManager_GameOver;
             gameStateManager.GameReloaded += GameStateManager_GameReloaded;
+        }
+
+        private void OnDestroy()
+        {
+            gameStateManager.GameOver -= GameStateManager_GameOver;
+            gameStateManager.GameReloaded -= GameStateManager_GameReloaded;
         }
 
         private void GameStateManager_GameReloaded(object sender, EventArgs e)

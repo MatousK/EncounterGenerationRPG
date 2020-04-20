@@ -6,7 +6,7 @@ namespace Assets.Scripts.Environment
 {
     class TreasureChestManager: MonoBehaviour
     {
-        void Awake()
+        void Start()
         {
             // In every room there are some treasures placed by the designer.
             // As we already know how many treasures should be in each room, we can now disable the chests that we won't end up using.

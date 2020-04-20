@@ -12,7 +12,7 @@ namespace Assets.Scripts.UI.GameOver
     {
         private GameStateManager gameStateManager;
 
-        private void Awake()
+        private void Start()
         {
             gameStateManager = FindObjectOfType<GameStateManager>();
         }

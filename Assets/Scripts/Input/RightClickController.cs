@@ -12,7 +12,7 @@ namespace Assets.Scripts.Input
     {
         CombatantsManager combatantsManager;
         CutsceneManager cutsceneManager;
-        private void Awake()
+        private void Start()
         {
             combatantsManager = FindObjectOfType<CombatantsManager>();
             cutsceneManager = FindObjectOfType<CutsceneManager>();

@@ -53,13 +53,13 @@ namespace Assets.Scripts.Combat
         {
             base.Awake();
             movementController = GetComponent<MovementController>();
-            cameraMovement = FindObjectOfType<CameraMovement>();
         }
 
         protected override void Start()
         {
             base.Start();
             CombatantsManager.PlayerCharacters.Add(this);
+            cameraMovement = FindObjectOfType<CameraMovement>();
         }
 
         // Update is called once per frame

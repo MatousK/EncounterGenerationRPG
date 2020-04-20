@@ -65,7 +65,9 @@ namespace Assets.Scripts.Environment
                 OnDoorOpenedChanged();
             }
         }
-        void Awake()
+
+        // Start is called before the first frame update
+        void Start()
         {
             gameStateManager = FindObjectOfType<GameStateManager>();
             combatantstManager = FindObjectOfType<CombatantsManager>();
@@ -75,11 +77,6 @@ namespace Assets.Scripts.Environment
             MapGrid = MapGrid != null ? MapGrid : FindObjectOfType<Grid>();
             GetComponent<InteractableObject>().OnInteractionTriggered += OnDoorsInteractedWith;
             gameStateManager.GameReloaded += GameStateManager_GameReloaded;
-        }
-
-        // Start is called before the first frame update
-        void Start()
-        {
             OnDoorOpenedChanged();
         }
 

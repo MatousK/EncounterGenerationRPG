@@ -29,12 +29,20 @@ namespace Assets.Scripts.Environment
         bool isOpened;
         private GameStateManager gameStateManager;
 
-        private void Awake()
+        private void Start()
         {
             gameStateManager = FindObjectOfType<GameStateManager>();
             gameStateManager.GameReloaded += GameStateManager_GameReloaded;
             GetComponent<InteractableObject>().OnInteractionTriggered += OnChestClicked;
             UpdateSprite();
+        }
+
+        private void OnDestroy()
+        {
+            if (gameStateManager != null)
+            {
+                gameStateManager.GameReloaded -= GameStateManager_GameReloaded;
+            }
         }
 
         private void OnChestClicked(object chest, Hero openingHero)

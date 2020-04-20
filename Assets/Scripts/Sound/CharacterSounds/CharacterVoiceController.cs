@@ -19,7 +19,7 @@ namespace Assets.Scripts.Sound.CharacterSounds
         private bool IsHero => representedCombatant is Hero;
         private AudioSource audioSource;
         private bool didPlayBloodiedClip;
-        void Awake()
+        void Start()
         {
             if (CombatantSounds == null)
             {
