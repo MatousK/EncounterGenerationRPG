@@ -17,15 +17,19 @@ namespace Assets.Scripts.Camera
         FogOfWarController fogOfWarController;
         private CutsceneManager cutsceneManager;
 
-        private void Awake()
-        {
-            cutsceneManager = FindObjectOfType<CutsceneManager>();
-            fogOfWarController = FindObjectOfType<FogOfWarController>();
-        }
-
         // Update is called once per frame
         void LateUpdate()
         {
+            if (cutsceneManager == null || cutsceneManager == null)
+            {
+                cutsceneManager = FindObjectOfType<CutsceneManager>();
+                fogOfWarController = FindObjectOfType<FogOfWarController>();
+                if (cutsceneManager == null || cutsceneManager == null)
+                {
+                    // Map probably still loading, camera should not move at all.
+                    return;
+                }
+            }
             Vector3 oldPosition = transform.position;
             var isCutsceneActive = cutsceneManager.IsCutsceneActive;
             if ((isQuickFindHeroInProgress || isCutsceneActive) && FollowingTransform != null)

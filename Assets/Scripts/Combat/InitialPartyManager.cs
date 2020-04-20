@@ -19,7 +19,8 @@ namespace Assets.Scripts.Combat
         private RoomsLayout roomsLayout;
         private GameStateManager gameStateManager;
         private CombatantsManager combatantsManager;
-        private void Awake()
+
+        private void Start()
         {
             cameraCentering = FindObjectOfType<CameraCentering>();
             spawnManager = FindObjectOfType<CombatantSpawnManager>();
@@ -27,10 +28,6 @@ namespace Assets.Scripts.Combat
             gameStateManager = FindObjectOfType<GameStateManager>();
             gameStateManager.GameReloaded += GameStateManager_GameReloaded;
             combatantsManager = FindObjectOfType<CombatantsManager>();
-        }
-
-        private void Start()
-        {
             SpawnPartyAndRecenterCamera();
         }
 

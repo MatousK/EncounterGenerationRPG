@@ -17,7 +17,7 @@ namespace Assets.Scripts.Combat
         private GameStateManager gameStateManager;
         public bool IsCombatActive => Enemies.Any();
 
-        private void Awake()
+        private void Start()
         {
             gameStateManager = FindObjectOfType<GameStateManager>();
             if (gameStateManager != null)
@@ -55,15 +55,11 @@ namespace Assets.Scripts.Combat
             {
                 return GetPlayerCharacters(onlyAlive, onlySelected);
             }
-            else if (combatant is Monster)
+            if (combatant is Monster)
             {
                 return GetEnemies(onlyAlive);
             }
-            if (opponents == null)
-            {
-                Debug.Assert(false, "Asked for allies for unknown combatant.");
-                return null;
-            }
+            Debug.Assert(false, "Asked for allies for unknown combatant.");
             return null;
         }
 

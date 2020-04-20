@@ -7,8 +7,13 @@
         protected override void Awake()
         {
             base.Awake();
-            CombatantsManager.Enemies.Add(this);
             DamageMaxHitPointsDirectly = true;
+        }
+
+        protected override void Start()
+        {
+            base.Start();
+            CombatantsManager.Enemies.Add(this);
         }
         // Update is called once per frame
         protected override void Update()

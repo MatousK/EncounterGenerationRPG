@@ -11,21 +11,10 @@ namespace Assets.Scripts.Camera
     /// </summary>
     public class CameraCentering : MonoBehaviour
     {
-        private Grid grid;
-        private void Awake()
-        {
-            grid = FindObjectOfType<Grid>();
-        }
         // Start is called before the first frame update
-        void Start()
-        {
-            var roomsLayout = FindObjectOfType<RoomsLayout>();
-            var startingRoom = roomsLayout.Rooms.First(room => room.IsStartingRoom);
-            Center(startingRoom);
-        }
-
         public void Center(RoomInfo centeredRoom)
         {
+            var grid = FindObjectOfType<Grid>();
             var roomBounds = centeredRoom.GetBounds(grid);
             transform.position = new Vector3(roomBounds.center.x, roomBounds.center.y, transform.position.z);
         }

@@ -159,6 +159,10 @@ namespace Assets.Scripts.Combat
             MaxHitpoints = TotalMaxHitpoints;
             HitPoints = TotalMaxHitpoints;
             CombatantSkills = GetComponentsInChildren<Skill>().Where(skill => skill.gameObject.activeSelf).ToArray();
+        }
+
+        protected virtual void Start()
+        {
             CombatantsManager = FindObjectOfType<CombatantsManager>();
         }
 

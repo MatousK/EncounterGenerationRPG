@@ -11,7 +11,7 @@ namespace Assets.Scripts.Combat
         public TargetedSkill AutoAttackSkill = null;
         private CombatantBase selfCombatant;
 
-        private void Awake()
+        private void Start()
         {
             selfCombatant = GetComponent<CombatantBase>();
         }
