@@ -16,13 +16,13 @@ namespace Assets.Scripts.AI.HeroAI
             base.Awake();
         }
 
-        protected override void OnActionRequired()
+        protected override bool TryDoAction()
         {
             if (!didSkipFirstUpdate)
             {
                 // Hacky way to give the cleric the time to put an enemy to sleep.
                 didSkipFirstUpdate = true;
-                return;
+                return false;
             }
             // Ranger should, in order:
             // Use the sniper shot if there is a high priority target there.
@@ -31,19 +31,19 @@ namespace Assets.Scripts.AI.HeroAI
             var sniperShotTarget = GetMostDangerousTarget(dangerousnessThreshold: SniperShotMonsterDangerThreshold);
             if (sniperShotTarget != null && TryUseSkill(sniperShotTarget, Ranger.EnemyTargetSkill))
             {
-                return;
+                return true;
             }
             if (TryUseSkill(ControlledCombatant, Ranger.SelfTargetSkill))
             {
-                return;
+                return true;
             }
             // If we can oneshot an enemy, do it, we will probably save a lot in healing.
             var oneShotTarget = GetOneShotEnemy();
             if (oneShotTarget != null && TryUseSkill(oneShotTarget, BasicAttack))
             {
-                return;
+                return true;
             }
-            base.OnActionRequired();
+            return base.TryDoAction();
         }
 
         // Retrieve an enemy we can kill with one shot.

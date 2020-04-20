@@ -26,7 +26,7 @@ namespace Assets.Scripts.AI.HeroAI
             base.Awake();
         }
 
-        protected override void OnActionRequired()
+        protected override bool TryDoAction()
         {
             // Higher priority is healing almost dead characters.
             var allies = CombatantsManager.GetPlayerCharacters(onlyAlive: true);
@@ -34,16 +34,16 @@ namespace Assets.Scripts.AI.HeroAI
             { 
                 if (TryHealAllies())
                 {
-                    return;
+                    return true;
                 }
             }
             // Not healing or not able to heal. Check if there is a monster that should be put to sleep.
             if (TryPutToSleep()) 
             {
-                return;
+                return true;
             }
             // No skills to be used, to standard hero stuff.
-            base.OnActionRequired();
+            return base.TryDoAction();
         }
 
         protected bool TryHealAllies()

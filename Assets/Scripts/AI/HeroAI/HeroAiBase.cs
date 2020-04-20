@@ -11,8 +11,17 @@ namespace Assets.Scripts.AI.HeroAI
     /// </summary>
     public class HeroAiBase : AiBase
     {
+        /// <summary>
+        /// Reference to the knight character in the party.
+        /// </summary>
         public Hero Knight;
+        /// <summary>
+        /// Reference to the ranger character in the party.
+        /// </summary>
         public Hero Ranger;
+        /// <summary>
+        /// Reference to the cleric character in the party.
+        /// </summary>
         public Hero Cleric;
         protected override void Update()
         {
@@ -24,10 +33,10 @@ namespace Assets.Scripts.AI.HeroAI
             base.Awake();
         }
 
-        protected override void OnActionRequired()
+        protected override bool TryDoAction()
         {
-            var target = GetMostDangerousTarget();
-            TryUseSkill(target, BasicAttack);
+            var target = IsProbablyStuck ? GetClosestOpponent() : GetMostDangerousTarget();
+            return TryUseSkill(target, BasicAttack);
         }
 
         protected Monster GetMostDangerousTarget(float dangerousnessThreshold = 0f, bool includeTargetOfSleepSkill = false)

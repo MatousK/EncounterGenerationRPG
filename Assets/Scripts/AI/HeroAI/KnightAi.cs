@@ -20,7 +20,7 @@ namespace Assets.Scripts.AI.HeroAI
             base.Awake();
         }
 
-        protected override void OnActionRequired()
+        protected override bool TryDoAction()
         {
             if (!didSkipFirstUpdate)
             {
@@ -28,7 +28,7 @@ namespace Assets.Scripts.AI.HeroAI
                 // Both of these have effect on the AI.
                 // Not pretty, but as this is only for the combat simulator AI, it's probably fine.
                 didSkipFirstUpdate = true;
-                return;
+                return false;
             }
             // Knight AI is basically mainly about taunting enemies and keeping them on himself.
             // As the friendly skill is highly situational, we will only use the other two skills.
@@ -36,15 +36,15 @@ namespace Assets.Scripts.AI.HeroAI
             // Target specific taunt if there is only one really dangerous enemy to keep in check.
             if ((IsRangerTargeted() || IsAllyInDanger()) && TryUseSkill(ControlledCombatant, Knight.SelfTargetSkill))
             {
-                return;
+                return true;
             }
             var mostPowerfulTarget = GetMostDangerousTarget(dangerousnessThreshold: SingleTauntThreshold);
             if (mostPowerfulTarget != null && TryUseSkill(mostPowerfulTarget, Knight.EnemyTargetSkill))
             {
-                return;
+                return true;
             }
             // No skills to be used, to standard hero stuff.
-            base.OnActionRequired();
+            return base.TryDoAction();
         }
 
         protected bool IsAllyInDanger()

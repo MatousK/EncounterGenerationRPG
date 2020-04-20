@@ -9,6 +9,14 @@ namespace Assets.Scripts.EncounterGenerator.Model
     [Serializable]
     public class MonsterGroup
     {
+        public MonsterGroup()
+        { }
+
+        public MonsterGroup(MonsterType monsterType, int monsterCount)
+        {
+            MonsterType = monsterType;
+            MonsterCount = monsterCount;
+        }
         public MonsterType MonsterType;
         public int MonsterCount;
 
@@ -49,7 +57,7 @@ namespace Assets.Scripts.EncounterGenerator.Model
 
         public float GetAdjustedMonsterCount(EncounterGeneratorConfiguration configuration)
         {
-            return configuration.MonsterRankWeights[MonsterType.Rank];
+            return configuration.MonsterRankWeights[MonsterType.Rank] * MonsterCount;
         }
     }
 }

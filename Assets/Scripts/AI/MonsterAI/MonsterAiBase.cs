@@ -25,7 +25,7 @@ namespace Assets.Scripts.AI.MonsterAI
             base.Update();
         }
 
-        protected override void OnActionRequired()
+        protected override bool TryDoAction()
         {
             // Try to attack the current target with the advanced skill if possible, with basic attack with that fails.
             // If both of these fails, just do the basic implementation, though something is wrong at this point.
@@ -35,14 +35,14 @@ namespace Assets.Scripts.AI.MonsterAI
                 // Use the advanced skill.
                 if (TryUseSkill(GetAdvancedSkillTarget(), AdvancedSkill))
                 {
-                    return;
+                    return true;
                 }
             }
             if (TryUseSkill(GetCurrentTarget(), BasicAttack))
             {
-                return;
+                return true;
             }
-            base.OnActionRequired();
+            return base.TryDoAction();
         }
 
         /// <summary>

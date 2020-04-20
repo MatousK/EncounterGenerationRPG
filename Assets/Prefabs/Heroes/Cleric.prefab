@@ -208,6 +208,11 @@ PrefabInstance:
       propertyPath: AiTargetPriority
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4828470711690574787, guid: 46229661ed166644c8a32b159c483f24,
+        type: 3}
+      propertyPath: HeroProfession
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 7682667400691751780, guid: 46229661ed166644c8a32b159c483f24,
         type: 3}
       propertyPath: m_Sprite

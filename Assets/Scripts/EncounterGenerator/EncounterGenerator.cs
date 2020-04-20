@@ -10,16 +10,19 @@ namespace Assets.Scripts.EncounterGenerator
 {
     public class EncounterGenerator
     {
-        public EncounterGenerator()
+        public EncounterGenerator(EncounterDifficultyMatrix difficultyMatrix, EncounterMatrixUpdater matrixUpdater)
         {
             encounterTypeManager = new EncounterTypeManager(generatorConfig);
+            this.difficultyMatrix = difficultyMatrix;
+            this.matrixUpdater = matrixUpdater;
         }
 
         private readonly EncounterGeneratorConfiguration generatorConfig = new EncounterGeneratorConfiguration();
         private readonly RandomWithHistory<MonsterGroupDefinition> monsterGroupRandom = new RandomWithHistory<MonsterGroupDefinition>();
         private readonly EncounterTypeManager encounterTypeManager;
-        private readonly EncounterDifficultyMatrix difficultyMatrix = new EncounterDifficultyMatrix();
+        private readonly EncounterDifficultyMatrix difficultyMatrix;
         private readonly MonstersManager monstersManager = new MonstersManager();
+        private readonly EncounterMatrixUpdater matrixUpdater;
 
         public List<GameObject> GenerateEncounters(EncounterConfiguration configuration, PartyDefinition party)
         {
@@ -34,6 +37,7 @@ namespace Assets.Scripts.EncounterGenerator
             return monstersManager.GenerateMonsters(encounterDefinition, monsterGroupDefinition);
         }
 
+
         private EncounterGeneratorAlgorithm GetAlgorithm(EncounterConfiguration configuration, PartyDefinition party, MonsterGroupDefinition monsterGroupDefinition)
         {
             return new EncounterGeneratorAlgorithm
@@ -44,6 +48,7 @@ namespace Assets.Scripts.EncounterGenerator
                 Difficulty = configuration.EncounterDifficulty,
                 EncounterTypeManager = encounterTypeManager,
                 DifficultyMatrix = difficultyMatrix,
+                MatrixUpdater = matrixUpdater,
             };
         }
     }

@@ -24,5 +24,16 @@
                 CombatantsManager.Enemies.Remove(this);
             }
         }
+
+        public override void HealDamage(float healAmount, CombatantBase fromCombatant, bool withDefaultAnimation = true)
+        {
+            var healAmountModified = (int)(healAmount * Attributes.ReceivedHealingMultiplier);
+            MaxHitpoints += healAmountModified;
+            if (MaxHitpoints > TotalMaxHitpoints)
+            {
+                MaxHitpoints = TotalMaxHitpoints;
+            }
+            base.HealDamage(healAmount, fromCombatant, withDefaultAnimation);
+        }
     }
 }

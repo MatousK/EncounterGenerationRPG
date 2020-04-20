@@ -12,7 +12,7 @@ namespace Assets.Scripts.EncounterGenerator.Model
             float toReturn = 0;
             foreach (var partyMember in PartyMembers)
             {
-                toReturn += (partyMember.MaxHitpoints * 2) * partyMember.Attributes.DealtDamageMultiplier;
+                toReturn += partyMember.MaxHitpoints * partyMember.Attributes.DealtDamageMultiplier;
             }
             return toReturn;
         }

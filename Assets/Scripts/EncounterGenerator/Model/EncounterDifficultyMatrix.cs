@@ -79,6 +79,19 @@ namespace Assets.Scripts.EncounterGenerator.Model
 
     public class EncounterDifficultyMatrixElement
     {
+        public EncounterDifficultyMatrixElement()
+        {
+        }
+
+        public EncounterDifficultyMatrixElement(DifficultyMatrixSourceLine elementSource)
+        {
+            ElementSource = elementSource;
+            PartyPower = elementSource.PartyStrength;
+            ResourcesLost = elementSource.MaxHpLost;
+            EncounterGroups = elementSource.EncounterDefinition;
+        }
+
+
         /// <summary>
         /// The x axis, i.e. the encounter this element represents.
         /// </summary>
@@ -91,5 +104,9 @@ namespace Assets.Scripts.EncounterGenerator.Model
         /// The value, i.e. How many permamnent resources did the party lose.
         /// </summary>
         public float ResourcesLost;
+        /// <summary>
+        /// All details of the fight in the difficulty matrix, mainly for debugging.
+        /// </summary>
+        public DifficultyMatrixSourceLine ElementSource;
     }
 }

@@ -7,6 +7,7 @@ namespace Assets.Scripts.EncounterGenerator.Algorithm
 {
     public class EncounterGeneratorAlgorithm
     {
+        public EncounterMatrixUpdater MatrixUpdater;
         public EncounterTypeManager EncounterTypeManager;
         public List<MonsterType> AvailableMonsterTypes;
         public EncounterGeneratorConfiguration Configuration;
@@ -14,8 +15,8 @@ namespace Assets.Scripts.EncounterGenerator.Algorithm
         public EncounterDifficultyMatrix DifficultyMatrix;
         public PartyDefinition Party;
         private float targetDifficulty;
-        const float MaxDifficultyDifference = 10;
-        const int MaxIterations = 10;
+        private const float MaxDifficultyDifference = 0.1f;
+        private const int MaxIterations = 20;
 
         public EncounterDefinition GetEncounter()
         {
@@ -35,6 +36,7 @@ namespace Assets.Scripts.EncounterGenerator.Algorithm
             // We do multiple iterations and look for the candidate as close to the correct difficulty as possible.
             EncounterDefinition closestCandidate = candidate.Clone();
             float closestDifficultyDifference = Math.Abs(targetDifficulty - candidateDifficulty);
+            float closestCandidateDifficulty = 0;
             int currentIteration = 0;
 
             while (closestDifficultyDifference > MaxDifficultyDifference && ++currentIteration <= MaxIterations)
@@ -48,10 +50,11 @@ namespace Assets.Scripts.EncounterGenerator.Algorithm
                 {
                     // Keep track of the best possible result in case we won't manage to hit the difficulty precisely.
                     closestDifficultyDifference = candidateDifficultyDifference;
+                    closestCandidateDifficulty = candidateDifficulty;
                     closestCandidate = candidate.Clone();
                 }
             }
-
+            MatrixUpdater.StoreCombatStartConditions(Party, closestCandidate, closestCandidateDifficulty);
             return closestCandidate;
         }
     }

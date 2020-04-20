@@ -20,6 +20,10 @@ namespace Assets.Scripts.Combat
         private CameraMovement cameraMovement;
         private MovementController movementController;
         /// <summary>
+        /// The profession this hero has.
+        /// </summary>
+        public HeroProfession HeroProfession;
+        /// <summary>
         /// How much should the character heal after combat if dead.
         /// </summary>
         public float AfterCombatRevivalHealthPercentage = 0.1f;

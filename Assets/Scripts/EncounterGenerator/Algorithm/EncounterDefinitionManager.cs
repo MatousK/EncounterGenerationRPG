@@ -101,7 +101,7 @@ namespace Assets.Scripts.EncounterGenerator.Algorithm
         {
             RemoveSpecificMonsterFromEncounter(encounter, toDowngrade);
             var downgradedType = toDowngrade;
-            downgradedType.Role--;
+            downgradedType.Rank--;
             AddSpecificMonsterToEncounter(encounter, downgradedType);
         }
 
@@ -144,7 +144,8 @@ namespace Assets.Scripts.EncounterGenerator.Algorithm
             {
                 if (encounter.AllEncounterGroups[i].MonsterType == monsterToRemove)
                 {
-                    encounter.AllEncounterGroups[i].MonsterCount--;
+                    var selectedMonsterWeight = configuration.MonsterRankWeights[monsterToRemove.Rank];
+                    encounter.AllEncounterGroups[i].MonsterCount -= selectedMonsterWeight < 1 ? (int)(1f / selectedMonsterWeight) : 1;
                     if (encounter.AllEncounterGroups[i].MonsterCount <= 0)
                     {
                         encounter.AllEncounterGroups.RemoveAt(i);

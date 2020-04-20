@@ -10,7 +10,10 @@ namespace Assets.Scripts.DungeonGenerator
         private void Awake()
         {
             gameStateManager = FindObjectOfType<GameStateManager>();
-            gameStateManager.GameReloaded += GameStateManager_GameReloaded;
+            if (gameStateManager != null)
+            {
+                gameStateManager.GameReloaded += GameStateManager_GameReloaded;
+            }
         }
 
         public List<RoomInfo> Rooms = new List<RoomInfo>();

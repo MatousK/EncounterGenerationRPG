@@ -25,13 +25,13 @@ namespace Assets.Scripts.AI.MonsterAI
             return base.GetHashCode();
         }
 
-        protected override void OnActionRequired()
+        protected override bool TryDoAction()
         {
             var target = GetCurrentTarget() as Hero;
             if (target == null)
             {
                 // Heroes are dead.
-                return;
+                return false;
             }
             var alliedMonsters = CombatantsManager.GetOpponentsFor(ControlledCombatant, onlyAlive: true).ToArray();
             // Targeting is unnecessary when fighting alongside a low amount of monsters.
@@ -40,7 +40,7 @@ namespace Assets.Scripts.AI.MonsterAI
                 // High priority target is alive, target him and kill him quickly.
                 if (TryUseSkill(target, TargetHeroSkill))
                 {
-                    return;
+                    return true;
                 }
             }
             if (AdvancedSkill.IsBeingUsed())
@@ -62,11 +62,11 @@ namespace Assets.Scripts.AI.MonsterAI
                     if (Vector2.Distance(mostWoundedAlly.transform.position, ControlledCombatant.transform.position) > HealingAuraMoveToRange)
                     {
                         ControlledCombatant.GetComponent<MovementController>().MoveToPosition(mostWoundedAlly.transform.position);
-                        return;
+                        return true;
                     }
                 }
             }
-            base.OnActionRequired();
+            return base.TryDoAction();
         }
 
         protected override CombatantBase GetCurrentTarget()
