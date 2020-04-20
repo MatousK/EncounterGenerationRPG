@@ -2,9 +2,9 @@
 {
     class BruteAi: MonsterAiBase
     {
-        protected override void Awake()
+        protected override void Start()
         {
-            base.Awake();
+            base.Start();
         }
 
         protected override void Update()

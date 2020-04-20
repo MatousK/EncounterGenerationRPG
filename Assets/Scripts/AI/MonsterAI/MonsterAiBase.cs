@@ -15,9 +15,9 @@ namespace Assets.Scripts.AI.MonsterAI
         /// </summary>
         public Skill AdvancedSkill;
 
-        protected override void Awake()
+        protected override void Start()
         {
-            base.Awake();
+            base.Start();
         }
 
         protected override void Update()

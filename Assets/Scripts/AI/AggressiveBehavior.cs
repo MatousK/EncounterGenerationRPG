@@ -12,7 +12,7 @@ namespace Assets.Scripts.AI
         CombatantBase selfCombatant;
         CutsceneManager cutsceneManager;
 
-        private void Awake()
+        private void Start()
         {
             combatantsManager = FindObjectOfType<CombatantsManager>();
             autoAttacking = GetComponent<AutoAttacking>();

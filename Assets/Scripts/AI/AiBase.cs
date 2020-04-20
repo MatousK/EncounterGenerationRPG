@@ -29,7 +29,7 @@ namespace Assets.Scripts.AI
         /// </summary>
         protected const float StuckDetectionInterval = 1;
 
-        protected virtual void Awake()
+        protected virtual void Start()
         {
             ControlledCombatant = GetComponentInParent<CombatantBase>();
             CombatantsManager = FindObjectOfType<CombatantsManager>();

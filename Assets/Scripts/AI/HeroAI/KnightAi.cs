@@ -15,9 +15,9 @@ namespace Assets.Scripts.AI.HeroAI
             base.Update();
         }
 
-        protected override void Awake()
+        protected override void Start()
         {
-            base.Awake();
+            base.Start();
         }
 
         protected override bool TryDoAction()

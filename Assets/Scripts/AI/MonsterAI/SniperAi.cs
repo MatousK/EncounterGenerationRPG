@@ -12,9 +12,9 @@ namespace Assets.Scripts.AI.MonsterAI
             base.Update();
         }
 
-        protected override void Awake()
+        protected override void Start()
         {
-            base.Awake();
+            base.Start();
         }
 
         protected override CombatantBase GetCurrentTarget()
