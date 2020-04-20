@@ -33,11 +33,12 @@ namespace Assets.Scripts.EncounterGenerator.Algorithm
             var adjustedMonsterCountToGenerate = exampleEncounter.GetAdjustedMonsterCount(configuration);
             var toReturn = new EncounterDefinition { AllEncounterGroups = new List<MonsterGroup>() };
             float currentAdjustedMonsterWeight = 0;
-            // We are only adding new and new monsters, so we cann
+            // We are only adding new and new monsters, so we can remove them later if we overshoot.
             while (currentAdjustedMonsterWeight < adjustedMonsterCountToGenerate)
             {
                 AddValidMonsterToEncounter(toReturn, adjustedMonsterCountToGenerate - currentAdjustedMonsterWeight);
                 currentAdjustedMonsterWeight = toReturn.GetAdjustedMonsterCount(configuration);
+                toReturn.UpdatePrecomputedMonsterCount(configuration);
             }
             return toReturn;
         }
@@ -112,7 +113,7 @@ namespace Assets.Scripts.EncounterGenerator.Algorithm
             var currentOffenseDefenseRatio = encounter.GetAttackDefenseRatio(configuration);
 
             var candidates = new List<MonsterType>(availableMonsterTypes);
-            candidates = FilterCandidatesResettingIfEmpty(candidates, candidate => configuration.MonsterRankWeights[candidate.Rank] <= maxMonsterWeight);
+            candidates = FilterCandidatesResettingIfEmpty(candidates, candidate => configuration.MonsterRankWeights[candidate] <= maxMonsterWeight);
 
             bool shouldSpawnLeader = !hasLeader && encounterType.HasLeader;
             candidates = FilterCandidatesResettingIfEmpty(candidates, candidate => (candidate.Role == MonsterRole.Leader) == shouldSpawnLeader);
@@ -144,8 +145,8 @@ namespace Assets.Scripts.EncounterGenerator.Algorithm
             {
                 if (encounter.AllEncounterGroups[i].MonsterType == monsterToRemove)
                 {
-                    var selectedMonsterWeight = configuration.MonsterRankWeights[monsterToRemove.Rank];
-                    encounter.AllEncounterGroups[i].MonsterCount -= selectedMonsterWeight < 1 ? (int)(1f / selectedMonsterWeight) : 1;
+                    var selectedMonsterWeight = configuration.MonsterRankWeights[monsterToRemove];
+                    encounter.AllEncounterGroups[i].MonsterCount--;
                     if (encounter.AllEncounterGroups[i].MonsterCount <= 0)
                     {
                         encounter.AllEncounterGroups.RemoveAt(i);
@@ -163,9 +164,9 @@ namespace Assets.Scripts.EncounterGenerator.Algorithm
                 relevantGroup = new MonsterGroup { MonsterType = monsterToAdd };
                 encounter.AllEncounterGroups.Add(relevantGroup);
             }
-            var selectedMonsterWeight = configuration.MonsterRankWeights[monsterToAdd.Rank];
+            var selectedMonsterWeight = configuration.MonsterRankWeights[monsterToAdd];
             // If adding minions (or any other monster with below one weight), add it enough times that it is one standard monster
-            relevantGroup.MonsterCount += selectedMonsterWeight < 1 ? (int)(1 / selectedMonsterWeight) : 1;
+            relevantGroup.MonsterCount++;
         }
 
         private List<MonsterType> FilterCandidatesResettingIfEmpty(List<MonsterType> candidates, Func<MonsterType, bool> predicate)

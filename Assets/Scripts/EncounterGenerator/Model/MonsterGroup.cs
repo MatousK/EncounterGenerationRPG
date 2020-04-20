@@ -57,7 +57,7 @@ namespace Assets.Scripts.EncounterGenerator.Model
 
         public float GetAdjustedMonsterCount(EncounterGeneratorConfiguration configuration)
         {
-            return configuration.MonsterRankWeights[MonsterType.Rank] * MonsterCount;
+            return configuration.MonsterRankWeights[MonsterType] * MonsterCount;
         }
     }
 }

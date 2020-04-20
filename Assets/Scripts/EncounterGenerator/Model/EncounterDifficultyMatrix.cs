@@ -2,48 +2,66 @@
 using System.Collections.Generic;
 using System.Linq;
 using Assets.Scripts.EncounterGenerator.Configuration;
+using UnityEngine;
 
 namespace Assets.Scripts.EncounterGenerator.Model
 {
     public class EncounterDifficultyMatrix
     {
-        struct DifficultyCandidate
+        /// <summary>
+        /// Difference between monster counts of two encounters to be considered equal.
+        /// </summary>
+        private const float minorMonsterCountDifference = 0.02f;
+        class DifficultyCandidate
         {
             public float Distance;
             public float PowerDifference;
             public float ResourcesLost;
-
-            public float GetCandidateWeight()
-            {
-                // TODO: Figure out constants;
-                return PowerDifference + Distance;
-            }
+            public int CandidateWeight;
         }
         // TODO: Algorithms here are quite inefficient for now, but, well, we must first find out if it works at all.
         public List<EncounterDifficultyMatrixElement> MatrixElements = new List<EncounterDifficultyMatrixElement>();
 
         public float GetDifficultyFor(EncounterDefinition encounter, PartyDefinition party, EncounterGeneratorConfiguration configuration)
         {
+            encounter.UpdatePrecomputedMonsterCount(configuration);
             float partyPower = party.GetPartyStrength();
             // TODO: We need to check this thoroughly to figure out which is more important - closeness in encounter type or closeness in party power. For now we treat them 50/50.
-            List<DifficultyCandidate> candidates = new List<DifficultyCandidate>(6);
+            DifficultyCandidate[] candidates = new DifficultyCandidate[6];
+            for (int i = 0; i < candidates.Length; i++)
+            {
+                candidates[i] = new DifficultyCandidate { CandidateWeight = int.MaxValue };
+            }
             foreach (var element in MatrixElements)
             {
                 var distance = element.EncounterGroups.GetDistance(encounter, configuration);
                 var powerDifference = Math.Abs(GetPartyPowerBucket(partyPower) - GetPartyPowerBucket(element.PartyPower));
-                // TODO: Figure out constants that actually make sense.
-                if (distance < 1 && powerDifference == 0)
+                // The last element in the collection is always garbage, either worse than all the others just noninitialized element.
+                var candidate = candidates[candidates.Length - 1];
+                candidate.Distance = distance;
+                candidate.PowerDifference = powerDifference;
+                candidate.ResourcesLost = element.ResourcesLost;
+                // Multiply by large number because monster weights work in small 
+                candidate.CandidateWeight = (int)((distance + powerDifference) * 10000);
+                if (candidate.CandidateWeight == 0)
                 {
-                    // We found an element sufficiently close to the target.
-                    return element.ResourcesLost;
+                    Debug.Log("Found exact encounter");
                 }
-                candidates.Add(new DifficultyCandidate { Distance = distance, PowerDifference = powerDifference, ResourcesLost = element.ResourcesLost });
-                // Sort all elements and drop the last one, effectively keeping a list of 5 items with lowest difference.
-                candidates = candidates.OrderBy(candidate => candidate.GetCandidateWeight()).Take(5).ToList();
+                // Sort all elements, the last one will be leftover and will be replaced later.
+                // Multiply by a thousand ensures that int conversion won't make small difference into 0
+                Array.Sort(candidates, (x, y) => x.CandidateWeight - y.CandidateWeight);
             }
-            float totalWeight = candidates.Sum(candidate => candidate.GetCandidateWeight());
+            // Drop the last element, thereby actually gaining the 5 best candidates.
+            var actualCandidates = candidates.Take(5).ToArray();
+            if (actualCandidates.Any(candidate => candidate.CandidateWeight == 0))
+            {
+                // We found some encounters that fit perfectly - just average them.
+                return actualCandidates.Where(candidate => candidate.CandidateWeight == 0)
+                    .Average(candidate => candidate.ResourcesLost);
+            }
+            float totalWeight = actualCandidates.Sum(candidate => candidate.CandidateWeight);
             // Return weighted average of five closest candidates.
-            return candidates.Sum(candidate => candidate.ResourcesLost * (candidate.GetCandidateWeight() / totalWeight));
+            return actualCandidates.Sum(candidate => candidate.ResourcesLost * (candidate.CandidateWeight / totalWeight));
         }
 
         public EncounterDifficultyMatrixElement GetExampleEncounter(PartyDefinition party, float desiredResourcesLost)
@@ -55,7 +73,7 @@ namespace Assets.Scripts.EncounterGenerator.Model
             EncounterDifficultyMatrixElement currentBestCandidate = null;
             foreach (var element in MatrixElements)
             {
-                var cost = Math.Abs(GetPartyPowerBucket(element.PartyPower) - GetPartyPowerBucket(partyPower))*10 + Math.Abs(desiredResourcesLost - element.ResourcesLost);
+                var cost = Math.Abs(GetPartyPowerBucket(element.PartyPower) - GetPartyPowerBucket(partyPower)) * 10 + Math.Abs(desiredResourcesLost - element.ResourcesLost);
                 if (cost < currentMinResult)
                 {
                     currentMinResult = cost;
@@ -73,16 +91,12 @@ namespace Assets.Scripts.EncounterGenerator.Model
         private int GetPartyPowerBucket(float partyPower)
         {
             // TODO: Figure out some proper value for the constants.
-            return (int)(partyPower / 50);
+            return (int)(partyPower / 5000);
         }
     }
 
     public class EncounterDifficultyMatrixElement
     {
-        public EncounterDifficultyMatrixElement()
-        {
-        }
-
         public EncounterDifficultyMatrixElement(DifficultyMatrixSourceLine elementSource)
         {
             ElementSource = elementSource;

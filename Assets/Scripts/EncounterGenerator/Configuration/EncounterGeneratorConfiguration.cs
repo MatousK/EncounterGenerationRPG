@@ -1,10 +1,12 @@
 ﻿using System.Collections.Generic;
 using Assets.Scripts.Combat;
+using Assets.Scripts.EncounterGenerator.Model;
 
 namespace Assets.Scripts.EncounterGenerator.Configuration
 {
     public class EncounterGeneratorConfiguration
     {
+
         /// <summary>
         /// How to individual roles correspond to either defense or offense of the group.
         /// </summary>
@@ -20,12 +22,22 @@ namespace Assets.Scripts.EncounterGenerator.Configuration
         /// <summary>
         /// How many regular monsters is the specified monster rank worth.
         /// </summary>
-        public Dictionary<MonsterRank, float> MonsterRankWeights = new Dictionary<MonsterRank, float>
+        public Dictionary<MonsterType, float> MonsterRankWeights = new Dictionary<MonsterType, float>
         {
-            { MonsterRank.Minion, 0.2f },
-            { MonsterRank.Regular, 1f },
-            { MonsterRank.Elite, 2f },
-            { MonsterRank.Boss, 4f },
+            // The weights were determined by some basic statistical analysis,
+            { new MonsterType(MonsterRank.Minion, MonsterRole.Minion), 0.019f },
+            { new MonsterType(MonsterRank.Regular, MonsterRole.Brute), 0.028f },
+            { new MonsterType(MonsterRank.Elite, MonsterRole.Brute), 0.070f },
+            { new MonsterType(MonsterRank.Boss, MonsterRole.Brute), 0.136f },
+            { new MonsterType(MonsterRank.Regular, MonsterRole.Leader), 0f }, // Regular leaders do not exist.
+            { new MonsterType(MonsterRank.Elite, MonsterRole.Leader), 0.048f },
+            { new MonsterType(MonsterRank.Boss, MonsterRole.Leader), 0.113f },
+            { new MonsterType(MonsterRank.Regular, MonsterRole.Lurker), 0.050f },
+            { new MonsterType(MonsterRank.Elite, MonsterRole.Lurker), 0.084f },
+            { new MonsterType(MonsterRank.Boss, MonsterRole.Lurker), 0.146f },
+            { new MonsterType(MonsterRank.Regular, MonsterRole.Sniper), 0.064f },
+            { new MonsterType(MonsterRank.Elite, MonsterRole.Sniper), 0.094f },
+            { new MonsterType(MonsterRank.Boss, MonsterRole.Sniper), 0.147f },
         };
 
         /// <summary>
