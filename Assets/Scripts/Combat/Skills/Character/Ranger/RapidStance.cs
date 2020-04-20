@@ -10,10 +10,10 @@ namespace Assets.Scripts.Combat.Skills.Character.Ranger
 
         CombatantsManager combatantsManager;
 
-        protected override void Awake()
+        protected override void Start()
         {
             combatantsManager = FindObjectOfType<CombatantsManager>();
-            base.Awake();
+            base.Start();
         }
         protected override void Update()
         {

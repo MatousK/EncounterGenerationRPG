@@ -18,9 +18,9 @@ namespace Assets.Scripts.Combat.Skills
             SkillAnimationName = "Attacking";
         }
 
-        protected override void Awake()
+        protected override void Start()
         {
-            base.Awake();
+            base.Start();
         }
 
         protected override void Update()

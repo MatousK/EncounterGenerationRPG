@@ -86,7 +86,7 @@ namespace Assets.Scripts.Combat.Skills
         /// </summary>
         protected CharacterVoiceController CharacterVoiceController;
         // Start is called before the first frame update
-        protected virtual void Awake()
+        protected virtual void Start()
         {
             // First, travel the tree to find the combatant object.
             SelfCombatant = GetComponentInParent<CombatantBase>();
@@ -98,7 +98,6 @@ namespace Assets.Scripts.Combat.Skills
         // Update is called once per frame
         protected virtual void Update()
         {
-            // TODO: Refactor so it properly recognizes when we cannot reach the target.
             if (!IsBeingUsed())
             {
                 return;

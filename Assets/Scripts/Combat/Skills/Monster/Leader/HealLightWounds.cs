@@ -6,9 +6,9 @@ namespace Assets.Scripts.Combat.Skills.Monster.Leader
     {
         public int HealAmount;
         // Start is called before the first frame update
-        protected override void Awake()
+        protected override void Start()
         {
-            base.Awake();
+            base.Start();
         }
 
         // Update is called once per frame

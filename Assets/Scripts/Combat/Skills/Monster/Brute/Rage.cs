@@ -25,9 +25,9 @@ namespace Assets.Scripts.Combat.Skills.Monster.Brute
                 TryStopSkill();
             }
         }
-        protected override void Awake()
+        protected override void Start()
         {
-            base.Awake();
+            base.Start();
             combatantsManager = FindObjectOfType<CombatantsManager>();
             selectableComponent = SelfCombatant.GetComponent<SelectableObject>();
         }

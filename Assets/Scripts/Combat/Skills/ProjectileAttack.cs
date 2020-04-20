@@ -12,10 +12,10 @@ namespace Assets.Scripts.Combat.Skills
         public GameObject ProjectileTemplate;
         // How many squares should the projectile traverse per second.
         public float ProjectileSpeed;
-        protected override void Awake()
+        protected override void Start()
         {
             DealDamageOnApplySkillEffects = false;
-            base.Awake();
+            base.Start();
         }
 
         protected override void Update()

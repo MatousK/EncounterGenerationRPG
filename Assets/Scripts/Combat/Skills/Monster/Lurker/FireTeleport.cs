@@ -17,9 +17,9 @@ namespace Assets.Scripts.Combat.Skills.Monster.Lurker
             Range = float.MaxValue;
         }
 
-        protected override void Awake()
+        protected override void Start()
         {
-            base.Awake();
+            base.Start();
             fireTeleportEffect = SelfCombatant.GetComponentInChildren<FireTeleportEffect>();
             fireTeleportEffect.OnFireAnimationEnded += FireAnimationEnded;
             fireTeleportEffect.OnFireMaxSize += FireAnimationMaxSize;

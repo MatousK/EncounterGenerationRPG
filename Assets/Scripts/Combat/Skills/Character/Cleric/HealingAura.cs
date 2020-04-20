@@ -32,10 +32,10 @@ namespace Assets.Scripts.Combat.Skills.Character.Cleric
         private float timeToNextPulse = float.PositiveInfinity;
         private CombatantsManager combatantsManager;
         // Start is called before the first frame update
-        protected override void Awake()
+        protected override void Start()
         {
             combatantsManager = FindObjectOfType<CombatantsManager>();
-            base.Awake();
+            base.Start();
         }
 
         // Update is called once per frame

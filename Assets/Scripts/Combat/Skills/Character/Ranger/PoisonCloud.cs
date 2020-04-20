@@ -11,9 +11,9 @@ namespace Assets.Scripts.Combat.Skills.Character.Ranger
         public GameObject PoisonCloudEffect = null;
         private CombatantsManager combatantsManager;
 
-        protected override void Awake()
+        protected override void Start()
         {
-            base.Awake();
+            base.Start();
             combatantsManager = FindObjectOfType<CombatantsManager>();
         }
 

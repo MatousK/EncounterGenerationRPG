@@ -32,9 +32,9 @@ namespace Assets.Scripts.Combat.Skills.Character.Knight
         }
 
         // Start is called before the first frame update
-        protected override void Awake()
+        protected override void Start()
         {
-            base.Awake();
+            base.Start();
             combatantsManager = FindObjectOfType<CombatantsManager>();
         }
 

@@ -23,9 +23,9 @@ namespace Assets.Scripts.Combat.Skills
         public CombatantBase Target { get; protected set; }
 
         private AttackDirectionIndicator attackDirectionIndicator;
-        protected override void Awake()
+        protected override void Start()
         {
-            base.Awake();
+            base.Start();
             attackDirectionIndicator = SelfCombatant.GetComponentInChildren<AttackDirectionIndicator>();
         }
 

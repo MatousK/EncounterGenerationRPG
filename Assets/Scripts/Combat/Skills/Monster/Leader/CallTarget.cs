@@ -14,9 +14,9 @@ namespace Assets.Scripts.Combat.Skills.Monster.Leader
         /// </summary>
         public float Duration;
 
-        protected override void Awake()
+        protected override void Start()
         {
-            base.Awake();
+            base.Start();
             combatantsManager = FindObjectOfType<CombatantsManager>();
         }
         protected override void Update()
