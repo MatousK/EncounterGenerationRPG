@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Assets.Scripts.Combat;
+using Assets.Scripts.Environment;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -18,11 +19,17 @@ namespace Assets.Scripts.Movement.Pathfinding
         // We cannot use Start or Awake methods, because this must be called in a very precise moment of initialization. Sucks, I know.
         public void Init()
         {
+            // This entire thing is a hack to ensure that we can load the pathfinding map after 
             combatantsManager = FindObjectOfType<CombatantsManager>();
             var bounds = CalculateMapBounds();
             Map = new PathfindingMap(bounds);
             FillPassableTiles();
             FillBlockingTiles();
+            var doors = FindObjectsOfType<Doors>();
+            foreach (var door in doors)
+            {
+                door.UpdatePathfindingMap(Map);
+            }
         }
 
         public PathfindingMap GetPassabilityMapForCombatant(CombatantBase navigatingCombatant)
