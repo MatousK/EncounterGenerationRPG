@@ -47,6 +47,14 @@ namespace Assets.Scripts.Combat
         /// A skill that should be used when using a skill on self.
         /// </summary>
         public TargetedSkill FriendlyTargetSkill;
+        /// <summary>
+        /// How much should the attack increase when a powerup is picked up.
+        /// </summary>
+        public float AttackPowerupIncrement;
+        /// <summary>
+        /// How much should health increase when a powerup is picked up.
+        /// </summary>
+        public float HealthPowerupIncrement;
 
         // Start is called before the first frame update
         protected override void Awake()

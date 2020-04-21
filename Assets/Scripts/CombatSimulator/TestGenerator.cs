@@ -41,7 +41,6 @@ namespace Assets.Scripts.CombatSimulator
 
         public void ReadyNextTest(int testIndex)
         {
-            testIndex -= 26602; // Next round of simulations, we want to start it at zero.
             var partyProviderIndex = testIndex % partyProviders.Count;
             CurrentPartyProvider = partyProviders[partyProviderIndex];
             CurrentPartyConfiguration = CurrentPartyProvider.GetPartyConfiguration();

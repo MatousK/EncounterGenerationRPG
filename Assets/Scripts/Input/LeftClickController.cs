@@ -45,7 +45,7 @@ namespace Assets.Scripts.Input
             {
                 if (!selectionStart.HasValue)
                 {
-                    Debug.Assert(false, "We should always first start dragging before ending dragging.");
+                    UnityEngine.Debug.Assert(false, "We should always first start dragging before ending dragging.");
                     return;
                 }
                 // Ok, so this might be a bit hacky.

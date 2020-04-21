@@ -22,7 +22,7 @@ namespace Assets.Scripts.Movement
             }
             else
             {
-                Debug.Assert(false, "Previous frame value should be set in start, so it should never be null.");
+                UnityEngine.Debug.Assert(false, "Previous frame value should be set in start, so it should never be null.");
             }
             previousFramePosition = transform.position;
         }

@@ -23,7 +23,7 @@ namespace Assets.Scripts.DungeonGenerator
                 }
                 var allGameDoors = Payload.GameObject.GetComponentsInChildren<Doors>();
                 var roomGameDoors = allGameDoors.Where(doors => doors.GetComponent<RoomInfoComponent>().RoomIndex == room.GeneratorData.Node).ToArray();
-                Debug.Assert(roomGameDoors.Length == 2 && room.Doors.Count == 2, "Corridors should have exactly two doors.");
+                UnityEngine.Debug.Assert(roomGameDoors.Length == 2 && room.Doors.Count == 2, "Corridors should have exactly two doors.");
                 if (roomGameDoors.Length != 2 || room.Doors.Count != 2)
                 {
                     continue;

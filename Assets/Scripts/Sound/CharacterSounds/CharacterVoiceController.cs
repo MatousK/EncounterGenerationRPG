@@ -96,7 +96,7 @@ namespace Assets.Scripts.Sound.CharacterSounds
         private void OnCombatEnded(object sender, EventArgs e)
         {
             // TODO: Figure out a better way to select who will play the clip.
-            if (representedCombatant == combatantsManager.PlayerCharacters.First())
+            if (representedCombatant == combatantsManager.PlayerCharacters.FirstOrDefault())
             {
                 PlaySoundFromList(CombatantSounds.FightOverSounds);
             }

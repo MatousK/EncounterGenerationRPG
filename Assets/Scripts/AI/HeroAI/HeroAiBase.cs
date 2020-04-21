@@ -23,6 +23,8 @@ namespace Assets.Scripts.AI.HeroAI
         /// Reference to the cleric character in the party.
         /// </summary>
         public Hero Cleric;
+
+        protected Hero ControlledHero => (Hero)ControlledCombatant;
         protected override void Update()
         {
             base.Update();

@@ -92,9 +92,9 @@ namespace Assets.Scripts.CombatSimulator
             ranger.GetComponent<AutoAttacking>().enabled = false;
             cleric = SpawnHero(ClericTemplate, ClericSpawnPoint, partyStats.ClericStats);
             cleric.GetComponent<AutoAttacking>().enabled = false;
-            FillAiHeroReferences(knight.AddComponent<KnightAi>());
-            FillAiHeroReferences(ranger.AddComponent<RangerAi>());
-            FillAiHeroReferences(cleric.AddComponent<ClericAi>());
+            FillAiHeroReferences(knight.AddComponent<SimpleHeroAi>());
+            FillAiHeroReferences(ranger.AddComponent<SimpleHeroAi>());
+            FillAiHeroReferences(cleric.AddComponent<SimpleHeroAi>());
         }
 
         private void FillAiHeroReferences(HeroAiBase aiToFill)
@@ -123,7 +123,7 @@ namespace Assets.Scripts.CombatSimulator
             {
                 if (!freeSpawnPoints.Any())
                 {
-                    Debug.LogWarning("Ran out of monster spawn points");
+                    UnityEngine.Debug.LogWarning("Ran out of monster spawn points");
                     break;
                 }
                 var spawnPointIndex = UnityEngine.Random.Range(0, freeSpawnPoints.Count);

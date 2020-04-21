@@ -13,7 +13,7 @@ namespace Assets.Scripts.Movement.Pathfinding
         {
             EnsureDependenciesReady();
             var mapData = ignoreOtherCombatants ? pathfindingMapController.Map : pathfindingMapController.GetPassabilityMapForCombatant(combatant);
-            Debug.Assert(mapData != null);
+            UnityEngine.Debug.Assert(mapData != null);
             if (mapData == null)
             {
                 return null;

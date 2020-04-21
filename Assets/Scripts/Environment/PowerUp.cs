@@ -6,12 +6,8 @@ namespace Assets.Scripts.Environment
 {
     public class PowerUp : MonoBehaviour
     {
-        public float AttackModifierAddition;
-        public float AttackModifierMultiplier = 1;
-        public float DefenseModifierSubtraction;
-        public float DefenseModifierMultiplier = 1;
-        public float TotalMaxHpAddition;
-        public float TotalMaxHpMultiplier = 1;
+        public bool IsHealthPowerup;
+        public bool IsAttackPowerup;
         public float HealedMaxHpPercentage;
 
         private GameStateManager gameStateManager;
@@ -34,15 +30,13 @@ namespace Assets.Scripts.Environment
 
         public void ApplyPowerup(Hero forHero)
         {
-            forHero.Attributes.DealtDamageMultiplier += AttackModifierAddition;
-            forHero.Attributes.DealtDamageMultiplier *= AttackModifierMultiplier;
+            var attackModifierAddition = IsAttackPowerup ? forHero.AttackPowerupIncrement : 0;
+            var totalMaxHpAddition = IsHealthPowerup ? forHero.HealthPowerupIncrement : 0;
 
-            forHero.Attributes.ReceivedDamageMultiplier -= DefenseModifierSubtraction;
-            forHero.Attributes.ReceivedDamageMultiplier *= DefenseModifierMultiplier;
+            forHero.Attributes.DealtDamageMultiplier += attackModifierAddition;
 
             var oldTotalMaxHp = forHero.TotalMaxHitpoints;
-            forHero.TotalMaxHitpoints += TotalMaxHpAddition;
-            forHero.TotalMaxHitpoints *= TotalMaxHpMultiplier;
+            forHero.TotalMaxHitpoints += totalMaxHpAddition;
 
             var toAddMaxHp = forHero.TotalMaxHitpoints - oldTotalMaxHp + forHero.TotalMaxHitpoints * HealedMaxHpPercentage;
             forHero.MaxHitpoints += toAddMaxHp;

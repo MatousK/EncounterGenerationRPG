@@ -35,7 +35,7 @@ namespace Assets.Scripts.EncounterGenerator
         private static DifficultyMatrixSourceLine ParseLine(String line, int lineIndex)
         {
             string[] values = line.Split(';');
-            Debug.Assert(values.Length == 34);
+            UnityEngine.Debug.Assert(values.Length == 34);
             // Hardcoded column indexes, not exactly pretty, but for this case we do not need extensibility, we definitely wont be rerunning the simulator with different matrix format.
             return new DifficultyMatrixSourceLine
             {

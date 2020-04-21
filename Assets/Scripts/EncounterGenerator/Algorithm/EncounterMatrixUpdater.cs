@@ -43,7 +43,7 @@ namespace Assets.Scripts.EncounterGenerator.Algorithm
         {
             if (expectedDifficulty == null || !initialMaxHp.Any())
             {
-                Debug.LogWarning("Logging combat encounter when initial conditions are not set");
+                UnityEngine.Debug.LogWarning("Logging combat encounter when initial conditions are not set");
                 return;;
             }
             float totalLostMaxHp = 0;

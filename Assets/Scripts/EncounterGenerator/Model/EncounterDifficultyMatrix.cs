@@ -45,7 +45,7 @@ namespace Assets.Scripts.EncounterGenerator.Model
                 candidate.CandidateWeight = (int)((distance + powerDifference) * 10000);
                 if (candidate.CandidateWeight == 0)
                 {
-                    Debug.Log("Found exact encounter");
+                    UnityEngine.Debug.Log("Found exact encounter");
                 }
                 // Sort all elements, the last one will be leftover and will be replaced later.
                 // Multiply by a thousand ensures that int conversion won't make small difference into 0

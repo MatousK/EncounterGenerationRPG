@@ -59,7 +59,7 @@ namespace Assets.Scripts.Combat
             {
                 return GetEnemies(onlyAlive);
             }
-            Debug.Assert(false, "Asked for allies for unknown combatant.");
+            UnityEngine.Debug.Assert(false, "Asked for allies for unknown combatant.");
             return null;
         }
 
@@ -76,7 +76,7 @@ namespace Assets.Scripts.Combat
             }
             if (opponents == null)
             {
-                Debug.Assert(false, "Asked for opponents for unknown combatant.");
+                UnityEngine.Debug.Assert(false, "Asked for opponents for unknown combatant.");
                 return null;
             }
             return null;
