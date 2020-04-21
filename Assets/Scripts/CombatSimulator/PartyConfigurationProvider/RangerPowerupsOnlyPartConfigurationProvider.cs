@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Assets.Scripts.Combat;
 
 namespace Assets.Scripts.CombatSimulator.PartyConfigurationProvider
 {
@@ -15,9 +16,9 @@ namespace Assets.Scripts.CombatSimulator.PartyConfigurationProvider
             int powerups = TierIndex * TierIncrement;
             return new PartyConfiguration
             {
-                ClericStats = GetStats(baseHp: ClericBaseHp, healthPowerups: 0, baseAttack: ClericBaseAttack, attackPowerups: 0),
-                KnightStats = GetStats(baseHp: KnightBaseHp, healthPowerups: 0, baseAttack: KnightBaseAttack, attackPowerups: 0),
-                RangerStats = GetStats(baseHp: RangerBaseHp, healthPowerups: powerups, baseAttack: RangerBaseAttack, attackPowerups: powerups),
+                ClericStats = GetStats(HeroProfession.Cleric, healthPowerups: 0, attackPowerups: 0),
+                KnightStats = GetStats(HeroProfession.Knight, healthPowerups: 0, attackPowerups: 0),
+                RangerStats = GetStats(HeroProfession.Ranger, healthPowerups: powerups, attackPowerups: powerups),
             };
         }
 

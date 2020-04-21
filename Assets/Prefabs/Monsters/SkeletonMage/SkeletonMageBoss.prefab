@@ -53,7 +53,7 @@ MonoBehaviour:
   Repetitions: 1
   DamagePerHit: 1
   ProjectileTemplate: {fileID: 8462169956526499903}
-  ProjectileSpeed: 5
+  ProjectileSpeed: 10
 --- !u!1001 &297051455174772760
 PrefabInstance:
   m_ObjectHideFlags: 0

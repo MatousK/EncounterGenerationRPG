@@ -1,4 +1,6 @@
-﻿namespace Assets.Scripts.CombatSimulator.PartyConfigurationProvider
+﻿using Assets.Scripts.Combat;
+
+namespace Assets.Scripts.CombatSimulator.PartyConfigurationProvider
 {
     /// <summary>
     /// This class ignores powerups and returns a configuration with no powerups.
@@ -9,9 +11,9 @@
         {
             return new PartyConfiguration
             {
-                ClericStats = GetStats(baseHp: ClericBaseHp, healthPowerups: 0, baseAttack: ClericBaseAttack, attackPowerups: 0),
-                KnightStats = GetStats(baseHp: KnightBaseHp, healthPowerups: 0, baseAttack: KnightBaseAttack, attackPowerups: 0),
-                RangerStats = GetStats(baseHp: RangerBaseHp, healthPowerups: 0, baseAttack: RangerBaseAttack, attackPowerups: 0),
+                ClericStats = GetStats(HeroProfession.Cleric, healthPowerups: 0, attackPowerups: 0),
+                KnightStats = GetStats(HeroProfession.Knight, healthPowerups: 0, attackPowerups: 0),
+                RangerStats = GetStats(HeroProfession.Ranger, healthPowerups: 0, attackPowerups: 0),
             };
         }
 

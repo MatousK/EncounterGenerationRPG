@@ -53,7 +53,7 @@ MonoBehaviour:
   Repetitions: 1
   DamagePerHit: 1
   ProjectileTemplate: {fileID: 3649418549116087660}
-  ProjectileSpeed: 5
+  ProjectileSpeed: 10
 --- !u!1001 &4888000789211188555
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -225,6 +225,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8426503475732973463, guid: 5bb997eb5e02af8419843853bbfa62c0,
+        type: 3}
+      propertyPath: IsSpriteMirrored
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8426503475732973460, guid: 5bb997eb5e02af8419843853bbfa62c0,
         type: 3}
       propertyPath: m_Controller
@@ -266,11 +271,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_RootOrder
       value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 8426503475732973463, guid: 5bb997eb5e02af8419843853bbfa62c0,
-        type: 3}
-      propertyPath: IsSpriteMirrored
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5093483423519843717, guid: 5bb997eb5e02af8419843853bbfa62c0,
         type: 3}

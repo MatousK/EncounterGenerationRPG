@@ -1,4 +1,6 @@
-﻿namespace Assets.Scripts.CombatSimulator.PartyConfigurationProvider
+﻿using Assets.Scripts.Combat;
+
+namespace Assets.Scripts.CombatSimulator.PartyConfigurationProvider
 {
     public class RandomPartyConfigurationProvider : PartyConfigurationProvider
     {
@@ -11,9 +13,9 @@
             var danagePowerupDistribution = SplitPowerupsIntoGroups(powerups);
             return new PartyConfiguration
             {
-                ClericStats = GetStats(baseHp: ClericBaseHp, healthPowerups: healthPowerupDistribution.ClericPowerups, baseAttack: ClericBaseAttack, attackPowerups: danagePowerupDistribution.ClericPowerups),
-                KnightStats = GetStats(baseHp: KnightBaseHp, healthPowerups: healthPowerupDistribution.KnightPowerups, baseAttack: KnightBaseAttack, attackPowerups: danagePowerupDistribution.KnightPowerups),
-                RangerStats = GetStats(baseHp: RangerBaseHp, healthPowerups: healthPowerupDistribution.RangerPowerups, baseAttack: RangerBaseAttack, attackPowerups: danagePowerupDistribution.RangerPowerups),
+                ClericStats = GetStats(HeroProfession.Knight, healthPowerups: healthPowerupDistribution.ClericPowerups, attackPowerups: danagePowerupDistribution.ClericPowerups),
+                KnightStats = GetStats(HeroProfession.Cleric, healthPowerups: healthPowerupDistribution.KnightPowerups, attackPowerups: danagePowerupDistribution.KnightPowerups),
+                RangerStats = GetStats(HeroProfession.Ranger, healthPowerups: healthPowerupDistribution.RangerPowerups, attackPowerups: danagePowerupDistribution.RangerPowerups),
             };
         }
 

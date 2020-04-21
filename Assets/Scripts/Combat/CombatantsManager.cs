@@ -50,7 +50,6 @@ namespace Assets.Scripts.Combat
 
         public IEnumerable<CombatantBase> GetAlliesFor(CombatantBase combatant, bool onlyAlive = false, bool onlySelected = false)
         {
-            IEnumerable<CombatantBase> opponents = null;
             if (combatant is Hero)
             {
                 return GetPlayerCharacters(onlyAlive, onlySelected);

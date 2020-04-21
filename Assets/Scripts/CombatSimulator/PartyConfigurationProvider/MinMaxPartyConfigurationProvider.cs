@@ -1,4 +1,6 @@
-﻿namespace Assets.Scripts.CombatSimulator.PartyConfigurationProvider
+﻿using Assets.Scripts.Combat;
+
+namespace Assets.Scripts.CombatSimulator.PartyConfigurationProvider
 {
     public class MinMaxPartyConfigurationProvider : global::Assets.Scripts.CombatSimulator.PartyConfigurationProvider.PartyConfigurationProvider
     {
@@ -9,9 +11,9 @@
             int powerups = TierIndex * TierIncrement;
             return new PartyConfiguration
             {
-                ClericStats = GetStats(baseHp: ClericBaseHp, healthPowerups: 0, baseAttack: ClericBaseAttack, attackPowerups: 0),
-                KnightStats = GetStats(baseHp: KnightBaseHp, healthPowerups: powerups, baseAttack: KnightBaseAttack, attackPowerups: 0),
-                RangerStats = GetStats(baseHp: RangerBaseHp, healthPowerups: 0, baseAttack: RangerBaseAttack, attackPowerups: powerups),
+                ClericStats = GetStats(HeroProfession.Cleric, healthPowerups: 0, attackPowerups: 0),
+                KnightStats = GetStats(HeroProfession.Knight, healthPowerups: powerups, attackPowerups: 0),
+                RangerStats = GetStats(HeroProfession.Ranger, healthPowerups: 0,attackPowerups: powerups),
             };
         }
 
