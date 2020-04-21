@@ -1153,7 +1153,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cf211761c5646449bbcd055f72c544b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ObjectToActivateOnLoad: {fileID: 2126954044}
+  ObjectToActivateOnLoad:
+  - {fileID: 1699720892}
+  - {fileID: 2126954044}
   GeneratorPipelineToRun: {fileID: 1698498832}
 --- !u!4 &1198015598
 Transform:
@@ -1598,7 +1600,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1699720893
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1891,6 +1893,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dungeon Generator
       objectReference: {fileID: 0}
+    - target: {fileID: 320680875107539872, guid: a099f66ed8b455b488e8b23f35f91e1a,
+        type: 3}
+      propertyPath: PipelineItems.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 2ce3ab6bf35c40044a82c2cf0013c3f5,
+        type: 2}
     - target: {fileID: 320680875107539875, guid: a099f66ed8b455b488e8b23f35f91e1a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1946,12 +1954,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 320680875107539872, guid: a099f66ed8b455b488e8b23f35f91e1a,
-        type: 3}
-      propertyPath: PipelineItems.Array.data[0]
-      value: 
-      objectReference: {fileID: 11400000, guid: 2ce3ab6bf35c40044a82c2cf0013c3f5,
-        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a099f66ed8b455b488e8b23f35f91e1a, type: 3}
 --- !u!1001 &1847719988

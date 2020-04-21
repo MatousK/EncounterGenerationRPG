@@ -19,6 +19,7 @@ namespace Assets.Scripts.Environment
     /// <summary>
     /// Represents doors on the map that can be opened and closed. Will update pathfinding information when entered and will play the cutscene on doors open.
     /// </summary>
+    [ExecuteAfter(typeof(PathfindingMapController))]
     public class Doors : MonoBehaviour
     {
         /// <summary>

@@ -13,18 +13,16 @@ namespace Assets.Scripts.Movement.Pathfinding
         public List<Tilemap> CollisionTilemaps;
         public PathfindingMap Map;
         CombatantsManager combatantsManager;
+
         void Start()
-        { 
-        }
-        // We cannot use Start or Awake methods, because this must be called in a very precise moment of initialization. Sucks, I know.
-        public void Init()
         {
-            // This entire thing is a hack to ensure that we can load the pathfinding map after 
             combatantsManager = FindObjectOfType<CombatantsManager>();
             var bounds = CalculateMapBounds();
             Map = new PathfindingMap(bounds);
             FillPassableTiles();
             FillBlockingTiles();
+            // HACK: Doos's Start method is being called before this, so the pathfinding map is not updated.
+            // Probably doors are ready sooner... For whatever reason, we have to manually update the pathfinding map based on the doors.
             var doors = FindObjectsOfType<Doors>();
             foreach (var door in doors)
             {

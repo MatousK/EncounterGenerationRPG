@@ -10,13 +10,16 @@ namespace Assets.Scripts.MapLoading
 {
     public class MapLoader: MonoBehaviour
     {
-        public GameObject ObjectToActivateOnLoad;
+        public List<GameObject> ObjectToActivateOnLoad;
         public DungeonGeneratorPipeline GeneratorPipelineToRun; 
 
         public void Start()
         {
             GeneratorPipelineToRun.Generate();
-            ObjectToActivateOnLoad.SetActive(true);
+            foreach (var objectToActivete in ObjectToActivateOnLoad)
+            {
+                objectToActivete.SetActive(true);
+            }
         }
     }
 }
