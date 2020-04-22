@@ -22,6 +22,8 @@ namespace Assets.Scripts.GameFlow
         public GameObject LevelIntroScreenTemplate;
         [HideInInspector]
         public LevelGraph CurrentLevelGraph;
+
+        public SceneType CurrentSceneType;
         private int currentStoryModeLevelIndex;
         private bool isPlayingStoryMode;
         private Animation animationComponent;
@@ -93,6 +95,7 @@ namespace Assets.Scripts.GameFlow
             // If loading next floor, store the hero attributes.
             var existingHeroes = FindObjectsOfType<Hero>();
             CurrentPartyConfiguration = existingHeroes.Any() ? new PartyConfiguration(existingHeroes.ToArray()) : null;
+            CurrentSceneType = level.Type;
             switch (level.Type)
             {
                 case SceneType.DungeonLevel:

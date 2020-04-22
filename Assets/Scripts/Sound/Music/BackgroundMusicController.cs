@@ -22,10 +22,11 @@ namespace Assets.Scripts.Sound.Music
         public GameMusicClips MusicClips;
         private MusicTransitionManger transitionManger;
         private GameStateManager gameStateManager;
-        private bool isInMainMenuMode;
+        private LevelLoader levelLoader;
 
         private void Start()
         {
+            levelLoader = FindObjectOfType<LevelLoader>();
             transitionManger = FindObjectOfType<MusicTransitionManger>();
             OnSceneFirstEntered();
             SceneManager.activeSceneChanged += SceneManager_activeSceneChanged;
@@ -33,10 +34,19 @@ namespace Assets.Scripts.Sound.Music
 
         private void Update()
         {
-            if (isInMainMenuMode && FindObjectOfType<CombatantsManager>() != null)
+            if (levelLoader.CurrentSceneType == SceneType.DungeonLevel && gameStateManager == null)
             {
-                // Bit hacky, basically once the level loads we want to turn the music on.
-                OnSceneFirstEntered();
+                // Hacky way to link up with combatants and game state manager once they're loaded.
+                gameStateManager = FindObjectOfType<GameStateManager>();
+                if (gameStateManager == null)
+                {
+                    return;
+                }
+                var combatantsManager = FindObjectOfType<CombatantsManager>();
+                gameStateManager = FindObjectOfType<GameStateManager>();
+                gameStateManager.GameOver += GameStateManager_GameOver;
+                combatantsManager.CombatStarted += CombatantsManager_CombatStarted;
+                combatantsManager.CombatOver += CombatantsManager_CombatOver;
             }
         }
 
@@ -52,31 +62,37 @@ namespace Assets.Scripts.Sound.Music
 
         private void OnSceneFirstEntered()
         {
-            var combatantsManager = FindObjectOfType<CombatantsManager>();
-            isInMainMenuMode = combatantsManager == null;
-            if (isInMainMenuMode)
-            {
-                // Probably credits or main menu.
-                // TODO: Differentiate between credits and main menu.
-                transitionManger.PlayMusicClip(MusicClips.MainMenuMusic);
-                return;
-            }
-            gameStateManager = FindObjectOfType<GameStateManager>();
-            gameStateManager.GameOver += GameStateManager_GameOver;
-            transitionManger.PlayMusicClip(MusicClips.IdleMusic.GetRandomElementOrDefault());
-            combatantsManager.CombatStarted += CombatantsManager_CombatStarted;
-            combatantsManager.CombatOver += CombatantsManager_CombatOver;
+            PlayBackgroundMusic();
         }
 
         private void CombatantsManager_CombatOver(object sender, EventArgs e)
         {
-            transitionManger.PlayMusicClip(MusicClips.IdleMusic.GetRandomElementOrDefault());
+            PlayBackgroundMusic();
         }
 
         private void CombatantsManager_CombatStarted(object sender, EventArgs e)
         {
             // TODO: Play bossfight music if in bossfight.
             transitionManger.PlayMusicClip(MusicClips.CombatMusic.GetRandomElementOrDefault());
+        }
+
+        private void PlayBackgroundMusic()
+        {
+            switch (levelLoader.CurrentSceneType)
+            {
+                case SceneType.MainMenu:
+                    transitionManger.PlayMusicClip(MusicClips.MainMenuMusic);
+                    break;
+                case SceneType.DungeonLevel:
+                    transitionManger.PlayMusicClip(MusicClips.IdleMusic.GetRandomElementOrDefault());
+                    break;
+                case SceneType.Credits:
+                    transitionManger.PlayMusicClip(MusicClips.CreditsMusic);
+                    break;
+                default:
+                    UnityEngine.Debug.Assert(false, "Unknown scene type, cannot play music.");
+                    break;
+            }
         }
     }
 }
