@@ -12,8 +12,8 @@ namespace Assets.Scripts.UI
     {
         public event EventHandler TextAnimationDone;
         public float Speed = 0.1f;
+        public string TextToDisplay;
 
-        private string textToDisplay;
         private Text controlledText;
         private float startTime;
         private bool isAnimationFinished;
@@ -22,7 +22,6 @@ namespace Assets.Scripts.UI
         {
             startTime = Time.time;
             controlledText = GetComponent<Text>();
-            textToDisplay = controlledText.text;
             controlledText.text = "";
         }
 
@@ -35,9 +34,9 @@ namespace Assets.Scripts.UI
 
             var elapsedTime = Time.time - startTime;
             var shownCharacters = (int)(elapsedTime / Speed);
-            shownCharacters = Math.Min(shownCharacters, textToDisplay.Length);
-            controlledText.text = textToDisplay.Substring(0, shownCharacters);
-            if (shownCharacters == textToDisplay.Length)
+            shownCharacters = Math.Min(shownCharacters, TextToDisplay.Length);
+            controlledText.text = TextToDisplay.Substring(0, shownCharacters);
+            if (shownCharacters == TextToDisplay.Length)
             {
                 FinishAnimation();
             }
@@ -45,7 +44,7 @@ namespace Assets.Scripts.UI
 
         public void FinishAnimation()
         {
-            controlledText.text = textToDisplay;
+            controlledText.text = TextToDisplay;
             isAnimationFinished = true;
             TextAnimationDone?.Invoke(this, new EventArgs());
         }

@@ -14,3 +14,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PossibleLevelGraphs:
   - {fileID: 11400000, guid: 10ba17d1ce35a7f49bb3fd559361cc1d, type: 2}
+  IntroTexts:
+  - "Once upon a time, Tom the Knight was in his final year of Adventurer College.
+    \r\n\r\nHe successfully completed all the courses at the school - he breezed through
+    all\r\ncombat classes and he even managed to get through the dreaded Chivalry
+    class.\r\n\r\nAll that was left was for him now was to write a thesis about some
+    interesting adventure.\r\nHe decided to explore the mysterious dungeon of Apdien,
+    a magical place that was always\r\nfull of monsters exactly strong enough to challenge
+    the visitors. This place was a favorite\r\ntraining exercise for the students,
+    yet its purpose and workings were still as mysterious\r\ntoday as they were a
+    thousand years ago.\n\nTom teamed up with two of his friends, Bob\r the Ranger
+    and John the Cleric. Together they\nwould brave the dungeon, fill out surveys\r
+    about their experience and hopefully they would\nget enough data to unlock the
+    secrets of the dungeon.\r\n\r\nSo they set out on their journey. They filled out
+    a short survey about their current mood and\nentered the dungeon..."
+  SurveyLink: https://google.com

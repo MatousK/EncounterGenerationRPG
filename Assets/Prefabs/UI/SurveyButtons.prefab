@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6128055987352046790}
   - component: {fileID: 6128055987352046792}
-  - component: {fileID: 6128055987352046791}
   - component: {fileID: 1346509875265451272}
   - component: {fileID: 3052759807620081283}
   m_Layer: 0
@@ -66,21 +65,6 @@ MonoBehaviour:
   m_ChildControlHeight: 0
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
---- !u!114 &6128055987352046791
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6128055987352046789}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95c176799da4d644781c8230c6a205a7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  SurveyUrl: https://google.com
-  FillOutSurveyButton: {fileID: 2653057511574881416}
-  ContinueButton: {fileID: 2653057513107788107}
 --- !u!111 &1346509875265451272
 Animation:
   m_ObjectHideFlags: 0
@@ -265,18 +249,6 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 6128055985873605081}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2653057513107788107 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8204071654474334354, guid: 7ffc4129937f48c4cb429117e2fef97e,
-    type: 3}
-  m_PrefabInstance: {fileID: 6128055985873605081}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &6128055987704235034
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -428,7 +400,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 6128055987352046791}
+      objectReference: {fileID: 0}
     - target: {fileID: 8204071654474334354, guid: 7ffc4129937f48c4cb429117e2fef97e,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
@@ -442,15 +414,3 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 6128055987704235034}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2653057511574881416 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8204071654474334354, guid: 7ffc4129937f48c4cb429117e2fef97e,
-    type: 3}
-  m_PrefabInstance: {fileID: 6128055987704235034}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

@@ -7,6 +7,7 @@ using Assets.ProceduralLevelGenerator.Scripts.Data.Graphs;
 using Assets.Scripts.Combat;
 using Assets.Scripts.CombatSimulator;
 using Assets.Scripts.Extension;
+using Assets.Scripts.UI;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -18,6 +19,8 @@ namespace Assets.Scripts.GameFlow
 
         public LevelDefinition FreePlayLevel;
         public PartyConfiguration CurrentPartyConfiguration;
+        public GameObject LevelIntroScreenTemplate;
+        [HideInInspector]
         public LevelGraph CurrentLevelGraph;
         private int currentStoryModeLevelIndex;
         private bool isPlayingStoryMode;
@@ -39,13 +42,13 @@ namespace Assets.Scripts.GameFlow
         {
             currentStoryModeLevelIndex = 0;
             isPlayingStoryMode = true;
-            LoadLevel(StoryModeLevels.First());
+            LoadLevelWithIntro(StoryModeLevels.First());
         }
 
         public void StartFreeMode()
         {
             isPlayingStoryMode = false;
-            LoadLevel(FreePlayLevel);
+            LoadLevelWithIntro(FreePlayLevel);
         }
 
         public void LoadNextLevel()
@@ -58,12 +61,12 @@ namespace Assets.Scripts.GameFlow
                 }
                 else
                 {
-                    LoadLevel(StoryModeLevels[currentStoryModeLevelIndex]);
+                    LoadLevelWithIntro(StoryModeLevels[currentStoryModeLevelIndex]);
                 }
             }
             else
             {
-                LoadLevel(FreePlayLevel);
+                LoadLevelWithIntro(FreePlayLevel);
             }
         }
 
@@ -71,20 +74,37 @@ namespace Assets.Scripts.GameFlow
         {
 
         }
+        public void LoadLevelWithIntro(LevelDefinition level)
+        {
+            if (level != null && (level.IntroTexts?.Any() == true || !string.IsNullOrEmpty(level.SurveyLink)))
+            {
+                var introScreenObject = Instantiate(LevelIntroScreenTemplate);
+                var levelIntro = introScreenObject.GetComponentInChildren<TypewriterWithSurveyScreen>();
+                levelIntro.LevelDefinition = level;
+            }
+            else
+            {
+                LoadLevel(level);
+            }
+        }
 
         public void LoadLevel(LevelDefinition level)
         {
             // If loading next floor, store the hero attributes.
             var existingHeroes = FindObjectsOfType<Hero>();
-            if (existingHeroes.Any())
+            CurrentPartyConfiguration = existingHeroes.Any() ? new PartyConfiguration(existingHeroes.ToArray()) : null;
+            switch (level.Type)
             {
-                CurrentPartyConfiguration = new PartyConfiguration(existingHeroes.ToArray());
+                case SceneType.DungeonLevel:
+                    nextLevelSceneName = "DungeonScene";
+                    break;
+                case SceneType.Credits:
+                    nextLevelSceneName = "Credits";
+                    break;
+                case SceneType.MainMenu:
+                    nextLevelSceneName = "MainMenu";
+                    break;
             }
-            else
-            {
-                CurrentPartyConfiguration = null;
-            }
-            nextLevelSceneName = "DungeonScene";
             CurrentLevelGraph = level.PossibleLevelGraphs.GetRandomElementOrDefault();
             animationComponent.Play();
         }
