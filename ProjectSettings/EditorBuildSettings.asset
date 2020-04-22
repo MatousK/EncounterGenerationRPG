@@ -12,6 +12,6 @@ EditorBuildSettings:
     path: Assets/Scenes/CombatSimulatorScene.unity
     guid: e055e13e0e27e0a4086d570837f96bc1
   - enabled: 1
-    path: Assets/Scenes/TestScene.unity
+    path: Assets/Scenes/DungeonScene.unity
     guid: b9225a67cecc1b94f995fb2720af3760
   m_configObjects: {}

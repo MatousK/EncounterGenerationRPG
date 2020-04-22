@@ -49,6 +49,10 @@ namespace Assets.Scripts.Input
 
         public bool IsHeroCloseToInteract(Hero hero)
         {
+            if (GetComponent<Collider2D>() != null)
+            {
+                return GetComponent<Collider2D>().Distance(hero.GetComponent<Collider2D>()).distance <= MaxDistanceToInteract;
+            }
             Vector2 heroPosition2D = hero.transform.position;
             Vector2 selfPosition2D = transform.position;
             return Vector2.Distance(heroPosition2D, selfPosition2D) <= MaxDistanceToInteract;

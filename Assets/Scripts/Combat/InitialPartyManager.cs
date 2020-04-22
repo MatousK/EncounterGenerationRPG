@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Assets.Scripts.Camera;
+using Assets.Scripts.CombatSimulator;
 using Assets.Scripts.DungeonGenerator;
 using Assets.Scripts.Environment;
 using Assets.Scripts.GameFlow;
@@ -37,9 +38,14 @@ namespace Assets.Scripts.Combat
         private void SpawnPartyAndRecenterCamera()
         {
             var startingRoom = roomsLayout.Rooms.First(room => room.IsStartingRoom);
+            var levelLoader = FindObjectOfType<LevelLoader>();
+            var partyConfiguration = levelLoader != null ? levelLoader.CurrentPartyConfiguration : null;
             foreach (var partyMember in InitialParty)
             {
-                spawnManager.SpawnCombatant(partyMember, startingRoom);
+                var newHero = partyMember.GetComponent<Hero>();
+                var partyMemberConfig = partyConfiguration?.GetStatsFor(newHero.HeroProfession);
+
+                spawnManager.SpawnCombatant(partyMember, startingRoom, attackOverride: partyMemberConfig?.AttackModifier, hpOverride:partyMemberConfig?.MaxHp);
             }
             cameraCentering.Center(startingRoom);
         }

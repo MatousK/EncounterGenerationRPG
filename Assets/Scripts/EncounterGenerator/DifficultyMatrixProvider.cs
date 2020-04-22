@@ -18,12 +18,19 @@ namespace Assets.Scripts.EncounterGenerator
         /// If it is not in the menu, we must load it immediately. That should happen mostly when debugging a scene directly.
         /// </summary>
         public bool IsInMainMenu;
+        /// <summary>
+        /// If true, this object is about to be destroyed.
+        /// We use this because encounter manager is initializing in the same frame as the matrix provider.
+        /// Without checking IsPendingKill, it would find the new instance.
+        /// </summary>
+        public bool IsPendingKill;
 
         private void Awake()
         {
             if (FindObjectsOfType<DifficultyMatrixProvider>().Length > 1)
             {
-                Destroy(this);
+                IsPendingKill = true;
+                Destroy(gameObject, 0);
                 return;
             }
             DontDestroyOnLoad(this);

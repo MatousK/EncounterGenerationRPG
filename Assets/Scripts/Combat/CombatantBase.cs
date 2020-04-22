@@ -179,6 +179,12 @@ namespace Assets.Scripts.Combat
             Destroy(gameObject);
         }
 
+        public void SetTotalMaxHp(float newMaxHp)
+        {
+            TotalMaxHitpoints = newMaxHp;
+            MaxHitpoints = newMaxHp;
+            HitPoints = newMaxHp;
+        }
         public void ResetCooldown()
         {
             LastSkillRemainingCooldown = 0;

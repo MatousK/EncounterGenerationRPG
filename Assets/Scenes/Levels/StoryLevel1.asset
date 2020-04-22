@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6260e18d48262f543abdc86ae5f41e54, type: 3}
-  m_Name: FixedInput
+  m_Script: {fileID: 11500000, guid: cd2dc783fcdf0d149986347be4f3e720, type: 3}
+  m_Name: StoryLevel1
   m_EditorClassIdentifier: 
-  LevelGraph: {fileID: 11400000, guid: e209782f8fedfb640a86f39b45b6a1c9, type: 2}
-  UseCorridors: 1
+  PossibleLevelGraphs:
+  - {fileID: 11400000, guid: 10ba17d1ce35a7f49bb3fd559361cc1d, type: 2}

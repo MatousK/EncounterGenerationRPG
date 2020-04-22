@@ -43,13 +43,13 @@ namespace Assets.Scripts.Sound.Music
                 return;
             }
             var currentSourceIndex = activeAudioSourceIndex;
-            var nextSourceIndex = ++activeAudioSourceIndex % musicAudioSources.Count;
 
             //If the clip is already being played on the current audio source, no need to play anything
             if (currentSourceIndex >= 0 && musicClip == musicAudioSources[currentSourceIndex].clip)
             {
                 return;
             }
+            var nextSourceIndex = ++activeAudioSourceIndex % musicAudioSources.Count;
 
             // Now we will be definitely playing something. Set the new active index and the new played clip.
             activeAudioSourceIndex = nextSourceIndex;

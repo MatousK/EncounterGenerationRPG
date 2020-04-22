@@ -31,10 +31,20 @@ namespace Assets.Scripts.Environment
 
         private void Start()
         {
-            gameStateManager = FindObjectOfType<GameStateManager>();
-            gameStateManager.GameReloaded += GameStateManager_GameReloaded;
             GetComponent<InteractableObject>().OnInteractionTriggered += OnChestClicked;
             UpdateSprite();
+        }
+
+        private void Update()
+        {
+            if (gameStateManager == null)
+            {
+                gameStateManager = FindObjectOfType<GameStateManager>();
+                if (gameStateManager != null)
+                {
+                    gameStateManager.GameReloaded += GameStateManager_GameReloaded;
+                }
+            }
         }
 
         private void OnDestroy()

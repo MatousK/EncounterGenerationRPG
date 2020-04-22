@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Assets.Scripts.Combat;
 using Assets.Scripts.DungeonGenerator;
 using Assets.Scripts.EncounterGenerator.Algorithm;
@@ -26,7 +27,7 @@ namespace Assets.Scripts.EncounterGenerator
 
         private void Start()
         {
-            var difficultyMatrix = FindObjectOfType<DifficultyMatrixProvider>().CurrentDifficultyMatrix;
+            var difficultyMatrix = FindObjectsOfType<DifficultyMatrixProvider>().First(provider => !provider.IsPendingKill).CurrentDifficultyMatrix;
             matrixUpdater = new EncounterMatrixUpdater(difficultyMatrix, generatorConfiguration);
             encounterGenerator = new EncounterGenerator(difficultyMatrix, matrixUpdater, generatorConfiguration);
             staticEncounterGenerator = GetComponent<StaticEncounterGenerator>();

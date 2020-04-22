@@ -57,7 +57,8 @@ namespace Assets.Scripts.Sound.Music
             if (isInMainMenuMode)
             {
                 // Probably credits or main menu.
-                // TODO: Create an object that will define main menu and credits song, place it here.
+                // TODO: Differentiate between credits and main menu.
+                transitionManger.PlayMusicClip(MusicClips.MainMenuMusic);
                 return;
             }
             gameStateManager = FindObjectOfType<GameStateManager>();

@@ -12,7 +12,7 @@ namespace Assets.Scripts.Environment
 
         private GameStateManager gameStateManager;
 
-        void Start()
+        private void Start()
         {
             gameStateManager = FindObjectOfType<GameStateManager>();
             gameStateManager.GameOver += GameStateManager_GameOver;
@@ -20,7 +20,7 @@ namespace Assets.Scripts.Environment
 
         private void GameStateManager_GameOver(object sender, System.EventArgs e)
         {
-            Destroy(this);
+            Destroy(gameObject);
         }
 
         private void OnDestroy()
