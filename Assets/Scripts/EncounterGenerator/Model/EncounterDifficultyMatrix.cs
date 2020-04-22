@@ -8,14 +8,8 @@ namespace Assets.Scripts.EncounterGenerator.Model
 {
     public class EncounterDifficultyMatrix
     {
-        /// <summary>
-        /// Difference between monster counts of two encounters to be considered equal.
-        /// </summary>
-        private const float minorMonsterCountDifference = 0.02f;
         class DifficultyCandidate
         {
-            public float Distance;
-            public float PowerDifference;
             public float ResourcesLost;
             public int CandidateWeight;
         }
@@ -37,18 +31,11 @@ namespace Assets.Scripts.EncounterGenerator.Model
                 var distance = element.EncounterGroups.GetDistance(encounter, configuration);
                 var powerDifference = Math.Abs(GetPartyPowerBucket(partyPower) - GetPartyPowerBucket(element.PartyPower));
                 // The last element in the collection is always garbage, either worse than all the others just noninitialized element.
+                // So put the current candidate there.
                 var candidate = candidates[candidates.Length - 1];
-                candidate.Distance = distance;
-                candidate.PowerDifference = powerDifference;
                 candidate.ResourcesLost = element.ResourcesLost;
-                // Multiply by large number because monster weights work in small 
-                candidate.CandidateWeight = (int)((distance + powerDifference) * 10000);
-                if (candidate.CandidateWeight == 0)
-                {
-                    UnityEngine.Debug.Log("Found exact encounter");
-                }
+                candidate.CandidateWeight = (int)(distance + powerDifference);
                 // Sort all elements, the last one will be leftover and will be replaced later.
-                // Multiply by a thousand ensures that int conversion won't make small difference into 0
                 Array.Sort(candidates, (x, y) => x.CandidateWeight - y.CandidateWeight);
             }
             // Drop the last element, thereby actually gaining the 5 best candidates.
@@ -91,7 +78,8 @@ namespace Assets.Scripts.EncounterGenerator.Model
         private int GetPartyPowerBucket(float partyPower)
         {
             // TODO: Figure out some proper value for the constants.
-            return (int)(partyPower / 5000);
+            // Party power is in buckets by 2000. But we also multiply it by 100 to have it in the same order of magnitude as monster strengths. 
+            return (int)(Math.Round(partyPower / 2000) * 1000);
         }
     }
 

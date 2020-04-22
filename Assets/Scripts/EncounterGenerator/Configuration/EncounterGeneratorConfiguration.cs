@@ -25,20 +25,38 @@ namespace Assets.Scripts.EncounterGenerator.Configuration
         public Dictionary<MonsterType, float> MonsterRankWeights = new Dictionary<MonsterType, float>
         {
             // The weights were determined by some basic statistical analysis,
-            { new MonsterType(MonsterRank.Minion, MonsterRole.Minion), 0.019f },
-            { new MonsterType(MonsterRank.Regular, MonsterRole.Brute), 0.028f },
-            { new MonsterType(MonsterRank.Elite, MonsterRole.Brute), 0.070f },
-            { new MonsterType(MonsterRank.Boss, MonsterRole.Brute), 0.136f },
+            { new MonsterType(MonsterRank.Minion, MonsterRole.Minion), 110f },
+            { new MonsterType(MonsterRank.Regular, MonsterRole.Brute), 320f },
+            { new MonsterType(MonsterRank.Elite, MonsterRole.Brute), 710f },
+            { new MonsterType(MonsterRank.Boss, MonsterRole.Brute), 1860f },
             { new MonsterType(MonsterRank.Regular, MonsterRole.Leader), 0f }, // Regular leaders do not exist.
-            { new MonsterType(MonsterRank.Elite, MonsterRole.Leader), 0.048f },
-            { new MonsterType(MonsterRank.Boss, MonsterRole.Leader), 0.113f },
-            { new MonsterType(MonsterRank.Regular, MonsterRole.Lurker), 0.050f },
-            { new MonsterType(MonsterRank.Elite, MonsterRole.Lurker), 0.084f },
-            { new MonsterType(MonsterRank.Boss, MonsterRole.Lurker), 0.146f },
-            { new MonsterType(MonsterRank.Regular, MonsterRole.Sniper), 0.064f },
-            { new MonsterType(MonsterRank.Elite, MonsterRole.Sniper), 0.094f },
-            { new MonsterType(MonsterRank.Boss, MonsterRole.Sniper), 0.147f },
+            { new MonsterType(MonsterRank.Elite, MonsterRole.Leader), 790f },
+            { new MonsterType(MonsterRank.Boss, MonsterRole.Leader), 1470f },
+            { new MonsterType(MonsterRank.Regular, MonsterRole.Lurker), 290f },
+            { new MonsterType(MonsterRank.Elite, MonsterRole.Lurker), 930f },
+            { new MonsterType(MonsterRank.Boss, MonsterRole.Lurker), 2060f },
+            { new MonsterType(MonsterRank.Regular, MonsterRole.Sniper), 0470f },
+            { new MonsterType(MonsterRank.Elite, MonsterRole.Sniper), 960f },
+            { new MonsterType(MonsterRank.Boss, MonsterRole.Sniper), 2050f },
         };
+        // Weights from the smart AI.
+        //public Dictionary<MonsterType, float> MonsterRankWeights = new Dictionary<MonsterType, float>
+        //{
+        //    // The weights were determined by some basic statistical analysis,
+        //    { new MonsterType(MonsterRank.Minion, MonsterRole.Minion), 19f },
+        //    { new MonsterType(MonsterRank.Regular, MonsterRole.Brute), 28f },
+        //    { new MonsterType(MonsterRank.Elite, MonsterRole.Brute), 70f },
+        //    { new MonsterType(MonsterRank.Boss, MonsterRole.Brute), 136f },
+        //    { new MonsterType(MonsterRank.Regular, MonsterRole.Leader), 0f }, // Regular leaders do not exist.
+        //    { new MonsterType(MonsterRank.Elite, MonsterRole.Leader), 48f },
+        //    { new MonsterType(MonsterRank.Boss, MonsterRole.Leader), 113f },
+        //    { new MonsterType(MonsterRank.Regular, MonsterRole.Lurker), 50f },
+        //    { new MonsterType(MonsterRank.Elite, MonsterRole.Lurker), 84f },
+        //    { new MonsterType(MonsterRank.Boss, MonsterRole.Lurker), 146f },
+        //    { new MonsterType(MonsterRank.Regular, MonsterRole.Sniper), 64f },
+        //    { new MonsterType(MonsterRank.Elite, MonsterRole.Sniper), 94f },
+        //    { new MonsterType(MonsterRank.Boss, MonsterRole.Sniper), 147f },
+        //};
 
         /// <summary>
         /// How likely the specified type should appear. Regular is not included, as that is the fallback if no other type is generated.
@@ -51,9 +69,19 @@ namespace Assets.Scripts.EncounterGenerator.Configuration
         };
 
         /// <summary>
-        /// How much should the algorithm try to change its data based on actual battles. 0 means no learning at all, 1 means that it should completely change the matrix to fit the data.
+        /// How much should the algorithm try to change its data based on actual battles when the battle is easier than it should have been.
+        /// 0 means no learning at all, 1 means that it should completely change the matrix to fit the data.
         /// </summary>
-        public float LearningSpeed;
-
+        public float LearningSpeedIncreaseDifficulty = 0.5f;
+        /// <summary>
+        /// How much should the algorithm try to change its data based on actual battles when the battle is harder than it should have been.
+        /// 0 means no learning at all, 1 means that it should completely change the matrix to fit the data.
+        /// </summary>
+        public float LearningSpeedDecreaseDifficulty = 0.5f;
+        /// <summary>
+        /// While learning, every field in the matrix should be rated as at least this similar.
+        /// Why? Because every fight tells us something about the player's ability, so it should affect the entire matrix by at least some amount.
+        /// </summary>
+        public float LearningMinimumSimilarity = 0.1f;
     }
 }

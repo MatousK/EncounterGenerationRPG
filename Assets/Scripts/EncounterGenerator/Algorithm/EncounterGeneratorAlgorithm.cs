@@ -36,7 +36,7 @@ namespace Assets.Scripts.EncounterGenerator.Algorithm
             // We do multiple iterations and look for the candidate as close to the correct difficulty as possible.
             EncounterDefinition closestCandidate = candidate.Clone();
             float closestDifficultyDifference = Math.Abs(targetDifficulty - candidateDifficulty);
-            float closestCandidateDifficulty = 0;
+            float closestCandidateDifficulty = candidateDifficulty;
             int currentIteration = 0;
 
             while (closestDifficultyDifference > MaxDifficultyDifference && ++currentIteration <= MaxIterations)

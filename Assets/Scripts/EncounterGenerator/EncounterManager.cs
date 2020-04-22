@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Assets.Scripts.Combat;
 using Assets.Scripts.DungeonGenerator;
 using Assets.Scripts.EncounterGenerator.Algorithm;
+using Assets.Scripts.EncounterGenerator.Configuration;
 using Assets.Scripts.EncounterGenerator.Development;
 using Assets.Scripts.EncounterGenerator.Model;
 using Assets.Scripts.Environment;
@@ -21,12 +22,13 @@ namespace Assets.Scripts.EncounterGenerator
         private CombatantsManager combatantsManager;
         private GameStateManager gameStateManager;
         private EncounterMatrixUpdater matrixUpdater;
+        private readonly EncounterGeneratorConfiguration generatorConfiguration = new EncounterGeneratorConfiguration();
 
         private void Start()
         {
             var difficultyMatrix = FindObjectOfType<DifficultyMatrixProvider>().CurrentDifficultyMatrix;
-            matrixUpdater = new EncounterMatrixUpdater(difficultyMatrix);
-            encounterGenerator = new EncounterGenerator(difficultyMatrix, matrixUpdater);
+            matrixUpdater = new EncounterMatrixUpdater(difficultyMatrix, generatorConfiguration);
+            encounterGenerator = new EncounterGenerator(difficultyMatrix, matrixUpdater, generatorConfiguration);
             staticEncounterGenerator = GetComponent<StaticEncounterGenerator>();
             roomsLayout = FindObjectOfType<RoomsLayout>();
             combatantSpawnManager = FindObjectOfType<CombatantSpawnManager>();

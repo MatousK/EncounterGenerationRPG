@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Assets.Scripts.Combat;
+using Assets.Scripts.EncounterGenerator.Configuration;
 using Assets.Scripts.EncounterGenerator.Model;
 using UnityEngine;
 
@@ -15,11 +16,13 @@ namespace Assets.Scripts.EncounterGenerator.Algorithm
     /// </summary>
     public class EncounterMatrixUpdater
     {
-        public EncounterMatrixUpdater(EncounterDifficultyMatrix difficultyMatrix)
+        public EncounterMatrixUpdater(EncounterDifficultyMatrix difficultyMatrix, EncounterGeneratorConfiguration configuration)
         {
             this.difficultyMatrix = difficultyMatrix;
+            this.configuration = configuration;
         }
 
+        private EncounterGeneratorConfiguration configuration;
         private EncounterDifficultyMatrix difficultyMatrix;
         private readonly Dictionary<HeroProfession, float> initialMaxHp = new Dictionary<HeroProfession, float>();
         private readonly Dictionary<HeroProfession, float> initialHp = new Dictionary<HeroProfession, float>();
@@ -29,14 +32,14 @@ namespace Assets.Scripts.EncounterGenerator.Algorithm
 
         public void StoreCombatStartConditions(PartyDefinition party, EncounterDefinition encounter, float expectedDifficulty)
         {
-            foreach (var hero in party.PartyMembers)
+            foreach (var hero in party.PartyMembers) 
             {
                 initialMaxHp[hero.HeroProfession] = hero.MaxHitpoints;
                 initialHp[hero.HeroProfession] = hero.HitPoints;
                 partyDamageMultipliers[hero.HeroProfession] = hero.Attributes.DealtDamageMultiplier;
             }
             this.expectedDifficulty = expectedDifficulty;
-            this.encounter = encounter;
+             this.encounter = encounter;
         }
 
         public void CombatOverAdjustMatrix(PartyDefinition party, bool wasGameOver)
@@ -44,7 +47,7 @@ namespace Assets.Scripts.EncounterGenerator.Algorithm
             if (expectedDifficulty == null || !initialMaxHp.Any())
             {
                 UnityEngine.Debug.LogWarning("Logging combat encounter when initial conditions are not set");
-                return;;
+                return; ;
             }
             float totalLostMaxHp = 0;
             float totalHpLost = 0;
@@ -53,14 +56,57 @@ namespace Assets.Scripts.EncounterGenerator.Algorithm
                 totalLostMaxHp += 1 - hero.MaxHitpoints / initialMaxHp[hero.HeroProfession];
                 totalHpLost += 1 - hero.HitPoints / initialHp[hero.HeroProfession];
             }
-            AddMatrixRow(party, wasGameOver ? 3f : totalLostMaxHp, wasGameOver ? 3f : totalHpLost);
             float resultsDifference = expectedDifficulty.Value - totalLostMaxHp;
+            AddMatrixRow(party, wasGameOver ? 3f : totalLostMaxHp, wasGameOver ? 3f : totalHpLost);
+            //
+            var partyStartHp = new Dictionary<HeroProfession, float>(initialMaxHp);
+            var partyAttack = new Dictionary<HeroProfession, float>(partyDamageMultipliers);
+            var finishedEncounter = encounter;
+            // We start the adjustment on another thread so we have more time.
+            Task.Run(() => AdjustMatrix(partyStartHp, partyAttack, finishedEncounter, resultsDifference));
             // TODO: Adjust matrix.
             initialMaxHp.Clear();
+            partyDamageMultipliers.Clear();
+            initialHp.Clear();
             expectedDifficulty = null;
+            encounter = null;
         }
 
-
+        private void AdjustMatrix(Dictionary<HeroProfession, float> partyStartHp, Dictionary<HeroProfession, float> partyAttack, EncounterDefinition encounter, float resultsDifference)
+        {
+            // TODO: Think of a better algorithm. 
+            float partyPower = partyStartHp[HeroProfession.Ranger] * partyAttack[HeroProfession.Ranger] +
+                               partyStartHp[HeroProfession.Knight] * partyAttack[HeroProfession.Knight] +
+                               partyStartHp[HeroProfession.Cleric] * partyAttack[HeroProfession.Cleric];
+            var encounterDifficulty = encounter.GetAdjustedMonsterCount(configuration);
+            var learningSpeed = resultsDifference > 0
+                ? configuration.LearningSpeedIncreaseDifficulty
+                : configuration.LearningSpeedDecreaseDifficulty;
+            var modifyDifficultyBy = resultsDifference * learningSpeed;
+            foreach (var matrixElement in difficultyMatrix.MatrixElements)
+            {
+                var largerPartyPower = Math.Max(matrixElement.PartyPower, partyPower);
+                var largerDifficulty = Math.Max(matrixElement.EncounterGroups.GetAdjustedMonsterCount(configuration), encounterDifficulty);
+                // We divide the difference it by party power and encounter difficulty to more accurately gouge just how much difference there is.
+                // Difference between encounter with difficulty 46000 and 42000 is quite minor, but difference between 6000 and 2000 is huge.
+                // Same goes for party power.
+                // This way
+                var partyPowerDifference = Math.Abs(partyPower - matrixElement.PartyPower) / largerPartyPower;
+                var encounterDifference  = encounter.GetDistance(matrixElement.EncounterGroups, configuration) / largerDifficulty;
+                var totalDifference = partyPowerDifference + encounterDifference;
+                var similarity =  1 - totalDifference;
+                similarity = similarity < configuration.LearningMinimumSimilarity ? configuration.LearningMinimumSimilarity : similarity;
+                matrixElement.ResourcesLost -= matrixElement.ResourcesLost * modifyDifficultyBy * similarity;
+                if (matrixElement.ResourcesLost > 3)
+                {
+                    matrixElement.ResourcesLost = 3;
+                }
+                else if (matrixElement.ResourcesLost < 0)
+                {
+                    matrixElement.ResourcesLost = 0;
+                }
+            }
+        }
 
         private void AddMatrixRow(PartyDefinition party, float maxHpLost, float hpLost)
         {

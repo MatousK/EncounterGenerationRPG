@@ -10,14 +10,15 @@ namespace Assets.Scripts.EncounterGenerator
 {
     public class EncounterGenerator
     {
-        public EncounterGenerator(EncounterDifficultyMatrix difficultyMatrix, EncounterMatrixUpdater matrixUpdater)
+        public EncounterGenerator(EncounterDifficultyMatrix difficultyMatrix, EncounterMatrixUpdater matrixUpdater, EncounterGeneratorConfiguration generatorConfig)
         {
             encounterTypeManager = new EncounterTypeManager(generatorConfig);
             this.difficultyMatrix = difficultyMatrix;
             this.matrixUpdater = matrixUpdater;
+            this.generatorConfig = generatorConfig;
         }
 
-        private readonly EncounterGeneratorConfiguration generatorConfig = new EncounterGeneratorConfiguration();
+        private readonly EncounterGeneratorConfiguration generatorConfig;
         private readonly RandomWithHistory<MonsterGroupDefinition> monsterGroupRandom = new RandomWithHistory<MonsterGroupDefinition>();
         private readonly EncounterTypeManager encounterTypeManager;
         private readonly EncounterDifficultyMatrix difficultyMatrix;
