@@ -13,8 +13,9 @@ using UnityEngine;
 
 namespace Assets.Scripts.EncounterGenerator
 {
-    class EncounterManager: MonoBehaviour
+    class EncounterManager : MonoBehaviour
     {
+        public EncounterMatrixUpdater MatrixUpdater { get; private set; }
         // TODO: Debug, remove in release builds.
         private StaticEncounterGenerator staticEncounterGenerator;
         private EncounterGenerator encounterGenerator;
@@ -22,14 +23,17 @@ namespace Assets.Scripts.EncounterGenerator
         private CombatantSpawnManager combatantSpawnManager;
         private CombatantsManager combatantsManager;
         private GameStateManager gameStateManager;
-        private EncounterMatrixUpdater matrixUpdater;
         private readonly EncounterGeneratorConfiguration generatorConfiguration = new EncounterGeneratorConfiguration();
+        private DifficultyMatrixProvider difficultyMatrixProvider;
 
         private void Start()
         {
-            var difficultyMatrix = FindObjectsOfType<DifficultyMatrixProvider>().First(provider => !provider.IsPendingKill).CurrentDifficultyMatrix;
-            matrixUpdater = new EncounterMatrixUpdater(difficultyMatrix, generatorConfiguration);
-            encounterGenerator = new EncounterGenerator(difficultyMatrix, matrixUpdater, generatorConfiguration);
+            difficultyMatrixProvider =
+                FindObjectsOfType<DifficultyMatrixProvider>().First(provider => !provider.IsPendingKill);
+            var difficultyMatrix = difficultyMatrixProvider.CurrentDifficultyMatrix;
+            MatrixUpdater = new EncounterMatrixUpdater(difficultyMatrix, generatorConfiguration);
+            MatrixUpdater.MatrixChanged += MatrixUpdater_MatrixChanged;
+            encounterGenerator = new EncounterGenerator(difficultyMatrix, MatrixUpdater, generatorConfiguration);
             staticEncounterGenerator = GetComponent<StaticEncounterGenerator>();
             roomsLayout = FindObjectOfType<RoomsLayout>();
             combatantSpawnManager = FindObjectOfType<CombatantSpawnManager>();
@@ -40,6 +44,14 @@ namespace Assets.Scripts.EncounterGenerator
             foreach (var room in roomsLayout.Rooms)
             {
                 room.IsExploredChanged += OnRoomExplored;
+            }
+        }
+
+        private void MatrixUpdater_MatrixChanged(object sender, MatrixChangedEventArgs e)
+        {
+            if (difficultyMatrixProvider != null)
+            {
+                difficultyMatrixProvider.OnMatrixChanged(e);
             }
         }
 
@@ -87,7 +99,7 @@ namespace Assets.Scripts.EncounterGenerator
         {
             var allHeroes = combatantsManager.PlayerCharacters;
             var partyDefinition = new PartyDefinition { PartyMembers = allHeroes };
-            matrixUpdater.CombatOverAdjustMatrix(partyDefinition, wasGameOver);
+            MatrixUpdater.CombatOverAdjustMatrix(partyDefinition, wasGameOver);
         }
 
         private void OnDestroy()
@@ -108,6 +120,11 @@ namespace Assets.Scripts.EncounterGenerator
             if (gameStateManager != null)
             {
                 gameStateManager.GameOver -= GameStateManager_GameOver;
+            }
+
+            if (MatrixUpdater != null)
+            {
+                MatrixUpdater.MatrixChanged -= MatrixUpdater_MatrixChanged;
             }
         }
     }

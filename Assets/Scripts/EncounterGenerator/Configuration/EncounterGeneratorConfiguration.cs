@@ -82,6 +82,6 @@ namespace Assets.Scripts.EncounterGenerator.Configuration
         /// While learning, every field in the matrix should be rated as at least this similar.
         /// Why? Because every fight tells us something about the player's ability, so it should affect the entire matrix by at least some amount.
         /// </summary>
-        public float LearningMinimumSimilarity = 0.1f;
+        public float LearningMinimumSimilarity = 0f;
     }
 }

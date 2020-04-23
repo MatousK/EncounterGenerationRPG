@@ -21,9 +21,12 @@ namespace Assets.Scripts.EncounterGenerator.Algorithm
             this.difficultyMatrix = difficultyMatrix;
             this.configuration = configuration;
         }
-
-        private EncounterGeneratorConfiguration configuration;
-        private EncounterDifficultyMatrix difficultyMatrix;
+        /// <summary>
+        /// This event will be called when the matrix changes. Eventargs are details about the encounter that changed the matrix.
+        /// </summary>
+        public event EventHandler<MatrixChangedEventArgs> MatrixChanged;
+        private readonly EncounterGeneratorConfiguration configuration;
+        private readonly EncounterDifficultyMatrix difficultyMatrix;
         private readonly Dictionary<HeroProfession, float> initialMaxHp = new Dictionary<HeroProfession, float>();
         private readonly Dictionary<HeroProfession, float> initialHp = new Dictionary<HeroProfession, float>();
         private readonly Dictionary<HeroProfession, float> partyDamageMultipliers = new Dictionary<HeroProfession, float>();
@@ -32,14 +35,14 @@ namespace Assets.Scripts.EncounterGenerator.Algorithm
 
         public void StoreCombatStartConditions(PartyDefinition party, EncounterDefinition encounter, float expectedDifficulty)
         {
-            foreach (var hero in party.PartyMembers) 
+            foreach (var hero in party.PartyMembers)
             {
                 initialMaxHp[hero.HeroProfession] = hero.MaxHitpoints;
                 initialHp[hero.HeroProfession] = hero.HitPoints;
                 partyDamageMultipliers[hero.HeroProfession] = hero.Attributes.DealtDamageMultiplier;
             }
             this.expectedDifficulty = expectedDifficulty;
-             this.encounter = encounter;
+            this.encounter = encounter;
         }
 
         public void CombatOverAdjustMatrix(PartyDefinition party, bool wasGameOver)
@@ -56,15 +59,13 @@ namespace Assets.Scripts.EncounterGenerator.Algorithm
                 totalLostMaxHp += 1 - hero.MaxHitpoints / initialMaxHp[hero.HeroProfession];
                 totalHpLost += 1 - hero.HitPoints / initialHp[hero.HeroProfession];
             }
-            float resultsDifference = expectedDifficulty.Value - totalLostMaxHp;
             AddMatrixRow(party, wasGameOver ? 3f : totalLostMaxHp, wasGameOver ? 3f : totalHpLost);
             //
             var partyStartHp = new Dictionary<HeroProfession, float>(initialMaxHp);
             var partyAttack = new Dictionary<HeroProfession, float>(partyDamageMultipliers);
             var finishedEncounter = encounter;
             // We start the adjustment on another thread so we have more time.
-            Task.Run(() => AdjustMatrix(partyStartHp, partyAttack, finishedEncounter, resultsDifference));
-            // TODO: Adjust matrix.
+            AdjustMatrix(partyStartHp, partyAttack, finishedEncounter, expectedDifficulty.Value, totalLostMaxHp, wasGameOver);
             initialMaxHp.Clear();
             partyDamageMultipliers.Clear();
             initialHp.Clear();
@@ -72,40 +73,58 @@ namespace Assets.Scripts.EncounterGenerator.Algorithm
             encounter = null;
         }
 
-        private void AdjustMatrix(Dictionary<HeroProfession, float> partyStartHp, Dictionary<HeroProfession, float> partyAttack, EncounterDefinition encounter, float resultsDifference)
+        private void AdjustMatrix(Dictionary<HeroProfession, float> partyStartHp, Dictionary<HeroProfession, float> partyAttack, EncounterDefinition encounter, float expectedDifficulty, float realDifficulty, bool wasGameOver)
         {
-            // TODO: Think of a better algorithm. 
-            float partyPower = partyStartHp[HeroProfession.Ranger] * partyAttack[HeroProfession.Ranger] +
-                               partyStartHp[HeroProfession.Knight] * partyAttack[HeroProfession.Knight] +
-                               partyStartHp[HeroProfession.Cleric] * partyAttack[HeroProfession.Cleric];
-            var encounterDifficulty = encounter.GetAdjustedMonsterCount(configuration);
-            var learningSpeed = resultsDifference > 0
-                ? configuration.LearningSpeedIncreaseDifficulty
-                : configuration.LearningSpeedDecreaseDifficulty;
-            var modifyDifficultyBy = resultsDifference * learningSpeed;
-            foreach (var matrixElement in difficultyMatrix.MatrixElements)
+            Task.Run(() =>
             {
-                var largerPartyPower = Math.Max(matrixElement.PartyPower, partyPower);
-                var largerDifficulty = Math.Max(matrixElement.EncounterGroups.GetAdjustedMonsterCount(configuration), encounterDifficulty);
-                // We divide the difference it by party power and encounter difficulty to more accurately gouge just how much difference there is.
-                // Difference between encounter with difficulty 46000 and 42000 is quite minor, but difference between 6000 and 2000 is huge.
-                // Same goes for party power.
-                // This way
-                var partyPowerDifference = Math.Abs(partyPower - matrixElement.PartyPower) / largerPartyPower;
-                var encounterDifference  = encounter.GetDistance(matrixElement.EncounterGroups, configuration) / largerDifficulty;
-                var totalDifference = partyPowerDifference + encounterDifference;
-                var similarity =  1 - totalDifference;
-                similarity = similarity < configuration.LearningMinimumSimilarity ? configuration.LearningMinimumSimilarity : similarity;
-                matrixElement.ResourcesLost -= matrixElement.ResourcesLost * modifyDifficultyBy * similarity;
-                if (matrixElement.ResourcesLost > 3)
+                float resultsDifference = expectedDifficulty - realDifficulty;
+                // TODO: Think of a better algorithm. 
+                float partyPower = partyStartHp[HeroProfession.Ranger] * partyAttack[HeroProfession.Ranger] +
+                                   partyStartHp[HeroProfession.Knight] * partyAttack[HeroProfession.Knight] +
+                                   partyStartHp[HeroProfession.Cleric] * partyAttack[HeroProfession.Cleric];
+                var encounterDifficulty = encounter.GetAdjustedMonsterCount(configuration);
+                var learningSpeed = resultsDifference > 0
+                    ? configuration.LearningSpeedIncreaseDifficulty
+                    : configuration.LearningSpeedDecreaseDifficulty;
+                var modifyDifficultyBy = resultsDifference * learningSpeed;
+                foreach (var matrixElement in difficultyMatrix.MatrixElements)
                 {
-                    matrixElement.ResourcesLost = 3;
+                    var largerPartyPower = Math.Max(matrixElement.PartyPower, partyPower);
+                    var largerDifficulty =
+                        Math.Max(matrixElement.EncounterGroups.GetAdjustedMonsterCount(configuration),
+                            encounterDifficulty);
+                    // We divide the difference it by party power and encounter difficulty to more accurately gouge just how much difference there is.
+                    // Difference between encounter with difficulty 46000 and 42000 is quite minor, but difference between 6000 and 2000 is huge.
+                    // Same goes for party power.
+                    // This way
+                    var partyPowerDifference = Math.Abs(partyPower - matrixElement.PartyPower) / largerPartyPower;
+                    var encounterDifference = encounter.GetDistance(matrixElement.EncounterGroups, configuration) /
+                                              largerDifficulty;
+                    var totalDifference = partyPowerDifference + encounterDifference;
+                    var similarity = 1 - totalDifference;
+                    similarity = similarity < configuration.LearningMinimumSimilarity
+                        ? configuration.LearningMinimumSimilarity
+                        : similarity;
+                    matrixElement.ResourcesLost -= matrixElement.ResourcesLost * modifyDifficultyBy * similarity;
+                    if (matrixElement.ResourcesLost > 3)
+                    {
+                        matrixElement.ResourcesLost = 3;
+                    }
+                    else if (matrixElement.ResourcesLost < 0)
+                    {
+                        matrixElement.ResourcesLost = 0;
+                    }
                 }
-                else if (matrixElement.ResourcesLost < 0)
+                MatrixChanged?.Invoke(this, new MatrixChangedEventArgs
                 {
-                    matrixElement.ResourcesLost = 0;
-                }
-            }
+                    DifficultyEstimate = expectedDifficulty,
+                    DifficultyReality = realDifficulty,
+                    FoughtEncounter = encounter,
+                    PartyAttack = partyAttack,
+                    PartyHitpoints = partyStartHp,
+                    WasGameOver = wasGameOver,
+                });
+            });
         }
 
         private void AddMatrixRow(PartyDefinition party, float maxHpLost, float hpLost)
@@ -138,5 +157,15 @@ namespace Assets.Scripts.EncounterGenerator.Algorithm
             };
             difficultyMatrix.MatrixElements.Add(new EncounterDifficultyMatrixElement(matrixLine));
         }
+    }
+
+    public class MatrixChangedEventArgs
+    {
+        public Dictionary<HeroProfession, float> PartyHitpoints;
+        public Dictionary<HeroProfession, float> PartyAttack;
+        public EncounterDefinition FoughtEncounter;
+        public float DifficultyEstimate;
+        public float DifficultyReality;
+        public bool WasGameOver;
     }
 }

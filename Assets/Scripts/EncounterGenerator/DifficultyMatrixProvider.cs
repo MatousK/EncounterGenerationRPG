@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Assets.Scripts.EncounterGenerator.Algorithm;
 using Assets.Scripts.EncounterGenerator.Configuration;
 using Assets.Scripts.EncounterGenerator.Model;
 using UnityEngine;
@@ -25,6 +26,8 @@ namespace Assets.Scripts.EncounterGenerator
         /// </summary>
         public bool IsPendingKill;
 
+        public event EventHandler<MatrixChangedEventArgs> MatrixChanged; 
+
         private void Awake()
         {
             if (FindObjectsOfType<DifficultyMatrixProvider>().Length > 1)
@@ -36,6 +39,7 @@ namespace Assets.Scripts.EncounterGenerator
             DontDestroyOnLoad(this);
             if (IsInMainMenu)
             {
+                // Run on a different thread so we do not blockUI while in main menu.
                 Task.Run(LoadMatrix);
             }
             else
@@ -44,11 +48,15 @@ namespace Assets.Scripts.EncounterGenerator
             }
         }
 
+        public void OnMatrixChanged(MatrixChangedEventArgs e)
+        {
+            MatrixChanged?.Invoke(this, e);
+        }
+
         private void LoadMatrix()
         {
             // TODO: Load from some shared storage, make it a singleton, something, this is ugly.
             var config = new EncounterGeneratorConfiguration();
-            // TODO: Load asynchronously
             using (StreamReader sr = new StreamReader("Matrix.dat"))
             {
                 var matrixSource = DifficultyMatrixParser.ParseFile(sr);
