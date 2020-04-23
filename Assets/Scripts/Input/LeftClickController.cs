@@ -28,6 +28,11 @@ namespace Assets.Scripts.Input
             cutsceneManager = FindObjectOfType<CutsceneManager>();
         }
 
+        private void OnEnable()
+        {
+            selectionStart = null;
+        }
+
         // Update is called once per frame
         private void Update()
         {

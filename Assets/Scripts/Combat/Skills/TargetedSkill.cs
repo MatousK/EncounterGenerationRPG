@@ -61,7 +61,7 @@ namespace Assets.Scripts.Combat.Skills
 
         public virtual bool UseSkillOn(CombatantBase target)
         {
-            var toReturn = TryStartUsingSkill();
+            var toReturn = target != SelfCombatant && TryStartUsingSkill();
             if (toReturn)
             {
                 Target = target;
