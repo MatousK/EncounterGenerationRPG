@@ -43,11 +43,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21ec817e479bf86498e23f5ae66c5c98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SkillIcon: {fileID: 21300000, guid: 5cfe6a51656d62343aad441e76fd2a98, type: 3}
+  SkillName: Healing Aura
+  SkillDescription: Activate an aura that will heal all nearby allies and the caster.
   ClearTargetAfterUsingSkill: 0
   Cooldown: 5
   Range: 1
   Speed: 1
   SkillSoundType: 6
+  VoiceSkillType: 1
   Duration: 5
   AuraRange: 3
   HealPulseFrequency: 1

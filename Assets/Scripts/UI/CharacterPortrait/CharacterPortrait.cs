@@ -15,7 +15,6 @@ namespace Assets.Scripts.UI.CharacterPortrait
         public Hero RepresentedHero;
 
         public AttributeField AttackField;
-        public AttributeField DefenseField;
         public AttributeField MaxHealthField;
 
         public Gradient PortraitBackgroundGradient;
@@ -49,8 +48,7 @@ namespace Assets.Scripts.UI.CharacterPortrait
             heroVoiceController = RepresentedHero.GetComponentInChildren<CharacterVoiceController>();
             PortraitImage.sprite = RepresentedHero.Portrait;
 
-            AttackField.ValueToShow = (int)RepresentedHero.Attributes.DealtDamageMultiplier;
-            DefenseField.ValueToShow = (int)((1 - RepresentedHero.Attributes.ReceivedDamageMultiplier) * 100);
+            AttackField.ValueToShow = (int)(RepresentedHero.Attributes.DealtDamageMultiplier * RepresentedHero.Attributes.AttackSpeedMultiplier);
             MaxHealthField.ValueToShow = (int)RepresentedHero.TotalMaxHitpoints;
 
             var maxHealthPercentage = RepresentedHero.MaxHitpoints / RepresentedHero.TotalMaxHitpoints;

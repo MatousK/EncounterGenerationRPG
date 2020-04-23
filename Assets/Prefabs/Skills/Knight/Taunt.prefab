@@ -43,10 +43,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcddb0311bb8f0d4d882dfefe29370bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SkillIcon: {fileID: 21300000, guid: c52ed6ccf371b6d499feb22cc8a73e0f, type: 3}
+  SkillName: Taunt
+  SkillDescription: The knight taunts all enemies in combat. They will be forced to
+    attack only the knight for the next five seconds. The knight will also assume
+    a defensive stance for these 5 seconds, reducing incoming damage by half.
   ClearTargetAfterUsingSkill: 0
   Cooldown: 15
   Range: 1
   Speed: 1
+  SkillSoundType: 0
+  VoiceSkillType: 1
   Duration: 5
   ReceivedDamageModifier: 0.5
   TauntDuration: 5

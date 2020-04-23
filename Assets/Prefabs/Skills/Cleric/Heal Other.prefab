@@ -43,11 +43,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d88a933c781fdcc4c907b020788f06f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SkillIcon: {fileID: 21300000, guid: c61b1876b5a514d4589a49111d66a325, type: 3}
+  SkillName: Heal Other
+  SkillDescription: Completely heal a specific ally.
   ClearTargetAfterUsingSkill: 0
   Cooldown: 10
   Range: 10
   Speed: 1
   SkillSoundType: 6
+  VoiceSkillType: 1
   ShouldShowAttackIndicator: 1
   Repetitions: 1
   HealPercentage: 1

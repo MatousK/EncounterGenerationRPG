@@ -43,11 +43,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 905d5e6d7110fb7478c07790f688dc42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SkillIcon: {fileID: 21300000, guid: f1a90739ba9d17643905e4562d0affdb, type: 3}
+  SkillName: Sleep
+  SkillDescription: Target will fall asleep. It will wake up in 6 seconds or when
+    he receives damage.
   ClearTargetAfterUsingSkill: 1
   Cooldown: 10
   Range: 1
   Speed: 1
   SkillSoundType: 7
+  VoiceSkillType: 1
   ShouldShowAttackIndicator: 1
   Repetitions: 1
   SleepDuration: 6

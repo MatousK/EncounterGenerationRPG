@@ -13,6 +13,18 @@ namespace Assets.Scripts.Combat.Skills
     public abstract class Skill: MonoBehaviour
     {
         /// <summary>
+        /// Icon representing this skill in the user interface.
+        /// </summary>
+        public Sprite SkillIcon;
+        /// <summary>
+        /// The name of the skill to be shown in the user interface.
+        /// </summary>
+        public string SkillName;
+        /// <summary>
+        /// The description of the skill to be shown in the user interface.
+        /// </summary>
+        public string SkillDescription;
+        /// <summary>
         /// If true, after using this skill the target of the combatant will be cleared no matter what else.
         /// E.g. after putting an enemy to sleep, we do not want to keep attacking him.
         /// </summary>

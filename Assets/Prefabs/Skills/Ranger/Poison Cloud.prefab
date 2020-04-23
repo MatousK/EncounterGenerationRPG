@@ -43,9 +43,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8c8591d4a64cc1428a4bcab78581900, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SkillIcon: {fileID: 21300000, guid: c805ae8b4c7ff0640a89de55e7042002, type: 3}
+  SkillName: Poison Cloud
+  SkillDescription: The ranger releases a poison cloud around a nearby ally. The cloud
+    will poison nearby enemies for 5 seconds, significantly reducing their movement
+    and attack speed.
+  ClearTargetAfterUsingSkill: 0
   Cooldown: 10
   Range: 5
   Speed: 1
+  SkillSoundType: 0
+  VoiceSkillType: 1
+  ShouldShowAttackIndicator: 1
   Repetitions: 1
   PoisonCloudRange: 3
   PoisonDuration: 5
