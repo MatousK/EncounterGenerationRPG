@@ -21,6 +21,8 @@ namespace Assets.Scripts.GameFlow
         public PartyConfiguration CurrentPartyConfiguration;
         public GameObject LevelIntroScreenTemplate;
         [HideInInspector]
+        public bool IsPendingKill;
+        [HideInInspector]
         public LevelGraph CurrentLevelGraph;
 
         public SceneType CurrentSceneType;
@@ -35,6 +37,7 @@ namespace Assets.Scripts.GameFlow
             if (FindObjectsOfType<LevelLoader>().Length > 1)
             {
                 Destroy(gameObject);
+                IsPendingKill = true;
             }
             DontDestroyOnLoad(gameObject);
             animationComponent = GetComponent<Animation>();

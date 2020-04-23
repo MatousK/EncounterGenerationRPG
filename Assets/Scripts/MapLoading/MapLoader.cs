@@ -17,7 +17,7 @@ namespace Assets.Scripts.MapLoading
 
         public void Start()
         {
-            var levelLoader = FindObjectOfType<LevelLoader>();
+            var levelLoader = FindObjectsOfType<LevelLoader>().FirstOrDefault(loader => !loader.IsPendingKill);
             if (levelLoader != null && levelLoader.CurrentLevelGraph != null)
             {
                 foreach (var pipelineItem in GeneratorPipelineToRun.PipelineItems)

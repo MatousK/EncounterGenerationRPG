@@ -14,7 +14,7 @@ namespace Assets.Scripts.UI
 
         private void Start()
         {
-            levelLoader = FindObjectOfType<LevelLoader>();
+            levelLoader = FindObjectsOfType<LevelLoader>().FirstOrDefault(loader => !loader.IsPendingKill);
         }
 
         public void StartStoryMode()

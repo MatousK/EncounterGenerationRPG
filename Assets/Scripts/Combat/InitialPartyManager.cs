@@ -38,7 +38,7 @@ namespace Assets.Scripts.Combat
         private void SpawnPartyAndRecenterCamera()
         {
             var startingRoom = roomsLayout.Rooms.First(room => room.IsStartingRoom);
-            var levelLoader = FindObjectOfType<LevelLoader>();
+            var levelLoader = FindObjectsOfType<LevelLoader>().FirstOrDefault(loader => !loader.IsPendingKill);
             var partyConfiguration = levelLoader != null ? levelLoader.CurrentPartyConfiguration : null;
             foreach (var partyMember in InitialParty)
             {
