@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Assets.Scripts.Combat.Skills;
 using Assets.Scripts.Input;
+using Assets.Scripts.Sound.CharacterSounds;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -15,6 +16,8 @@ namespace Assets.Scripts.UI.Skills
     public class SkillUiIcon: MonoBehaviour
     {
         public bool IsFriendlySkill;
+
+        public Image IsBeingUsedOverlay;
 
         public Image SkillIcon;
 
@@ -40,14 +43,8 @@ namespace Assets.Scripts.UI.Skills
         {
             CooldownOverlay.transform.localScale = new Vector3(1, CurrentCooldownPercentage,1);
             buttonComponent.interactable = CurrentCooldownPercentage == 0;
-            var isTargetingRepresentedSkill = skillFromUiIconClickController.TargetedSkill == representedSkill;
-            var isSelected = EventSystem.current.currentSelectedGameObject == gameObject;
-            if (isTargetingRepresentedSkill && !isSelected)
-            {
-                // This skill is being used, but we lost focus - we probably clicked on something else.
-                skillFromUiIconClickController.TryUseSkillOnCombatantUnderCursor();
-                skillFromUiIconClickController.TargetedSkill = null;
-            }
+            var isBeingUsed = skillFromUiIconClickController.TargetedSkill == representedSkill;
+            IsBeingUsedOverlay.enabled = isBeingUsed;
         }
 
         public void SetSkill(Skill skill, Sprite frameSprite)
@@ -61,14 +58,20 @@ namespace Assets.Scripts.UI.Skills
 
         public void OnSkillPressed()
         {
+            var skillUsingHero = GetComponentInParent<HeroSkillsContainer>().RepresentedHero;
             if (representedSkill is PersonalSkill personalSkill)
             {
                 personalSkill.ActivateSkill();
+                var speakingCharacterVoice = skillUsingHero != null ? skillUsingHero.GetComponentInChildren<CharacterVoiceController>() : null;
+                if (skillUsingHero != null && speakingCharacterVoice != null)
+                {
+                    speakingCharacterVoice.OnOrderGiven(VoiceOrderType.SelfSkill);
+                }
             }
             else if (representedSkill is TargetedSkill targetedSkill)
             {
                 skillFromUiIconClickController.IsFriendlySkill = IsFriendlySkill;
-                skillFromUiIconClickController.TargetedSkill = targetedSkill;
+                skillFromUiIconClickController.SetUsedSkill(skillUsingHero, targetedSkill);
             }
             else
             {

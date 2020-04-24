@@ -12,42 +12,38 @@ namespace Assets.Scripts.Input
 {
     class SkillFromUiIconClickController: MonoBehaviour
     {
-        public TargetedSkill TargetedSkill;
+        public TargetedSkill TargetedSkill { get; private set; }
+        public Hero CastingHero { get; protected set; }
         public bool IsFriendlySkill;
         public bool IsUsingSkill => TargetedSkill != null;
-        private RightClickController rightClickController;
-        private LeftClickController leftClickController;
-        private void Start()
-        {
-            rightClickController = GetComponent<RightClickController>();
-            leftClickController = GetComponent<LeftClickController>();
-        }
-
-        private void Update()
-        {
-            rightClickController.enabled = !IsUsingSkill;
-            leftClickController.enabled = !IsUsingSkill;
-        }
 
         public void TryUseSkillOnCombatantUnderCursor()
         {
-            if (EventSystem.current.IsPointerOverGameObject())
-            {
-                return;
-            }
             // HACK: Logically, this should be for when the button is released.
             // However, selected skill is tied to the button losing focus.
             // And the focus is lost on button down, not on button up.
             // So we hae to check for button down.
             if (UnityEngine.Input.GetMouseButton(1))
             {
-                var targetedCombatant = GetCombatantUnderCursor();
+                var targetedCombatant = EventSystem.current.IsPointerOverGameObject() ? GetCombatantUnderCursorUi() :  GetCombatantUnderCursor();
                 // There is a target and it either is a hero and we are using a friendly skill, or it s not a hero and we are not using a friendly skill.
                 if (targetedCombatant != null && targetedCombatant is Hero == IsFriendlySkill)
                 {
                     TargetedSkill.UseSkillOn(targetedCombatant);
                 }
             }
+        }
+
+        public void SetUsedSkill(Hero hero, TargetedSkill targetedSkill)
+        {
+            TargetedSkill = targetedSkill;
+            CastingHero = hero;
+        }
+
+        public void ClearUsedSkill()
+        {
+            TargetedSkill = null;
+            CastingHero = null;
         }
 
         private CombatantBase GetCombatantUnderCursor()
@@ -64,6 +60,12 @@ namespace Assets.Scripts.Input
             {
                 return null;
             }
+        }
+
+        private CombatantBase GetCombatantUnderCursorUi()
+        {
+            return FindObjectOfType<CombatantsManager>().PlayerCharacters
+                .FirstOrDefault(hero => hero.IsPointerOverPortrait);
         }
     }
 }

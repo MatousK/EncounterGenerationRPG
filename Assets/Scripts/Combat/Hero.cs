@@ -56,6 +56,13 @@ namespace Assets.Scripts.Combat
         /// </summary>
         public float HealthPowerupIncrement;
 
+        /// <summary>
+        /// Really, really, really hacky way to determine, when a skill looses focus by right clicking on a portrait.
+        /// Basically, if a pointer is over portrait while skill looses focus and right button is down, user probably right clicked on a portrait.
+        /// TODO: Skill behavior should really not be bound to focus of the skill icon.
+        /// </summary>
+        public bool IsPointerOverPortrait;
+
         // Start is called before the first frame update
         protected override void Awake()
         {

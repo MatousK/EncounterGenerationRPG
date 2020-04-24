@@ -10,6 +10,7 @@ namespace Assets.Scripts.Input
     public class LeftClickController : MonoBehaviour
     {
         private CombatantsManager combatantsManager;
+        private SkillFromUiIconClickController skillFromUiIconClickController;
         Texture2D whiteTexture;
         Rect currentSelectionRectangle = Rect.zero;
         Vector2? selectionStart;
@@ -20,6 +21,7 @@ namespace Assets.Scripts.Input
             whiteTexture = new Texture2D(1, 1);
             whiteTexture.SetPixel(0, 0, Color.white);
             whiteTexture.Apply();
+            skillFromUiIconClickController = GetComponent<SkillFromUiIconClickController>();
         }
 
         private void Start()
@@ -43,6 +45,17 @@ namespace Assets.Scripts.Input
 
             if (UnityEngine.Input.GetMouseButtonDown(0))
             {
+                if (skillFromUiIconClickController.IsUsingSkill)
+                {
+                    // Left click somewhere invalid, stop skill usage and do nothing else.
+                    skillFromUiIconClickController.ClearUsedSkill();
+                    return;
+                }
+
+                if (EventSystem.current.IsPointerOverGameObject())
+                {
+                    return;
+                }
                 // Start dragging selection box;
                 selectionStart = UnityEngine.Input.mousePosition;
             }
@@ -50,7 +63,6 @@ namespace Assets.Scripts.Input
             {
                 if (!selectionStart.HasValue)
                 {
-                    UnityEngine.Debug.Assert(false, "We should always first start dragging before ending dragging.");
                     return;
                 }
                 // Ok, so this might be a bit hacky.

@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using Assets.Scripts.Camera;
 using Assets.Scripts.Combat;
+using Assets.Scripts.Input;
 using Assets.Scripts.Sound.CharacterSounds;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -8,7 +9,7 @@ using UnityEngine.UI;
 
 namespace Assets.Scripts.UI.CharacterPortrait
 {
-    public class CharacterPortrait : MonoBehaviour, IPointerClickHandler
+    public class CharacterPortrait : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
     {
         CombatantsManager combatantsManager;
 
@@ -30,11 +31,13 @@ namespace Assets.Scripts.UI.CharacterPortrait
 
         private CameraMovement cameraMovement;
         private CharacterVoiceController heroVoiceController;
+        private SkillFromUiIconClickController skillFromUiIconClickController;
 
         void Start()
         {
             combatantsManager = FindObjectOfType<CombatantsManager>();
             cameraMovement = FindObjectOfType<CameraMovement>();
+            skillFromUiIconClickController = FindObjectOfType<SkillFromUiIconClickController>();
         }
 
         public void Update()
@@ -69,6 +72,7 @@ namespace Assets.Scripts.UI.CharacterPortrait
         {
             if (eventData.button == PointerEventData.InputButton.Left)
             {
+                skillFromUiIconClickController.ClearUsedSkill();
                 if (Time.realtimeSinceStartup - lastPortraitClickTime < DoubleClickTime)
                 {
                     // Double click detected.
@@ -83,7 +87,15 @@ namespace Assets.Scripts.UI.CharacterPortrait
             }
             else if (eventData.button == PointerEventData.InputButton.Right)
             {
-                DoActionOnHero();
+                if (skillFromUiIconClickController.IsUsingSkill)
+                {
+                    HandleSkillUsageFromUi();
+                    skillFromUiIconClickController.ClearUsedSkill();
+                }
+                else
+                {
+                    DoActionOnHero();
+                }
             }
         }
 
@@ -150,6 +162,31 @@ namespace Assets.Scripts.UI.CharacterPortrait
             {
                 speakingCharacterVoice.OnOrderGiven(voiceOrderType.Value);
             }
+        }
+
+        void HandleSkillUsageFromUi()
+        {
+            if (!skillFromUiIconClickController.IsFriendlySkill)
+            {
+                // Portrait can represent only a hero. So no chance of clicking on a monster, so only friendly skill allowed.
+                return;
+            }
+
+            if (skillFromUiIconClickController.TargetedSkill.UseSkillOn(RepresentedHero))
+            {
+                var voiceController = skillFromUiIconClickController.CastingHero.GetComponentInChildren<CharacterVoiceController>();
+                voiceController.OnOrderGiven(VoiceOrderType.FriendlySkill);
+            }
+        }
+
+        public void OnPointerEnter(PointerEventData eventData)
+        {
+            RepresentedHero.IsPointerOverPortrait = true;
+        }
+
+        public void OnPointerExit(PointerEventData eventData)
+        {
+            RepresentedHero.IsPointerOverPortrait = false;
         }
     }
 }

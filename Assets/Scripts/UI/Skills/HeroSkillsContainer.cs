@@ -46,6 +46,7 @@ namespace Assets.Scripts.UI.Skills
             var cooldownRemaining = RepresentedHero.LastSkillRemainingCooldown ?? 0;
             var cooldownTotal = RepresentedHero.LastSkillCooldown;
             var cooldownPercentage = cooldownRemaining / cooldownTotal ?? 0;
+            cooldownPercentage = cooldownPercentage >= 0 ? cooldownPercentage : 0;
 
             EnemySkillIcon.CurrentCooldownPercentage = cooldownPercentage;
             SelfSkillIcon.CurrentCooldownPercentage = cooldownPercentage;
