@@ -14,13 +14,14 @@ namespace Assets.Scripts.EncounterGenerator.Utils
 {
     public class EncounterGeneratorLogger: MonoBehaviour
     {
+#if DEVELOPMENT_BUILD || UNITY_EDITOR
         private DifficultyMatrixProvider matrixProvider;
         private MatrixVisualizer matrixVisualizer;
         private EncounterGeneratorConfiguration configuration;
         private string resultsDirectory;
         private int currentTestIndex;
 
-        public void Awake()
+        private void Awake()
         {
             if (FindObjectsOfType<EncounterGeneratorLogger>().Length > 1)
             {
@@ -53,7 +54,7 @@ namespace Assets.Scripts.EncounterGenerator.Utils
             currentTestIndex++;
         }
 
-        public void LogResult(MatrixChangedEventArgs e)
+        private void LogResult(MatrixChangedEventArgs e)
         {
             var resultsFilename = $"{resultsDirectory}log.txt";
             var partyStrength = e.PartyAttack[HeroProfession.Ranger] * e.PartyHitpoints[HeroProfession.Ranger] +
@@ -106,5 +107,6 @@ namespace Assets.Scripts.EncounterGenerator.Utils
                 matrixProvider.MatrixChanged -= MatrixProvider_MatrixChanged;
             }
         }
+#endif
     }
 }

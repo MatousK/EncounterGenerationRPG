@@ -37,14 +37,15 @@ namespace Assets.Scripts.EncounterGenerator
                 return;
             }
             DontDestroyOnLoad(this);
+            var matrixString = Resources.Load<TextAsset>("Matrix").text;
             if (IsInMainMenu)
             {
                 // Run on a different thread so we do not blockUI while in main menu.
-                Task.Run(LoadMatrix);
+                Task.Run(() => LoadMatrix(matrixString));
             }
             else
             {
-                LoadMatrix();
+                LoadMatrix(matrixString);
             }
         }
 
@@ -53,11 +54,11 @@ namespace Assets.Scripts.EncounterGenerator
             MatrixChanged?.Invoke(this, e);
         }
 
-        private void LoadMatrix()
+        private void LoadMatrix(string matrixString)
         {
             // TODO: Load from some shared storage, make it a singleton, something, this is ugly.
             var config = new EncounterGeneratorConfiguration();
-            using (StreamReader sr = new StreamReader("Matrix.dat"))
+            using (var sr = new StringReader(matrixString))
             {
                 var matrixSource = DifficultyMatrixParser.ParseFile(sr);
                 CurrentDifficultyMatrix = new EncounterDifficultyMatrix();
