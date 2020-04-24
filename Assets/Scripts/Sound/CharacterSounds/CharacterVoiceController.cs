@@ -88,6 +88,20 @@ namespace Assets.Scripts.Sound.CharacterSounds
             }
         }
 
+        public void SkillAnimationEffectApplied(SkillVoiceType skillVoiceType)
+        {
+            switch (skillVoiceType)
+            {
+                case SkillVoiceType.SkillAlternate:
+                    PlaySoundFromList(CombatantSounds.AlternateEffectAppliedSounds);
+                    break;
+                case SkillVoiceType.SkillNormal:
+                    PlaySoundFromList(CombatantSounds.SkillEffectAppliedSounds);
+                    break;
+
+            }
+        }
+
         private void OnCombatStarted(object sender, EventArgs e)
         {
             didPlayBloodiedClip = false;

@@ -117,7 +117,7 @@ namespace Assets.Scripts.Combat.Skills
             var rangeMultiplier = SelfCombatant.Attributes.RangeMultiplier;
             if (GetTargetLocation() != null && !DidGetInRange && GetDistanceToTargetLocation() > Range * rangeMultiplier)
             {
-                if (SelfCombatant.GetComponent<MovementController>().IsMoving)
+                if (SelfCombatant. GetComponent<MovementController>().IsMoving)
                 {
                     // Already moving somewhere do not start another move.
                     return;
@@ -204,6 +204,7 @@ namespace Assets.Scripts.Combat.Skills
         /// </summary>
         protected virtual void ApplySkillEffects(object sender, EventArgs e)
         {
+            CharacterVoiceController.SkillAnimationEffectApplied(VoiceSkillType);
             CombatSoundsController.AnimationEffectApplied(SkillSoundType);
         }
         /// <summary>

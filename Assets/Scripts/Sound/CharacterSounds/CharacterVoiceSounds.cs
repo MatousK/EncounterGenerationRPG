@@ -43,6 +43,14 @@ namespace Assets.Scripts.Sound.CharacterSounds
         /// </summary>
         public List<AudioClip> AlternateSkillUsedSounds = new List<AudioClip>();
         /// <summary>
+        /// Plays when the effect of this skill is applied
+        /// </summary>
+        public List<AudioClip> SkillEffectAppliedSounds = new List<AudioClip>();
+        /// <summary>
+        /// Plays when the effect is applied of a skill marked as an alternate skill.
+        /// </summary>
+        public List<AudioClip> AlternateEffectAppliedSounds = new List<AudioClip>();
+        /// <summary>
         /// Plays when the hero is healed.
         /// </summary>
         public List<AudioClip> HealedSounds = new List<AudioClip>();

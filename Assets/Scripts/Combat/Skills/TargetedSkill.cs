@@ -69,6 +69,12 @@ namespace Assets.Scripts.Combat.Skills
             return toReturn;
         }
 
+        public virtual bool IsMovingToTarget()
+        {
+            return !DidGetInRange;
+
+        }
+
         public override bool TryStopSkill()
         {
             var didStopSkill = base.TryStopSkill();

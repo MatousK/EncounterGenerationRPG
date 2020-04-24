@@ -11,6 +11,14 @@ namespace Assets.Scripts.Combat.Conditions
         public T AddCondition<T>() where T: ConditionBase
         {
             var conditionToAdd = gameObject.AddComponent<T>();
+            // Can't have the same condition multiple times, remove existing conditions.
+            for (int i = ActiveConditions.Count - 1; i >= 0; i--)
+            {
+                if (ActiveConditions[i] is T)
+                {
+                    RemoveCondition(ActiveConditions[i]);
+                }
+            }
             ActiveConditions.Add(conditionToAdd);
             conditionToAdd.ConditionEnded += OnConditionEnded;
             return conditionToAdd;

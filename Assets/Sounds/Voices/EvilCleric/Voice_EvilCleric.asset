@@ -19,7 +19,9 @@ MonoBehaviour:
   PersonalSkillOrderSounds: []
   FriendlySkillOrderSounds: []
   SkillUsedSounds: []
-  AlternateSkillUsedSounds:
+  AlternateSkillUsedSounds: []
+  SkillEffectAppliedSounds: []
+  AlternateEffectAppliedSounds:
   - {fileID: 8300000, guid: 3a49422b0d57c1e43949463aadf92d40, type: 3}
   - {fileID: 8300000, guid: a71f993c55247f2459978edddafac94d, type: 3}
   - {fileID: 8300000, guid: 911a09f12e276e24b8094150ffd0b2c3, type: 3}
@@ -36,5 +38,4 @@ MonoBehaviour:
   CombatantDiedSounds:
   - {fileID: 8300000, guid: 8b29777cd79429f45b2fe460cac8a621, type: 3}
   - {fileID: 8300000, guid: 1f9d4ed1502361648aa39982bb66adfa, type: 3}
-  RoomEnteredSounds: []
   FightOverSounds: []

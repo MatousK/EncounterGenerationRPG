@@ -117,9 +117,8 @@ namespace Assets.Scripts.AI
                 {
                     IsStunned = true;
                 }
-                else if (condition is ForcedTargetCondition)
+                else if (condition is ForcedTargetCondition forceTargetCondition)
                 {
-                    var forceTargetCondition = condition as ForcedTargetCondition;
                     ForcedTarget = forceTargetCondition.ForcedTarget;
                 }
             }
