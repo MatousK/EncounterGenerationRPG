@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using Assets.Scripts.Camera;
 using Assets.Scripts.Combat;
+using Assets.Scripts.DungeonGenerator;
 using Assets.Scripts.Environment;
 using Assets.Scripts.Movement;
 using UnityEngine;
@@ -18,6 +21,10 @@ namespace Assets.Scripts.Cutscenes
         /// </summary>
         public Doors OpenedDoors;
         /// <summary>
+        ///  The room which the heroes should enter in this cutscene.
+        /// </summary>
+        public RoomInfo EnteredRoom;
+        /// <summary>
         /// The hero who opened the door.
         /// </summary>
         public Hero DoorOpener;
@@ -29,6 +36,7 @@ namespace Assets.Scripts.Cutscenes
         // We store this info because first backrow character moves on the cross axis in the positive direction, the other one in the negative direction.
         private bool placeBackRowCharacter;
         private bool HeroesInPosition => movingHeroes == 0;
+        private List<SpawnPoint> roomSpawnPoints;
 
         private void Update()
         {
@@ -45,6 +53,9 @@ namespace Assets.Scripts.Cutscenes
 
         public override void StartCutscene()
         {
+            // If too slow, distribute the spawn points between rooms on dungeon load.
+            roomSpawnPoints = FindObjectsOfType<SpawnPoint>().Where(spawnPoint =>
+                spawnPoint.GetComponent<RoomInfoComponent>().RoomIndex == EnteredRoom.Index).ToList();
             EnsureDependenciesLinked();
             OpenedDoors.CloseInCombat = false;
             foreach (var hero in combatantsManager.GetPlayerCharacters(onlyAlive: true))
@@ -65,6 +76,12 @@ namespace Assets.Scripts.Cutscenes
 
         private Vector2 GetHeroTargetPosition(Hero hero)
         {
+            var heroSpawnPointType = SpawnPoint.GetSpawnPointTypeForCombatant(hero);
+            var heroSpawnPoint = roomSpawnPoints.FirstOrDefault(spawnPoint => spawnPoint.Type == heroSpawnPointType);
+            if (heroSpawnPoint != null)
+            {
+                return heroSpawnPoint.transform.position;
+            }
             // Bit complicated - basically we want the heroes to get in a formation where the character who opened doors is three spaces away from the doors in the diraction he came.
             // The other ones should be only two spaces from the doors, also in the direction from which we came.
             // And as for the other axis (y for horizontal movement and x for vertical movement), we always move in the positive direction if possible.

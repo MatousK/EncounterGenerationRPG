@@ -115,6 +115,7 @@ namespace Assets.Scripts.Environment
                     roomsLayout.Rooms[roomIndex].SetRoomExplored(this);
                     var openDoorsCutscene = cutsceneManager.InstantiateCutscene<EnterRoomCutscene>();
                     openDoorsCutscene.DoorOpener = doorOpener;
+                    openDoorsCutscene.EnteredRoom = roomsLayout.Rooms[roomIndex];
                     openDoorsCutscene.OpenedDoors = this;
                     cutsceneManager.PlayCutscene(openDoorsCutscene);
                 }
