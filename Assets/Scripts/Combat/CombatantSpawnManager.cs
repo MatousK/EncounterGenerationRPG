@@ -53,8 +53,8 @@ namespace Assets.Scripts.Combat
                     var spawnPointForMonster = spawnPointCandidates.GetRandomElementOrDefault();
                     spawnPointCandidates.Remove(spawnPointForMonster);
                     var spawnPointOnGrid = grid.WorldToCell(spawnPointForMonster.transform.position);
-                    SpawnCombatant(combatantTemplate, occupiedSquares,
-                        new Vector2Int(spawnPointOnGrid.x, spawnPointOnGrid.y));
+                    toReturn.Add(SpawnCombatant(combatantTemplate, occupiedSquares,
+                        new Vector2Int(spawnPointOnGrid.x, spawnPointOnGrid.y)));
                 }
                 else
                 { 
