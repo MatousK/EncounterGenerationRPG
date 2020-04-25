@@ -12,6 +12,7 @@ namespace Assets.Scripts.GameFlow
     [CreateAssetMenu(menuName = "Encounter generator/Level Definition", fileName = "LevelDefinition")]
     public class LevelDefinition: ScriptableObject
     {
+        public bool AdjustMatrixForStaticEncounters;
         /// <summary>
         /// If true, at the beginning of this level we should use stats from after the tutorial instead of after the previous level.
         /// Used to restart the stats between experiment fazes. 

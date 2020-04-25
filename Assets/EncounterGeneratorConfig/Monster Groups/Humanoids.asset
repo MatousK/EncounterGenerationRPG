@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2eb29e0d0d6e6244cb499292033ff826, type: 3}
+  m_Name: Humanoids
+  m_EditorClassIdentifier: 
+  AllowedMonsters:
+  - {fileID: 2845431260059686297, guid: 1bf5f850ad485ba4587813eb27d92cf2, type: 3}
+  - {fileID: 1243533878233351848, guid: 2c88cf0381da6c94ea1c6bd24eab23f0, type: 3}
+  - {fileID: 6961181293527521668, guid: 9b86d2a477f75ea4ab93c91a14dc9c9c, type: 3}
+  - {fileID: 2845431260059686297, guid: fda3090ec6ef78544b57fc2140ac15fe, type: 3}
+  - {fileID: 1243533878233351848, guid: 18ffb86f5ade7f240b4728b341d0a97e, type: 3}
+  - {fileID: 6961181293527521668, guid: 4052e242196b5de4681e947c2d01b791, type: 3}
+  - {fileID: 1243533878233351848, guid: 14cdda24c43268049bd9ab7ec0a4269d, type: 3}
+  - {fileID: 2845431260059686297, guid: f0ab2458bc22a5f4590caa0eaaead438, type: 3}
+  - {fileID: 6961181293527521668, guid: 98f826d988cc86b4288192cb22d42b66, type: 3}
+  - {fileID: 6961181293527521668, guid: 38c98553960f32a4885ccff07f99573b, type: 3}
+  - {fileID: 6961181293527521668, guid: ec396d0f01d1a8f4684646bba9298f23, type: 3}

@@ -30,6 +30,9 @@ namespace Assets.Scripts.GameFlow
         [HideInInspector]
         public EncounterGenerationAlgorithmType CurrentEncounterGenerationAlgorithm;
 
+        [HideInInspector]
+        public bool AdjustMatrixForStaticEncounters;
+
         public SceneType CurrentSceneType;
         private AbTestingManager abTestingManager;
         private int currentStoryModeLevelIndex;
@@ -96,6 +99,7 @@ namespace Assets.Scripts.GameFlow
             var experimentConfiguration =
                 level.ExperimentGroupConfigurations.First(config => config.ExperimentGroup == experimentGroup);
             CurrentEncounterGenerationAlgorithm = experimentConfiguration.Algorithm;
+            AdjustMatrixForStaticEncounters = level.AdjustMatrixForStaticEncounters;
             var surveyLink = experimentConfiguration.SurveyLink;
             if (level.IntroTexts?.Any() == true || !string.IsNullOrEmpty(surveyLink))
             {

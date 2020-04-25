@@ -11,6 +11,7 @@ using Assets.Scripts.Environment;
 using Assets.Scripts.Experiment;
 using Assets.Scripts.GameFlow;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace Assets.Scripts.EncounterGenerator
 {
@@ -86,6 +87,16 @@ namespace Assets.Scripts.EncounterGenerator
                     break;
                 case EncounterGenerationAlgorithmType.StaticGenerator:
                     encounter = exploredRoom.StaticMonsters;
+                    if (levelLoader.AdjustMatrixForStaticEncounters)
+                    {
+                        var staticEncounter =
+                            EncounterDefinition.GetDefinitionFromMonsters(exploredRoom.StaticMonsters);
+                        var encounterDifficulty =
+                            difficultyMatrixProvider.CurrentDifficultyMatrix.GetDifficultyFor(staticEncounter,
+                                partyDefinition, generatorConfiguration);
+                        MatrixUpdater.StoreCombatStartConditions(partyDefinition, staticEncounter, encounterDifficulty);
+                        UnityEngine.Debug.Log($"Expected difficulty for this static encounter is {encounterDifficulty}");
+                    }
                     break;
                 default:
                     throw new Exception("Unknown monster generation algorithm");
@@ -133,5 +144,6 @@ namespace Assets.Scripts.EncounterGenerator
                 MatrixUpdater.MatrixChanged -= MatrixUpdater_MatrixChanged;
             }
         }
+
     }
 }

@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd2dc783fcdf0d149986347be4f3e720, type: 3}
   m_Name: StoryLevel0-tutorial
   m_EditorClassIdentifier: 
+  AdjustMatrixForStaticEncounters: 1
+  ShouldRestoreAfterTutorialStats: 0
   Type: 0
   PossibleLevelGraphs:
   - {fileID: 11400000, guid: 4b8b9b7a1b19c774991d0e9ecfa62e60, type: 2}

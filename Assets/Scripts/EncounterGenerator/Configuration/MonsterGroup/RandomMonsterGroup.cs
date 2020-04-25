@@ -47,6 +47,10 @@ namespace Assets.Scripts.EncounterGenerator.Configuration.MonsterGroup
             HashSet<MonsterType> availableMonsterTypes = new HashSet<MonsterType>();
             foreach(var monster in AllowedMonsters)
             {
+                if (monster == null)
+                {
+                    continue;
+                }
                 var monsterComponent = monster.GetComponent<Monster>();
                 availableMonsterTypes.Add(new MonsterType(monsterComponent.Rank, monsterComponent.Role));
             }
@@ -62,6 +66,10 @@ namespace Assets.Scripts.EncounterGenerator.Configuration.MonsterGroup
         {
             return AllowedMonsters?.Where(monsterObject =>
             {
+                if (monsterObject == null)
+                {
+                    return false;
+                }
                 var monster = monsterObject.GetComponent<Monster>();
                 if (monster == null)
                 {

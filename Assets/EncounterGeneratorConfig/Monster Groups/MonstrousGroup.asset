@@ -10,7 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2eb29e0d0d6e6244cb499292033ff826, type: 3}
-  m_Name: TestMonsterGroup
+  m_Name: MonstrousGroup
   m_EditorClassIdentifier: 
   AllowedMonsters:
+  - {fileID: 2845431260059686297, guid: 4b641f3e220db304e97302353aeea26b, type: 3}
   - {fileID: 1243533878233351848, guid: 150c5cb37d986f34384f066d892d0649, type: 3}
+  - {fileID: 6961181293527521668, guid: ede1348956f9cb545a90d54a2ff1cb70, type: 3}
+  - {fileID: 6961181293527521668, guid: 0ccc85672ac80b74e824b886a3445024, type: 3}
+  - {fileID: 6961181293527521668, guid: 04ba61a0644d1934ea5aece19287f12c, type: 3}

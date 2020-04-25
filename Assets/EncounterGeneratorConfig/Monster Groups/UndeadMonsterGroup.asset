@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2eb29e0d0d6e6244cb499292033ff826, type: 3}
+  m_Name: UndeadMonsterGroup
+  m_EditorClassIdentifier: 
+  AllowedMonsters:
+  - {fileID: 1243533878233351848, guid: fa26a6fcd04a9de46816174c413a2803, type: 3}
+  - {fileID: 6961181293527521668, guid: df6b62d5c9912df4e866a0bcf3592a6a, type: 3}
+  - {fileID: 2845431260059686297, guid: 1478976e61f5a204abdf9d3660cdf7d9, type: 3}
+  - {fileID: 1243533878233351848, guid: ff651793e9860cb4aaae309ba490ee10, type: 3}
+  - {fileID: 6961181293527521668, guid: ab2b41f41f365c944bea5df85709d2d2, type: 3}
+  - {fileID: 6961181293527521668, guid: 98f826d988cc86b4288192cb22d42b66, type: 3}
+  - {fileID: 6961181293527521668, guid: 38c98553960f32a4885ccff07f99573b, type: 3}

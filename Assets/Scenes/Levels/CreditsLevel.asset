@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd2dc783fcdf0d149986347be4f3e720, type: 3}
   m_Name: CreditsLevel
   m_EditorClassIdentifier: 
+  AdjustMatrixForStaticEncounters: 0
+  ShouldRestoreAfterTutorialStats: 0
   Type: 1
   PossibleLevelGraphs: []
   IntroTexts:
@@ -23,6 +25,6 @@ MonoBehaviour:
   - ExperimentGroup: 0
     Algorithm: 1
     SurveyLink: https://www.google.com/search?q=generated2
-  - ExperimentGroup: 0
+  - ExperimentGroup: 1
     Algorithm: 1
     SurveyLink: https://www.google.com/search?q=static2

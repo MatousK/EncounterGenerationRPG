@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Assets.Scripts.Combat;
 using Assets.Scripts.EncounterGenerator.Configuration;
+using UnityEngine;
 
 namespace Assets.Scripts.EncounterGenerator.Model
 {
@@ -18,6 +20,31 @@ namespace Assets.Scripts.EncounterGenerator.Model
         public List<MonsterGroup> AllEncounterGroups;
 
         private float? precomputedAdjustedMonsterCount;
+
+        public static EncounterDefinition GetDefinitionFromMonsters(List<GameObject> monsterObjects)
+        {
+            var monsters = monsterObjects.Select(mo => mo.GetComponent<Monster>()).Where(monster => monster != null)
+                .ToArray();
+            List<MonsterGroup> monsterGroups = new List<MonsterGroup>();
+            foreach (var monster in monsters)
+            {
+                var currentMonsterType = new MonsterType(monster.Rank, monster.Role);
+                var existingGroup = monsterGroups.FirstOrDefault(group => group.MonsterType == currentMonsterType);
+                if (existingGroup != null)
+                {
+                    existingGroup.MonsterCount++;
+                }
+                else
+                {
+                    monsterGroups.Add(new MonsterGroup(currentMonsterType, 1));
+                }
+            }
+
+            return new EncounterDefinition
+            {
+                AllEncounterGroups = monsterGroups
+            };
+        }
 
         public EncounterDefinition Clone()
         {
