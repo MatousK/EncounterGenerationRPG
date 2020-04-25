@@ -106,10 +106,7 @@ namespace Assets.Scripts.EncounterGenerator
 
         private void SpawnMonsters(List<GameObject> monstersToSpawn, RoomInfo room, Doors incomingDoors)
         {
-            foreach (var monster in monstersToSpawn)
-            {
-                combatantSpawnManager.SpawnCombatant(monster, room, incomingDoors, 5);
-            }
+            combatantSpawnManager.SpawnCombatants(monstersToSpawn, room, incomingDoors, 5);
         }
 
         private void LogCombatResult(bool wasGameOver)

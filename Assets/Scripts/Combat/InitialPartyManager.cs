@@ -40,12 +40,17 @@ namespace Assets.Scripts.Combat
             var startingRoom = roomsLayout.Rooms.First(room => room.IsStartingRoom);
             var levelLoader = FindObjectsOfType<LevelLoader>().FirstOrDefault(loader => !loader.IsPendingKill);
             var partyConfiguration = levelLoader != null ? levelLoader.CurrentPartyConfiguration : null;
-            foreach (var partyMember in InitialParty)
+            var spawnedCombatants = spawnManager.SpawnCombatants(InitialParty, startingRoom);
+            foreach (var spawnedCombatant in spawnedCombatants)
             {
-                var newHero = partyMember.GetComponent<Hero>();
+                var newHero = spawnedCombatant.GetComponent<Hero>();
                 var partyMemberConfig = partyConfiguration?.GetStatsFor(newHero.HeroProfession);
+                if (partyMemberConfig != null)
+                {
+                    newHero.Attributes.DealtDamageMultiplier = partyMemberConfig.Value.AttackModifier;
+                    newHero.SetTotalMaxHp(partyMemberConfig.Value.MaxHp);
+                }
 
-                spawnManager.SpawnCombatant(partyMember, startingRoom, attackOverride: partyMemberConfig?.AttackModifier, hpOverride:partyMemberConfig?.MaxHp);
             }
             cameraCentering.Center(startingRoom);
         }

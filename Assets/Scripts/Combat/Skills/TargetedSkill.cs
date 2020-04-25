@@ -51,6 +51,10 @@ namespace Assets.Scripts.Combat.Skills
 
         public override Vector2? GetTargetLocation()
         {
+            if (Target == null)
+            {
+                return null;
+            }
             return Target.transform.position;
         }
 

@@ -11,6 +11,24 @@ namespace Assets.Scripts.Combat
     {
         // Used so we know where can we spawn monsters.
         PathfindingMapController pathfindingMapController;
+        /// <summary>
+        /// Spawns a monster on the map.
+        /// </summary>
+        /// <param name="combatantTemplates">The monsters that should be spawned.</param>
+        /// <param name="spawnRoom">The room in which the monster should be spawned.</param>
+        /// <param name="incomingDoors">Doors through which the party came.</param>
+        /// <param name="minDistanceToDoor">Minimum distance from the doors to spawn</param>
+        /// <returns></returns>
+        public List<GameObject> SpawnCombatants(List<GameObject> combatantTemplates, RoomInfo spawnRoom, Doors incomingDoors = null, float minDistanceToDoor = 0)
+        {
+            var toReturn = new List<GameObject>();
+            foreach (var combatantTemplate in combatantTemplates)
+            {
+                toReturn.Add(SpawnCombatant(combatantTemplate, spawnRoom, incomingDoors, minDistanceToDoor));
+            }
+
+            return toReturn;
+        }
 
         /// <summary>
         /// Spawns a monster on the map.
@@ -19,24 +37,22 @@ namespace Assets.Scripts.Combat
         /// <param name="spawnRoom">The room in which the monster should be spawned.</param>
         /// <param name="incomingDoors">Doors through which the party came.</param>
         /// <param name="minDistanceToDoor">Minimum distance from the doors to spawn</param>
-        /// <param name="hpOverride">If set, the spawned combatant will have HP set to this value.</param>
-        /// <param name="attackOverride">If set, the combatant will have attack set to this value.</param>
         /// <returns></returns>
-        public GameObject SpawnCombatant(GameObject combatantTemplate, RoomInfo spawnRoom, Doors incomingDoors = null, float minDistanceToDoor = 0, float? hpOverride = null, float? attackOverride = null)
+        private GameObject SpawnCombatant(GameObject combatantTemplate, RoomInfo spawnRoom, Doors incomingDoors = null, float minDistanceToDoor = 0)
         {
             //This will get the map in which positions of other combatants are also marked as impassable.
             var spawnTileCandidates = new List<Vector2Int>(spawnRoom.RoomSquaresPositions);
-            return SpawnCombatant(combatantTemplate, spawnTileCandidates, incomingDoors, minDistanceToDoor, hpOverride, attackOverride);
+            return SpawnCombatant(combatantTemplate, spawnTileCandidates, incomingDoors, minDistanceToDoor);
         }
         /// <summary>
         /// Spawns a monster on the map.
         /// </summary>
         /// <param name="combatantTemplate">The monster that should be spawned.</param>
-        /// <param name="spawnRoom">The room in which the monster should be spawned.</param>
+        /// <param name="tiles"> Tiles where this combatant could spawn.</param>
         /// <param name="incomingDoors">Doors through which the party came.</param>
         /// <param name="minDistanceToDoor">Minimum distance from the doors to spawn</param>
         /// <returns></returns>
-        public GameObject SpawnCombatant(GameObject combatantTemplate, List<Vector2Int> tiles, Doors incomingDoors = null, float minDistanceToDoor = 0, float? hpOverride = null, float? attackOverride = null)
+        private GameObject SpawnCombatant(GameObject combatantTemplate, List<Vector2Int> tiles, Doors incomingDoors = null, float minDistanceToDoor = 0)
         {
             if (pathfindingMapController == null)
             {
@@ -57,15 +73,6 @@ namespace Assets.Scripts.Combat
                     continue;
                 }
                 var combatantInstance = Instantiate(combatantTemplate);
-                var combatantComponent = combatantInstance.GetComponent<CombatantBase>();
-                if (hpOverride != null)
-                {
-                    combatantComponent.SetTotalMaxHp(hpOverride.Value);
-                }
-                if (attackOverride != null)
-                {
-                    combatantComponent.Attributes.DealtDamageMultiplier = attackOverride.Value;
-                }
                 combatantInstance.transform.parent = transform;
                 combatantInstance.transform.localPosition = new Vector3Int(spawnTileCandidate.x, spawnTileCandidate.y, -1);
                 combatantInstance.SetActive(true);

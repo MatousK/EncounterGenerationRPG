@@ -25,7 +25,7 @@ namespace Assets.Scripts.EncounterGenerator.Configuration.MonsterGroup
         public override List<GameObject> GenerateMonsterGroup(GenerateMonsterGroupParameters parameters)
         {
             List<GameObject> toReturn = new List<GameObject>();
-            var random = new System.Random();
+            var random = new System.Random(); 
             foreach (var monsterRequest in parameters.RequestedMonsters.AllEncounterGroups)
             {
                 var possibleMonsters = GetMonstersFor(monsterRequest.MonsterType);

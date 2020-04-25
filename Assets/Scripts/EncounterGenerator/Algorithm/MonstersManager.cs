@@ -25,7 +25,7 @@ namespace Assets.Scripts.EncounterGenerator.Algorithm
             }
             foreach (var monster in generatedMonsters)
             {
-                monsterPriorities[monster] = 0;
+                monsterPriorities[monster] = 1;
             }
             return generatedMonsters;
         }
