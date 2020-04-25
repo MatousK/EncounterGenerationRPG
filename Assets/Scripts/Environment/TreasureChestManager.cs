@@ -20,21 +20,29 @@ namespace Assets.Scripts.Environment
             {
                 var chestRoom = roomLayout.Rooms[chestGroup.Key];
                 var roomTreasureChests = chestGroup.ToArray();
-                var treasuresToKeepCount = random.Next(chestRoom.TreasureChestsMin, chestRoom.TreasureChestsMax + 1);
+                var treasuresToKeepCount = chestRoom.HealthBonusTreasureChests + chestRoom.DamageBonusTreasureChests + chestRoom.HealingPotionsTreasureChests;
                 // We can only have as many treasure chests in the room as were specified.
                 treasuresToKeepCount = treasuresToKeepCount < roomTreasureChests.Length ? treasuresToKeepCount : roomTreasureChests.Length;
-                // Shuffle the array, so we can randomly select which treasures to keep.
-                for (int i = 0; i < treasuresToKeepCount; ++i)
-                {
-                    var elementToSwapIndex = random.Next(i, roomTreasureChests.Length);
-                    var temp = roomTreasureChests[i];
-                    roomTreasureChests[i] = allTreasureChests[elementToSwapIndex];
-                    roomTreasureChests[elementToSwapIndex] = temp;
-                }
                 // Disable the treasures which we do not want to keep.
                 for (int i = treasuresToKeepCount; i < roomTreasureChests.Length; ++i)
                 {
                     roomTreasureChests[i].gameObject.SetActive(false);
+                }
+                // Set drops for chests.
+                for (int i = 0; i < treasuresToKeepCount; ++i)
+                {
+                    if (i < chestRoom.HealthBonusTreasureChests)
+                    {
+                        roomTreasureChests[i].TreasureToDrop = TreasureChestDrop.HealthBonus;
+                    } 
+                    else if (i < chestRoom.HealthBonusTreasureChests + chestRoom.DamageBonusTreasureChests)
+                    {
+                        roomTreasureChests[i].TreasureToDrop = TreasureChestDrop.DamageBonus;
+                    }
+                    else
+                    {
+                        roomTreasureChests[i].TreasureToDrop = TreasureChestDrop.HealingPotion;
+                    }
                 }
             }
         }

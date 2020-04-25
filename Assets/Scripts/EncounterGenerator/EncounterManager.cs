@@ -8,6 +8,7 @@ using Assets.Scripts.EncounterGenerator.Configuration;
 using Assets.Scripts.EncounterGenerator.Development;
 using Assets.Scripts.EncounterGenerator.Model;
 using Assets.Scripts.Environment;
+using Assets.Scripts.Experiment;
 using Assets.Scripts.GameFlow;
 using UnityEngine;
 
@@ -25,11 +26,13 @@ namespace Assets.Scripts.EncounterGenerator
         private GameStateManager gameStateManager;
         private readonly EncounterGeneratorConfiguration generatorConfiguration = new EncounterGeneratorConfiguration();
         private DifficultyMatrixProvider difficultyMatrixProvider;
+        private LevelLoader levelLoader;
 
         private void Start()
         {
             difficultyMatrixProvider =
                 FindObjectsOfType<DifficultyMatrixProvider>().First(provider => !provider.IsPendingKill);
+            levelLoader = FindObjectsOfType<LevelLoader>().First(loader => !loader.IsPendingKill);
             var difficultyMatrix = difficultyMatrixProvider.CurrentDifficultyMatrix;
             MatrixUpdater = new EncounterMatrixUpdater(difficultyMatrix, generatorConfiguration);
             MatrixUpdater.MatrixChanged += MatrixUpdater_MatrixChanged;
@@ -76,13 +79,16 @@ namespace Assets.Scripts.EncounterGenerator
             var allHeroes = combatantsManager.PlayerCharacters;
             var partyDefinition = new PartyDefinition { PartyMembers = allHeroes };
             List<GameObject> encounter;
-            if (staticEncounterGenerator != null && staticEncounterGenerator.isActiveAndEnabled)
+            switch (levelLoader.CurrentEncounterGenerationAlgorithm)
             {
-                encounter = staticEncounterGenerator.GenerateEncounters(exploredRoom.RoomEncounter);
-            }
-            else
-            {
-                encounter = encounterGenerator.GenerateEncounters(exploredRoom.RoomEncounter, partyDefinition);
+                case EncounterGenerationAlgorithmType.MatrixBasedGenerator:
+                    encounter = encounterGenerator.GenerateEncounters(exploredRoom.RoomEncounter, partyDefinition);
+                    break;
+                case EncounterGenerationAlgorithmType.StaticGenerator:
+                    encounter = exploredRoom.StaticMonsters;
+                    break;
+                default:
+                    throw new Exception("Unknown monster generation algorithm");
             }
             SpawnMonsters(encounter, sender as RoomInfo, exploredEventArgs.IncomingDoors);
         }

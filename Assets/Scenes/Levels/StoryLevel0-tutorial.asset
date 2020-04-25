@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd2dc783fcdf0d149986347be4f3e720, type: 3}
+  m_Name: StoryLevel0-tutorial
+  m_EditorClassIdentifier: 
+  Type: 0
+  PossibleLevelGraphs:
+  - {fileID: 11400000, guid: 4b8b9b7a1b19c774991d0e9ecfa62e60, type: 2}
+  IntroTexts:
+  - "Once upon a time, Tom the Knight was in his final year of Adventurer College.
+    \r\n\r\nHe successfully completed all the courses at the school - he breezed through
+    all\r\ncombat classes and he even managed to get through the dreaded Chivalry
+    class.\r\n\r\nAll that was left was for him now was to write a thesis about some
+    interesting adventure.\r\nHe decided to explore the mysterious dungeon of Apdien,
+    a magical place that was always\r\nfull of monsters exactly strong enough to challenge
+    the visitors. This place was a favorite\r\ntraining exercise for the students,
+    yet its purpose and workings were still as mysterious\r\ntoday as they were a
+    thousand years ago.\n\nTom teamed up with two of his friends, Bob\r the Ranger
+    and John the Cleric. Together they\nwould brave the dungeon, fill out surveys\r
+    about their experience and hopefully they would\nget enough data to unlock the
+    secrets of the dungeon.\r\n\r\nSo they set out on their journey. They filled out
+    a short survey about their current mood and\nentered the dungeon..."
+  ExperimentGroupConfigurations:
+  - ExperimentGroup: 0
+    Algorithm: 0
+    SurveyLink: 
+  - ExperimentGroup: 1
+    Algorithm: 0
+    SurveyLink: 

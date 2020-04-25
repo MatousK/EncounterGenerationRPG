@@ -19,4 +19,10 @@ MonoBehaviour:
 
 
     As a reward, here''s a survey:'
-  SurveyLink: https://google.com
+  ExperimentGroupConfigurations:
+  - ExperimentGroup: 0
+    Algorithm: 1
+    SurveyLink: https://www.google.com/search?q=generated2
+  - ExperimentGroup: 0
+    Algorithm: 1
+    SurveyLink: https://www.google.com/search?q=static2

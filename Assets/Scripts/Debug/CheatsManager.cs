@@ -21,28 +21,19 @@ namespace Assets.Scripts.Debug
         private string currentCheatCode = "";
         public void Start()
         {
-            var allHeroes = FindObjectsOfType<Hero>();
-            foreach (var hero in allHeroes)
-            {
-                switch (hero.HeroProfession)
-                {
-                    case HeroProfession.Cleric:
-                        cleric = hero;
-                        break;
-                    case HeroProfession.Knight:
-                        knight = hero;
-                        break;
-                    case HeroProfession.Ranger:
-                        ranger = hero;
-                        break;
-                }
-            }
-
-            UpdateImmortality();
+            InitHeroReferences();
         }
 
         private void Update()
         {
+            if (knight == null)
+            {
+                InitHeroReferences();
+                if (knight == null)
+                {
+                    return;
+                }
+            }
             if (!String.IsNullOrEmpty(UnityEngine.Input.inputString))
             {
                 currentCheatCode += UnityEngine.Input.inputString;
@@ -75,6 +66,26 @@ namespace Assets.Scripts.Debug
             cleric.IsInvincible = IsClericInvincible;
             knight.IsInvincible = IsKnightInvincible;
             ranger.IsInvincible = IsRangerInvincible;
+        }
+
+        private void InitHeroReferences()
+        {
+            var allHeroes = FindObjectsOfType<Hero>();
+            foreach (var hero in allHeroes)
+            {
+                switch (hero.HeroProfession)
+                {
+                    case HeroProfession.Cleric:
+                        cleric = hero;
+                        break;
+                    case HeroProfession.Knight:
+                        knight = hero;
+                        break;
+                    case HeroProfession.Ranger:
+                        ranger = hero;
+                        break;
+                }
+            }
         }
     }
 }

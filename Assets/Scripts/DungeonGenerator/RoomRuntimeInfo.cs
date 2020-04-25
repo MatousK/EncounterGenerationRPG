@@ -19,9 +19,11 @@ namespace Assets.Scripts.DungeonGenerator
     [Serializable]
     public class RoomInfo
     {
+        public List<GameObject> StaticMonsters;
         public EncounterConfiguration RoomEncounter;
-        public int TreasureChestsMax;
-        public int TreasureChestsMin;
+        public int HealthBonusTreasureChests;
+        public int DamageBonusTreasureChests;
+        public int HealingPotionsTreasureChests;
         public List<Vector2Int> RoomSquaresPositions;
         public List<Vector2Int> ConnectedCorridorsSquares = new List<Vector2Int>();
         public bool IsStartingRoom;

@@ -11,6 +11,8 @@ namespace Assets.Scripts.UI
 {
     public class TypewriterWithSurveyScreen: MonoBehaviour
     {
+        [HideInInspector]
+        public String SurveyLink;
         public TypewriterText IntroTypewriterText;
         public LevelDefinition LevelDefinition;
         public Button SurveyButton;
@@ -20,7 +22,7 @@ namespace Assets.Scripts.UI
         {
             IntroTypewriterText.TextAnimationDone += IntroTypewriterText_TextAnimationDone;
             IntroTypewriterText.TextToDisplay = LevelDefinition.IntroTexts?.FirstOrDefault() ?? "";
-            var hasSurvey = !string.IsNullOrEmpty(LevelDefinition.SurveyLink);
+            var hasSurvey = !string.IsNullOrEmpty(SurveyLink);
             ContinueButton.interactable = !hasSurvey;
             if (!hasSurvey)
             {
@@ -40,7 +42,7 @@ namespace Assets.Scripts.UI
 
         public void SurveyPressed()
         {
-            Application.OpenURL(LevelDefinition.SurveyLink);
+            Application.OpenURL(SurveyLink);
             ContinueButton.interactable = true;
         }
     }

@@ -28,8 +28,10 @@ namespace Assets.Scripts.DungeonGenerator
                 }
                 var roomGraphData = GetRoomData(room.GeneratorData.Node);
                 roomInfo.RoomEncounter = roomGraphData.EncounterConfiguration;
-                roomInfo.TreasureChestsMax = roomGraphData.TreasureChestsMax;
-                roomInfo.TreasureChestsMin = roomGraphData.TreasureChestsMin;
+                roomInfo.StaticMonsters = roomGraphData.StaticMonsters;
+                roomInfo.HealingPotionsTreasureChests = roomGraphData.HealingPotionChests;
+                roomInfo.DamageBonusTreasureChests = roomGraphData.DamageBonusChests;
+                roomInfo.HealthBonusTreasureChests = roomGraphData.HealthBonusChests;
                 isFirstRoom = false;
                 roomInfo.RoomSquaresPositions = GetRoomSquares(room).ToList();
                 roomsLayout.Rooms.Add(roomInfo);

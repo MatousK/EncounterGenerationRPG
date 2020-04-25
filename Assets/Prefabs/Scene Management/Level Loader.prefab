@@ -167,11 +167,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   StoryModeLevels:
+  - {fileID: 11400000, guid: ec1be649571fb15419e24040c043dcf8, type: 2}
   - {fileID: 11400000, guid: 788dadb9bbea41048b72c552fbd90920, type: 2}
   - {fileID: 11400000, guid: adea46733bae3af459e4012188e76554, type: 2}
+  - {fileID: 11400000, guid: 177dc9f1ba5d65f488dc45735922e3df, type: 2}
+  - {fileID: 11400000, guid: 6f521853e27bdb9499861a42416d8afc, type: 2}
   - {fileID: 11400000, guid: 8da2e4fbcc14e4f42ba52177417720f2, type: 2}
   - {fileID: 11400000, guid: 033c79e7e6c152144a87e1c7a4a51b4b, type: 2}
   FreePlayLevel: {fileID: 0}
   LevelIntroScreenTemplate: {fileID: 2876501569895082098, guid: f88d1dec37dc53846816472c273bf0f6,
     type: 3}
+  IsPendingKill: 0
   CurrentLevelGraph: {fileID: 0}
+  CurrentSceneType: 0

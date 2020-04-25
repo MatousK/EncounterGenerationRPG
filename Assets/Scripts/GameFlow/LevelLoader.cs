@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Assets.ProceduralLevelGenerator.Scripts.Data.Graphs;
 using Assets.Scripts.Combat;
 using Assets.Scripts.CombatSimulator;
+using Assets.Scripts.Experiment;
 using Assets.Scripts.Extension;
 using Assets.Scripts.UI;
 using UnityEngine;
@@ -25,7 +26,11 @@ namespace Assets.Scripts.GameFlow
         [HideInInspector]
         public LevelGraph CurrentLevelGraph;
 
+        [HideInInspector]
+        public EncounterGenerationAlgorithmType CurrentEncounterGenerationAlgorithm;
+
         public SceneType CurrentSceneType;
+        private AbTestingManager abTestingManager;
         private int currentStoryModeLevelIndex;
         private bool isPlayingStoryMode;
         private Animation animationComponent;
@@ -41,6 +46,11 @@ namespace Assets.Scripts.GameFlow
             }
             DontDestroyOnLoad(gameObject);
             animationComponent = GetComponent<Animation>();
+        }
+
+        private void Start()
+        {
+            abTestingManager = FindObjectsOfType<AbTestingManager>().First(testingManager => !testingManager.IsPendingKill);
         }
 
         public void StartStoryMode()
@@ -81,10 +91,16 @@ namespace Assets.Scripts.GameFlow
         }
         public void LoadLevelWithIntro(LevelDefinition level)
         {
-            if (level != null && (level.IntroTexts?.Any() == true || !string.IsNullOrEmpty(level.SurveyLink)))
+            var experimentGroup = abTestingManager.CurrentExperimentGroup;
+            var experimentConfiguration =
+                level.ExperimentGroupConfigurations.First(config => config.ExperimentGroup == experimentGroup);
+            CurrentEncounterGenerationAlgorithm = experimentConfiguration.Algorithm;
+            var surveyLink = experimentConfiguration.SurveyLink;
+            if (level.IntroTexts?.Any() == true || !string.IsNullOrEmpty(surveyLink))
             {
                 var introScreenObject = Instantiate(LevelIntroScreenTemplate);
                 var levelIntro = introScreenObject.GetComponentInChildren<TypewriterWithSurveyScreen>();
+                levelIntro.SurveyLink = surveyLink;
                 levelIntro.LevelDefinition = level;
             }
             else

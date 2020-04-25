@@ -10,19 +10,25 @@ using UnityEngine;
 
 namespace Assets.Scripts.Environment
 {
-    [Serializable]
-    class DropProbability
+    public enum TreasureChestDrop
     {
-        public GameObject ObjectToDrop = null;
-        /// <summary>
-        /// Weight influences the probability of the drop. If one object has weight 6 and second weight 2, the first one will be 3x as likely to drop.
-        /// </summary>
-        public int Weight = 0;
+        NotSet,
+        HealthBonus,
+        DamageBonus,
+        HealingPotion
+    }
+
+    [Serializable]
+    public class PowerupDefinition
+    {
+        public TreasureChestDrop DropType;
+        public GameObject DropObjectTemplate;
     }
 
     class TreasureChest : MonoBehaviour
     {
-        public DropProbability[] DropTable = null;
+        public List<PowerupDefinition> PowerupDefinitions; 
+        public TreasureChestDrop TreasureToDrop;
         public Sprite OpenedSprite = null;
         public Sprite ClosedSprite = null;
         GameObject droppedPowerup;
@@ -73,17 +79,9 @@ namespace Assets.Scripts.Environment
 
         void SpawnDrop()
         {
-            var random = new System.Random();
-            var totalProbability = DropTable.Sum(dropDefinition => dropDefinition.Weight);
-            var itemToDrop = random.Next(totalProbability);
-            // We simulate each element being in the array Weight times.
-            var itemToDropIndex = 0;
-            while (itemToDrop >= DropTable[itemToDropIndex].Weight)
-            {
-                itemToDrop -= DropTable[itemToDropIndex].Weight;
-                itemToDropIndex++;
-            }
-            SpawnDrop(DropTable[itemToDropIndex].ObjectToDrop);
+            var dropDefinition =
+                PowerupDefinitions.First(powerupDefinition => powerupDefinition.DropType == TreasureToDrop);
+            SpawnDrop(dropDefinition.DropObjectTemplate);
         }
 
         void SpawnDrop(GameObject toSpawn)

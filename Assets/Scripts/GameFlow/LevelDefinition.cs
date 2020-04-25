@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Assets.ProceduralLevelGenerator.Scripts.Data.Graphs;
+using Assets.Scripts.Experiment;
 using UnityEngine;
 
 namespace Assets.Scripts.GameFlow
@@ -24,6 +25,15 @@ namespace Assets.Scripts.GameFlow
         /// </summary>
         [TextArea(0,10)]
         public String[] IntroTexts;
+
+        public List<ExperimentConfiguration> ExperimentGroupConfigurations;
+    }
+
+    [Serializable]
+    public class ExperimentConfiguration
+    {
+        public ExperimentGroup ExperimentGroup;
+        public EncounterGenerationAlgorithmType Algorithm;
         /// <summary>
         /// If not empty, this is a link to the survey to be taken at the start of this level.
         /// </summary>

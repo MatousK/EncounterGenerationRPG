@@ -12,8 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd2dc783fcdf0d149986347be4f3e720, type: 3}
   m_Name: StoryLevel2
   m_EditorClassIdentifier: 
+  Type: 0
   PossibleLevelGraphs:
   - {fileID: 11400000, guid: e209782f8fedfb640a86f39b45b6a1c9, type: 2}
   IntroTexts:
-  - You must fill out a survey before venturing forth.
-  SurveyLink: https://google.com
+  - Some witty text about continuing the journey
+  ExperimentGroupConfigurations:
+  - ExperimentGroup: 0
+    Algorithm: 0
+    SurveyLink: 
+  - ExperimentGroup: 1
+    Algorithm: 1
+    SurveyLink: 
