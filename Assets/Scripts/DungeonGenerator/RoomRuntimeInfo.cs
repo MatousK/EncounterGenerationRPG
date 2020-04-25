@@ -24,6 +24,7 @@ namespace Assets.Scripts.DungeonGenerator
         public int HealthBonusTreasureChests;
         public int DamageBonusTreasureChests;
         public int HealingPotionsTreasureChests;
+        public int Index;
         public List<Vector2Int> RoomSquaresPositions;
         public List<Vector2Int> ConnectedCorridorsSquares = new List<Vector2Int>();
         public bool IsStartingRoom;

@@ -29,6 +29,7 @@ namespace Assets.Scripts.DungeonGenerator
                 var roomGraphData = GetRoomData(room.GeneratorData.Node);
                 roomInfo.RoomEncounter = roomGraphData.EncounterConfiguration;
                 roomInfo.StaticMonsters = roomGraphData.StaticMonsters;
+                roomInfo.Index = room.GeneratorData.Node;
                 roomInfo.HealingPotionsTreasureChests = roomGraphData.HealingPotionChests;
                 roomInfo.DamageBonusTreasureChests = roomGraphData.DamageBonusChests;
                 roomInfo.HealthBonusTreasureChests = roomGraphData.HealthBonusChests;

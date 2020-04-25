@@ -596,6 +596,7 @@ MonoBehaviour:
     HealthBonusTreasureChests: 0
     DamageBonusTreasureChests: 0
     HealingPotionsTreasureChests: 0
+    Index: 0
     RoomSquaresPositions:
     - {x: 0, y: 0}
     - {x: 1, y: 0}
@@ -813,6 +814,7 @@ MonoBehaviour:
     HealthBonusTreasureChests: 0
     DamageBonusTreasureChests: 0
     HealingPotionsTreasureChests: 0
+    Index: 0
     RoomSquaresPositions:
     - {x: 0, y: -12}
     - {x: 1, y: -12}
