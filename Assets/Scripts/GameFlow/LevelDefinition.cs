@@ -13,6 +13,11 @@ namespace Assets.Scripts.GameFlow
     public class LevelDefinition: ScriptableObject
     {
         /// <summary>
+        /// If true, at the beginning of this level we should use stats from after the tutorial instead of after the previous level.
+        /// Used to restart the stats between experiment fazes. 
+        /// </summary>
+        public bool ShouldRestoreAfterTutorialStats;
+        /// <summary>
         /// The scene to load for this level.
         /// </summary>
         public SceneType Type;
@@ -24,7 +29,7 @@ namespace Assets.Scripts.GameFlow
         /// If not empty, this text will be shown as an intro text.
         /// </summary>
         [TextArea(0,10)]
-        public String[] IntroTexts;
+        public string[] IntroTexts;
 
         public List<ExperimentConfiguration> ExperimentGroupConfigurations;
     }

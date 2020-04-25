@@ -9,6 +9,7 @@ using Assets.Scripts.CombatSimulator;
 using Assets.Scripts.Experiment;
 using Assets.Scripts.Extension;
 using Assets.Scripts.UI;
+using UnityEditor.PackageManager;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -35,6 +36,10 @@ namespace Assets.Scripts.GameFlow
         private bool isPlayingStoryMode;
         private Animation animationComponent;
         private string nextLevelSceneName;
+        /// <summary>
+        /// After the tutorial, we want to save the party configuration and restore it later, so we can start after the tutorial.
+        /// </summary>
+        private PartyConfiguration storedTutorialConfiguration;
         
 
         private void Awake()
@@ -72,7 +77,8 @@ namespace Assets.Scripts.GameFlow
             {
                 if (++currentStoryModeLevelIndex >= StoryModeLevels.Length)
                 {
-                    ShowVictoryScreen();
+                    UnityEngine.Debug.Assert(false,
+                        "We should always end up in main menu and never call LoadNextLevel from there");
                 }
                 else
                 {
@@ -83,11 +89,6 @@ namespace Assets.Scripts.GameFlow
             {
                 LoadLevelWithIntro(FreePlayLevel);
             }
-        }
-
-        public void ShowVictoryScreen()
-        {
-
         }
         public void LoadLevelWithIntro(LevelDefinition level)
         {
@@ -114,6 +115,15 @@ namespace Assets.Scripts.GameFlow
             // If loading next floor, store the hero attributes.
             var existingHeroes = FindObjectsOfType<Hero>();
             CurrentPartyConfiguration = existingHeroes.Any() ? new PartyConfiguration(existingHeroes.ToArray()) : null;
+            if (storedTutorialConfiguration == null)
+            {
+                storedTutorialConfiguration = CurrentPartyConfiguration;
+            }
+
+            if (level.ShouldRestoreAfterTutorialStats && storedTutorialConfiguration != null)
+            {
+                CurrentPartyConfiguration = storedTutorialConfiguration;
+            }
             CurrentSceneType = level.Type;
             switch (level.Type)
             {

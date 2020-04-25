@@ -13,14 +13,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: Room
-  Position: {x: 311, y: 332}
+  Position: {x: 305, y: 318}
   RoomTemplateSets: []
   IndividualRoomTemplates: []
   serializedGuid: 00000000000000000000000000000000
   EncounterConfiguration: {fileID: 11400000, guid: 8ced9e8da8e135349b8a1f7a05004946,
     type: 2}
-  TreasureChestsMax: 3
-  TreasureChestsMin: 3
+  HealingPotionChests: 2
+  HealthBonusChests: 1
+  DamageBonusChests: 1
+  StaticMonsters: []
 --- !u!114 &-8066856152148563883
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -76,14 +78,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: Room
-  Position: {x: 333, y: 113}
+  Position: {x: 327, y: 99}
   RoomTemplateSets: []
   IndividualRoomTemplates: []
   serializedGuid: 00000000000000000000000000000000
   EncounterConfiguration: {fileID: 11400000, guid: 8ced9e8da8e135349b8a1f7a05004946,
     type: 2}
-  TreasureChestsMax: 2
-  TreasureChestsMin: 2
+  HealingPotionChests: 2
+  HealthBonusChests: 0
+  DamageBonusChests: 0
+  StaticMonsters: []
 --- !u!114 &-4633550302470200555
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -97,15 +101,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: Start - brc204d.png
-  Position: {x: 262, y: -51}
+  Position: {x: 256, y: -65}
   RoomTemplateSets: []
   IndividualRoomTemplates:
   - {fileID: 6966731523498046389, guid: b3cd70b78369f7447acd01a745b94291, type: 3}
   serializedGuid: 00000000000000000000000000000000
   EncounterConfiguration: {fileID: 11400000, guid: a13aacc43e3c10b4bb5cc162ec05c429,
     type: 2}
-  TreasureChestsMax: 0
-  TreasureChestsMin: 0
+  HealingPotionChests: 0
+  HealthBonusChests: 0
+  DamageBonusChests: 0
+  StaticMonsters: []
 --- !u!114 &-798736707534439380
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -119,15 +125,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: Boss
-  Position: {x: 643, y: 346}
+  Position: {x: 637, y: 332}
   RoomTemplateSets: []
   IndividualRoomTemplates:
   - {fileID: 7563476935698307696, guid: a2c66dd2e83afb449b465953854129c0, type: 3}
   serializedGuid: 00000000000000000000000000000000
   EncounterConfiguration: {fileID: 11400000, guid: 1515b941f623fac45955181e5f7a7a28,
     type: 2}
-  TreasureChestsMax: 6
-  TreasureChestsMin: 6
+  HealingPotionChests: 3
+  HealthBonusChests: 1
+  DamageBonusChests: 1
+  StaticMonsters: []
 --- !u!114 &-383646540370159587
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -208,15 +216,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: CrossRoads
-  Position: {x: 414, y: 334}
+  Position: {x: 408, y: 320}
   RoomTemplateSets: []
   IndividualRoomTemplates:
   - {fileID: 6401141074986927710, guid: 5914e44733458a84e9322e0dfe64cfe9, type: 3}
   serializedGuid: 00000000000000000000000000000000
   EncounterConfiguration: {fileID: 11400000, guid: a13aacc43e3c10b4bb5cc162ec05c429,
     type: 2}
-  TreasureChestsMax: 0
-  TreasureChestsMin: 0
+  HealingPotionChests: 0
+  HealthBonusChests: 0
+  DamageBonusChests: 0
+  StaticMonsters: []
 --- !u!114 &3489550063581021364
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -244,14 +254,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: Room
-  Position: {x: 416, y: 413}
+  Position: {x: 410, y: 399}
   RoomTemplateSets: []
   IndividualRoomTemplates: []
   serializedGuid: 00000000000000000000000000000000
   EncounterConfiguration: {fileID: 11400000, guid: be4db2a6b60b35547b4b0436951daa00,
     type: 2}
-  TreasureChestsMax: 3
-  TreasureChestsMin: 3
+  HealingPotionChests: 1
+  HealthBonusChests: 1
+  DamageBonusChests: 1
+  StaticMonsters: []
 --- !u!114 &4413102936469239995
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -279,14 +291,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: Room
-  Position: {x: 325, y: 36}
+  Position: {x: 319, y: 22}
   RoomTemplateSets: []
   IndividualRoomTemplates: []
   serializedGuid: 00000000000000000000000000000000
   EncounterConfiguration: {fileID: 11400000, guid: be4db2a6b60b35547b4b0436951daa00,
     type: 2}
-  TreasureChestsMax: 1
-  TreasureChestsMin: 1
+  HealingPotionChests: 0
+  HealthBonusChests: 0
+  DamageBonusChests: 0
+  StaticMonsters: []
 --- !u!114 &7816928254941982249
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -300,11 +314,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: Room
-  Position: {x: 528, y: 335}
+  Position: {x: 522, y: 321}
   RoomTemplateSets: []
   IndividualRoomTemplates: []
   serializedGuid: 00000000000000000000000000000000
   EncounterConfiguration: {fileID: 11400000, guid: 8ced9e8da8e135349b8a1f7a05004946,
     type: 2}
-  TreasureChestsMax: 3
-  TreasureChestsMin: 3
+  HealingPotionChests: 2
+  HealthBonusChests: 0
+  DamageBonusChests: 0
+  StaticMonsters: []

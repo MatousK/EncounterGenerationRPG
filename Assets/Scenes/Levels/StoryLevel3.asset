@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd2dc783fcdf0d149986347be4f3e720, type: 3}
   m_Name: StoryLevel3
   m_EditorClassIdentifier: 
+  ShouldRestoreAfterTutorialStats: 1
   Type: 0
   PossibleLevelGraphs:
   - {fileID: 11400000, guid: 10ba17d1ce35a7f49bb3fd559361cc1d, type: 2}
