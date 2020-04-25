@@ -65,17 +65,21 @@ namespace Assets.Scripts.Input
         {
             orderType = null;
             var hitCombatant = hit.collider != null ? hit.collider.GetComponent<CombatantBase>() : null;
-            if (hitCombatant == null || (hitCombatant is Hero) != skillFromUiIconClickController.IsFriendlySkill)
+            if (hitCombatant == null || (hitCombatant is Hero) != skillFromUiIconClickController.IsFriendlySkill || hitCombatant == skillFromUiIconClickController.CastingHero)
             {
-                // Invalid target - either not a hostile or friendly when it is supposed to be the other way around or not a combatant.
+                // Invalid target - either not a hostile or friendly when it is supposed to be the other way around or not a combatant. Or self, we can't do that either.
                 return;
             }
 
-            if (skillFromUiIconClickController.TargetedSkill.UseSkillOn(hitCombatant))
+            if (skillFromUiIconClickController.IsFriendlySkill)
             {
-                orderType = skillFromUiIconClickController.IsFriendlySkill
-                    ? VoiceOrderType.FriendlySkill
-                    : VoiceOrderType.EnemySkill;
+                orderType = VoiceOrderType.FriendlySkill;
+                skillFromUiIconClickController.CastingHero.FriendlySkillUsed(hitCombatant as Hero);
+            }
+            else
+            {
+                orderType = VoiceOrderType.EnemySkill;
+                skillFromUiIconClickController.CastingHero.SkillAttackUsed(hitCombatant as Monster);
             }
         }
 

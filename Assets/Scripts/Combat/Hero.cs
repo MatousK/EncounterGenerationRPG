@@ -56,13 +56,6 @@ namespace Assets.Scripts.Combat
         /// </summary>
         public float HealthPowerupIncrement;
 
-        /// <summary>
-        /// Really, really, really hacky way to determine, when a skill looses focus by right clicking on a portrait.
-        /// Basically, if a pointer is over portrait while skill looses focus and right button is down, user probably right clicked on a portrait.
-        /// TODO: Skill behavior should really not be bound to focus of the skill icon.
-        /// </summary>
-        public bool IsPointerOverPortrait;
-
         // Start is called before the first frame update
         protected override void Awake()
         {
@@ -100,7 +93,7 @@ namespace Assets.Scripts.Combat
         {
             // After using a skill, we probably want to keep attacking the enemy.
             GetComponent<AutoAttacking>().Target = target;
-            if (EnemyTargetSkill == null || !EnemyTargetSkill.CanUseSkill() || IsBlockingSkillInProgress(false))
+            if (EnemyTargetSkill == null || !EnemyTargetSkill.CanUseSkill() || IsBlockingSkillInProgress(false) || IsDown)
             {
                 // Special attack either cannot be used or is not defined.
                 // Use normal attack started at the start of the method as fallback.
@@ -122,7 +115,7 @@ namespace Assets.Scripts.Combat
 
         public virtual void FriendlySkillUsed(Hero target)
         {
-            if (IsBlockingSkillInProgress(false) || FriendlyTargetSkill == null)
+            if (IsBlockingSkillInProgress(false) || FriendlyTargetSkill == null || IsDown)
             {
                 return;
             }
@@ -136,7 +129,7 @@ namespace Assets.Scripts.Combat
 
         public virtual void SelfSkillUsed()
         {
-            if (IsBlockingSkillInProgress(false) || SelfTargetSkill == null)
+            if (IsBlockingSkillInProgress(false) || SelfTargetSkill == null || IsDown)
             {
                 return;
             }

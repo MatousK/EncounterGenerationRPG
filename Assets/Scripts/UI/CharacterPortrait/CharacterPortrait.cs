@@ -9,7 +9,7 @@ using UnityEngine.UI;
 
 namespace Assets.Scripts.UI.CharacterPortrait
 {
-    public class CharacterPortrait : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
+    public class CharacterPortrait : MonoBehaviour, IPointerClickHandler
     {
         CombatantsManager combatantsManager;
 
@@ -166,27 +166,15 @@ namespace Assets.Scripts.UI.CharacterPortrait
 
         void HandleSkillUsageFromUi()
         {
-            if (!skillFromUiIconClickController.IsFriendlySkill)
+            if (!skillFromUiIconClickController.IsFriendlySkill || RepresentedHero == skillFromUiIconClickController.CastingHero)
             {
                 // Portrait can represent only a hero. So no chance of clicking on a monster, so only friendly skill allowed.
                 return;
             }
 
-            if (skillFromUiIconClickController.TargetedSkill.UseSkillOn(RepresentedHero))
-            {
-                var voiceController = skillFromUiIconClickController.CastingHero.GetComponentInChildren<CharacterVoiceController>();
-                voiceController.OnOrderGiven(VoiceOrderType.FriendlySkill);
-            }
-        }
-
-        public void OnPointerEnter(PointerEventData eventData)
-        {
-            RepresentedHero.IsPointerOverPortrait = true;
-        }
-
-        public void OnPointerExit(PointerEventData eventData)
-        {
-            RepresentedHero.IsPointerOverPortrait = false;
+            skillFromUiIconClickController.CastingHero.FriendlySkillUsed(RepresentedHero);
+            var voiceController = skillFromUiIconClickController.CastingHero.GetComponentInChildren<CharacterVoiceController>();
+            voiceController.OnOrderGiven(VoiceOrderType.FriendlySkill);
         }
     }
 }

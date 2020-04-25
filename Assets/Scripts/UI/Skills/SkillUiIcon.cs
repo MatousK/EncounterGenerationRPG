@@ -61,9 +61,9 @@ namespace Assets.Scripts.UI.Skills
             var skillUsingHero = GetComponentInParent<HeroSkillsContainer>().RepresentedHero;
             if (representedSkill is PersonalSkill personalSkill)
             {
-                personalSkill.ActivateSkill();
-                var speakingCharacterVoice = skillUsingHero != null ? skillUsingHero.GetComponentInChildren<CharacterVoiceController>() : null;
-                if (skillUsingHero != null && speakingCharacterVoice != null)
+                skillUsingHero.SelfSkillUsed();
+                var speakingCharacterVoice = skillUsingHero.GetComponentInChildren<CharacterVoiceController>();
+                if (speakingCharacterVoice != null)
                 {
                     speakingCharacterVoice.OnOrderGiven(VoiceOrderType.SelfSkill);
                 }
