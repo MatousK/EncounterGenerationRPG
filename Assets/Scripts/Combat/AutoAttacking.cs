@@ -18,9 +18,10 @@ namespace Assets.Scripts.Combat
 
         private void Update()
         {
-            if (Target && !Target.CanBeTargeted)
+            if (Target && !Target.CanBeTargeted || selfCombatant.IsDown)
             {
                 // Target is dead or invincible, no sense in beating a dead horse or a god.
+                // Or we are down, so, again, not much to do, really.
                 Target = null;
             }
             if (Target == null)

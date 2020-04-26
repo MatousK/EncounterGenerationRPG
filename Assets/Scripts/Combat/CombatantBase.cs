@@ -169,6 +169,16 @@ namespace Assets.Scripts.Combat
         // Update is called once per frame
         protected virtual void Update()
         {
+            if (IsDown)
+            {
+                foreach (var skill in CombatantSkills)
+                {
+                    if (skill.IsBeingUsed())
+                    {
+                        skill.TryStopSkill();
+                    }
+                }
+            }
             UpdateSkillCooldown();
             ApplyHealthRegeneration();
             ResetCooldownIfOutOfCombat();
