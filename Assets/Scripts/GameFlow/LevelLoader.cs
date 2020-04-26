@@ -8,6 +8,7 @@ using Assets.Scripts.Combat;
 using Assets.Scripts.CombatSimulator;
 using Assets.Scripts.Experiment;
 using Assets.Scripts.Extension;
+using Assets.Scripts.Tutorial;
 using Assets.Scripts.UI;
 using UnityEditor.PackageManager;
 using UnityEngine;
@@ -42,6 +43,8 @@ namespace Assets.Scripts.GameFlow
         /// After the tutorial, we want to save the party configuration and restore it later, so we can start after the tutorial.
         /// </summary>
         private PartyConfiguration storedTutorialConfiguration;
+
+        private bool didShowTutorial;
         
 
         private void Awake()
@@ -147,6 +150,15 @@ namespace Assets.Scripts.GameFlow
         public void FadeOutDone()
         {
             SceneManager.LoadScene(nextLevelSceneName);
+        }
+
+        public void LevelLoadComplete()
+        {
+            var tutorialController = FindObjectOfType<TutorialController>();
+            if (tutorialController != null)
+            {
+                tutorialController.StartTutorial();
+            }
         }
     }
 }
