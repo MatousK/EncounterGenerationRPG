@@ -13,9 +13,13 @@ using UnityEngine.UI;
 
 namespace Assets.Scripts.UI.Skills
 {
-    public class SkillUiIcon: MonoBehaviour
+    public class SkillUiIcon : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
     {
+        public float SkillNameAppearDelay = 0.5f;
+
         public bool IsFriendlySkill;
+
+        public SkillName SkillNameWidget;
 
         public Image IsBeingUsedOverlay;
 
@@ -33,6 +37,8 @@ namespace Assets.Scripts.UI.Skills
 
         private SkillFromUiIconClickController skillFromUiIconClickController;
 
+        private float? pointerEnterTime;
+
         private void Start()
         {
             buttonComponent = GetComponent<Button>();
@@ -41,10 +47,15 @@ namespace Assets.Scripts.UI.Skills
 
         private void Update()
         {
-            CooldownOverlay.transform.localScale = new Vector3(1, CurrentCooldownPercentage,1);
+            CooldownOverlay.transform.localScale = new Vector3(1, CurrentCooldownPercentage, 1);
             buttonComponent.interactable = CurrentCooldownPercentage == 0;
             var isBeingUsed = skillFromUiIconClickController.TargetedSkill == representedSkill;
             IsBeingUsedOverlay.enabled = isBeingUsed;
+
+            if (pointerEnterTime != null && Time.unscaledTime - pointerEnterTime.Value > SkillNameAppearDelay)
+            {
+                SkillNameWidget.IsVisible = true;
+            }
         }
 
         public void SetSkill(Skill skill, Sprite frameSprite)
@@ -54,6 +65,8 @@ namespace Assets.Scripts.UI.Skills
             SkillIcon.sprite = skill.SkillIcon;
 
             Frame.sprite = frameSprite;
+
+            SkillNameWidget.Text = skill.name;
         }
 
         public void OnSkillPressed()
@@ -76,6 +89,26 @@ namespace Assets.Scripts.UI.Skills
             else
             {
                 UnityEngine.Debug.Assert(false, "Unknown skill");
+            }
+        }
+
+        public void OnPointerEnter(PointerEventData eventData)
+        {
+            pointerEnterTime = Time.unscaledTime;
+        }
+
+        public void OnPointerExit(PointerEventData eventData)
+        {
+            pointerEnterTime = null;
+            SkillNameWidget.IsVisible = false;
+        }
+
+        public void OnPointerClick(PointerEventData eventData)
+        {
+            if (eventData.button == PointerEventData.InputButton.Right)
+            {
+                FindObjectOfType<SkillDescriptionOverlay>().Show(representedSkill.name, representedSkill.SkillDescription,
+                    representedSkill.Cooldown);
             }
         }
     }

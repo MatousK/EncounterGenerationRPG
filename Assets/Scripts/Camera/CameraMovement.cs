@@ -2,6 +2,7 @@
 using Assets.Scripts.Cutscenes;
 using Assets.Scripts.Environment;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace Assets.Scripts.Camera
 {
@@ -52,27 +53,29 @@ namespace Assets.Scripts.Camera
             var mouseY = UnityEngine.Input.mousePosition.y;
             var mouseX = UnityEngine.Input.mousePosition.x;
 
+            var mouseOverUi = EventSystem.current.IsPointerOverGameObject();
+
             if (mouseX < 0 || mouseY < 0 || mouseX > Screen.width || mouseY > Screen.height)
             {
                 // Mouse out of bounds;
                 return;
             }
-            if (mouseX < ScrollingEdge)
+            if (!mouseOverUi && mouseX < ScrollingEdge)
             {
                 FollowingTransform = null;
                 transform.Translate(new Vector3(-ScrollingSpeed * Time.unscaledDeltaTime, 0, 0));
             }
-            else if (mouseX > Screen.width - ScrollingEdge)
+            else if (!mouseOverUi && mouseX > Screen.width - ScrollingEdge)
             {
                 FollowingTransform = null;
                 transform.Translate(new Vector3(ScrollingSpeed * Time.unscaledDeltaTime, 0, 0));
             }
-            if (mouseY < ScrollingEdge)
+            if (!mouseOverUi && mouseY < ScrollingEdge)
             {
                 FollowingTransform = null;
                 transform.Translate(new Vector3(0, -ScrollingSpeed * Time.unscaledDeltaTime, 0));
             }
-            else if (mouseY > Screen.height - ScrollingEdge)
+            else if (!mouseOverUi && mouseY > Screen.height - ScrollingEdge)
             {
                 FollowingTransform = null;
                 transform.Translate(new Vector3(0, ScrollingSpeed * Time.unscaledDeltaTime, 0));

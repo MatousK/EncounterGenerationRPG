@@ -9,6 +9,13 @@ namespace Assets.Scripts.Combat.Skills.Character.Cleric
             SkillAnimationName = "";
         }
         /// <summary>
+        /// This is a hotfix for a balance issue regarding the cleric boss enemy.
+        /// Normally he was healing 40 HP per second, which is more than the combined attack
+        /// of cleric and knight, so he was pretty much unkillable. This allows us to lower
+        /// self healing for some monsters if necessary.
+        /// </summary>
+        public float SelfHealingModifier = 1;
+        /// <summary>
         /// How far must the character be for the aura to work.
         /// </summary>
         public float AuraRange = 0;
@@ -57,6 +64,10 @@ namespace Assets.Scripts.Combat.Skills.Character.Cleric
                 if (Vector2.Distance(ally.transform.position, transform.position) < AuraRange)
                 {
                     float healPulseAmount = ally.TotalMaxHitpoints * HealPulsePercentage;
+                    if (ally == SelfCombatant)
+                    {
+                        healPulseAmount /= SelfHealingModifier;
+                    }
                     ally.HealDamage(healPulseAmount, SelfCombatant);
                 }
             }

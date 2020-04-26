@@ -14,8 +14,16 @@ namespace Assets.Scripts.Combat
     {
 
         // Used so we know where can we spawn monsters.
-        PathfindingMapController pathfindingMapController;
+        private PathfindingMapController pathfindingMapController;
         private Grid grid;
+        private EncounterGeneratorConfiguration generatorConfiguration;
+
+        public void Start()
+        {
+            // TODO: Get this from somewhere
+            generatorConfiguration = new EncounterGeneratorConfiguration();
+        }
+
         /// <summary>
         /// Spawns a monster on the map.
         /// </summary>
@@ -108,8 +116,6 @@ namespace Assets.Scripts.Combat
         private Dictionary<CombatantBase, SpawnPointType> GetSpawnPointTypesForCombatants(List<GameObject> combatantsGameObjects,
             Dictionary<SpawnPointType, List<SpawnPoint>> spawnPoints)
         {
-            // TODO: Get this from somewhere.
-            EncounterGeneratorConfiguration generatorConfig = new EncounterGeneratorConfiguration();
             Dictionary<CombatantBase, SpawnPointType> toReturn = new Dictionary<CombatantBase, SpawnPointType>();
 
             var heroes = combatantsGameObjects.Select(combatantObject => combatantObject.GetComponent<Hero>())
@@ -121,7 +127,7 @@ namespace Assets.Scripts.Combat
             }
             // Brutally ineffective LINQ expression, but we should not be dealing with many objects here.
             var monsters  = combatantsGameObjects.Select(combatantObject => combatantObject.GetComponent<Monster>())
-                .Where(hero => hero != null).OrderByDescending(monster => generatorConfig.MonsterRankWeights[new MonsterType(monster.Rank, monster.Role)]).ToList();
+                .Where(hero => hero != null).OrderByDescending(GetSpawnPointPriority).ToList();
             var mostDangerousSlots = spawnPoints.ContainsKey(SpawnPointType.MostPowerfulEnemy) ? spawnPoints[SpawnPointType.MostPowerfulEnemy].Count : 0;
             foreach (var monster in monsters)
             {
@@ -136,6 +142,17 @@ namespace Assets.Scripts.Combat
             }
 
             return toReturn;
+        }
+
+        private float GetSpawnPointPriority(Monster monster)
+        {
+            // As far as spawn points are concerned, leaders should always be considered the most dangerous.
+            if (monster.Role == MonsterRole.Leader)
+            {
+                return float.PositiveInfinity;
+            }
+
+            return generatorConfiguration.MonsterRankWeights[new MonsterType(monster.Rank, monster.Role)];
         }
     }
 }
