@@ -1,30 +1,33 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Permissions;
 using System.Text;
 using System.Threading.Tasks;
-using Assets.Scripts.UI;
-using GeneralAlgorithms.Algorithms.Common;
-using UnityEngine;
+using Assets.Scripts.Input;
 
 namespace Assets.Scripts.Tutorial
 {
-    public class TutorialStepSimpleMessage: TutorialStepWithMessageBoxBase
+    class TutorialStepPause : TutorialStepWithMessageBoxBase
     {
+        private PauseManager pauseManager;
+        private bool didPause;
 
         protected override void Start()
         {
             base.Start();
+            pauseManager = GetComponentInParent<TutorialController>().PauseManager;
+            pauseManager.enabled = true;
+
         }
 
         private void Update()
         {
-            if (didMessageBoxAppear && UnityEngine.Input.anyKeyDown && !completedTutorialAction)
+            if (didPause && !pauseManager.IsPausedByPlayer && !completedTutorialAction)
             {
                 completedTutorialAction = true;
                 messageBox.Hide();
             }
+            didPause = didPause || pauseManager.IsPausedByPlayer;
         }
 
         protected override void OnDestroy()

@@ -15,11 +15,26 @@ namespace Assets.Scripts.Tutorial
         public LeftClickController LeftClickController;
         [HideInInspector]
         public RightClickController RightClickController;
+        [HideInInspector]
+        public PauseManager PauseManager;
+
+        /// <summary>
+        /// If true, we should start the tutorial automatically on level load. Mainly used for testing.
+        /// </summary>
+        public bool AutoStart;
 
         private int currentTutorialStep = 0;
         private bool isTutorialActive;
 
-        public void Update()
+        private void Start()
+        {
+            if (AutoStart)
+            {
+                StartTutorial();
+            }
+        }
+
+        private void Update()
         {
             if (isTutorialActive && AllTutorialSteps[currentTutorialStep].IsTutorialStepOver())
             {
@@ -33,17 +48,20 @@ namespace Assets.Scripts.Tutorial
         {
             LeftClickController = FindObjectOfType<LeftClickController>();
             RightClickController = FindObjectOfType<RightClickController>();
+            PauseManager = FindObjectOfType<PauseManager>();
             LeftClickController.enabled = false;
             RightClickController.enabled = false;
+            PauseManager.enabled = false;
             isTutorialActive = true;
             currentTutorialStep = 0;
             ExecuteCurrentTutorialStep();
         }
 
-        public void EndTutorial()
+        private void EndTutorial()
         {
             LeftClickController.enabled = true;
             RightClickController.enabled = true;
+            PauseManager.enabled = true;
             isTutorialActive = false;
         }
 
