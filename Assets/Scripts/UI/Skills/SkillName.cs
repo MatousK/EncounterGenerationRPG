@@ -43,14 +43,18 @@ namespace Assets.Scripts.UI.Skills
             }
         }
 
+        private void Start()
+        {
+        }
+
         private void Appear()
         {
-            GetComponent<Animation>().PlayQueued("SkillNameAppear");
+            GetComponent<Animator>().SetBool("IsVisible", true);
         }
 
         private void Disappear()
         {
-            GetComponent<Animation>().PlayQueued("SkillNameDisappear");
+            GetComponent<Animator>().SetBool("IsVisible", false);
         }
     }
 }

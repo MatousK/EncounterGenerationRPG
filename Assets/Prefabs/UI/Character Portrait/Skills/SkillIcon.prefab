@@ -720,8 +720,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2562233227895450140}
   - component: {fileID: 5631534176402740443}
-  - component: {fileID: 7049233523796194439}
   - component: {fileID: 8755494458319005348}
+  - component: {fileID: 6124371919196725608}
   m_Layer: 0
   m_Name: SkillNameOverlay
   m_TagString: Untagged
@@ -760,23 +760,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5837066956289731849}
   m_CullTransparentMesh: 0
---- !u!111 &7049233523796194439
-Animation:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5837066956289731849}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 0}
-  m_Animations:
-  - {fileID: 7400000, guid: 10fc7ccd1e3bc8e44bf99522386d484d, type: 2}
-  - {fileID: 7400000, guid: 994f3f0fe0ffcb14cafa125b96796680, type: 2}
-  m_WrapMode: 0
-  m_PlayAutomatically: 0
-  m_AnimatePhysics: 0
-  m_CullingType: 0
 --- !u!114 &8755494458319005348
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -789,6 +772,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f19b8e02a9cf764aa3798a1e0b49768, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &6124371919196725608
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5837066956289731849}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b4bb94314eb0c4346b7b051e065d4751, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 2
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &8803631625587577786
 GameObject:
   m_ObjectHideFlags: 0
