@@ -2,6 +2,7 @@
 using System.Linq;
 using Assets.Scripts.Combat;
 using Assets.Scripts.Cutscenes;
+using Assets.Scripts.Environment;
 using Assets.Scripts.Movement;
 using Assets.Scripts.Sound.CharacterSounds;
 using UnityEngine;
@@ -99,6 +100,13 @@ namespace Assets.Scripts.Input
             {
                 if (hitInteractableObject)
                 {
+                    // So, what's happening here - Without this, all characters would try to use the chest, first would open it, second would apply the powerup.
+                    // And the player would not even see what it was. This is a hacky workaround to ensure that pickup and opening of chest must be separate clicks.
+                    var treasureChest = hitInteractableObject.GetComponent<TreasureChest>();
+                    if (treasureChest != null && treasureChest.IsOpened)
+                    {
+                        treasureChest.AllowPowerupPickup = true;
+                    }
                     orderType = VoiceOrderType.Move;
                     if (hitInteractableObject.IsHeroCloseToInteract(character))
                     {

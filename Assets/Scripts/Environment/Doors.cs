@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Assets.Scripts.Combat;
 using Assets.Scripts.Cutscenes;
 using Assets.Scripts.DungeonGenerator;
+using Assets.Scripts.Effects;
 using Assets.Scripts.Extension;
 using Assets.Scripts.GameFlow;
 using Assets.Scripts.Input;
@@ -154,6 +155,12 @@ namespace Assets.Scripts.Environment
             if (pathfindingMapController != null)
             {
                 UpdatePathfindingMap(pathfindingMapController.Map);
+            }
+
+            var shimmerEffect = GetComponentInChildren<InteractableObjectShimmer>();
+            if (shimmerEffect != null)
+            {
+                shimmerEffect.ObjectAlreadyUsed = IsOpened;
             }
         }
 

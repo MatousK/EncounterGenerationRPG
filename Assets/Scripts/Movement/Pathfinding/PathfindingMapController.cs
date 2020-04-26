@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 using System.Linq;
 using Assets.Scripts.Combat;
 using Assets.Scripts.Environment;
@@ -7,6 +8,7 @@ using UnityEngine.Tilemaps;
 
 namespace Assets.Scripts.Movement.Pathfinding
 {
+    [ExecuteAfter(typeof(TreasureChestManager))]
     public class PathfindingMapController: MonoBehaviour
     {
         public List<Tilemap> WalkableTilemaps;
@@ -27,6 +29,12 @@ namespace Assets.Scripts.Movement.Pathfinding
             foreach (var door in doors)
             {
                 door.UpdatePathfindingMap(Map);
+            }
+
+            var treasureChestManager = FindObjectOfType<TreasureChestManager>();
+            if (treasureChestManager != null)
+            {
+                treasureChestManager.UpdatePathfindingMap();
             }
         }
 

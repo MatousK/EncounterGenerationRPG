@@ -29,8 +29,8 @@ MonoBehaviour:
     thousand years ago.\n\nTom teamed up with two of his friends, Bob\r the Ranger
     and John the Cleric. Together they\nwould brave the dungeon, fill out surveys\r
     about their experience and hopefully they would\nget enough data to unlock the
-    secrets of the dungeon.\r\n\r\nSo they set out on their journey. They filled out
-    a short survey about their current mood and\nentered the dungeon..."
+    secrets of the dungeon.\r\n\r\nSo they checked their equipment one last time and
+    entered the dungeon, ready for whatever\nthey would find down there..."
   ExperimentGroupConfigurations:
   - ExperimentGroup: 0
     Algorithm: 0

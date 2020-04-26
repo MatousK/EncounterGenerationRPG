@@ -1,11 +1,14 @@
 ﻿using System.Linq;
 using Assets.Scripts.DungeonGenerator;
+using Assets.Scripts.Movement.Pathfinding;
 using UnityEngine;
 
 namespace Assets.Scripts.Environment
 {
-    class TreasureChestManager: MonoBehaviour
+    class TreasureChestManager : MonoBehaviour
     {
+        private bool didInitialize;
+
         void Start()
         {
             // In every room there are some treasures placed by the designer.
@@ -34,7 +37,7 @@ namespace Assets.Scripts.Environment
                     if (i < chestRoom.HealthBonusTreasureChests)
                     {
                         roomTreasureChests[i].TreasureToDrop = TreasureChestDrop.HealthBonus;
-                    } 
+                    }
                     else if (i < chestRoom.HealthBonusTreasureChests + chestRoom.DamageBonusTreasureChests)
                     {
                         roomTreasureChests[i].TreasureToDrop = TreasureChestDrop.DamageBonus;
@@ -44,6 +47,28 @@ namespace Assets.Scripts.Environment
                         roomTreasureChests[i].TreasureToDrop = TreasureChestDrop.HealingPotion;
                     }
                 }
+            }
+
+            didInitialize = true;
+            UpdatePathfindingMap();
+        }
+
+        public void UpdatePathfindingMap()
+        {
+            var pathfindingMapController = FindObjectOfType<PathfindingMapController>();
+            if (!didInitialize || pathfindingMapController == null || pathfindingMapController.Map == null)
+            {
+                return;
+            }
+
+            var map = pathfindingMapController.Map;
+            var grid = FindObjectOfType<Grid>();
+            foreach (var chest in FindObjectsOfType<TreasureChest>())
+            {
+                var coordinates = grid.WorldToCell(new Vector3(chest.transform.position.x,
+                    chest.transform.position.y,
+                    chest.transform.position.z));
+                map.SetSquareIsPassable(coordinates.x, coordinates.y, false);
             }
         }
     }

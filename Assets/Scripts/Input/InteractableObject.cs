@@ -1,5 +1,6 @@
 ﻿using System;
 using Assets.Scripts.Combat;
+using Assets.Scripts.Effects;
 using UnityEngine;
 
 namespace Assets.Scripts.Input
@@ -22,11 +23,24 @@ namespace Assets.Scripts.Input
         /// </summary>
         public event EventHandler<Hero> OnInteractionTriggered;
 
+        private InteractableObjectShimmer shimmerEffect;
         private CombatantsManager combatantsManager;
-        public void Start()
+        private void Start()
         {
             combatantsManager = FindObjectOfType<CombatantsManager>();
+            shimmerEffect = GetComponentInChildren<InteractableObjectShimmer>();
         }
+
+        private void Update()
+        {
+            if (shimmerEffect == null)
+            {
+                return;
+            }
+
+            shimmerEffect.IsNotUsableRightNow = !AllowedInCombat && combatantsManager.IsCombatActive;
+        }
+
         /// <summary>
         /// Starts the interaction with this object by the hero if possible.
         /// </summary>
