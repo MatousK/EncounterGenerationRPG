@@ -1,7 +1,9 @@
-﻿using UnityEngine;
+﻿using Assets.Scripts.Combat;
+using UnityEngine;
 
 namespace Assets.Scripts.UI
 {
+    [ExecuteAfter(typeof(CommandConfirmationIndicator))]
     public class Circle : MonoBehaviour
     {
         public bool IsVisible = true;

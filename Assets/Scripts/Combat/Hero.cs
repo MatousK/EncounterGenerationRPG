@@ -99,6 +99,7 @@ namespace Assets.Scripts.Combat
                 // Use normal attack started at the start of the method as fallback.
                 return;
             }
+            target.GetComponent<CommandConfirmationIndicator>().DisplayConfirmation();
             // We do not want multiple skills being executed simoultaneously.
             GetComponent<AutoAttacking>().AutoAttackSkill.TryStopSkill();
             EnemyTargetSkill.UseSkillOn(target);
@@ -111,6 +112,7 @@ namespace Assets.Scripts.Combat
         public virtual void AttackUsed(Monster target)
         {
             GetComponent<AutoAttacking>().Target = target;
+            target.GetComponent<CommandConfirmationIndicator>().DisplayConfirmation();
         }
 
         public virtual void FriendlySkillUsed(Hero target)
@@ -119,6 +121,7 @@ namespace Assets.Scripts.Combat
             {
                 return;
             }
+            target.GetComponent<CommandConfirmationIndicator>().DisplayConfirmation();
             GetComponent<AutoAttacking>().Target = null;
             // Using a skill on a friendly might mean moving towards said friendly.
             // In that case we probably don't want to keep on attacking
@@ -133,6 +136,7 @@ namespace Assets.Scripts.Combat
             {
                 return;
             }
+            GetComponent<CommandConfirmationIndicator>().DisplayConfirmation();
             SelfTargetSkill.ActivateSkill();
             if (SelfTargetSkill.ClearTargetAfterUsingSkill)
             {

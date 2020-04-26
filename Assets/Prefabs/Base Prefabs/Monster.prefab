@@ -23,6 +23,8 @@ MonoBehaviour:
     OutOfCombatHealthRegeneration: 20
     CombatHealthRegeneration: 0
   TotalMaxHitpoints: 100
+  MaxHitpoints: 0
+  IsInvincible: 0
   Role: 1
   Rank: 0
 --- !u!1001 &6852187155131278309
@@ -96,6 +98,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_RootOrder
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3163549686643598447, guid: 7b25ba78df82cc748811779a4a9ecc9f,
+        type: 3}
+      propertyPath: LineMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 44367c76e162d884ba41e1cafb682dd4, type: 2}
+    - target: {fileID: 3163549686643598447, guid: 7b25ba78df82cc748811779a4a9ecc9f,
+        type: 3}
+      propertyPath: IsVisible
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5102921357620900240, guid: 7b25ba78df82cc748811779a4a9ecc9f, type: 3}

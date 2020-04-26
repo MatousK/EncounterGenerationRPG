@@ -71,7 +71,7 @@ namespace Assets.Scripts.UI.Skills
 
         public void OnSkillPressed()
         {
-            var skillUsingHero = GetComponentInParent<HeroSkillsContainer>().RepresentedHero;
+             var skillUsingHero = GetComponentInParent<HeroSkillsContainer>().RepresentedHero;
             if (representedSkill is PersonalSkill personalSkill)
             {
                 skillUsingHero.SelfSkillUsed();

@@ -27,7 +27,6 @@ namespace Assets.Scripts.GameFlow
         [HideInInspector]
         public LevelGraph CurrentLevelGraph;
 
-        [HideInInspector]
         public EncounterGenerationAlgorithmType CurrentEncounterGenerationAlgorithm;
 
         [HideInInspector]

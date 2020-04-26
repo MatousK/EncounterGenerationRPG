@@ -75,6 +75,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 528afea00030cf148921a2ed70c342b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SkillIcon: {fileID: 0}
+  SkillName: 
+  SkillDescription: 
   ClearTargetAfterUsingSkill: 0
   Cooldown: 0
   Range: 1
@@ -247,6 +250,7 @@ GameObject:
   - component: {fileID: 2250345927434726146}
   - component: {fileID: 7606526776240491369}
   - component: {fileID: 2018635157946356727}
+  - component: {fileID: -4024867890444983677}
   m_Layer: 0
   m_Name: Combatant
   m_TagString: Untagged
@@ -479,6 +483,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TextTemplate: {fileID: 6766688444124071868}
   DialogText: {fileID: 6766688444124071868}
+--- !u!114 &-4024867890444983677
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3163549686643598455}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 467abba00cc3e8e4bb07c98b2b927814, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ConfirmationBlinkLength: 0.3
+  ConfirmationBlinkCount: 3
 --- !u!1 &7358270691361580619
 GameObject:
   m_ObjectHideFlags: 0
