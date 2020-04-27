@@ -63,6 +63,10 @@ namespace Assets.Scripts.Tutorial
             RightClickController.enabled = true;
             PauseManager.enabled = true;
             isTutorialActive = false;
+            foreach (var interactableObject in FindObjectsOfType<InteractableObject>())
+            {
+                interactableObject.IsInteractionDisabledByTutorial = false;
+            }
         }
 
         private void ExecuteCurrentTutorialStep()

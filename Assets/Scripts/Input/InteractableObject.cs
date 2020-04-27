@@ -15,6 +15,10 @@ namespace Assets.Scripts.Input
         /// </summary>
         public bool AllowedInCombat = false;
         /// <summary>
+        /// If true, no interaction can be triggered because the tutorial says so.
+        /// </summary>
+        public bool IsInteractionDisabledByTutorial;
+        /// <summary>
         /// How close must the character be to trigger the interaction.
         /// </summary>
         public float MaxDistanceToInteract = 1;
@@ -48,7 +52,7 @@ namespace Assets.Scripts.Input
         /// <returns>True if the interaction was successful, otherwise false.</returns>
         public bool TryInteract(Hero interactingHero)
         { 
-            if ((!AllowedInCombat && combatantsManager.IsCombatActive) || !IsHeroCloseToInteract(interactingHero))
+            if ((!AllowedInCombat && combatantsManager.IsCombatActive) || !IsHeroCloseToInteract(interactingHero) || IsInteractionDisabledByTutorial)
             {
                 return false;
             }

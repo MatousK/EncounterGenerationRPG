@@ -45,7 +45,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SkillIcon: {fileID: 21300000, guid: f1a90739ba9d17643905e4562d0affdb, type: 3}
   SkillName: Sleep
-  SkillDescription: Target will fall asleep. It will wake up in 6 seconds or when
+  SkillDescription: The target will fall asleep. It will wake up in 6 seconds or when
     he receives damage.
   ClearTargetAfterUsingSkill: 1
   Cooldown: 10

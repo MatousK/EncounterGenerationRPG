@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Assets.Scripts.Tutorial;
+using UnityEngine;
 
 namespace Assets.Scripts.Combat.Skills.Character.Cleric
 {
@@ -77,6 +78,11 @@ namespace Assets.Scripts.Combat.Skills.Character.Cleric
         {
             AuraInstance.SetActive(true);
             HealPulse();
+            var selfSkillTutorial = FindObjectOfType<TutorialStepSelfSkills>();
+            if (selfSkillTutorial != null)
+            {
+                selfSkillTutorial.HealingAuraUsed();
+            }
         }
 
         protected override void OnPersonalSkillStopped()

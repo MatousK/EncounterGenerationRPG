@@ -17,6 +17,10 @@ namespace Assets.Scripts.Tutorial
             base.Start();
             pauseManager = GetComponentInParent<TutorialController>().PauseManager;
             pauseManager.enabled = true;
+            foreach (var interactableObject in FindObjectsOfType<InteractableObject>())
+            {
+                interactableObject.IsInteractionDisabledByTutorial = true;
+            }
 
         }
 

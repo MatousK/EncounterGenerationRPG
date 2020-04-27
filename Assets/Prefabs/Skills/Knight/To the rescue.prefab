@@ -44,10 +44,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SkillIcon: {fileID: 21300000, guid: 4ae522b75d3acb74db5ec33a19ad0829, type: 3}
-  SkillName: To the Rescue!
+  SkillName: To The Rescue!
   SkillDescription: Knight very quickly retreats to the targeted ally, wherever he
     may happen to be. Once he gets near enough, he will immediately shout to draw
-    attention of nearby enemies for 5 seconds, hopefully saving the ally from danger.
+    the attention of nearby enemies for 5 seconds, hopefully saving the ally from
+    danger.
   ClearTargetAfterUsingSkill: 0
   Cooldown: 10
   Range: 3.4028235e+38

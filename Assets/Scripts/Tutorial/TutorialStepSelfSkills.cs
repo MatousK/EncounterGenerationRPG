@@ -4,25 +4,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Assets.Scripts.Combat;
-using Assets.Scripts.Environment;
 
 namespace Assets.Scripts.Tutorial
 {
-    class TutorialStepRightClick : TutorialStepWithMessageBoxBase
+    class TutorialStepSelfSkills : TutorialStepWithMessageBoxBase
     {
-        private Doors[] allDoors;
         protected override void Start()
         {
             base.Start();
-            GetComponentInParent<TutorialController>().LeftClickController.enabled = true;
-            GetComponentInParent<TutorialController>().RightClickController.enabled = true;
-            allDoors = FindObjectsOfType<Doors>();
 
         }
 
-        private void Update()
+        public void HealingAuraUsed()
         {
-            if (!completedTutorialAction && allDoors.Any(door => door.IsOpened))
+            if (!completedTutorialAction)
             {
                 messageBox.Hide();
                 completedTutorialAction = true;

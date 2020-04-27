@@ -44,9 +44,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SkillIcon: {fileID: 21300000, guid: e7f339f6c3509de439dbed93ed34558e, type: 3}
-  SkillName: Sniper shot
-  SkillDescription: The ranger fires a powerfull shot at an enemy. The shot deals
-    quadruple damage and has much greater range than usual.
+  SkillName: Sniper Shot
+  SkillDescription: The ranger fires a powerful shot at an enemy. The shot deals quadruple
+    damage and has much greater range than usual.
   ClearTargetAfterUsingSkill: 0
   Cooldown: 15
   Range: 15

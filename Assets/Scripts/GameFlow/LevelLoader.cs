@@ -144,7 +144,7 @@ namespace Assets.Scripts.GameFlow
                     break;
             }
             CurrentLevelGraph = level.PossibleLevelGraphs.GetRandomElementOrDefault();
-            animationComponent.Play();
+            animationComponent.Play(PlayMode.StopAll);
         }
 
         public void FadeOutDone()
@@ -155,8 +155,9 @@ namespace Assets.Scripts.GameFlow
         public void LevelLoadComplete()
         {
             var tutorialController = FindObjectOfType<TutorialController>();
-            if (tutorialController != null)
+            if (tutorialController != null && !didShowTutorial)
             {
+                didShowTutorial = true;
                 tutorialController.StartTutorial();
             }
         }

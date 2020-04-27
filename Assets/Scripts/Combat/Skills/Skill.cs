@@ -23,6 +23,7 @@ namespace Assets.Scripts.Combat.Skills
         /// <summary>
         /// The description of the skill to be shown in the user interface.
         /// </summary>
+        [TextArea(3,6)]
         public string SkillDescription;
         /// <summary>
         /// If true, after using this skill the target of the combatant will be cleared no matter what else.

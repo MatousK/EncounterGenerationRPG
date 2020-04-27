@@ -66,7 +66,7 @@ namespace Assets.Scripts.UI.Skills
 
             Frame.sprite = frameSprite;
 
-            SkillNameWidget.Text = skill.name;
+            SkillNameWidget.Text = skill.SkillName;
         }
 
         public void OnSkillPressed()
@@ -107,7 +107,7 @@ namespace Assets.Scripts.UI.Skills
         {
             if (eventData.button == PointerEventData.InputButton.Right)
             {
-                FindObjectOfType<SkillDescriptionOverlay>().Show(representedSkill.name, representedSkill.SkillDescription,
+                FindObjectOfType<SkillDescriptionOverlay>().Show(representedSkill.SkillName, representedSkill.SkillDescription,
                     representedSkill.Cooldown);
             }
         }

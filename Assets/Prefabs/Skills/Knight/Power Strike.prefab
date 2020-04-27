@@ -46,8 +46,8 @@ MonoBehaviour:
   SkillIcon: {fileID: 21300000, guid: 2c7fbfc444946e7409f62f6dee89d58a, type: 3}
   SkillName: Power Strike
   SkillDescription: Deal a powerful blow to the target enemy. The attack will deal
-    double damage, knock back enemy and briefly stun him. The target will be so enraged
-    by this that he will then focus on the Knight for the next 4 seconds.
+    double damage, knock back the enemy and briefly stun him. The target will be so
+    enraged by this that he will then focus on the knight for the next 4 seconds.
   ClearTargetAfterUsingSkill: 0
   Cooldown: 5
   Range: 1

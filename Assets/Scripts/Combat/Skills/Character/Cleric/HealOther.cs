@@ -1,4 +1,5 @@
 ﻿using System;
+using Assets.Scripts.Tutorial;
 
 namespace Assets.Scripts.Combat.Skills.Character.Cleric
 {
@@ -20,6 +21,11 @@ namespace Assets.Scripts.Combat.Skills.Character.Cleric
         {
             Target.HealDamage(HealPercentage * Target.TotalMaxHitpoints, SelfCombatant);
             base.ApplySkillEffects(sender, e);
+            var tutorialStep = FindObjectOfType<TutorialStepAllySkills>();
+            if (tutorialStep != null)
+            {
+                tutorialStep.HealOtherUsed();
+            }
         }
     }
 }
