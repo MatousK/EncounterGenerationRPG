@@ -67,7 +67,7 @@ namespace Assets.Scripts.Combat.Skills.Character.Cleric
                     float healPulseAmount = ally.TotalMaxHitpoints * HealPulsePercentage;
                     if (ally == SelfCombatant)
                     {
-                        healPulseAmount /= SelfHealingModifier;
+                        healPulseAmount *= SelfHealingModifier;
                     }
                     ally.HealDamage(healPulseAmount, SelfCombatant);
                 }
