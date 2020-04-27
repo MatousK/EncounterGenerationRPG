@@ -19,6 +19,7 @@ namespace Assets.Scripts.DungeonGenerator
     [Serializable]
     public class RoomInfo
     {
+        public bool IsBossFight;
         public List<GameObject> StaticMonsters;
         public EncounterConfiguration RoomEncounter;
         public int HealthBonusTreasureChests;

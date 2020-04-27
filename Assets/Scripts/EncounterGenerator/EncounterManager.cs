@@ -77,6 +77,8 @@ namespace Assets.Scripts.EncounterGenerator
                 // Room got changed to not explored, does not really interest us.
                 return;
             }
+
+            combatantsManager.IsBossFight = exploredRoom.IsBossFight;
             var allHeroes = combatantsManager.PlayerCharacters;
             var partyDefinition = new PartyDefinition { PartyMembers = allHeroes };
             List<GameObject> encounter;

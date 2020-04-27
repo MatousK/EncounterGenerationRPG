@@ -34,11 +34,12 @@ MonoBehaviour:
   serializedGuid: 00000000000000000000000000000000
   EncounterConfiguration: {fileID: 11400000, guid: 8ced9e8da8e135349b8a1f7a05004946,
     type: 2}
-  HealingPotionChests: 0
+  HealingPotionChests: 4
   HealthBonusChests: 1
   DamageBonusChests: 1
   StaticMonsters:
   - {fileID: 2845431260059686297, guid: fda3090ec6ef78544b57fc2140ac15fe, type: 3}
+  IsBossRoom: 1
 --- !u!114 &-2203604822696036272
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -64,6 +65,7 @@ MonoBehaviour:
   StaticMonsters:
   - {fileID: 1243533878233351848, guid: 150c5cb37d986f34384f066d892d0649, type: 3}
   - {fileID: 6961181293527521668, guid: 4052e242196b5de4681e947c2d01b791, type: 3}
+  IsBossRoom: 0
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -137,6 +139,7 @@ MonoBehaviour:
   - {fileID: 6961181293527521668, guid: 38c98553960f32a4885ccff07f99573b, type: 3}
   - {fileID: 6961181293527521668, guid: 9b86d2a477f75ea4ab93c91a14dc9c9c, type: 3}
   - {fileID: 6961181293527521668, guid: df6b62d5c9912df4e866a0bcf3592a6a, type: 3}
+  IsBossRoom: 0
 --- !u!114 &4049651922802741605
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -163,6 +166,7 @@ MonoBehaviour:
   - {fileID: 6961181293527521668, guid: ede1348956f9cb545a90d54a2ff1cb70, type: 3}
   - {fileID: 6961181293527521668, guid: ede1348956f9cb545a90d54a2ff1cb70, type: 3}
   - {fileID: 6961181293527521668, guid: ec396d0f01d1a8f4684646bba9298f23, type: 3}
+  IsBossRoom: 0
 --- !u!114 &5106325721308610033
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -201,6 +205,7 @@ MonoBehaviour:
   HealthBonusChests: 0
   DamageBonusChests: 0
   StaticMonsters: []
+  IsBossRoom: 0
 --- !u!114 &8596892827259303040
 MonoBehaviour:
   m_ObjectHideFlags: 0

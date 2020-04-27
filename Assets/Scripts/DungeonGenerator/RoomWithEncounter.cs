@@ -30,5 +30,9 @@ namespace Assets.Scripts.DungeonGenerator
         /// If matrix based generator is disabled, these monsters should spawn here.
         /// </summary>
         public List<GameObject> StaticMonsters;
+        /// <summary>
+        /// If true, this encounter should be considered to be a boss fight.
+        /// </summary>
+        public bool IsBossRoom;
     }
 }

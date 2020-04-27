@@ -70,10 +70,16 @@ namespace Assets.Scripts.Sound.Music
             PlayBackgroundMusic();
         }
 
-        private void CombatantsManager_CombatStarted(object sender, EventArgs e)
+        private void CombatantsManager_CombatStarted(object sender, CombatStartedEventArgs e)
         {
-            // TODO: Play bossfight music if in bossfight.
-            transitionManger.PlayMusicClip(MusicClips.CombatMusic.GetRandomElementOrDefault());
+            if (e.IsBossFight)
+            {
+                transitionManger.PlayMusicClip(MusicClips.BossFightMusic.GetRandomElementOrDefault());
+            }
+            else
+            {
+                transitionManger.PlayMusicClip(MusicClips.CombatMusic.GetRandomElementOrDefault());
+            }
         }
 
         private void PlayBackgroundMusic()

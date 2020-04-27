@@ -10,12 +10,13 @@ namespace Assets.Scripts.Combat
     {
         public List<Monster> Enemies = new List<Monster>();
         public List<Hero> PlayerCharacters = new List<Hero>();
-        public event EventHandler CombatStarted;
+        public event EventHandler<CombatStartedEventArgs> CombatStarted;
         public event EventHandler CombatOver;
 
         private bool lastFrameCombatActive = false;
         private GameStateManager gameStateManager;
         public bool IsCombatActive => Enemies.Any();
+        public bool IsBossFight;
 
         private void Start()
         {
@@ -30,7 +31,7 @@ namespace Assets.Scripts.Combat
         {
             if (!lastFrameCombatActive && IsCombatActive)
             {
-                CombatStarted?.Invoke(this, new EventArgs());
+                CombatStarted?.Invoke(this, new CombatStartedEventArgs {IsBossFight = IsBossFight});
             }
             if (lastFrameCombatActive && !IsCombatActive)
             {
@@ -107,5 +108,10 @@ namespace Assets.Scripts.Combat
             }
             Enemies.Clear();
         }
+    }
+
+    public class CombatStartedEventArgs : EventArgs
+    {
+        public bool IsBossFight;
     }
 }

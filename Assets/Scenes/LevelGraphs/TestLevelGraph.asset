@@ -23,6 +23,7 @@ MonoBehaviour:
   HealthBonusChests: 0
   DamageBonusChests: 1
   StaticMonsters: []
+  IsBossRoom: 0
 --- !u!114 &-8542592930693778513
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -46,6 +47,7 @@ MonoBehaviour:
   HealthBonusChests: 1
   DamageBonusChests: 1
   StaticMonsters: []
+  IsBossRoom: 0
 --- !u!114 &-8517353724990951573
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -83,6 +85,7 @@ MonoBehaviour:
   HealthBonusChests: 0
   DamageBonusChests: 0
   StaticMonsters: []
+  IsBossRoom: 0
 --- !u!114 &-8066856152148563883
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -120,6 +123,7 @@ MonoBehaviour:
   HealthBonusChests: 0
   DamageBonusChests: 0
   StaticMonsters: []
+  IsBossRoom: 0
 --- !u!114 &-4633550302470200555
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -144,6 +148,7 @@ MonoBehaviour:
   HealthBonusChests: 0
   DamageBonusChests: 0
   StaticMonsters: []
+  IsBossRoom: 0
 --- !u!114 &-3930603652926717094
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -196,6 +201,7 @@ MonoBehaviour:
   HealthBonusChests: 1
   DamageBonusChests: 1
   StaticMonsters: []
+  IsBossRoom: 1
 --- !u!114 &-383646540370159587
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -286,6 +292,7 @@ MonoBehaviour:
   HealthBonusChests: 1
   DamageBonusChests: 0
   StaticMonsters: []
+  IsBossRoom: 0
 --- !u!114 &4861211084081388202
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -323,3 +330,4 @@ MonoBehaviour:
   HealthBonusChests: 0
   DamageBonusChests: 0
   StaticMonsters: []
+  IsBossRoom: 0

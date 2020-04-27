@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: Room
-  Position: {x: 305, y: 318}
+  Position: {x: 266, y: 452}
   RoomTemplateSets: []
   IndividualRoomTemplates: []
   serializedGuid: 00000000000000000000000000000000
@@ -23,6 +23,7 @@ MonoBehaviour:
   HealthBonusChests: 1
   DamageBonusChests: 1
   StaticMonsters: []
+  IsBossRoom: 0
 --- !u!114 &-8066856152148563883
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -78,7 +79,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: Room
-  Position: {x: 327, y: 99}
+  Position: {x: 288, y: 233}
   RoomTemplateSets: []
   IndividualRoomTemplates: []
   serializedGuid: 00000000000000000000000000000000
@@ -88,6 +89,7 @@ MonoBehaviour:
   HealthBonusChests: 0
   DamageBonusChests: 0
   StaticMonsters: []
+  IsBossRoom: 0
 --- !u!114 &-4633550302470200555
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -101,7 +103,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: Start - brc204d.png
-  Position: {x: 256, y: -65}
+  Position: {x: 217, y: 69}
   RoomTemplateSets: []
   IndividualRoomTemplates:
   - {fileID: 6966731523498046389, guid: b3cd70b78369f7447acd01a745b94291, type: 3}
@@ -112,6 +114,7 @@ MonoBehaviour:
   HealthBonusChests: 0
   DamageBonusChests: 0
   StaticMonsters: []
+  IsBossRoom: 0
 --- !u!114 &-798736707534439380
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -125,7 +128,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: Boss
-  Position: {x: 637, y: 332}
+  Position: {x: 598, y: 466}
   RoomTemplateSets: []
   IndividualRoomTemplates:
   - {fileID: 7563476935698307696, guid: a2c66dd2e83afb449b465953854129c0, type: 3}
@@ -136,6 +139,7 @@ MonoBehaviour:
   HealthBonusChests: 1
   DamageBonusChests: 1
   StaticMonsters: []
+  IsBossRoom: 1
 --- !u!114 &-383646540370159587
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -216,7 +220,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: CrossRoads
-  Position: {x: 408, y: 320}
+  Position: {x: 369, y: 454}
   RoomTemplateSets: []
   IndividualRoomTemplates:
   - {fileID: 6401141074986927710, guid: 5914e44733458a84e9322e0dfe64cfe9, type: 3}
@@ -227,6 +231,7 @@ MonoBehaviour:
   HealthBonusChests: 0
   DamageBonusChests: 0
   StaticMonsters: []
+  IsBossRoom: 0
 --- !u!114 &3489550063581021364
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -254,7 +259,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: Room
-  Position: {x: 410, y: 399}
+  Position: {x: 371, y: 533}
   RoomTemplateSets: []
   IndividualRoomTemplates: []
   serializedGuid: 00000000000000000000000000000000
@@ -264,6 +269,7 @@ MonoBehaviour:
   HealthBonusChests: 1
   DamageBonusChests: 1
   StaticMonsters: []
+  IsBossRoom: 0
 --- !u!114 &4413102936469239995
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -291,7 +297,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: Room
-  Position: {x: 319, y: 22}
+  Position: {x: 280, y: 156}
   RoomTemplateSets: []
   IndividualRoomTemplates: []
   serializedGuid: 00000000000000000000000000000000
@@ -301,6 +307,7 @@ MonoBehaviour:
   HealthBonusChests: 0
   DamageBonusChests: 0
   StaticMonsters: []
+  IsBossRoom: 0
 --- !u!114 &7816928254941982249
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -314,7 +321,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: Room
-  Position: {x: 522, y: 321}
+  Position: {x: 483, y: 455}
   RoomTemplateSets: []
   IndividualRoomTemplates: []
   serializedGuid: 00000000000000000000000000000000
@@ -324,3 +331,4 @@ MonoBehaviour:
   HealthBonusChests: 0
   DamageBonusChests: 0
   StaticMonsters: []
+  IsBossRoom: 0
