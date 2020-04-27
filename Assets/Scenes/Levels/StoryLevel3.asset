@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd2dc783fcdf0d149986347be4f3e720, type: 3}
   m_Name: StoryLevel3
   m_EditorClassIdentifier: 
+  UseAlternateDoorColors: 1
+  AdjustMatrixForStaticEncounters: 0
   ShouldRestoreAfterTutorialStats: 1
   Type: 0
   PossibleLevelGraphs:

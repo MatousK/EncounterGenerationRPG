@@ -32,6 +32,11 @@ namespace Assets.Scripts.GameFlow
 
         [HideInInspector]
         public bool AdjustMatrixForStaticEncounters;
+        /// <summary>
+        /// If true, doors use an alternate set of colors to specify difficulty. Used for phase II of the experiment.
+        /// </summary>
+        [HideInInspector]
+        public bool UseAlternateDoorColors;
 
         public SceneType CurrentSceneType;
         private AbTestingManager abTestingManager;
@@ -102,6 +107,7 @@ namespace Assets.Scripts.GameFlow
                 level.ExperimentGroupConfigurations.First(config => config.ExperimentGroup == experimentGroup);
             CurrentEncounterGenerationAlgorithm = experimentConfiguration.Algorithm;
             AdjustMatrixForStaticEncounters = level.AdjustMatrixForStaticEncounters;
+            UseAlternateDoorColors = level.UseAlternateDoorColors;
             var surveyLink = experimentConfiguration.SurveyLink;
             if (level.IntroTexts?.Any() == true || !string.IsNullOrEmpty(surveyLink))
             {

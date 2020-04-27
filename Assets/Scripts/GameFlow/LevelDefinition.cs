@@ -12,6 +12,13 @@ namespace Assets.Scripts.GameFlow
     [CreateAssetMenu(menuName = "Encounter generator/Level Definition", fileName = "LevelDefinition")]
     public class LevelDefinition: ScriptableObject
     {
+        /// <summary>
+        /// If true, doors should use alternate colors to specify difficulty. 
+        /// </summary>
+        public bool UseAlternateDoorColors;
+        /// <summary>
+        /// If true, difficulty matrix will be updated even for static encounters. If false, only generated encounters will have an effect on the matrix.
+        /// </summary>
         public bool AdjustMatrixForStaticEncounters;
         /// <summary>
         /// If true, at the beginning of this level we should use stats from after the tutorial instead of after the previous level.

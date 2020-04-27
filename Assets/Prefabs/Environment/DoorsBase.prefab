@@ -81,13 +81,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DifficultyIndicators:
-  - Color: {r: 0.002625496, g: 0.5566038, b: 0.002625496, a: 1}
+  - Color: {r: 0, g: 0.07107735, b: 1, a: 1}
     EncounterDifficulty: {fileID: 11400000, guid: 91eac3cb714c5134aa33eedd1051d97d,
       type: 2}
-  - Color: {r: 1, g: 0.58190876, b: 0, a: 1}
+  - Color: {r: 0, g: 1, b: 1, a: 1}
     EncounterDifficulty: {fileID: 11400000, guid: 230035813f58e5a4ab88a649e79312d7,
       type: 2}
-  - Color: {r: 0.6037736, g: 0, b: 0, a: 1}
+  - Color: {r: 0.6886792, g: 0.022739422, b: 0.6886792, a: 1}
+    EncounterDifficulty: {fileID: 11400000, guid: a97b810d578d52242b8efa8855ded09a,
+      type: 2}
+  AlternateDifficultyIndicators:
+  - Color: {r: 1, g: 0.051886797, b: 0.49244764, a: 1}
+    EncounterDifficulty: {fileID: 11400000, guid: 91eac3cb714c5134aa33eedd1051d97d,
+      type: 2}
+  - Color: {r: 0.39607844, g: 0.2627451, b: 0.12941177, a: 1}
+    EncounterDifficulty: {fileID: 11400000, guid: 230035813f58e5a4ab88a649e79312d7,
+      type: 2}
+  - Color: {r: 0.6649475, g: 0.7075472, b: 0.32373622, a: 1}
     EncounterDifficulty: {fileID: 11400000, guid: a97b810d578d52242b8efa8855ded09a,
       type: 2}
 --- !u!61 &6270284007452589285
@@ -129,6 +139,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AllowedInCombat: 0
+  IsInteractionDisabledByTutorial: 0
   MaxDistanceToInteract: 2
 --- !u!114 &3983488930421707472
 MonoBehaviour:
