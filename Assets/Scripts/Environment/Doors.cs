@@ -113,7 +113,7 @@ namespace Assets.Scripts.Environment
             {
                 if (!roomsLayout.Rooms[roomIndex].IsExplored)
                 {
-                    roomsLayout.Rooms[roomIndex].SetRoomExplored(this);
+                    roomsLayout.Rooms[roomIndex].SetRoomExplored(true, this);
                     var openDoorsCutscene = cutsceneManager.InstantiateCutscene<EnterRoomCutscene>();
                     openDoorsCutscene.DoorOpener = doorOpener;
                     openDoorsCutscene.EnteredRoom = roomsLayout.Rooms[roomIndex];
