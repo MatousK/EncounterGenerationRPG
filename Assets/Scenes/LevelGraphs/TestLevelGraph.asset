@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: Room
-  Position: {x: 306, y: 172}
+  Position: {x: 282, y: 185}
   RoomTemplateSets: []
   IndividualRoomTemplates: []
   serializedGuid: 00000000000000000000000000000000
@@ -22,7 +22,11 @@ MonoBehaviour:
   HealingPotionChests: 2
   HealthBonusChests: 0
   DamageBonusChests: 1
-  StaticMonsters: []
+  StaticMonsters:
+  - {fileID: 6961181293527521668, guid: 98f826d988cc86b4288192cb22d42b66, type: 3}
+  - {fileID: 1243533878233351848, guid: 2c88cf0381da6c94ea1c6bd24eab23f0, type: 3}
+  - {fileID: 1243533878233351848, guid: 18ffb86f5ade7f240b4728b341d0a97e, type: 3}
+  - {fileID: 1243533878233351848, guid: 150c5cb37d986f34384f066d892d0649, type: 3}
   IsBossRoom: 0
 --- !u!114 &-8542592930693778513
 MonoBehaviour:
@@ -37,7 +41,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: Room
-  Position: {x: 538, y: 404}
+  Position: {x: 514, y: 417}
   RoomTemplateSets: []
   IndividualRoomTemplates: []
   serializedGuid: 00000000000000000000000000000000
@@ -46,7 +50,9 @@ MonoBehaviour:
   HealingPotionChests: 1
   HealthBonusChests: 1
   DamageBonusChests: 1
-  StaticMonsters: []
+  StaticMonsters:
+  - {fileID: 2845431260059686297, guid: 1478976e61f5a204abdf9d3660cdf7d9, type: 3}
+  - {fileID: 6961181293527521668, guid: df6b62d5c9912df4e866a0bcf3592a6a, type: 3}
   IsBossRoom: 0
 --- !u!114 &-8517353724990951573
 MonoBehaviour:
@@ -75,7 +81,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: Room
-  Position: {x: 422, y: 277}
+  Position: {x: 398, y: 290}
   RoomTemplateSets: []
   IndividualRoomTemplates: []
   serializedGuid: 00000000000000000000000000000000
@@ -84,7 +90,18 @@ MonoBehaviour:
   HealingPotionChests: 1
   HealthBonusChests: 0
   DamageBonusChests: 0
-  StaticMonsters: []
+  StaticMonsters:
+  - {fileID: 6961181293527521668, guid: 38c98553960f32a4885ccff07f99573b, type: 3}
+  - {fileID: 6961181293527521668, guid: 04ba61a0644d1934ea5aece19287f12c, type: 3}
+  - {fileID: 6961181293527521668, guid: 04ba61a0644d1934ea5aece19287f12c, type: 3}
+  - {fileID: 6961181293527521668, guid: 04ba61a0644d1934ea5aece19287f12c, type: 3}
+  - {fileID: 6961181293527521668, guid: 04ba61a0644d1934ea5aece19287f12c, type: 3}
+  - {fileID: 6961181293527521668, guid: 04ba61a0644d1934ea5aece19287f12c, type: 3}
+  - {fileID: 6961181293527521668, guid: 0ccc85672ac80b74e824b886a3445024, type: 3}
+  - {fileID: 6961181293527521668, guid: 0ccc85672ac80b74e824b886a3445024, type: 3}
+  - {fileID: 6961181293527521668, guid: 0ccc85672ac80b74e824b886a3445024, type: 3}
+  - {fileID: 6961181293527521668, guid: 0ccc85672ac80b74e824b886a3445024, type: 3}
+  - {fileID: 6961181293527521668, guid: 0ccc85672ac80b74e824b886a3445024, type: 3}
   IsBossRoom: 0
 --- !u!114 &-8066856152148563883
 MonoBehaviour:
@@ -113,7 +130,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: Room
-  Position: {x: 424, y: 175}
+  Position: {x: 400, y: 188}
   RoomTemplateSets: []
   IndividualRoomTemplates: []
   serializedGuid: 00000000000000000000000000000000
@@ -122,7 +139,11 @@ MonoBehaviour:
   HealingPotionChests: 3
   HealthBonusChests: 0
   DamageBonusChests: 0
-  StaticMonsters: []
+  StaticMonsters:
+  - {fileID: 1243533878233351848, guid: 14cdda24c43268049bd9ab7ec0a4269d, type: 3}
+  - {fileID: 6961181293527521668, guid: ec396d0f01d1a8f4684646bba9298f23, type: 3}
+  - {fileID: 1243533878233351848, guid: 2c88cf0381da6c94ea1c6bd24eab23f0, type: 3}
+  - {fileID: 6961181293527521668, guid: 9b86d2a477f75ea4ab93c91a14dc9c9c, type: 3}
   IsBossRoom: 0
 --- !u!114 &-4633550302470200555
 MonoBehaviour:
@@ -137,7 +158,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: Start
-  Position: {x: 411, y: 541}
+  Position: {x: 387, y: 554}
   RoomTemplateSets: []
   IndividualRoomTemplates:
   - {fileID: 6966731523498046389, guid: b3cd70b78369f7447acd01a745b94291, type: 3}
@@ -190,7 +211,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: Boss
-  Position: {x: 438, y: 72}
+  Position: {x: 414, y: 85}
   RoomTemplateSets: []
   IndividualRoomTemplates:
   - {fileID: 7563476935698307696, guid: a2c66dd2e83afb449b465953854129c0, type: 3}
@@ -200,7 +221,17 @@ MonoBehaviour:
   HealingPotionChests: 2
   HealthBonusChests: 1
   DamageBonusChests: 1
-  StaticMonsters: []
+  StaticMonsters:
+  - {fileID: 6961181293527521668, guid: 38c98553960f32a4885ccff07f99573b, type: 3}
+  - {fileID: 6961181293527521668, guid: ede1348956f9cb545a90d54a2ff1cb70, type: 3}
+  - {fileID: 6961181293527521668, guid: ede1348956f9cb545a90d54a2ff1cb70, type: 3}
+  - {fileID: 6961181293527521668, guid: 4052e242196b5de4681e947c2d01b791, type: 3}
+  - {fileID: 6961181293527521668, guid: 9b86d2a477f75ea4ab93c91a14dc9c9c, type: 3}
+  - {fileID: 6961181293527521668, guid: 04ba61a0644d1934ea5aece19287f12c, type: 3}
+  - {fileID: 6961181293527521668, guid: ab2b41f41f365c944bea5df85709d2d2, type: 3}
+  - {fileID: 6961181293527521668, guid: 0ccc85672ac80b74e824b886a3445024, type: 3}
+  - {fileID: 6961181293527521668, guid: 04ba61a0644d1934ea5aece19287f12c, type: 3}
+  - {fileID: 6961181293527521668, guid: 0ccc85672ac80b74e824b886a3445024, type: 3}
   IsBossRoom: 1
 --- !u!114 &-383646540370159587
 MonoBehaviour:
@@ -282,7 +313,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: Room
-  Position: {x: 583, y: 180}
+  Position: {x: 559, y: 193}
   RoomTemplateSets: []
   IndividualRoomTemplates: []
   serializedGuid: 00000000000000000000000000000000
@@ -291,7 +322,11 @@ MonoBehaviour:
   HealingPotionChests: 1
   HealthBonusChests: 1
   DamageBonusChests: 0
-  StaticMonsters: []
+  StaticMonsters:
+  - {fileID: 1243533878233351848, guid: 18ffb86f5ade7f240b4728b341d0a97e, type: 3}
+  - {fileID: 6961181293527521668, guid: ede1348956f9cb545a90d54a2ff1cb70, type: 3}
+  - {fileID: 6961181293527521668, guid: ede1348956f9cb545a90d54a2ff1cb70, type: 3}
+  - {fileID: 6961181293527521668, guid: ec396d0f01d1a8f4684646bba9298f23, type: 3}
   IsBossRoom: 0
 --- !u!114 &4861211084081388202
 MonoBehaviour:
@@ -320,7 +355,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: Room
-  Position: {x: 412, y: 402}
+  Position: {x: 386, y: 416}
   RoomTemplateSets: []
   IndividualRoomTemplates: []
   serializedGuid: 00000000000000000000000000000000
@@ -329,5 +364,9 @@ MonoBehaviour:
   HealingPotionChests: 1
   HealthBonusChests: 0
   DamageBonusChests: 0
-  StaticMonsters: []
+  StaticMonsters:
+  - {fileID: 6961181293527521668, guid: 9b86d2a477f75ea4ab93c91a14dc9c9c, type: 3}
+  - {fileID: 6961181293527521668, guid: 9b86d2a477f75ea4ab93c91a14dc9c9c, type: 3}
+  - {fileID: 6961181293527521668, guid: 4052e242196b5de4681e947c2d01b791, type: 3}
+  - {fileID: 6961181293527521668, guid: 4052e242196b5de4681e947c2d01b791, type: 3}
   IsBossRoom: 0
