@@ -82,14 +82,14 @@ namespace Assets.Scripts.Cutscenes
             {
                 return heroSpawnPoint.transform.position;
             }
-            // Bit complicated - basically we want the heroes to get in a formation where the character who opened doors is three spaces away from the doors in the diraction he came.
+            // Bit complicated - basically we want the heroes to get in a formation where the knight is three spaces away from the doors in the direction the party came.
             // The other ones should be only two spaces from the doors, also in the direction from which we came.
             // And as for the other axis (y for horizontal movement and x for vertical movement), we always move in the positive direction if possible.
             // For the second character in the back row this is not possible, as the first one is already there.
             var doorsPosition = OpenedDoors.transform.position;
             float mainAxisMovement;
             float crossAxisMovement;
-            if (hero == DoorOpener)
+            if (hero.HeroProfession == HeroProfession.Knight)
             {
                 mainAxisMovement = 3f;
                 crossAxisMovement = 0.5f;
@@ -103,10 +103,10 @@ namespace Assets.Scripts.Cutscenes
             switch (OpenedDoors.Orientation)
             {
                 case DoorOrientation.Horizontal:
-                    mainAxisMovement *= hero.transform.position.x < doorsPosition.x ? 1f : -1f;
+                    mainAxisMovement *= DoorOpener.transform.position.x < doorsPosition.x ? 1f : -1f;
                     return new Vector2(doorsPosition.x + mainAxisMovement, doorsPosition.y + crossAxisMovement);
                 case DoorOrientation.Vertical:
-                    mainAxisMovement *= hero.transform.position.y < doorsPosition.y ? 1.0f : -1.0f;
+                    mainAxisMovement *= DoorOpener.transform.position.y < doorsPosition.y ? 1.0f : -1.0f;
                     return new Vector2(doorsPosition.x + crossAxisMovement, doorsPosition.y + mainAxisMovement);
             }
             throw new ArgumentException("Door orientation invalid.");
