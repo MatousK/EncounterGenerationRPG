@@ -76,6 +76,18 @@ namespace Assets.Scripts.GameFlow
             LoadLevelWithIntro(FreePlayLevel);
         }
 
+        public void OpenCredits()
+        {
+            CurrentSceneType = SceneType.Credits;
+            SceneManager.LoadScene("Credits");
+        }
+
+        public void OpenMainMenu()
+        {
+            CurrentSceneType = SceneType.MainMenu;
+            SceneManager.LoadScene("MainMenu");
+        }
+
         public void LoadNextLevel()
         {
             if (isPlayingStoryMode)

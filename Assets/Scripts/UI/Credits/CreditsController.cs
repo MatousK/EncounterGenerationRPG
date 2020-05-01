@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Assets.Scripts.Analytics;
 using Assets.Scripts.GameFlow;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Assets.Scripts.UI.Credits
 {
@@ -18,7 +19,8 @@ namespace Assets.Scripts.UI.Credits
             {
                 analyticsService.ResetGuid();
             }
-            FindObjectOfType<LevelLoader>().LoadNextLevel();
+
+            FindObjectOfType<LevelLoader>().OpenMainMenu();
         }
     }
 }

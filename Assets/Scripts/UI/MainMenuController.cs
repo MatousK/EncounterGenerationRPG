@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Assets.Scripts.GameFlow;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Assets.Scripts.UI
 {
@@ -29,7 +30,7 @@ namespace Assets.Scripts.UI
 
         public void ShowCredits()
         {
-
+            levelLoader.OpenCredits();
         }
 
         public void Exit()
