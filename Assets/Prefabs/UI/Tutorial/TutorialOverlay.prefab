@@ -51,6 +51,8 @@ RectTransform:
   - {fileID: 1260339499972308370}
   - {fileID: 6770018060899303194}
   - {fileID: 8093822632886771181}
+  - {fileID: 4896463074368038386}
+  - {fileID: 519461887003343791}
   - {fileID: 8113992702533466087}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -80,6 +82,8 @@ MonoBehaviour:
   - {fileID: 3226660834262984569}
   - {fileID: 5796531783343887379}
   - {fileID: 4530741786029753593}
+  - {fileID: 5947911227006527138}
+  - {fileID: 1974336177149804266}
   - {fileID: 4872911303042608424}
   LeftClickController: {fileID: 0}
   RightClickController: {fileID: 0}
@@ -124,6 +128,54 @@ MonoBehaviour:
 
 
     Try pausing and unpausing the game now.'
+--- !u!1 &4874737131324083953
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 519461887003343791}
+  - component: {fileID: 1974336177149804266}
+  m_Layer: 5
+  m_Name: TutorialStepWaitForCombatOver
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &519461887003343791
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4874737131324083953}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5431768112997203443}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1974336177149804266
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4874737131324083953}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f851abe948fa1c419f88f8fd8fc1f09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &5749114528293638383
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -143,7 +195,7 @@ MonoBehaviour:
     you right click on an enemy, the selected heroes will attack him.
 
 
-    So try opening the doors now!'
+    So try opening the glowing door now!'
 --- !u!114 &4530741786029753593
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -168,6 +220,26 @@ MonoBehaviour:
 
     So let''s try it out by casting the cleric''s Heal Other ability on one of his
     friends.'
+--- !u!114 &5947911227006527138
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8034959520808610117}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d50433c07cbcece4aaeb8059d978d211, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Title: More skills
+  Message: "Easy, right? And enemy skills work just like that, only you select the
+    leftmost icon and right click on an enemy. \n\nBe wary - in combat each skill
+    has a cooldown. When you use it, it will disable all the skills the hero has for
+    some time. So think about which skills you use and when.\n\nYou should also know
+    that you can right click on a skill to read its description - you might want to
+    check them out before opening the other door. Or not and figure it out on the
+    way, your choice.\n\nWhen ready, open the blue door."
 --- !u!114 &5796531783343887379
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -194,16 +266,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5431768112997203443}
     m_Modifications:
-    - target: {fileID: 6741015582870072138, guid: ec4caa0c66bde4744a0787800d5c7a7a,
-        type: 3}
-      propertyPath: m_Name
-      value: TutorialStepEnd
-      objectReference: {fileID: 0}
-    - target: {fileID: 6741015582870072138, guid: ec4caa0c66bde4744a0787800d5c7a7a,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8214204877700687869, guid: ec4caa0c66bde4744a0787800d5c7a7a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -242,7 +304,7 @@ PrefabInstance:
     - target: {fileID: 8214204877700687869, guid: ec4caa0c66bde4744a0787800d5c7a7a,
         type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 8214204877700687869, guid: ec4caa0c66bde4744a0787800d5c7a7a,
         type: 3}
@@ -314,6 +376,16 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 381.55
       objectReference: {fileID: 0}
+    - target: {fileID: 6741015582870072138, guid: ec4caa0c66bde4744a0787800d5c7a7a,
+        type: 3}
+      propertyPath: m_Name
+      value: TutorialStepEnd
+      objectReference: {fileID: 0}
+    - target: {fileID: 6741015582870072138, guid: ec4caa0c66bde4744a0787800d5c7a7a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8262660796117536960, guid: ec4caa0c66bde4744a0787800d5c7a7a,
         type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -347,19 +419,27 @@ PrefabInstance:
     - target: {fileID: 4810980800598654258, guid: ec4caa0c66bde4744a0787800d5c7a7a,
         type: 3}
       propertyPath: Title
-      value: Tutorial done!
+      value: Combat results
       objectReference: {fileID: 0}
     - target: {fileID: 4810980800598654258, guid: ec4caa0c66bde4744a0787800d5c7a7a,
         type: 3}
       propertyPath: Message
-      value: "Easy, right? And enemy skills work just like that, only you select the
-        leftmost icon and right click on an enemy. \n\nBe wary - in combat each skill
-        has a cooldown. When you use it, it will disable all the skills the hero has
-        for some time. So think about which skills you use and when.\n\nAnd that's
-        all that you really need to know to get started, you'll figure out the rest
-        on the way. So go forth, and don't stop until you see the credits!\n\nOne
-        last thing - you can right click on a skill to read its description - you
-        might want to do that before venturing forth.\n\nSo good luck!"
+      value: 'You might have noticed that when a hero''s HP reach zero, he doesn''t
+        die. Instead, he''ll start losing Max HP and will only die once those reach
+        0. If all of your character die,  you''ll get a chance to try clearing this
+        floor again.
+
+
+        How to restore Max HP? When you open a chest, it might reveal a healing potion
+        that will restore some of your lost Max HP. The HP will be restored only to
+        the character who picked up the potion.
+
+
+        You can also find power ups that will permanently increase the character''s
+        attack or raise his Max HP limit.
+
+
+        And that is all! Good luck, have fun and don''t stop until you see the credits!'
       objectReference: {fileID: 0}
     - target: {fileID: 4015904938322180491, guid: ec4caa0c66bde4744a0787800d5c7a7a,
         type: 3}
@@ -448,16 +528,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5431768112997203443}
     m_Modifications:
-    - target: {fileID: 6741015582870072138, guid: ec4caa0c66bde4744a0787800d5c7a7a,
-        type: 3}
-      propertyPath: m_Name
-      value: TutorialStepAllySkill
-      objectReference: {fileID: 0}
-    - target: {fileID: 6741015582870072138, guid: ec4caa0c66bde4744a0787800d5c7a7a,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8214204877700687869, guid: ec4caa0c66bde4744a0787800d5c7a7a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -613,6 +683,16 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6741015582870072138, guid: ec4caa0c66bde4744a0787800d5c7a7a,
+        type: 3}
+      propertyPath: m_Name
+      value: TutorialStepAllySkill
+      objectReference: {fileID: 0}
+    - target: {fileID: 6741015582870072138, guid: ec4caa0c66bde4744a0787800d5c7a7a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8262660796117536960, guid: ec4caa0c66bde4744a0787800d5c7a7a,
         type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -731,15 +811,15 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 4810980800598654258, guid: ec4caa0c66bde4744a0787800d5c7a7a, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: ec4caa0c66bde4744a0787800d5c7a7a, type: 3}
---- !u!1 &6638687282256482650 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6741015582870072138, guid: ec4caa0c66bde4744a0787800d5c7a7a,
-    type: 3}
-  m_PrefabInstance: {fileID: 120962900505066000}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &8093822632886771181 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8214204877700687869, guid: ec4caa0c66bde4744a0787800d5c7a7a,
+    type: 3}
+  m_PrefabInstance: {fileID: 120962900505066000}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &6638687282256482650 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6741015582870072138, guid: ec4caa0c66bde4744a0787800d5c7a7a,
     type: 3}
   m_PrefabInstance: {fileID: 120962900505066000}
   m_PrefabAsset: {fileID: 0}
@@ -750,16 +830,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5431768112997203443}
     m_Modifications:
-    - target: {fileID: 6741015582870072138, guid: ec4caa0c66bde4744a0787800d5c7a7a,
-        type: 3}
-      propertyPath: m_Name
-      value: TutorialStepRightClick
-      objectReference: {fileID: 0}
-    - target: {fileID: 6741015582870072138, guid: ec4caa0c66bde4744a0787800d5c7a7a,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8214204877700687869, guid: ec4caa0c66bde4744a0787800d5c7a7a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -915,6 +985,16 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6741015582870072138, guid: ec4caa0c66bde4744a0787800d5c7a7a,
+        type: 3}
+      propertyPath: m_Name
+      value: TutorialStepRightClick
+      objectReference: {fileID: 0}
+    - target: {fileID: 6741015582870072138, guid: ec4caa0c66bde4744a0787800d5c7a7a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8262660796117536960, guid: ec4caa0c66bde4744a0787800d5c7a7a,
         type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -1052,16 +1132,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5431768112997203443}
     m_Modifications:
-    - target: {fileID: 6741015582870072138, guid: ec4caa0c66bde4744a0787800d5c7a7a,
-        type: 3}
-      propertyPath: m_Name
-      value: TutorialStepPersonalSkill
-      objectReference: {fileID: 0}
-    - target: {fileID: 6741015582870072138, guid: ec4caa0c66bde4744a0787800d5c7a7a,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8214204877700687869, guid: ec4caa0c66bde4744a0787800d5c7a7a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1217,6 +1287,16 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6741015582870072138, guid: ec4caa0c66bde4744a0787800d5c7a7a,
+        type: 3}
+      propertyPath: m_Name
+      value: TutorialStepPersonalSkill
+      objectReference: {fileID: 0}
+    - target: {fileID: 6741015582870072138, guid: ec4caa0c66bde4744a0787800d5c7a7a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8262660796117536960, guid: ec4caa0c66bde4744a0787800d5c7a7a,
         type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -1335,17 +1415,319 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 4810980800598654258, guid: ec4caa0c66bde4744a0787800d5c7a7a, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: ec4caa0c66bde4744a0787800d5c7a7a, type: 3}
+--- !u!224 &6770018060899303194 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 8214204877700687869, guid: ec4caa0c66bde4744a0787800d5c7a7a,
+    type: 3}
+  m_PrefabInstance: {fileID: 3174290474949204199}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &8179026942148162477 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6741015582870072138, guid: ec4caa0c66bde4744a0787800d5c7a7a,
     type: 3}
   m_PrefabInstance: {fileID: 3174290474949204199}
   m_PrefabAsset: {fileID: 0}
---- !u!224 &6770018060899303194 stripped
+--- !u!1001 &3606553075690979855
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 5431768112997203443}
+    m_Modifications:
+    - target: {fileID: 8214204877700687869, guid: ec4caa0c66bde4744a0787800d5c7a7a,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8214204877700687869, guid: ec4caa0c66bde4744a0787800d5c7a7a,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8214204877700687869, guid: ec4caa0c66bde4744a0787800d5c7a7a,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8214204877700687869, guid: ec4caa0c66bde4744a0787800d5c7a7a,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8214204877700687869, guid: ec4caa0c66bde4744a0787800d5c7a7a,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8214204877700687869, guid: ec4caa0c66bde4744a0787800d5c7a7a,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8214204877700687869, guid: ec4caa0c66bde4744a0787800d5c7a7a,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8214204877700687869, guid: ec4caa0c66bde4744a0787800d5c7a7a,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8214204877700687869, guid: ec4caa0c66bde4744a0787800d5c7a7a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8214204877700687869, guid: ec4caa0c66bde4744a0787800d5c7a7a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8214204877700687869, guid: ec4caa0c66bde4744a0787800d5c7a7a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8214204877700687869, guid: ec4caa0c66bde4744a0787800d5c7a7a,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8214204877700687869, guid: ec4caa0c66bde4744a0787800d5c7a7a,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8214204877700687869, guid: ec4caa0c66bde4744a0787800d5c7a7a,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8214204877700687869, guid: ec4caa0c66bde4744a0787800d5c7a7a,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8214204877700687869, guid: ec4caa0c66bde4744a0787800d5c7a7a,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8214204877700687869, guid: ec4caa0c66bde4744a0787800d5c7a7a,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8214204877700687869, guid: ec4caa0c66bde4744a0787800d5c7a7a,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8214204877700687869, guid: ec4caa0c66bde4744a0787800d5c7a7a,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8214204877700687869, guid: ec4caa0c66bde4744a0787800d5c7a7a,
+        type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8214204877700687869, guid: ec4caa0c66bde4744a0787800d5c7a7a,
+        type: 3}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2988569519106959330, guid: ec4caa0c66bde4744a0787800d5c7a7a,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 404.55
+      objectReference: {fileID: 0}
+    - target: {fileID: 2988569519106959330, guid: ec4caa0c66bde4744a0787800d5c7a7a,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 350
+      objectReference: {fileID: 0}
+    - target: {fileID: 2988569519106959330, guid: ec4caa0c66bde4744a0787800d5c7a7a,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2988569519106959330, guid: ec4caa0c66bde4744a0787800d5c7a7a,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 2988569519106959330, guid: ec4caa0c66bde4744a0787800d5c7a7a,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2988569519106959330, guid: ec4caa0c66bde4744a0787800d5c7a7a,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2988569519106959330, guid: ec4caa0c66bde4744a0787800d5c7a7a,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -40
+      objectReference: {fileID: 0}
+    - target: {fileID: 2988569519106959330, guid: ec4caa0c66bde4744a0787800d5c7a7a,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2988569519106959330, guid: ec4caa0c66bde4744a0787800d5c7a7a,
+        type: 3}
+      propertyPath: m_Pivot.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2988569519106959330, guid: ec4caa0c66bde4744a0787800d5c7a7a,
+        type: 3}
+      propertyPath: m_Pivot.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6741015582870072138, guid: ec4caa0c66bde4744a0787800d5c7a7a,
+        type: 3}
+      propertyPath: m_Name
+      value: TutorialStepSkillsInfoDump
+      objectReference: {fileID: 0}
+    - target: {fileID: 6741015582870072138, guid: ec4caa0c66bde4744a0787800d5c7a7a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8262660796117536960, guid: ec4caa0c66bde4744a0787800d5c7a7a,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 175
+      objectReference: {fileID: 0}
+    - target: {fileID: 8262660796117536960, guid: ec4caa0c66bde4744a0787800d5c7a7a,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 344
+      objectReference: {fileID: 0}
+    - target: {fileID: 8262660796117536960, guid: ec4caa0c66bde4744a0787800d5c7a7a,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8262660796117536960, guid: ec4caa0c66bde4744a0787800d5c7a7a,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8262660796117536960, guid: ec4caa0c66bde4744a0787800d5c7a7a,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -202.275
+      objectReference: {fileID: 0}
+    - target: {fileID: 8262660796117536960, guid: ec4caa0c66bde4744a0787800d5c7a7a,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 398.55
+      objectReference: {fileID: 0}
+    - target: {fileID: 6797134243477466531, guid: ec4caa0c66bde4744a0787800d5c7a7a,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4810980800598654258, guid: ec4caa0c66bde4744a0787800d5c7a7a,
+        type: 3}
+      propertyPath: Title
+      value: Camera movement!
+      objectReference: {fileID: 0}
+    - target: {fileID: 4810980800598654258, guid: ec4caa0c66bde4744a0787800d5c7a7a,
+        type: 3}
+      propertyPath: Message
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4015904938322180491, guid: ec4caa0c66bde4744a0787800d5c7a7a,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4015904938322180491, guid: ec4caa0c66bde4744a0787800d5c7a7a,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4015904938322180491, guid: ec4caa0c66bde4744a0787800d5c7a7a,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 172
+      objectReference: {fileID: 0}
+    - target: {fileID: 4015904938322180491, guid: ec4caa0c66bde4744a0787800d5c7a7a,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -229.385
+      objectReference: {fileID: 0}
+    - target: {fileID: 4015904938322180491, guid: ec4caa0c66bde4744a0787800d5c7a7a,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 304
+      objectReference: {fileID: 0}
+    - target: {fileID: 4015904938322180491, guid: ec4caa0c66bde4744a0787800d5c7a7a,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 298.33
+      objectReference: {fileID: 0}
+    - target: {fileID: 3682419112381641857, guid: ec4caa0c66bde4744a0787800d5c7a7a,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3682419112381641857, guid: ec4caa0c66bde4744a0787800d5c7a7a,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3682419112381641857, guid: ec4caa0c66bde4744a0787800d5c7a7a,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 172
+      objectReference: {fileID: 0}
+    - target: {fileID: 3682419112381641857, guid: ec4caa0c66bde4744a0787800d5c7a7a,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -40.11
+      objectReference: {fileID: 0}
+    - target: {fileID: 3682419112381641857, guid: ec4caa0c66bde4744a0787800d5c7a7a,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 304
+      objectReference: {fileID: 0}
+    - target: {fileID: 3682419112381641857, guid: ec4caa0c66bde4744a0787800d5c7a7a,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 40.22
+      objectReference: {fileID: 0}
+    - target: {fileID: 4960070352427884370, guid: ec4caa0c66bde4744a0787800d5c7a7a,
+        type: 3}
+      propertyPath: m_textInfo.lineCount
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 4594730300834935246, guid: ec4caa0c66bde4744a0787800d5c7a7a,
+        type: 3}
+      propertyPath: m_textInfo.lineCount
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 4810980800598654258, guid: ec4caa0c66bde4744a0787800d5c7a7a, type: 3}
+  m_SourcePrefab: {fileID: 100100000, guid: ec4caa0c66bde4744a0787800d5c7a7a, type: 3}
+--- !u!1 &8034959520808610117 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6741015582870072138, guid: ec4caa0c66bde4744a0787800d5c7a7a,
+    type: 3}
+  m_PrefabInstance: {fileID: 3606553075690979855}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &4896463074368038386 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8214204877700687869, guid: ec4caa0c66bde4744a0787800d5c7a7a,
     type: 3}
-  m_PrefabInstance: {fileID: 3174290474949204199}
+  m_PrefabInstance: {fileID: 3606553075690979855}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4614186018887374832
 PrefabInstance:
@@ -1354,16 +1736,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5431768112997203443}
     m_Modifications:
-    - target: {fileID: 6741015582870072138, guid: ec4caa0c66bde4744a0787800d5c7a7a,
-        type: 3}
-      propertyPath: m_Name
-      value: TutorialStepCamera
-      objectReference: {fileID: 0}
-    - target: {fileID: 6741015582870072138, guid: ec4caa0c66bde4744a0787800d5c7a7a,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8214204877700687869, guid: ec4caa0c66bde4744a0787800d5c7a7a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1519,6 +1891,16 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6741015582870072138, guid: ec4caa0c66bde4744a0787800d5c7a7a,
+        type: 3}
+      propertyPath: m_Name
+      value: TutorialStepCamera
+      objectReference: {fileID: 0}
+    - target: {fileID: 6741015582870072138, guid: ec4caa0c66bde4744a0787800d5c7a7a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8262660796117536960, guid: ec4caa0c66bde4744a0787800d5c7a7a,
         type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -1656,16 +2038,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5431768112997203443}
     m_Modifications:
-    - target: {fileID: 6741015582870072138, guid: ec4caa0c66bde4744a0787800d5c7a7a,
-        type: 3}
-      propertyPath: m_Name
-      value: TutorialStepPause
-      objectReference: {fileID: 0}
-    - target: {fileID: 6741015582870072138, guid: ec4caa0c66bde4744a0787800d5c7a7a,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8214204877700687869, guid: ec4caa0c66bde4744a0787800d5c7a7a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1821,6 +2193,16 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6741015582870072138, guid: ec4caa0c66bde4744a0787800d5c7a7a,
+        type: 3}
+      propertyPath: m_Name
+      value: TutorialStepPause
+      objectReference: {fileID: 0}
+    - target: {fileID: 6741015582870072138, guid: ec4caa0c66bde4744a0787800d5c7a7a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8262660796117536960, guid: ec4caa0c66bde4744a0787800d5c7a7a,
         type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -1939,15 +2321,15 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 4810980800598654258, guid: ec4caa0c66bde4744a0787800d5c7a7a, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: ec4caa0c66bde4744a0787800d5c7a7a, type: 3}
---- !u!1 &4400001703928701221 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6741015582870072138, guid: ec4caa0c66bde4744a0787800d5c7a7a,
-    type: 3}
-  m_PrefabInstance: {fileID: 6954428404995148399}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &1260339499972308370 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8214204877700687869, guid: ec4caa0c66bde4744a0787800d5c7a7a,
+    type: 3}
+  m_PrefabInstance: {fileID: 6954428404995148399}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &4400001703928701221 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6741015582870072138, guid: ec4caa0c66bde4744a0787800d5c7a7a,
     type: 3}
   m_PrefabInstance: {fileID: 6954428404995148399}
   m_PrefabAsset: {fileID: 0}
@@ -1958,16 +2340,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5431768112997203443}
     m_Modifications:
-    - target: {fileID: 6741015582870072138, guid: ec4caa0c66bde4744a0787800d5c7a7a,
-        type: 3}
-      propertyPath: m_Name
-      value: TutorialStepWelcome
-      objectReference: {fileID: 0}
-    - target: {fileID: 6741015582870072138, guid: ec4caa0c66bde4744a0787800d5c7a7a,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8214204877700687869, guid: ec4caa0c66bde4744a0787800d5c7a7a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2077,6 +2449,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SizeDelta.y
       value: 381.55
+      objectReference: {fileID: 0}
+    - target: {fileID: 6741015582870072138, guid: ec4caa0c66bde4744a0787800d5c7a7a,
+        type: 3}
+      propertyPath: m_Name
+      value: TutorialStepWelcome
+      objectReference: {fileID: 0}
+    - target: {fileID: 6741015582870072138, guid: ec4caa0c66bde4744a0787800d5c7a7a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8262660796117536960, guid: ec4caa0c66bde4744a0787800d5c7a7a,
         type: 3}
@@ -2205,16 +2587,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5431768112997203443}
     m_Modifications:
-    - target: {fileID: 6741015582870072138, guid: ec4caa0c66bde4744a0787800d5c7a7a,
-        type: 3}
-      propertyPath: m_Name
-      value: TutorialStepLeftClick
-      objectReference: {fileID: 0}
-    - target: {fileID: 6741015582870072138, guid: ec4caa0c66bde4744a0787800d5c7a7a,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8214204877700687869, guid: ec4caa0c66bde4744a0787800d5c7a7a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2369,6 +2741,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6741015582870072138, guid: ec4caa0c66bde4744a0787800d5c7a7a,
+        type: 3}
+      propertyPath: m_Name
+      value: TutorialStepLeftClick
+      objectReference: {fileID: 0}
+    - target: {fileID: 6741015582870072138, guid: ec4caa0c66bde4744a0787800d5c7a7a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8262660796117536960, guid: ec4caa0c66bde4744a0787800d5c7a7a,
         type: 3}
