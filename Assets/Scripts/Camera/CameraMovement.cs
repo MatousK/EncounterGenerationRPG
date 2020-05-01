@@ -18,6 +18,12 @@ namespace Assets.Scripts.Camera
         FogOfWarController fogOfWarController;
         private CutsceneManager cutsceneManager;
 
+        private void Update()
+        {
+            // As camera works by scrolling to the edge, we need to lock the cursor in the window.
+            Cursor.lockState = CursorLockMode.Confined;
+        }
+
         // Update is called once per frame
         void LateUpdate()
         {

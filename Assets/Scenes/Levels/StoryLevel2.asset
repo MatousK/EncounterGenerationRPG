@@ -22,15 +22,13 @@ MonoBehaviour:
   - "The messages grew in number. Before them stood three large signs, and on each
     a single word was written in blood.\nTogether they said \u201CYOU! WILL! DIE!\u201D\r\n\n\u201CHuh,
     someone is trying to get our attention\u201D, said Tom while poking one of the
-    signs with his sword. \u201CIt almost looks\nlike someone is trying to tell us
-    something. And look here, another one!\u201D\r\n\nThis sign was even larger, put
-    together from hastily gathered boards and hanged on the wall where a torch used
-    to be. It said \u201CAttention! It took me ages to get here, I had to best many
-    a challenge to warn you, so just turn aro\u2026\u201D\nAnd the rest of the text
-    was missing. Maybe bloodstains and toothmarks on the sign were to blame for that.\n\nBut
-    Tom did not seem to care much. He just laughed and urged the group to venture
-    forth. Apparently, regardless of these warnings, the future didn\u2019t scare
-    him at all.\r"
+    signs with his sword. \" Maybe he's\ntrying to tell us something. And look here,
+    another one!\u201D\r\n\nThis sign was even larger, put together from hastily gathered
+    boards and hanged on the wall where a torch used to be. \nIt said \u201CAttention!
+    It took me ages to get here, I had to best many a challenge to warn you, so just
+    turn aro\u2026\u201D\nAnd the rest of the text was missing. Maybe bloodstains
+    and toothmarks on the sign were to blame for that.\n\nBut Tom did not seem to
+    care much. He just laughed and urged the group to venture forth. "
   ExperimentGroupConfigurations:
   - ExperimentGroup: 0
     Algorithm: 0

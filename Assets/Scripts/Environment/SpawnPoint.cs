@@ -17,6 +17,10 @@ namespace Assets.Scripts.Environment
         private void Awake()
         {
             var spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+            if (spriteRenderer == null)
+            {
+                return;;
+            }
             var spriteColor = GetColorForSpawnPoint();
             if (spriteRenderer != null && spriteColor != null)
             {
