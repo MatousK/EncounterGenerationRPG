@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using Assets.ProceduralLevelGenerator.Scripts.Data.Graphs;
 using Assets.Scripts.Combat;
 using Assets.Scripts.CombatSimulator;
@@ -10,7 +6,6 @@ using Assets.Scripts.Experiment;
 using Assets.Scripts.Extension;
 using Assets.Scripts.Tutorial;
 using Assets.Scripts.UI;
-using UnityEditor.PackageManager;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 

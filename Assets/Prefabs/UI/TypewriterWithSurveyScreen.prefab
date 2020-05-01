@@ -189,6 +189,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfcddcd148db5754ea6995e815bf06ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SurveyLink: 
   IntroTypewriterText: {fileID: 2876501568816026177}
   LevelDefinition: {fileID: 0}
   SurveyButton: {fileID: 6210979953514912710}
@@ -336,6 +337,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Text
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 25291750310906685, guid: 0c83ecbab1cb5504b83ca503bec3b765,
+        type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 32
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0c83ecbab1cb5504b83ca503bec3b765, type: 3}
@@ -609,10 +615,30 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2653057511574881414, guid: cfcc9e72569950548842c87d4ff66571,
+    - target: {fileID: 2653057513107788100, guid: cfcc9e72569950548842c87d4ff66571,
         type: 3}
-      propertyPath: m_IsActive
+      propertyPath: m_AnchorMin.y
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2653057513107788100, guid: cfcc9e72569950548842c87d4ff66571,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2653057513107788100, guid: cfcc9e72569950548842c87d4ff66571,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 392.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2653057513107788100, guid: cfcc9e72569950548842c87d4ff66571,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -83.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2653057513107788100, guid: cfcc9e72569950548842c87d4ff66571,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 785.6
       objectReference: {fileID: 0}
     - target: {fileID: 2653057511574881415, guid: cfcc9e72569950548842c87d4ff66571,
         type: 3}
@@ -634,50 +660,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -29.7
       objectReference: {fileID: 0}
-    - target: {fileID: 2653057511574881416, guid: cfcc9e72569950548842c87d4ff66571,
+    - target: {fileID: 2653057511574881415, guid: cfcc9e72569950548842c87d4ff66571,
         type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 3557339892720979790}
-    - target: {fileID: 2653057511574881416, guid: cfcc9e72569950548842c87d4ff66571,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SurveyPressed
-      objectReference: {fileID: 0}
-    - target: {fileID: 2653057511539558784, guid: cfcc9e72569950548842c87d4ff66571,
-        type: 3}
-      propertyPath: m_fontColor.a
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2653057511539558784, guid: cfcc9e72569950548842c87d4ff66571,
-        type: 3}
-      propertyPath: m_fontColor32.rgba
-      value: 16777215
-      objectReference: {fileID: 0}
-    - target: {fileID: 2653057513107788101, guid: cfcc9e72569950548842c87d4ff66571,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2653057513107788100, guid: cfcc9e72569950548842c87d4ff66571,
-        type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2653057513107788100, guid: cfcc9e72569950548842c87d4ff66571,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2653057513107788100, guid: cfcc9e72569950548842c87d4ff66571,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 392.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 2653057513107788100, guid: cfcc9e72569950548842c87d4ff66571,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -83.7
+      propertyPath: m_SizeDelta.x
+      value: 780
       objectReference: {fileID: 0}
     - target: {fileID: 2653057513107788107, guid: cfcc9e72569950548842c87d4ff66571,
         type: 3}
@@ -689,6 +675,36 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: ContinuePressed
       objectReference: {fileID: 0}
+    - target: {fileID: 2653057513107788101, guid: cfcc9e72569950548842c87d4ff66571,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2653057511574881416, guid: cfcc9e72569950548842c87d4ff66571,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 3557339892720979790}
+    - target: {fileID: 2653057511574881416, guid: cfcc9e72569950548842c87d4ff66571,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SurveyPressed
+      objectReference: {fileID: 0}
+    - target: {fileID: 2653057511574881414, guid: cfcc9e72569950548842c87d4ff66571,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2653057511539558527, guid: cfcc9e72569950548842c87d4ff66571,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2653057511539558527, guid: cfcc9e72569950548842c87d4ff66571,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2653057513160547395, guid: cfcc9e72569950548842c87d4ff66571,
         type: 3}
       propertyPath: m_fontColor.a
@@ -698,6 +714,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_fontColor32.rgba
       value: 16777215
+      objectReference: {fileID: 0}
+    - target: {fileID: 2653057511539558784, guid: cfcc9e72569950548842c87d4ff66571,
+        type: 3}
+      propertyPath: m_fontColor.a
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2653057511539558784, guid: cfcc9e72569950548842c87d4ff66571,
+        type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 16777215
+      objectReference: {fileID: 0}
+    - target: {fileID: 2653057511539558784, guid: cfcc9e72569950548842c87d4ff66571,
+        type: 3}
+      propertyPath: m_text
+      value: Please fill out a survey before venturing forth
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6128055987352046791, guid: cfcc9e72569950548842c87d4ff66571, type: 3}

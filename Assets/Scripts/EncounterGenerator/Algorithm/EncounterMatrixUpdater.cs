@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Assets.Scripts.Analytics;
 using Assets.Scripts.Combat;
 using Assets.Scripts.EncounterGenerator.Configuration;
 using Assets.Scripts.EncounterGenerator.Model;
@@ -16,8 +17,9 @@ namespace Assets.Scripts.EncounterGenerator.Algorithm
     /// </summary>
     public class EncounterMatrixUpdater
     {
-        public EncounterMatrixUpdater(EncounterDifficultyMatrix difficultyMatrix, EncounterGeneratorConfiguration configuration)
+        public EncounterMatrixUpdater(EncounterDifficultyMatrix difficultyMatrix, EncounterGeneratorConfiguration configuration, AnalyticsService analyticsService)
         {
+            this.analyticsService = analyticsService;
             this.difficultyMatrix = difficultyMatrix;
             this.configuration = configuration;
         }
@@ -25,6 +27,14 @@ namespace Assets.Scripts.EncounterGenerator.Algorithm
         /// This event will be called when the matrix changes. Eventargs are details about the encounter that changed the matrix.
         /// </summary>
         public event EventHandler<MatrixChangedEventArgs> MatrixChanged;
+        /// <summary>
+        /// Flags controls whether current combat should update the matrix or not.
+        /// </summary>
+        public bool AdjustMatrixForNextFight = true;
+        /// <summary>
+        /// If true, currently handled fight is a static encounter.
+        /// </summary>
+        public bool IsStaticEncounter;
         private readonly EncounterGeneratorConfiguration configuration;
         private readonly EncounterDifficultyMatrix difficultyMatrix;
         private readonly Dictionary<HeroProfession, float> initialMaxHp = new Dictionary<HeroProfession, float>();
@@ -32,6 +42,7 @@ namespace Assets.Scripts.EncounterGenerator.Algorithm
         private readonly Dictionary<HeroProfession, float> partyDamageMultipliers = new Dictionary<HeroProfession, float>();
         private float? expectedDifficulty;
         private EncounterDefinition encounter;
+        private AnalyticsService analyticsService;
 
         public void StoreCombatStartConditions(PartyDefinition party, EncounterDefinition encounter, float expectedDifficulty)
         {
@@ -52,20 +63,29 @@ namespace Assets.Scripts.EncounterGenerator.Algorithm
                 UnityEngine.Debug.LogWarning("Logging combat encounter when initial conditions are not set");
                 return; ;
             }
+
+            var partyEndHp = new Dictionary<HeroProfession, float>();
             float totalLostMaxHp = 0;
             float totalHpLost = 0;
             foreach (var hero in party.PartyMembers)
             {
                 totalLostMaxHp += 1 - hero.MaxHitpoints / initialMaxHp[hero.HeroProfession];
                 totalHpLost += 1 - hero.HitPoints / initialHp[hero.HeroProfession];
+                partyEndHp[hero.HeroProfession] = hero.MaxHitpoints;
             }
-            AddMatrixRow(party, wasGameOver ? 3f : totalLostMaxHp, wasGameOver ? 3f : totalHpLost);
-            //
             var partyStartHp = new Dictionary<HeroProfession, float>(initialMaxHp);
             var partyAttack = new Dictionary<HeroProfession, float>(partyDamageMultipliers);
             var finishedEncounter = encounter;
-            // We start the adjustment on another thread so we have more time.
-            AdjustMatrix(partyStartHp, partyAttack, finishedEncounter, expectedDifficulty.Value, totalLostMaxHp, wasGameOver);
+            analyticsService.LogCombat(partyStartHp, partyEndHp, partyAttack, finishedEncounter, expectedDifficulty.Value, totalLostMaxHp, wasGameOver, IsStaticEncounter);
+            if (AdjustMatrixForNextFight)
+            {
+                AddMatrixRow(party, wasGameOver ? 3f : totalLostMaxHp, wasGameOver ? 3f : totalHpLost);
+                // We start the adjustment on another thread so we have more time.
+                AdjustMatrix(partyStartHp, partyAttack, finishedEncounter, expectedDifficulty.Value, totalLostMaxHp,
+                    wasGameOver);
+            }
+
+            AdjustMatrixForNextFight = true;
             initialMaxHp.Clear();
             partyDamageMultipliers.Clear();
             initialHp.Clear();

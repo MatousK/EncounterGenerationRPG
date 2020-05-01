@@ -12,15 +12,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd2dc783fcdf0d149986347be4f3e720, type: 3}
   m_Name: CreditsLevel
   m_EditorClassIdentifier: 
+  UseAlternateDoorColors: 0
   AdjustMatrixForStaticEncounters: 0
   ShouldRestoreAfterTutorialStats: 0
   Type: 1
   PossibleLevelGraphs: []
   IntroTexts:
-  - 'Wow man, you did it! Nice going there!
-
-
-    As a reward, here''s a survey:'
+  - "Once upon a time, in the College for Overprivileged Adventurers, Tom the Knight
+    stood in front of his thesis opponent.\nHe stood there for quite a while, nervously
+    watching the professor while he calmly examined his thesis.\r\n\n\u201CSo what
+    do you think?\u201D He could not handle it anymore. \u201CI didn\u2019t sleep
+    for several days you know. Two of my best\nfriends died down there. And what\u2019s
+    worse, now I\u2019ll never pay off that stupid dog.\u201D\r\n\n\u201CJust wait,\u201D
+    replied the opponent. \u201CI\u2019ll just draw on this scroll here a bit more,
+    so you feel like I care about what you\u2019re\nsaying. After that I\u2019ll just
+    give you my default answer.\u201D\r\n\n\u201CWhat?\u201D, asked Tom, quite confused.\r\n\n\u201CAnd
+    now I\u2019m finished. Well, to me it looks like your comrades did all the work.
+    According to the testimonies of some\ngoblins, you just went along for a ride,
+    smashing signs along the way. I am sorry, but it would be quite unfair to your\nclassmates
+    if we ignored our students slacking off like this. So we cannot accept this thesis
+    as your own work. There is\nnothing more to be said. Fare well and better luck
+    next time.\u201C\r\n\n\u201CGod damn it,\u201D cursed the battered and exhausted
+    knight as he went to the doors. \u201CI should have just written about a\nquest
+    for beers in the local tavern. That would have been much more believable\u201D.\r\n\nAnd
+    thus ends the Knight\u2019s tale.\r"
   ExperimentGroupConfigurations:
   - ExperimentGroup: 0
     Algorithm: 1

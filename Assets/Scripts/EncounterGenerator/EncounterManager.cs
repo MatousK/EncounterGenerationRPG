@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Assets.Scripts.Analytics;
 using Assets.Scripts.Combat;
 using Assets.Scripts.DungeonGenerator;
 using Assets.Scripts.EncounterGenerator.Algorithm;
@@ -18,6 +19,7 @@ namespace Assets.Scripts.EncounterGenerator
     class EncounterManager : MonoBehaviour
     {
         public EncounterMatrixUpdater MatrixUpdater { get; private set; }
+
         // TODO: Debug, remove in release builds.
         private StaticEncounterGenerator staticEncounterGenerator;
         private EncounterGenerator encounterGenerator;
@@ -28,14 +30,16 @@ namespace Assets.Scripts.EncounterGenerator
         private readonly EncounterGeneratorConfiguration generatorConfiguration = new EncounterGeneratorConfiguration();
         private DifficultyMatrixProvider difficultyMatrixProvider;
         private LevelLoader levelLoader;
+        private AnalyticsService analyticsService;
 
         private void Start()
         {
+            analyticsService = FindObjectsOfType<AnalyticsService>().First(analytics => !analytics.IsPendingKill);
             difficultyMatrixProvider =
                 FindObjectsOfType<DifficultyMatrixProvider>().First(provider => !provider.IsPendingKill);
             levelLoader = FindObjectsOfType<LevelLoader>().First(loader => !loader.IsPendingKill);
             var difficultyMatrix = difficultyMatrixProvider.CurrentDifficultyMatrix;
-            MatrixUpdater = new EncounterMatrixUpdater(difficultyMatrix, generatorConfiguration);
+            MatrixUpdater = new EncounterMatrixUpdater(difficultyMatrix, generatorConfiguration, analyticsService);
             MatrixUpdater.MatrixChanged += MatrixUpdater_MatrixChanged;
             encounterGenerator = new EncounterGenerator(difficultyMatrix, MatrixUpdater, generatorConfiguration);
             staticEncounterGenerator = GetComponent<StaticEncounterGenerator>();
@@ -85,20 +89,21 @@ namespace Assets.Scripts.EncounterGenerator
             switch (levelLoader.CurrentEncounterGenerationAlgorithm)
             {
                 case EncounterGenerationAlgorithmType.MatrixBasedGenerator:
+                    MatrixUpdater.AdjustMatrixForNextFight = true;
+                    MatrixUpdater.IsStaticEncounter = false;
                     encounter = encounterGenerator.GenerateEncounters(exploredRoom.RoomEncounter, partyDefinition);
                     break;
                 case EncounterGenerationAlgorithmType.StaticGenerator:
+                    MatrixUpdater.IsStaticEncounter = true;
+                    MatrixUpdater.AdjustMatrixForNextFight = levelLoader.AdjustMatrixForStaticEncounters;
                     encounter = exploredRoom.StaticMonsters;
-                    if (levelLoader.AdjustMatrixForStaticEncounters)
-                    {
-                        var staticEncounter =
-                            EncounterDefinition.GetDefinitionFromMonsters(exploredRoom.StaticMonsters);
-                        var encounterDifficulty =
-                            difficultyMatrixProvider.CurrentDifficultyMatrix.GetDifficultyFor(staticEncounter,
-                                partyDefinition, generatorConfiguration);
-                        MatrixUpdater.StoreCombatStartConditions(partyDefinition, staticEncounter, encounterDifficulty);
-                        UnityEngine.Debug.Log($"Expected difficulty for this static encounter is {encounterDifficulty}");
-                    }
+                    var staticEncounter =
+                        EncounterDefinition.GetDefinitionFromMonsters(exploredRoom.StaticMonsters);
+                    var encounterDifficulty =
+                        difficultyMatrixProvider.CurrentDifficultyMatrix.GetDifficultyFor(staticEncounter,
+                            partyDefinition, generatorConfiguration);
+                    MatrixUpdater.StoreCombatStartConditions(partyDefinition, staticEncounter, encounterDifficulty);
+                    UnityEngine.Debug.Log($"Expected difficulty for this static encounter is {encounterDifficulty}");
                     break;
                 default:
                     throw new Exception("Unknown monster generation algorithm");

@@ -12,25 +12,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd2dc783fcdf0d149986347be4f3e720, type: 3}
   m_Name: StoryLevel0-tutorial
   m_EditorClassIdentifier: 
+  UseAlternateDoorColors: 0
   AdjustMatrixForStaticEncounters: 1
   ShouldRestoreAfterTutorialStats: 0
   Type: 0
   PossibleLevelGraphs:
   - {fileID: 11400000, guid: 4b8b9b7a1b19c774991d0e9ecfa62e60, type: 2}
   IntroTexts:
-  - "Once upon a time, Tom the Knight was in his final year of Adventurer College.
-    \r\n\r\nHe successfully completed all the courses at the school - he breezed through
-    all\r\ncombat classes and he even managed to get through the dreaded Chivalry
-    class.\r\n\r\nAll that was left was for him now was to write a thesis about some
-    interesting adventure.\r\nHe decided to explore the mysterious dungeon of Apdien,
-    a magical place that was always\r\nfull of monsters exactly strong enough to challenge
-    the visitors. This place was a favorite\r\ntraining exercise for the students,
-    yet its purpose and workings were still as mysterious\r\ntoday as they were a
-    thousand years ago.\n\nTom teamed up with two of his friends, Bob\r the Ranger
-    and John the Cleric. Together they\nwould brave the dungeon, fill out surveys\r
-    about their experience and hopefully they would\nget enough data to unlock the
-    secrets of the dungeon.\r\n\r\nSo they checked their equipment one last time and
-    entered the dungeon, ready for whatever\nthey would find down there..."
+  - "Once upon a time, in the College for Overprivileged Adventurers, Tom the Knight
+    stood in front of his brave comrades,\nJohn the Cleric and Bob the Ranger, in
+    a suitably heroic pose.\r\n\n\u201COur last year of college!\u201D, he shouted,
+    as Bob\u2019s hearing was not that great anymore.\n\u201CWe\u2019ve bested all
+    the challenges here at the school, we've survived the cafeteria food and we are
+    even quite close to\nfinally paying of our debt for that dog. You remember the
+    dog, right John?\"\n\n\"Only one thing is missing\u201D, he continued.\n\u201CWe
+    forgot to write a thesis about any of our adventures! And since have to write
+    one, I decided that we\u2019ll explore the\nancient dungeon of Apdien! Ever since
+    \ the investors lost interest in it, it got filled by all kinds of squatters.\nOrcs,
+    the undead, goblins... In short, troublemakers. I say we are strong enough to
+    defeat such opponents. And with\na bit of luck, we\u2019ll even discover the secrets
+    that Apdien holds at its end. So, let\u2019s check our equipment one more time\nand
+    let\u2019s find out what awaits us inside the dungeon!\u201D\r\n\n\u201CWhy do
+    all of your speeches have to drag out for this long?\u201D, John murmured.\r\n\u201CWhat
+    did he say?\u201D, Bob asked.\r\n\nTom let out a deep sigh, turned around and
+    took a first step towards their new adventure. \n\u201CAnd if I am at least a
+    little bit lucky, both of these idiots could get killed down there\u201D, Tom
+    though on his way out."
   ExperimentGroupConfigurations:
   - ExperimentGroup: 0
     Algorithm: 0

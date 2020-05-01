@@ -179,4 +179,7 @@ MonoBehaviour:
     type: 3}
   IsPendingKill: 0
   CurrentLevelGraph: {fileID: 0}
+  CurrentEncounterGenerationAlgorithm: 0
+  AdjustMatrixForStaticEncounters: 0
+  UseAlternateDoorColors: 0
   CurrentSceneType: 0

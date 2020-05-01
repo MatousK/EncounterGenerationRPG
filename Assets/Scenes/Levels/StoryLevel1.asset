@@ -12,11 +12,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd2dc783fcdf0d149986347be4f3e720, type: 3}
   m_Name: StoryLevel1
   m_EditorClassIdentifier: 
+  UseAlternateDoorColors: 0
+  AdjustMatrixForStaticEncounters: 0
+  ShouldRestoreAfterTutorialStats: 0
   Type: 0
   PossibleLevelGraphs:
   - {fileID: 11400000, guid: 10ba17d1ce35a7f49bb3fd559361cc1d, type: 2}
   IntroTexts:
-  - Some reason while progress is saved here.
+  - "As they were walking down the stairs, the group started losing all its focus.
+    \u201CWhat did John say?\u201D, Bob asked, while\ncarving graffiti on the dungeon
+    walls with his arrows.\r\n\n\u201CThat you suck at spelling. What does this even
+    mean? We\u2019ll dance on your greaves? Scratch that, you should stop\nplaying
+    around and pay more attention. This is only the first floor, we need to focus
+    on the thesis.\u201D\r\n\nAs they pressed on, their torches illuminated the walls,
+    revealing artwork left by other dungeon delvers whose spelling\nwas, amazingly
+    enough, even worse than Bob\u2019s. The dungeon was enormous, much larger that
+    it looked on the\noutside. But, despite all the dangers, all the walls were filled
+    with graffiti and strange messages.\r\n\nTake for example the message just at
+    the end of the staircase. It said \u201CNot one more step without protection!\u201D
+    The\ngroup wondered why anyone would write that. Any certified adventurer would
+    know that going anywhere without\nchastity belts was pure foolishness.\r"
   ExperimentGroupConfigurations:
   - ExperimentGroup: 0
     Algorithm: 0
