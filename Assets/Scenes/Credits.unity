@@ -553,26 +553,28 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Hey there, thanks for playing! Hope you've enjoyed the game.\n\n\nIf you've
-    just clicked on the Credits in the menu, well... Still thanks! Nice to see you
-    want to know who made this.\n\n\nThis game was made by Matou\u0161 Kozma as a
-    Master Thesis project at Charles University for the Computer Graphics and Game
-    Development program.\n\nIf you have any feedback, just shoot me a mail:\nmattkozma@hotmail.com\n\n\nBut
+  m_Text: "Nice going there! You won the game! Thanks for playing, the data will definitely
+    help me with the thesis. I hope you've enjoyed it.\n\n\nOr maybe not, maybe you've
+    just clicked on the Credits button in the menu, well... Still thanks! Nice to
+    see you want to know who made this.\n\n\nThis game was made by Matou\u0161 Kozma
+    as a Master Thesis project at Charles University for the Computer Graphics and
+    Game Development program.\n\nIf you have any feedback, just shoot me a mail:\nmattkozma@hotmail.com\n\n\nBut
     even though this was my thesis, I had help!\nA lot of people helped me. And here
     they are!\n\nThesis Supervisor\nJakub Gemrot\n\nSurvey Design\nLuk\xE1\u0161 Kolek\n\nStory\nVlastimil
-    Diuk \u010Curda\n\nEvil Cleric Voice\nFrolda z F\xE9nixProDabing\n\n\nThese are
-    all the people worked specifically on this game.\n\n\nBut this game also uses
-    a lot of assets that can be found online for free. These are listed below in no
-    specific order:\n\n\nProcedural dungeon generator:\nOnd\u0159ej Nepo\u017Eitek\nhttps://github.com/OndrejNepozitek/\n\n\nHero
+    Diuk \u010Curda\n(written in Czech, translated by Matou\u0161 Kozma)\n\nEvil Cleric
+    Voice\nFrolda z F\xE9nixProDabing\n\n\nThese are all the people worked specifically
+    on this game.\n\n\nBut this game also uses a lot of assets that can be found online
+    for free. These are listed below in no specific order:\n\n\nProcedural dungeon
+    generator:\nOnd\u0159ej Nepo\u017Eitek\nhttps://github.com/OndrejNepozitek/\n\n\nHero
     Dialogs\n\nBob the Ranger's voice was from this package:\nLITE - Fantasy - Headstrong
     Archer Character Voice Sound Pack\n\nCleric and Knight voices are from the following
     package:\nCustom Voice Resource - https://kerstynungerva.itch.io/custom-voice-resource\nDialog
     Writer:\nKerstyn Unger - https://linktr.ee/KerstynUngerVA\nCast:\nJohn the Cleric\nMr.
     Bromin - https://www.castingcall.club/m/MrBromin\nTom the Knight\nJonas Fresh
-    - https://twitter.com/JonasFreshVA\n\n\n\nHero Portraits\nHero Portraits are from
-    the Flare Portrait pack by Justin Nichol and the Flare Project, usable under Creative
-    Commons Attribution ShareAlike 3.0 license.\n\nUI\n\nRPG Status Icons by Buch,
-    usable under Creative Commons Attribution 3.0 license. \nhttps://opengameart.org/users/buch\n\nRPG
+    - https://twitter.com/JonasFreshVA\n\n\n\nHero Portraits\n\nHero Portraits are
+    from the Flare Portrait pack by Justin Nichol and the Flare Project, usable under
+    Creative Commons Attribution ShareAlike 3.0 license.\n\nUI\n\nRPG Status Icons
+    by Buch, usable under Creative Commons Attribution 3.0 license. \nhttps://opengameart.org/users/buch\n\nRPG
     Frame by Flatlander and modified by cbritez, usable under Creative Commons Attribution
     3.0 license.\n\nSkill Icons\n\nPainterly Spell Icons - J. W. Bjerk (eleazzaar)
     -- www.jwbjerk.com/art -- find this and other open art at: http://opengameart.org
@@ -615,12 +617,12 @@ MonoBehaviour:
     Trickster Orc by Calciumtrice and Recolored by Merry Dream Games, usable under
     Creative Commons Attribution 3.0 license.\n\nAnimated Pyromaniac Orc by Calciumtrice
     and Recolored by Merry Dream Games, usable under Creative Commons Attribution
-    3.0 license.\n\n\n\n\n\n\nAnd plus some several other packs that do not require
-    attribution.\n\n\n\n\n\n\nSo thanks once more for playing and also thanks for
-    reading the credits! It's nice to see people waiting for the credits to roll all
-    the way. But unfortunately, there will be no surprise, no secret ending, no stinger.\n\n\nSo,
-    thanks again, hopefully we'll be able to do this again on some future project
-    of mine :)"
+    3.0 license.\n\n\n\n\n\n\nAnd plus several other packs that do not require attribution.\n\n\n\n\n\n\nThanks
+    once more for playing and also thanks for reading the credits! It's nice to see
+    people waiting for the credits to roll all the way. But unfortunately, there will
+    be no surprise, no secret ending, no stinger.\n\n\nJust me endlessly thanking
+    you and hoping  that the credits will soon end. I am really running out of things
+    to say here."
 --- !u!222 &1786826260
 CanvasRenderer:
   m_ObjectHideFlags: 0
