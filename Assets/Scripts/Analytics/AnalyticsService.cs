@@ -40,7 +40,13 @@ namespace Assets.Scripts.Analytics
             DontDestroyOnLoad(gameObject);
             UnityEngine.Analytics.Analytics.SetUserId(UserGuid.ToString());
         }
-
+        /// <summary>
+        /// Used to reset guid once the player finishes the game.
+        /// </summary>
+        public void ResetGuid()
+        {
+            UserGuid = Guid.NewGuid();
+        }
 
         public void LogScreenVisit(SceneType scene, int levelIndex = 0)
         {

@@ -248,171 +248,199 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &1471727135
+--- !u!1001 &818615191
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 2085686293}
+    m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 8204071654474334365, guid: 7ffc4129937f48c4cb429117e2fef97e,
+    - target: {fileID: 5390547437058753872, guid: 233558be747e07a49b75f51dde035316,
+        type: 3}
+      propertyPath: m_Name
+      value: Level Loader
+      objectReference: {fileID: 0}
+    - target: {fileID: 5390547437058753886, guid: 233558be747e07a49b75f51dde035316,
         type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8204071654474334365, guid: 7ffc4129937f48c4cb429117e2fef97e,
+    - target: {fileID: 5390547437058753886, guid: 233558be747e07a49b75f51dde035316,
         type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8204071654474334365, guid: 7ffc4129937f48c4cb429117e2fef97e,
+    - target: {fileID: 5390547437058753886, guid: 233558be747e07a49b75f51dde035316,
         type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8204071654474334365, guid: 7ffc4129937f48c4cb429117e2fef97e,
+    - target: {fileID: 5390547437058753886, guid: 233558be747e07a49b75f51dde035316,
         type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8204071654474334365, guid: 7ffc4129937f48c4cb429117e2fef97e,
+    - target: {fileID: 5390547437058753886, guid: 233558be747e07a49b75f51dde035316,
         type: 3}
       propertyPath: m_LocalRotation.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8204071654474334365, guid: 7ffc4129937f48c4cb429117e2fef97e,
+    - target: {fileID: 5390547437058753886, guid: 233558be747e07a49b75f51dde035316,
         type: 3}
       propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8204071654474334365, guid: 7ffc4129937f48c4cb429117e2fef97e,
+    - target: {fileID: 5390547437058753886, guid: 233558be747e07a49b75f51dde035316,
         type: 3}
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 8204071654474334365, guid: 7ffc4129937f48c4cb429117e2fef97e,
+    - target: {fileID: 5390547437058753886, guid: 233558be747e07a49b75f51dde035316,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 6
       objectReference: {fileID: 0}
-    - target: {fileID: 8204071654474334365, guid: 7ffc4129937f48c4cb429117e2fef97e,
+    - target: {fileID: 5390547437058753886, guid: 233558be747e07a49b75f51dde035316,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8204071654474334365, guid: 7ffc4129937f48c4cb429117e2fef97e,
+    - target: {fileID: 5390547437058753886, guid: 233558be747e07a49b75f51dde035316,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8204071654474334365, guid: 7ffc4129937f48c4cb429117e2fef97e,
+    - target: {fileID: 5390547437058753886, guid: 233558be747e07a49b75f51dde035316,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8204071654474334365, guid: 7ffc4129937f48c4cb429117e2fef97e,
+    - target: {fileID: 5390547437058753886, guid: 233558be747e07a49b75f51dde035316,
         type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8204071654474334365, guid: 7ffc4129937f48c4cb429117e2fef97e,
+    - target: {fileID: 5390547437058753886, guid: 233558be747e07a49b75f51dde035316,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 151.2
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8204071654474334365, guid: 7ffc4129937f48c4cb429117e2fef97e,
+    - target: {fileID: 5390547437058753886, guid: 233558be747e07a49b75f51dde035316,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 464.3
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8204071654474334365, guid: 7ffc4129937f48c4cb429117e2fef97e,
+    - target: {fileID: 5390547437058753886, guid: 233558be747e07a49b75f51dde035316,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 59.4
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8204071654474334365, guid: 7ffc4129937f48c4cb429117e2fef97e,
+    - target: {fileID: 5390547437058753886, guid: 233558be747e07a49b75f51dde035316,
         type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8204071654474334365, guid: 7ffc4129937f48c4cb429117e2fef97e,
+    - target: {fileID: 5390547437058753886, guid: 233558be747e07a49b75f51dde035316,
         type: 3}
       propertyPath: m_AnchorMin.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8204071654474334365, guid: 7ffc4129937f48c4cb429117e2fef97e,
+    - target: {fileID: 5390547437058753886, guid: 233558be747e07a49b75f51dde035316,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8204071654474334365, guid: 7ffc4129937f48c4cb429117e2fef97e,
+    - target: {fileID: 5390547437058753886, guid: 233558be747e07a49b75f51dde035316,
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8204071654474334365, guid: 7ffc4129937f48c4cb429117e2fef97e,
+    - target: {fileID: 5390547437058753886, guid: 233558be747e07a49b75f51dde035316,
         type: 3}
       propertyPath: m_Pivot.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8204071654474334365, guid: 7ffc4129937f48c4cb429117e2fef97e,
-        type: 3}
-      propertyPath: m_Pivot.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8204071654474334364, guid: 7ffc4129937f48c4cb429117e2fef97e,
-        type: 3}
-      propertyPath: m_Name
-      value: PositiveButton
-      objectReference: {fileID: 0}
-    - target: {fileID: 8204071654474334354, guid: 7ffc4129937f48c4cb429117e2fef97e,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 2085686294}
-    - target: {fileID: 8204071654474334354, guid: 7ffc4129937f48c4cb429117e2fef97e,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: CreditsOver
-      objectReference: {fileID: 0}
-    - target: {fileID: 8204071654816370074, guid: 7ffc4129937f48c4cb429117e2fef97e,
-        type: 3}
-      propertyPath: m_textInfo.characterCount
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 8204071654816370074, guid: 7ffc4129937f48c4cb429117e2fef97e,
-        type: 3}
-      propertyPath: m_textInfo.spaceCount
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8204071654816370074, guid: 7ffc4129937f48c4cb429117e2fef97e,
+    - target: {fileID: 5390547437058753886, guid: 233558be747e07a49b75f51dde035316,
         type: 3}
-      propertyPath: m_textInfo.wordCount
-      value: 1
+      propertyPath: m_Pivot.y
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8204071654816370074, guid: 7ffc4129937f48c4cb429117e2fef97e,
+    - target: {fileID: 5390547437058753880, guid: 233558be747e07a49b75f51dde035316,
         type: 3}
-      propertyPath: m_textInfo.lineCount
+      propertyPath: CurrentSceneType
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8204071654816370074, guid: 7ffc4129937f48c4cb429117e2fef97e,
-        type: 3}
-      propertyPath: m_textInfo.pageCount
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8204071654816370074, guid: 7ffc4129937f48c4cb429117e2fef97e,
-        type: 3}
-      propertyPath: m_text
-      value: Continue
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 7ffc4129937f48c4cb429117e2fef97e, type: 3}
---- !u!224 &1471727136 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 8204071654474334365, guid: 7ffc4129937f48c4cb429117e2fef97e,
-    type: 3}
-  m_PrefabInstance: {fileID: 1471727135}
-  m_PrefabAsset: {fileID: 0}
+  m_SourcePrefab: {fileID: 100100000, guid: 233558be747e07a49b75f51dde035316, type: 3}
+--- !u!1001 &1448244396
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2166160429491432791, guid: 6c960f025e516c24582e92e76ef96f0b,
+        type: 3}
+      propertyPath: m_Name
+      value: Music Controller
+      objectReference: {fileID: 0}
+    - target: {fileID: 1236657763458383937, guid: 6c960f025e516c24582e92e76ef96f0b,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -16.086668
+      objectReference: {fileID: 0}
+    - target: {fileID: 1236657763458383937, guid: 6c960f025e516c24582e92e76ef96f0b,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -15.963753
+      objectReference: {fileID: 0}
+    - target: {fileID: 1236657763458383937, guid: 6c960f025e516c24582e92e76ef96f0b,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -15.114121
+      objectReference: {fileID: 0}
+    - target: {fileID: 1236657763458383937, guid: 6c960f025e516c24582e92e76ef96f0b,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1236657763458383937, guid: 6c960f025e516c24582e92e76ef96f0b,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1236657763458383937, guid: 6c960f025e516c24582e92e76ef96f0b,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1236657763458383937, guid: 6c960f025e516c24582e92e76ef96f0b,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1236657763458383937, guid: 6c960f025e516c24582e92e76ef96f0b,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1236657763458383937, guid: 6c960f025e516c24582e92e76ef96f0b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1236657763458383937, guid: 6c960f025e516c24582e92e76ef96f0b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1236657763458383937, guid: 6c960f025e516c24582e92e76ef96f0b,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6c960f025e516c24582e92e76ef96f0b, type: 3}
 --- !u!1 &1649138814
 GameObject:
   m_ObjectHideFlags: 0
@@ -492,7 +520,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -100, y: 10000}
+  m_SizeDelta: {x: -200, y: 18500}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1786826259
 MonoBehaviour:
@@ -514,7 +542,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 89
+    m_FontSize: 75
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 10
@@ -525,23 +553,36 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Game Developmrnt\nMatou\u0161 Kozma\n\n\nStory\nVlastimil Diuk \u010Curda\n\n\nThesis
-    Supervisor\nJakub Gemrot\n\n\nSurvey Design\nLuk\xE1\u0161 Kolek\n\n\nEvil Cleric
-    Voice\nFrolda z F\xE9nixProDabing\n\n\nThese are all the people worked specifically
-    on this game.\n\n\nHowever, this game uses a ton of assets which are available
-    online and without which this game could never exist. These are listed below in
-    no specific order:\n\n\n\nHero Portraits\nHero Portraits are from the Flare Portrait
-    pack by Justin Nichol and the Flare Project, usable under Creative Commons Attribution
-    ShareAlike 3.0 license.\n\nUI\n\nRPG Status Icons by Buch, usable under Creative
-    Commons Attribution 3.0 license. \nhttps://opengameart.org/users/buch\n\nRPG Frame
-    by Flatlander and modified by cbritez, usable under Creative Commons Attribution
+  m_Text: "Hey there, thanks for playing! Hope you've enjoyed the game.\n\n\nIf you've
+    just clicked on the Credits in the menu, well... Still thanks! Nice to see you
+    want to know who made this.\n\n\nThis game was made by Matou\u0161 Kozma as a
+    Master Thesis project at Charles University for the Computer Graphics and Game
+    Development program.\n\nIf you have any feedback, just shoot me a mail:\nmattkozma@hotmail.com\n\n\nBut
+    even though this was my thesis, I had help!\nA lot of people helped me. And here
+    they are!\n\nThesis Supervisor\nJakub Gemrot\n\nSurvey Design\nLuk\xE1\u0161 Kolek\n\nStory\nVlastimil
+    Diuk \u010Curda\n\nEvil Cleric Voice\nFrolda z F\xE9nixProDabing\n\n\nThese are
+    all the people worked specifically on this game.\n\n\nBut this game also uses
+    a lot of assets that can be found online for free. These are listed below in no
+    specific order:\n\n\nProcedural dungeon generator:\nOnd\u0159ej Nepo\u017Eitek\nhttps://github.com/OndrejNepozitek/\n\n\nHero
+    Dialogs\n\nBob the Ranger's voice was from this package:\nLITE - Fantasy - Headstrong
+    Archer Character Voice Sound Pack\n\nCleric and Knight voices are from the following
+    package:\nCustom Voice Resource - https://kerstynungerva.itch.io/custom-voice-resource\nDialog
+    Writer:\nKerstyn Unger - https://linktr.ee/KerstynUngerVA\nCast:\nJohn the Cleric\nMr.
+    Bromin - https://www.castingcall.club/m/MrBromin\nTom the Knight\nJonas Fresh
+    - https://twitter.com/JonasFreshVA\n\n\n\nHero Portraits\nHero Portraits are from
+    the Flare Portrait pack by Justin Nichol and the Flare Project, usable under Creative
+    Commons Attribution ShareAlike 3.0 license.\n\nUI\n\nRPG Status Icons by Buch,
+    usable under Creative Commons Attribution 3.0 license. \nhttps://opengameart.org/users/buch\n\nRPG
+    Frame by Flatlander and modified by cbritez, usable under Creative Commons Attribution
     3.0 license.\n\nSkill Icons\n\nPainterly Spell Icons - J. W. Bjerk (eleazzaar)
     -- www.jwbjerk.com/art -- find this and other open art at: http://opengameart.org
     , usable under Creative Commons Attribution 3.0 license.\n\n\nEffects\n\n9 Frame
     Fire Animation by FoshyTakashi, usable under Creative Commons Attribution 3.0
-    license.\n\nDungeon Tileset\n\nDungeon tileset by Calciumtrice, usable under Creative
-    Commons Attribution 3.0 license.\n\nGame Characters\n\nAnimated Cleric by Calciumtrice,
-    usable under Creative Commons Attribution 3.0 license.\n\nAnimated Ranger by Calciumtrice,
+    license.\n\nMagic Sprite Effects - Copyright 2008 Jordan Trudgett | http://jordan.trudgett.com/
+    - Licensed under CC BY 3.0 http://creativecommons.org/licenses/by/3.0/\n\nDungeon
+    Tileset\n\nDungeon tileset by Calciumtrice, usable under Creative Commons Attribution
+    3.0 license.\n\nGame Characters\n\nAnimated Cleric by Calciumtrice, usable under
+    Creative Commons Attribution 3.0 license.\n\nAnimated Ranger by Calciumtrice,
     usable under Creative Commons Attribution 3.0 license.\n\nAnimated Mitheral Knight
     by Calciumtrice and Recolored by Merry Dream Games, usable under Creative Commons
     Attribution 3.0 license.\n\nAnimated Grey Minotaur by Calciumtrice and Recolored
@@ -574,7 +615,12 @@ MonoBehaviour:
     Trickster Orc by Calciumtrice and Recolored by Merry Dream Games, usable under
     Creative Commons Attribution 3.0 license.\n\nAnimated Pyromaniac Orc by Calciumtrice
     and Recolored by Merry Dream Games, usable under Creative Commons Attribution
-    3.0 license."
+    3.0 license.\n\n\n\n\n\n\nAnd plus some several other packs that do not require
+    attribution.\n\n\n\n\n\n\nSo thanks once more for playing and also thanks for
+    reading the credits! It's nice to see people waiting for the credits to roll all
+    the way. But unfortunately, there will be no surprise, no secret ending, no stinger.\n\n\nSo,
+    thanks again, hopefully we'll be able to do this again on some future project
+    of mine :)"
 --- !u!222 &1786826260
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -664,6 +710,7 @@ GameObject:
   - component: {fileID: 2085686289}
   - component: {fileID: 2085686288}
   - component: {fileID: 2085686294}
+  - component: {fileID: 2085686295}
   m_Layer: 5
   m_Name: Credits
   m_TagString: Untagged
@@ -779,7 +826,6 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 1786826258}
-  - {fileID: 1471727136}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -800,3 +846,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b60dee9df6d6274bbff82bc1dd6e2dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!111 &2085686295
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2085686287}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 65302730610349346947ece84f8ea477, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: 65302730610349346947ece84f8ea477, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
