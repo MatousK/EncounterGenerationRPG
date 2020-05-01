@@ -37,6 +37,7 @@ namespace Assets.Scripts.EncounterGenerator
             analyticsService = FindObjectsOfType<AnalyticsService>().First(analytics => !analytics.IsPendingKill);
             difficultyMatrixProvider =
                 FindObjectsOfType<DifficultyMatrixProvider>().First(provider => !provider.IsPendingKill);
+            UnityEngine.Debug.Log($"Encounter manager found matrix: {difficultyMatrixProvider}");
             levelLoader = FindObjectsOfType<LevelLoader>().First(loader => !loader.IsPendingKill);
             var difficultyMatrix = difficultyMatrixProvider.CurrentDifficultyMatrix;
             MatrixUpdater = new EncounterMatrixUpdater(difficultyMatrix, generatorConfiguration, analyticsService);
@@ -99,6 +100,8 @@ namespace Assets.Scripts.EncounterGenerator
                     encounter = exploredRoom.StaticMonsters;
                     var staticEncounter =
                         EncounterDefinition.GetDefinitionFromMonsters(exploredRoom.StaticMonsters);
+                    UnityEngine.Debug.Log($"Calculating difficulty. Matrix provider: {difficultyMatrixProvider}");
+                    UnityEngine.Debug.Log($"Calculating difficulty. Matrix : {difficultyMatrixProvider.CurrentDifficultyMatrix}");
                     var encounterDifficulty =
                         difficultyMatrixProvider.CurrentDifficultyMatrix.GetDifficultyFor(staticEncounter,
                             partyDefinition, generatorConfiguration);

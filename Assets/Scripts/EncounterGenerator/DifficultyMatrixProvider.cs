@@ -38,13 +38,16 @@ namespace Assets.Scripts.EncounterGenerator
             }
             DontDestroyOnLoad(this);
             var matrixString = Resources.Load<TextAsset>("Matrix").text;
+            UnityEngine.Debug.Log($"Matrix loaded. Characters: {matrixString.Length}");
             if (IsInMainMenu)
             {
+                UnityEngine.Debug.Log("Matrix will be loaded asynchronously.");
                 // Run on a different thread so we do not blockUI while in main menu.
                 Task.Run(() => LoadMatrix(matrixString));
             }
             else
             {
+                UnityEngine.Debug.Log("Matrix will be loaded synchronously.");
                 LoadMatrix(matrixString);
             }
         }
@@ -56,18 +59,30 @@ namespace Assets.Scripts.EncounterGenerator
 
         private void LoadMatrix(string matrixString)
         {
-            // TODO: Load from some shared storage, make it a singleton, something, this is ugly.
-            var config = new EncounterGeneratorConfiguration();
-            using (var sr = new StringReader(matrixString))
+            try
             {
-                var matrixSource = DifficultyMatrixParser.ParseFile(sr);
-                CurrentDifficultyMatrix = new EncounterDifficultyMatrix();
-                foreach (var sourceLine in matrixSource)
+                UnityEngine.Debug.Log("Started loading matrix.");
+                // TODO: Load from some shared storage, make it a singleton, something, this is ugly.
+                var config = new EncounterGeneratorConfiguration();
+                UnityEngine.Debug.Log("Config initialized.");
+                using (var sr = new StringReader(matrixString))
                 {
-                    var newMatrixRow = new EncounterDifficultyMatrixElement(sourceLine);
-                    newMatrixRow.EncounterGroups.UpdatePrecomputedMonsterCount(config);
-                    CurrentDifficultyMatrix.MatrixElements.Add(newMatrixRow);
+                    UnityEngine.Debug.Log("Stream opened.");
+                    var matrixSource = DifficultyMatrixParser.ParseFile(sr);
+                    UnityEngine.Debug.Log("Matrix parsed successfully.");
+                    CurrentDifficultyMatrix = new EncounterDifficultyMatrix();
+                    UnityEngine.Debug.Log("Matrix object created.");
+                    foreach (var sourceLine in matrixSource)
+                    {
+                        var newMatrixRow = new EncounterDifficultyMatrixElement(sourceLine);
+                        newMatrixRow.EncounterGroups.UpdatePrecomputedMonsterCount(config);
+                        CurrentDifficultyMatrix.MatrixElements.Add(newMatrixRow);
+                    }
                 }
+            }
+            catch (Exception e)
+            {
+                UnityEngine.Debug.LogError(e);
             }
         }
     }
