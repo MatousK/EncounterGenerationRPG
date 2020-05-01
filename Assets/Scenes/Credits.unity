@@ -255,11 +255,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2085686293}
     m_Modifications:
-    - target: {fileID: 8204071654474334364, guid: 7ffc4129937f48c4cb429117e2fef97e,
-        type: 3}
-      propertyPath: m_Name
-      value: PositiveButton
-      objectReference: {fileID: 0}
     - target: {fileID: 8204071654474334365, guid: 7ffc4129937f48c4cb429117e2fef97e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -364,6 +359,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8204071654474334364, guid: 7ffc4129937f48c4cb429117e2fef97e,
+        type: 3}
+      propertyPath: m_Name
+      value: PositiveButton
       objectReference: {fileID: 0}
     - target: {fileID: 8204071654474334354, guid: 7ffc4129937f48c4cb429117e2fef97e,
         type: 3}
@@ -489,10 +489,10 @@ RectTransform:
   m_Father: {fileID: 2085686293}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 1}
-  m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -100}
-  m_SizeDelta: {x: 1672.3, y: 624.9}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: -100, y: 10000}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1786826259
 MonoBehaviour:
@@ -525,10 +525,56 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Here we will have awesome credits
-
-
-    But not now. So just press continue'
+  m_Text: "Game Developmrnt\nMatou\u0161 Kozma\n\n\nStory\nVlastimil Diuk \u010Curda\n\n\nThesis
+    Supervisor\nJakub Gemrot\n\n\nSurvey Design\nLuk\xE1\u0161 Kolek\n\n\nEvil Cleric
+    Voice\nFrolda z F\xE9nixProDabing\n\n\nThese are all the people worked specifically
+    on this game.\n\n\nHowever, this game uses a ton of assets which are available
+    online and without which this game could never exist. These are listed below in
+    no specific order:\n\n\n\nHero Portraits\nHero Portraits are from the Flare Portrait
+    pack by Justin Nichol and the Flare Project, usable under Creative Commons Attribution
+    ShareAlike 3.0 license.\n\nUI\n\nRPG Status Icons by Buch, usable under Creative
+    Commons Attribution 3.0 license. \nhttps://opengameart.org/users/buch\n\nRPG Frame
+    by Flatlander and modified by cbritez, usable under Creative Commons Attribution
+    3.0 license.\n\nSkill Icons\n\nPainterly Spell Icons - J. W. Bjerk (eleazzaar)
+    -- www.jwbjerk.com/art -- find this and other open art at: http://opengameart.org
+    , usable under Creative Commons Attribution 3.0 license.\n\n\nEffects\n\n9 Frame
+    Fire Animation by FoshyTakashi, usable under Creative Commons Attribution 3.0
+    license.\n\nDungeon Tileset\n\nDungeon tileset by Calciumtrice, usable under Creative
+    Commons Attribution 3.0 license.\n\nGame Characters\n\nAnimated Cleric by Calciumtrice,
+    usable under Creative Commons Attribution 3.0 license.\n\nAnimated Ranger by Calciumtrice,
+    usable under Creative Commons Attribution 3.0 license.\n\nAnimated Mitheral Knight
+    by Calciumtrice and Recolored by Merry Dream Games, usable under Creative Commons
+    Attribution 3.0 license.\n\nAnimated Grey Minotaur by Calciumtrice and Recolored
+    by Merry Dream Games, usable under Creative Commons Attribution 3.0 license.\n\nAnimated
+    Minotaur by Calciumtrice, usable under Creative Commons Attribution 3.0 license.\n\nAnimated
+    Red Minotaur by Calciumtrice and Recolored by Merry Dream Games, usable under
+    Creative Commons Attribution 3.0 license.\n\nAnimated Hunter Orc by Calciumtrice
+    and Recolored by Merry Dream Games, usable under Creative Commons Attribution
+    3.0 license.\n\nAnimated Purple Orc by Calciumtrice and Recolored by Merry Dream
+    Games, usable under Creative Commons Attribution 3.0 license.\n\nAnimated Red
+    Orc by Calciumtrice and Recolored by Merry Dream Games, usable under Creative
+    Commons Attribution 3.0 license.\n\nAnimated Skeleton by Calciumtrice, usable
+    under Creative Commons Attribution 3.0 license.\n\nAnimated Death by Calciumtrice
+    and Recolored by Merry Dream Games, usable under Creative Commons Attribution
+    3.0 license.\n\nAnimated statue by Calciumtrice, usable under Creative Commons
+    Attribution 3.0 license.\n\nAnimated Goblins by Calciumtrice, usable under Creative
+    Commons Attribution 3.0 license.\n\nAnimated Armour Imp by Calciumtrice and Recolored
+    by Merry Dream Games, usable under Creative Commons Attribution 3.0 license.\n\nAnimated
+    Foul Monk by Calciumtrice and Recolored by Merry Dream Games, usable under Creative
+    Commons Attribution 3.0 license.\n\nAnimated Evil Cleric by Calciumtrice and Recolored
+    by Merry Dream Games, usable under Creative Commons Attribution 3.0 license.\n\nOriginal
+    \"Animated Skeleton\" by Calciumtrice and Modified by abetusk, usable under Creative
+    Commons Attribution 3.0 license.\n\nAnimated Abyss Ranger by Calciumtrice and
+    Recolored by Merry Dream Games, usable under Creative Commons Attribution 3.0
+    license.\n\nAnimated Blood Ranger by Calciumtrice and Recolored by Merry Dream
+    Games, usable under Creative Commons Attribution 3.0 license.\n\nAnimated Dark
+    Ranger by Calciumtrice and Recolored by Merry Dream Games, usable under Creative
+    Commons Attribution 3.0 license.\n\nAnimated Yellow Orc by Calciumtrice and Recolored
+    by Merry Dream Games, usable under Creative Commons Attribution 3.0 license.\n\nAnimated
+    Trickster Orc by Calciumtrice and Recolored by Merry Dream Games, usable under
+    Creative Commons Attribution 3.0 license.\n\nAnimated Pyromaniac Orc by Calciumtrice
+    and Recolored by Merry Dream Games, usable under Creative Commons Attribution
+    3.0 license."
 --- !u!222 &1786826260
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -695,7 +741,7 @@ MonoBehaviour:
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 1
+  m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
