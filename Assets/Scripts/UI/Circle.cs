@@ -16,7 +16,7 @@ namespace Assets.Scripts.UI
         int? lastFrameSegments;
 
         // Start is called before the first frame update
-        void Awake()
+        void Start()
         {
             DrawCircle(gameObject);
         }
@@ -32,10 +32,17 @@ namespace Assets.Scripts.UI
 
         private void DrawCircle(GameObject container)
         {
-            line = container.AddComponent<LineRenderer>();
+            line = GetComponent<LineRenderer>();
+            if (line == null)
+            {
+                line = container.AddComponent<LineRenderer>();
+            }
             var spriteRenderer = GetComponentInParent<SpriteRenderer>();
-            line.sortingLayerID = spriteRenderer.sortingLayerID;
-            line.sortingOrder = spriteRenderer.sortingOrder - 1;
+            if (spriteRenderer != null)
+            {
+                line.sortingLayerID = spriteRenderer.sortingLayerID;
+                line.sortingOrder = spriteRenderer.sortingOrder - 1;
+            }
             line.material = LineMaterial;
             line.useWorldSpace = false;
             UpdateCircleProperties();

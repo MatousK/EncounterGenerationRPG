@@ -55,6 +55,10 @@ namespace Assets.Scripts.Combat
         /// How much should health increase when a powerup is picked up.
         /// </summary>
         public float HealthPowerupIncrement;
+        /// <summary>
+        /// Will spawn when the order to move to some position is given.
+        /// </summary>
+        public GameObject MoveToIndicatorTemplate;
 
         // Start is called before the first frame update
         protected override void Awake()
@@ -177,6 +181,9 @@ namespace Assets.Scripts.Combat
             {
                 movementController.MoveToPosition(position);
             }
+            var moveToIndicator = Instantiate(MoveToIndicatorTemplate, transform.parent, true);
+            moveToIndicator.transform.position = new Vector3(position.x, position.y, -1);
+
         }
     }
 }

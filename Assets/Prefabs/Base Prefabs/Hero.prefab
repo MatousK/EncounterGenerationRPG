@@ -48,6 +48,8 @@ MonoBehaviour:
   FriendlyTargetSkill: {fileID: 0}
   AttackPowerupIncrement: 0
   HealthPowerupIncrement: 0
+  MoveToIndicatorTemplate: {fileID: 2167429257606977813, guid: d71e081d4207a4745b6ece5540205b95,
+    type: 3}
 --- !u!1001 &4717941611559141140
 PrefabInstance:
   m_ObjectHideFlags: 0
