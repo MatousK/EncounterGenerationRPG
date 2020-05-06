@@ -37,9 +37,17 @@ MonoBehaviour:
     OutOfCombatHealthRegeneration: 30
     CombatHealthRegeneration: 0
   TotalMaxHitpoints: 0
+  MaxHitpoints: 0
+  IsInvincible: 0
+  HeroProfession: 0
+  AfterCombatRevivalHealthPercentage: 0.1
+  Portrait: {fileID: 0}
+  AiTargetPriority: 0
   SelfTargetSkill: {fileID: 0}
   EnemyTargetSkill: {fileID: 0}
   FriendlyTargetSkill: {fileID: 0}
+  AttackPowerupIncrement: 0
+  HealthPowerupIncrement: 0
 --- !u!1001 &4717941611559141140
 PrefabInstance:
   m_ObjectHideFlags: 0

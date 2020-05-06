@@ -1307,6 +1307,8 @@ GameObject:
   - component: {fileID: 2082654603}
   - component: {fileID: 2082654601}
   - component: {fileID: 2082654606}
+  - component: {fileID: 2082654602}
+  - component: {fileID: 2082654607}
   m_Layer: 0
   m_Name: InputManager
   m_TagString: Untagged
@@ -1324,6 +1326,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5af53584ee8ea8e4285c680ac7de8cd2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2082654602
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2082654600}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e61e57a66477ef04a86893bb325dfe6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &2082654603
@@ -1377,6 +1391,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsFriendlySkill: 0
+--- !u!114 &2082654607
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2082654600}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ce89a7e14cdf0b4c843326960b331c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2126954044
 GameObject:
   m_ObjectHideFlags: 0
