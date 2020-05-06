@@ -49,7 +49,7 @@ MonoBehaviour:
     he receives damage.
   ClearTargetAfterUsingSkill: 1
   Cooldown: 10
-  Range: 1
+  Range: 5
   Speed: 1
   SkillSoundType: 7
   VoiceSkillType: 1
