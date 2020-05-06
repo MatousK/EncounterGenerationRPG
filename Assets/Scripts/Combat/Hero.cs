@@ -111,6 +111,11 @@ namespace Assets.Scripts.Combat
 
         public virtual void AttackUsed(Monster target)
         {
+            if (target != GetComponent<AutoAttacking>().Target)
+            {
+                // We want the existing attack to be stopped immediately if it is lead on someone else..
+                GetComponent<AutoAttacking>().AutoAttackSkill.TryStopSkill();
+            }
             GetComponent<AutoAttacking>().Target = target;
             target.GetComponent<CommandConfirmationIndicator>().DisplayConfirmation();
         }
