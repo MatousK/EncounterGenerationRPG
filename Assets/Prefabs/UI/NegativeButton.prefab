@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5496948271247132637}
   - component: {fileID: 5496948271247132638}
   m_Layer: 5
-  m_Name: GameOverButton
+  m_Name: NegativeButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -164,7 +164,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 200, y: 50}
+  m_SizeDelta: {x: 200, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5496948271282608370
 CanvasRenderer:
@@ -261,7 +261,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 5496948271282608371}
-    characterCount: 26
+    characterCount: 27
     spriteCount: 0
     spaceCount: 4
     wordCount: 5
