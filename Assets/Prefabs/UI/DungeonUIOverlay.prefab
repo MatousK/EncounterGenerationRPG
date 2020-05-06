@@ -730,6 +730,11 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 4874737131324083953, guid: 9ae9e9643be59f042a30c9ad7315927a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9ae9e9643be59f042a30c9ad7315927a, type: 3}
 --- !u!224 &4702104125972642112 stripped
@@ -1278,6 +1283,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1988645753368209890}
     m_Modifications:
+    - target: {fileID: 5496948271247132624, guid: 25cb09aefa59ca244bd57f83a9606772,
+        type: 3}
+      propertyPath: m_Name
+      value: GameOverButton
+      objectReference: {fileID: 0}
     - target: {fileID: 5496948271247132639, guid: 25cb09aefa59ca244bd57f83a9606772,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1382,11 +1392,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5496948271247132624, guid: 25cb09aefa59ca244bd57f83a9606772,
-        type: 3}
-      propertyPath: m_Name
-      value: GameOverButton
       objectReference: {fileID: 0}
     - target: {fileID: 5496948271247132638, guid: 25cb09aefa59ca244bd57f83a9606772,
         type: 3}
@@ -1612,6 +1617,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1988645753368209890}
     m_Modifications:
+    - target: {fileID: 8204071654474334364, guid: 7ffc4129937f48c4cb429117e2fef97e,
+        type: 3}
+      propertyPath: m_Name
+      value: TryAgainButton
+      objectReference: {fileID: 0}
     - target: {fileID: 8204071654474334365, guid: 7ffc4129937f48c4cb429117e2fef97e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1716,11 +1726,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8204071654474334364, guid: 7ffc4129937f48c4cb429117e2fef97e,
-        type: 3}
-      propertyPath: m_Name
-      value: TryAgainButton
       objectReference: {fileID: 0}
     - target: {fileID: 8204071654474334354, guid: 7ffc4129937f48c4cb429117e2fef97e,
         type: 3}
