@@ -90,7 +90,7 @@ MonoBehaviour:
   LeftClickController: {fileID: 0}
   RightClickController: {fileID: 0}
   PauseManager: {fileID: 0}
-  AutoStart: 1
+  AutoStart: 0
 --- !u!114 &320523433911563727
 MonoBehaviour:
   m_ObjectHideFlags: 0
