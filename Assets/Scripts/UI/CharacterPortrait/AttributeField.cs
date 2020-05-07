@@ -5,6 +5,7 @@ namespace Assets.Scripts.UI.CharacterPortrait
 {
     public class AttributeField: MonoBehaviour
     {
+        public float? lastFrameValueToShow;
         public float ValueToShow;
         public Text Label;
 
@@ -16,6 +17,11 @@ namespace Assets.Scripts.UI.CharacterPortrait
         public void Update()
         {
             UpdateLabel();
+            if (lastFrameValueToShow.HasValue && lastFrameValueToShow < ValueToShow)
+            {
+                GetComponent<Animation>().Play();
+            }
+            lastFrameValueToShow = ValueToShow;
         }
 
         void UpdateLabel()

@@ -51,7 +51,8 @@ namespace Assets.Scripts.UI.CharacterPortrait
             heroVoiceController = RepresentedHero.GetComponentInChildren<CharacterVoiceController>();
             PortraitImage.sprite = RepresentedHero.Portrait;
 
-            AttackField.ValueToShow = (int)(RepresentedHero.Attributes.DealtDamageMultiplier * RepresentedHero.Attributes.AttackSpeedMultiplier);
+            var dps = (int)(RepresentedHero.Attributes.DealtDamageMultiplier * RepresentedHero.Attributes.AttackSpeedMultiplier);
+            AttackField.ValueToShow = dps;
             MaxHealthField.ValueToShow = (int)RepresentedHero.TotalMaxHitpoints;
 
             var maxHealthPercentage = RepresentedHero.MaxHitpoints / RepresentedHero.TotalMaxHitpoints;
