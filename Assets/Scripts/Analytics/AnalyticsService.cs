@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using Assets.Scripts.Combat;
 using Assets.Scripts.EncounterGenerator.Model;
@@ -38,7 +40,6 @@ namespace Assets.Scripts.Analytics
                 return;
             }
             DontDestroyOnLoad(gameObject);
-            UnityEngine.Analytics.Analytics.SetUserId(UserGuid.ToString());
         }
         /// <summary>
         /// Used to reset guid once the player finishes the game.
@@ -53,47 +54,48 @@ namespace Assets.Scripts.Analytics
         }
 
         public void LogCombat(Dictionary<HeroProfession, float> partyStartHp, Dictionary<HeroProfession, float> partyEndHp, Dictionary<HeroProfession, float> partyAttack,
-            EncounterDefinition encounter, float expectedDifficulty, float realDifficulty, bool wasGameOver, bool wasStatic)
+            EncounterDefinition encounter, float expectedDifficulty, float realDifficulty, bool wasGameOver, bool wasStatic, bool wasLogged)
         {
-            var args = new Dictionary<string, object>
-            {
-                {"start_max_hp", CollapseToString(partyStartHp)},
-                {"end_max_hp", CollapseToString(partyEndHp)},
-                {"attack", CollapseToString(partyAttack)},
-                {"expected_difficulty", expectedDifficulty},
-                {"real_difficulty", realDifficulty},
-                {"was_game_over", wasGameOver},
-                {"was_static", wasStatic},
-                {"encounter", GetEncounterString(encounter)}
+            List<string> lineCells = new List<string> {
+                UserGuid.ToString(),
+                DateTime.Now.ToFileTimeUtc().ToString(),
             };
-            var analyticsResult =  UnityEngine.Analytics.Analytics.CustomEvent(
-                "combat_over", args
-
-            );
-            print(args);
-            print(analyticsResult);
-        }
-
-        private string GetEncounterString(EncounterDefinition encounter)
-        {
-            string toReturn = "";
+            lineCells.Add(partyStartHp[HeroProfession.Knight].ToString(CultureInfo.InvariantCulture));
+            lineCells.Add(partyStartHp[HeroProfession.Ranger].ToString(CultureInfo.InvariantCulture));
+            lineCells.Add(partyStartHp[HeroProfession.Cleric].ToString(CultureInfo.InvariantCulture));
+            lineCells.Add(partyEndHp[HeroProfession.Knight].ToString(CultureInfo.InvariantCulture));
+            lineCells.Add(partyEndHp[HeroProfession.Ranger].ToString(CultureInfo.InvariantCulture));
+            lineCells.Add(partyEndHp[HeroProfession.Cleric].ToString(CultureInfo.InvariantCulture));
+            lineCells.Add(partyAttack[HeroProfession.Knight].ToString(CultureInfo.InvariantCulture));
+            lineCells.Add(partyAttack[HeroProfession.Ranger].ToString(CultureInfo.InvariantCulture));
+            lineCells.Add(partyAttack[HeroProfession.Cleric].ToString(CultureInfo.InvariantCulture));
             foreach (var monsterType in orderedMonsterTypes)
             {
                 var monsterCount =
                     encounter.AllEncounterGroups.FirstOrDefault(group => group.MonsterType == monsterType)?.MonsterCount ?? 0;
-                toReturn += monsterCount.ToString();
-                toReturn += ";";
+                lineCells.Add(monsterCount.ToString(CultureInfo.InvariantCulture));
             }
+            lineCells.Add(expectedDifficulty.ToString(CultureInfo.InvariantCulture));
+            lineCells.Add(realDifficulty.ToString(CultureInfo.InvariantCulture));
+            lineCells.Add(wasGameOver ? "1" : "0");
+            lineCells.Add(wasStatic ? "1" : "0");
+            lineCells.Add(wasLogged ? "1" : "0");
 
-            return toReturn;
+            var csvLine = string.Join(";", lineCells);
+
+            StartCoroutine(LogCsvLine(csvLine));
         }
 
-        private string CollapseToString(Dictionary<HeroProfession, float> dictionary)
+        private IEnumerator LogCsvLine(string line)
         {
-            return string.Join(";",
-                dictionary.Select(keyValue => keyValue.Key + ":" + (int)keyValue.Value));
+            var payload = $"{{\"payload\": \"{line}\" }}";
+            var payloadBytes = System.Text.Encoding.UTF8.GetBytes(payload);
+            var www = UnityEngine.Networking.UnityWebRequest.Put("http://mattka.tcf2.cz/storeData.php", payloadBytes);
+            www.SetRequestHeader("Accept", "application/json");
+            yield return www.SendWebRequest();
+
+            UnityEngine.Debug.Log(www.responseCode);
+            UnityEngine.Debug.Log(www.downloadHandler.text);
         }
-
-
     }
 }

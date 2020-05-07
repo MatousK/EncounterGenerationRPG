@@ -76,7 +76,7 @@ namespace Assets.Scripts.EncounterGenerator.Algorithm
             var partyStartHp = new Dictionary<HeroProfession, float>(initialMaxHp);
             var partyAttack = new Dictionary<HeroProfession, float>(partyDamageMultipliers);
             var finishedEncounter = encounter;
-            analyticsService.LogCombat(partyStartHp, partyEndHp, partyAttack, finishedEncounter, expectedDifficulty.Value, totalLostMaxHp, wasGameOver, IsStaticEncounter);
+            analyticsService.LogCombat(partyStartHp, partyEndHp, partyAttack, finishedEncounter, expectedDifficulty.Value, totalLostMaxHp, wasGameOver, IsStaticEncounter, AdjustMatrixForNextFight);
             if (AdjustMatrixForNextFight)
             {
                 AddMatrixRow(party, wasGameOver ? 3f : totalLostMaxHp, wasGameOver ? 3f : totalHpLost);

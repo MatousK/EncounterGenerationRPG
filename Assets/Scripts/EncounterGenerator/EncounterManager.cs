@@ -20,8 +20,6 @@ namespace Assets.Scripts.EncounterGenerator
     {
         public EncounterMatrixUpdater MatrixUpdater { get; private set; }
 
-        // TODO: Debug, remove in release builds.
-        private StaticEncounterGenerator staticEncounterGenerator;
         private EncounterGenerator encounterGenerator;
         private RoomsLayout roomsLayout;
         private CombatantSpawnManager combatantSpawnManager;
@@ -43,7 +41,6 @@ namespace Assets.Scripts.EncounterGenerator
             MatrixUpdater = new EncounterMatrixUpdater(difficultyMatrix, generatorConfiguration, analyticsService);
             MatrixUpdater.MatrixChanged += MatrixUpdater_MatrixChanged;
             encounterGenerator = new EncounterGenerator(difficultyMatrix, MatrixUpdater, generatorConfiguration);
-            staticEncounterGenerator = GetComponent<StaticEncounterGenerator>();
             roomsLayout = FindObjectOfType<RoomsLayout>();
             combatantSpawnManager = FindObjectOfType<CombatantSpawnManager>();
             combatantsManager = FindObjectOfType<CombatantsManager>();
