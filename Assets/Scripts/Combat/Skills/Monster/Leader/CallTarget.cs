@@ -1,5 +1,6 @@
 ﻿using System;
 using Assets.Scripts.Combat.Conditions;
+using Assets.Scripts.Effects;
 
 namespace Assets.Scripts.Combat.Skills.Monster.Leader
 {
@@ -39,6 +40,7 @@ namespace Assets.Scripts.Combat.Skills.Monster.Leader
                 addedCondition.RemainingDuration = Duration;
                 addedCondition.TargetForcedBy = SelfCombatant;
             }
+            SelfCombatant.GetComponentInChildren<TauntEffect>().StartEffect();
             base.ApplySkillEffects(sender, e);
         }
     }
