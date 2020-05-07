@@ -93,5 +93,10 @@ namespace Assets.Scripts.Combat.Skills.Character.Knight
         {
             // do nothing, we just do not want the base implementation to stop the skill prematurely.
         }
+
+        protected override void StartSkillAnimation()
+        {
+            // Do nothing, we do not want to call the base implementation which stops movement. Also, we really do not have a skill animation.
+        }
     }
 }
