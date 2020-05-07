@@ -13,6 +13,10 @@ namespace Assets.Scripts.Combat.Skills
     public abstract class Skill: MonoBehaviour
     {
         /// <summary>
+        /// If true, the hero can use this skill while on the move
+        /// </summary>
+        public bool CanMoveWhileCasting;
+        /// <summary>
         /// Icon representing this skill in the user interface.
         /// </summary>
         public Sprite SkillIcon;

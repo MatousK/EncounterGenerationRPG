@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6260e18d48262f543abdc86ae5f41e54, type: 3}
   m_Name: FixedInput
   m_EditorClassIdentifier: 
-  LevelGraph: {fileID: 11400000, guid: e209782f8fedfb640a86f39b45b6a1c9, type: 2}
+  LevelGraph: {fileID: 11400000, guid: 4b8b9b7a1b19c774991d0e9ecfa62e60, type: 2}
   UseCorridors: 1

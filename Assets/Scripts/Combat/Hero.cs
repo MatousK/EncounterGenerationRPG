@@ -172,6 +172,10 @@ namespace Assets.Scripts.Combat
                 return;
             }
             GetComponent<AutoAttacking>().Target = null;
+            foreach (var skill in CombatantSkills.Where(skill => !skill.CanMoveWhileCasting))
+            {
+                skill.TryStopSkill();
+            }
             if (!CombatantsManager.IsCombatActive)
             {
                 cameraMovement.FollowingTransform = transform;
