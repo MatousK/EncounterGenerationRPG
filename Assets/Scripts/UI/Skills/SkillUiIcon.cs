@@ -5,6 +5,7 @@ using System.Net.Mime;
 using System.Text;
 using System.Threading.Tasks;
 using Assets.Scripts.Combat.Skills;
+using Assets.Scripts.Cutscenes;
 using Assets.Scripts.Input;
 using Assets.Scripts.Sound.CharacterSounds;
 using UnityEngine;
@@ -37,18 +38,21 @@ namespace Assets.Scripts.UI.Skills
 
         private SkillFromUiIconClickController skillFromUiIconClickController;
 
+        private CutsceneManager cutsceneManager;
+
         private float? pointerEnterTime;
 
         private void Start()
         {
             buttonComponent = GetComponent<Button>();
             skillFromUiIconClickController = FindObjectOfType<SkillFromUiIconClickController>();
+            cutsceneManager = FindObjectOfType<CutsceneManager>();
         }
 
         private void Update()
         {
             CooldownOverlay.transform.localScale = new Vector3(1, CurrentCooldownPercentage, 1);
-            buttonComponent.interactable = CurrentCooldownPercentage == 0;
+            buttonComponent.interactable = CurrentCooldownPercentage == 0 && !cutsceneManager.IsCutsceneActive;
             var isBeingUsed = skillFromUiIconClickController.TargetedSkill == representedSkill;
             IsBeingUsedOverlay.enabled = isBeingUsed;
 
