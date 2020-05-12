@@ -6,13 +6,14 @@ namespace Assets.Scripts.Input
     {
         public bool IsPausedByUi { get; set; }
         public bool IsPausedByPlayer { get; private set; }
+        public bool IsPausedByMenu { get; set; }
 
-        public bool IsPaused => IsPausedByUi || IsPausedByPlayer;
+        public bool IsPaused => IsPausedByUi || IsPausedByPlayer || IsPausedByMenu;
 
         // Update is called once per frame
         void Update()
         {
-            if (UnityEngine.Input.GetKeyUp(KeyCode.Space) && !IsPausedByUi)
+            if (UnityEngine.Input.GetKeyUp(KeyCode.Space) && !IsPausedByUi && !IsPausedByMenu)
             {
                 IsPausedByPlayer = !IsPausedByPlayer;
             }

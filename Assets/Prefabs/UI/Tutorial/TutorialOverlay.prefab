@@ -131,7 +131,7 @@ MonoBehaviour:
     of the room? Those are your rewards, be sure to check them out before venturing
     forth. They can contain power ups that will permanently strengthen your heroes
     or some healing potions to help you recover after the battle. There is no downside
-    to opening every single chest, so you should do it whenever possible..
+    to opening every single chest, so you should do it whenever possible.
 
 
     You know what? Let''s try opening one right now!'
@@ -407,6 +407,34 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 4810980800598654258, guid: ec4caa0c66bde4744a0787800d5c7a7a,
+        type: 3}
+      propertyPath: Title
+      value: Power ups + Tutorial End
+      objectReference: {fileID: 0}
+    - target: {fileID: 4810980800598654258, guid: ec4caa0c66bde4744a0787800d5c7a7a,
+        type: 3}
+      propertyPath: Message
+      value: 'Great! Now what can you find in a chest? A stat increase power up or
+        a health potion.
+
+        I did not talk about stats yet? Well, your heroes have two main stats, which
+        you can see under their portraits - Strength and Vitality. Strength is simple,
+        it increses the damage the hero does with his attacks. Vitality determines
+        his Max HP limit. When the hero''s HP are reduced to 0, the damage he takes
+        from then on will decrease the hero''s Max HP. And when his Max HPs are reduced
+        to 0, he will die.
+
+
+        Lost HP can be healed by the cleric, but Max HP can only be restored by finding
+        a Health Potion, like the one you''ve found right now. If your heroes are
+        healthy, just leave the potion there for now and come back for it later when
+        you get hurt.
+
+
+        And thus ends the tutorial! Now go and use this knowledge to slay all your
+        foes!'
+      objectReference: {fileID: 0}
     - target: {fileID: 2988569519106959330, guid: ec4caa0c66bde4744a0787800d5c7a7a,
         type: 3}
       propertyPath: m_SizeDelta.y
@@ -446,33 +474,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SizeDelta.y
       value: 375.55
-      objectReference: {fileID: 0}
-    - target: {fileID: 4810980800598654258, guid: ec4caa0c66bde4744a0787800d5c7a7a,
-        type: 3}
-      propertyPath: Title
-      value: Power ups + Tutorial End
-      objectReference: {fileID: 0}
-    - target: {fileID: 4810980800598654258, guid: ec4caa0c66bde4744a0787800d5c7a7a,
-        type: 3}
-      propertyPath: Message
-      value: 'Great! Now what can you find in a chest? A stat increase power up or
-        a health potion.
-
-        I did not talk about stats yet? Well, your heroes have two main stats, which
-        you can see under their portraits - Strength and Vitality. Strength determines
-        the damage of the hero. Vitality determines his Max HP limit. When the hero''s
-        HP are reduced to 0, the damage he takes from then on will decrease the hero''s
-        Max HP. And when his Max HPs are reduced to 0, he will die.
-
-
-        Max HP can only be restored by finding a Health Potion, like the one you found
-        right now. Though health potions still only heal Max HP up to the hero''s
-        Vitality. If your heroes are healthy, just leave the potion there for now
-        and come back for it later when you get hurt.
-
-
-        And thus ends the tutorial! Now go and use this knowledge to slay all your
-        foes!'
       objectReference: {fileID: 0}
     - target: {fileID: 3682419112381641857, guid: ec4caa0c66bde4744a0787800d5c7a7a,
         type: 3}
@@ -676,6 +677,16 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 4810980800598654258, guid: ec4caa0c66bde4744a0787800d5c7a7a,
+        type: 3}
+      propertyPath: Title
+      value: Camera movement!
+      objectReference: {fileID: 0}
+    - target: {fileID: 4810980800598654258, guid: ec4caa0c66bde4744a0787800d5c7a7a,
+        type: 3}
+      propertyPath: Message
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 2988569519106959330, guid: ec4caa0c66bde4744a0787800d5c7a7a,
         type: 3}
       propertyPath: m_SizeDelta.y
@@ -760,16 +771,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Enabled
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4810980800598654258, guid: ec4caa0c66bde4744a0787800d5c7a7a,
-        type: 3}
-      propertyPath: Title
-      value: Camera movement!
-      objectReference: {fileID: 0}
-    - target: {fileID: 4810980800598654258, guid: ec4caa0c66bde4744a0787800d5c7a7a,
-        type: 3}
-      propertyPath: Message
-      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 3682419112381641857, guid: ec4caa0c66bde4744a0787800d5c7a7a,
         type: 3}
@@ -978,6 +979,16 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 4810980800598654258, guid: ec4caa0c66bde4744a0787800d5c7a7a,
+        type: 3}
+      propertyPath: Title
+      value: Camera movement!
+      objectReference: {fileID: 0}
+    - target: {fileID: 4810980800598654258, guid: ec4caa0c66bde4744a0787800d5c7a7a,
+        type: 3}
+      propertyPath: Message
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 2988569519106959330, guid: ec4caa0c66bde4744a0787800d5c7a7a,
         type: 3}
       propertyPath: m_SizeDelta.y
@@ -1062,16 +1073,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Enabled
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4810980800598654258, guid: ec4caa0c66bde4744a0787800d5c7a7a,
-        type: 3}
-      propertyPath: Title
-      value: Camera movement!
-      objectReference: {fileID: 0}
-    - target: {fileID: 4810980800598654258, guid: ec4caa0c66bde4744a0787800d5c7a7a,
-        type: 3}
-      propertyPath: Message
-      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 3682419112381641857, guid: ec4caa0c66bde4744a0787800d5c7a7a,
         type: 3}
@@ -1280,6 +1281,16 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 4810980800598654258, guid: ec4caa0c66bde4744a0787800d5c7a7a,
+        type: 3}
+      propertyPath: Title
+      value: Camera movement!
+      objectReference: {fileID: 0}
+    - target: {fileID: 4810980800598654258, guid: ec4caa0c66bde4744a0787800d5c7a7a,
+        type: 3}
+      propertyPath: Message
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 2988569519106959330, guid: ec4caa0c66bde4744a0787800d5c7a7a,
         type: 3}
       propertyPath: m_SizeDelta.y
@@ -1364,16 +1375,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Enabled
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4810980800598654258, guid: ec4caa0c66bde4744a0787800d5c7a7a,
-        type: 3}
-      propertyPath: Title
-      value: Camera movement!
-      objectReference: {fileID: 0}
-    - target: {fileID: 4810980800598654258, guid: ec4caa0c66bde4744a0787800d5c7a7a,
-        type: 3}
-      propertyPath: Message
-      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 3682419112381641857, guid: ec4caa0c66bde4744a0787800d5c7a7a,
         type: 3}
@@ -1582,6 +1583,16 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 4810980800598654258, guid: ec4caa0c66bde4744a0787800d5c7a7a,
+        type: 3}
+      propertyPath: Title
+      value: Camera movement!
+      objectReference: {fileID: 0}
+    - target: {fileID: 4810980800598654258, guid: ec4caa0c66bde4744a0787800d5c7a7a,
+        type: 3}
+      propertyPath: Message
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 2988569519106959330, guid: ec4caa0c66bde4744a0787800d5c7a7a,
         type: 3}
       propertyPath: m_SizeDelta.y
@@ -1666,16 +1677,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Enabled
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4810980800598654258, guid: ec4caa0c66bde4744a0787800d5c7a7a,
-        type: 3}
-      propertyPath: Title
-      value: Camera movement!
-      objectReference: {fileID: 0}
-    - target: {fileID: 4810980800598654258, guid: ec4caa0c66bde4744a0787800d5c7a7a,
-        type: 3}
-      propertyPath: Message
-      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 3682419112381641857, guid: ec4caa0c66bde4744a0787800d5c7a7a,
         type: 3}
@@ -1884,6 +1885,16 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 4810980800598654258, guid: ec4caa0c66bde4744a0787800d5c7a7a,
+        type: 3}
+      propertyPath: Title
+      value: Camera movement!
+      objectReference: {fileID: 0}
+    - target: {fileID: 4810980800598654258, guid: ec4caa0c66bde4744a0787800d5c7a7a,
+        type: 3}
+      propertyPath: Message
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 2988569519106959330, guid: ec4caa0c66bde4744a0787800d5c7a7a,
         type: 3}
       propertyPath: m_SizeDelta.y
@@ -1968,16 +1979,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Enabled
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4810980800598654258, guid: ec4caa0c66bde4744a0787800d5c7a7a,
-        type: 3}
-      propertyPath: Title
-      value: Camera movement!
-      objectReference: {fileID: 0}
-    - target: {fileID: 4810980800598654258, guid: ec4caa0c66bde4744a0787800d5c7a7a,
-        type: 3}
-      propertyPath: Message
-      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 3682419112381641857, guid: ec4caa0c66bde4744a0787800d5c7a7a,
         type: 3}
@@ -2186,6 +2187,16 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 4810980800598654258, guid: ec4caa0c66bde4744a0787800d5c7a7a,
+        type: 3}
+      propertyPath: Title
+      value: Camera movement!
+      objectReference: {fileID: 0}
+    - target: {fileID: 4810980800598654258, guid: ec4caa0c66bde4744a0787800d5c7a7a,
+        type: 3}
+      propertyPath: Message
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 2988569519106959330, guid: ec4caa0c66bde4744a0787800d5c7a7a,
         type: 3}
       propertyPath: m_SizeDelta.y
@@ -2270,16 +2281,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Enabled
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4810980800598654258, guid: ec4caa0c66bde4744a0787800d5c7a7a,
-        type: 3}
-      propertyPath: Title
-      value: Camera movement!
-      objectReference: {fileID: 0}
-    - target: {fileID: 4810980800598654258, guid: ec4caa0c66bde4744a0787800d5c7a7a,
-        type: 3}
-      propertyPath: Message
-      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 3682419112381641857, guid: ec4caa0c66bde4744a0787800d5c7a7a,
         type: 3}
@@ -2488,6 +2489,16 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 4810980800598654258, guid: ec4caa0c66bde4744a0787800d5c7a7a,
+        type: 3}
+      propertyPath: Title
+      value: Camera movement!
+      objectReference: {fileID: 0}
+    - target: {fileID: 4810980800598654258, guid: ec4caa0c66bde4744a0787800d5c7a7a,
+        type: 3}
+      propertyPath: Message
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 2988569519106959330, guid: ec4caa0c66bde4744a0787800d5c7a7a,
         type: 3}
       propertyPath: m_SizeDelta.y
@@ -2572,16 +2583,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Enabled
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4810980800598654258, guid: ec4caa0c66bde4744a0787800d5c7a7a,
-        type: 3}
-      propertyPath: Title
-      value: Camera movement!
-      objectReference: {fileID: 0}
-    - target: {fileID: 4810980800598654258, guid: ec4caa0c66bde4744a0787800d5c7a7a,
-        type: 3}
-      propertyPath: Message
-      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 3682419112381641857, guid: ec4caa0c66bde4744a0787800d5c7a7a,
         type: 3}
@@ -2790,6 +2791,16 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 4810980800598654258, guid: ec4caa0c66bde4744a0787800d5c7a7a,
+        type: 3}
+      propertyPath: Message
+      value: "Hey there! I know, you want to play the game. But we can't do that yet!
+        First, we need to teach you how to order your heroes around. \n\nI know, I
+        know, tutorials are usually boring, but this one? Ok, it is also boring, but
+        at least it's quite short.\n\nAre you ready? If so, click anywhere to continue!\n\nIf
+        not, well... Trust me, it's not so bad. Just click somewhere, you'll make
+        it through just fine."
+      objectReference: {fileID: 0}
     - target: {fileID: 2988569519106959330, guid: ec4caa0c66bde4744a0787800d5c7a7a,
         type: 3}
       propertyPath: m_SizeDelta.y
@@ -2824,16 +2835,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SizeDelta.y
       value: 375.55
-      objectReference: {fileID: 0}
-    - target: {fileID: 4810980800598654258, guid: ec4caa0c66bde4744a0787800d5c7a7a,
-        type: 3}
-      propertyPath: Message
-      value: "Hey there! I know, you want to play the game. But we can't do that yet!
-        First, we need to teach you how to order your heroes around. \n\nI know, I
-        know, tutorials are usually boring, but this one? Ok, it is also boring, but
-        at least it's quite short.\n\nAre you ready? If so, click anywhere to continue!\n\nIf
-        not, well... Trust me, it's not so bad. Just click somewhere, you'll make
-        it through just fine."
       objectReference: {fileID: 0}
     - target: {fileID: 3682419112381641857, guid: ec4caa0c66bde4744a0787800d5c7a7a,
         type: 3}
@@ -3037,6 +3038,16 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 4810980800598654258, guid: ec4caa0c66bde4744a0787800d5c7a7a,
+        type: 3}
+      propertyPath: Title
+      value: Camera movement!
+      objectReference: {fileID: 0}
+    - target: {fileID: 4810980800598654258, guid: ec4caa0c66bde4744a0787800d5c7a7a,
+        type: 3}
+      propertyPath: Message
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 2988569519106959330, guid: ec4caa0c66bde4744a0787800d5c7a7a,
         type: 3}
       propertyPath: m_SizeDelta.y
@@ -3121,16 +3132,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Enabled
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4810980800598654258, guid: ec4caa0c66bde4744a0787800d5c7a7a,
-        type: 3}
-      propertyPath: Title
-      value: Camera movement!
-      objectReference: {fileID: 0}
-    - target: {fileID: 4810980800598654258, guid: ec4caa0c66bde4744a0787800d5c7a7a,
-        type: 3}
-      propertyPath: Message
-      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 3682419112381641857, guid: ec4caa0c66bde4744a0787800d5c7a7a,
         type: 3}

@@ -7,15 +7,20 @@ using Assets.Scripts.GameFlow;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace Assets.Scripts.UI
+namespace Assets.Scripts.UI.MainMenu
 {
-    class MainMenuController: MonoBehaviour
+    class MainMenuController : MonoBehaviour
     {
         private LevelLoader levelLoader;
 
         private void Start()
         {
             levelLoader = FindObjectsOfType<LevelLoader>().FirstOrDefault(loader => !loader.IsPendingKill);
+        }
+
+        public void OnPrivacyAgreementClicked()
+        {
+            GetComponent<Animation>().Play("HidePrivacyShowMenu");
         }
 
         public void StartStoryMode()

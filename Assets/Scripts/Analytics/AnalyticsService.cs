@@ -6,14 +6,29 @@ using System.Linq;
 using Assets.Scripts.Combat;
 using Assets.Scripts.EncounterGenerator.Model;
 using Assets.Scripts.GameFlow;
+using UnityEditor;
 using UnityEngine;
 
 namespace Assets.Scripts.Analytics
 {
     public class AnalyticsService : MonoBehaviour
     {
+        /// <summary>
+        /// Keep a count of how many times did we try to revoke the privacy agreement.
+        /// </summary>
+        public int RevokeAttemptIndex = 0;
+        public int MaxRevokeAttempts = 100;
+        public bool RevokedAgreement
+        {
+            get => UserGuid == Guid.Empty;
+        }
+        public bool DidFailToSendRevokeAgreement
+        {
+            get => RevokeAttemptIndex >= MaxRevokeAttempts;
+        }
         public Guid UserGuid = Guid.NewGuid();
         public bool IsPendingKill;
+        public GameObject RevokeActivityIndicatorTemplate;
         private List<MonsterType> orderedMonsterTypes = new List<MonsterType>
         {
             new MonsterType(MonsterRank.Minion, MonsterRole.Minion),
@@ -49,14 +64,11 @@ namespace Assets.Scripts.Analytics
             UserGuid = Guid.NewGuid();
         }
 
-        public void LogScreenVisit(SceneType scene, int levelIndex = 0)
-        {
-        }
-
         public void LogCombat(Dictionary<HeroProfession, float> partyStartHp, Dictionary<HeroProfession, float> partyEndHp, Dictionary<HeroProfession, float> partyAttack,
             EncounterDefinition encounter, float expectedDifficulty, float realDifficulty, bool wasGameOver, bool wasStatic, bool wasLogged)
         {
             List<string> lineCells = new List<string> {
+                "Combat",
                 UserGuid.ToString(),
                 DateTime.Now.ToFileTimeUtc().ToString(),
             };
@@ -81,13 +93,23 @@ namespace Assets.Scripts.Analytics
             lineCells.Add(wasStatic ? "1" : "0");
             lineCells.Add(wasLogged ? "1" : "0");
 
-            var csvLine = string.Join(";", lineCells);
-
-            StartCoroutine(LogCsvLine(csvLine));
+            StartCoroutine(LogCsvLine(lineCells));
         }
 
-        private IEnumerator LogCsvLine(string line)
+        public void LogRevokeAndExit()
         {
+            Instantiate(RevokeActivityIndicatorTemplate, null);
+            List<string> lineCells = new List<string> {
+                "RevokeAgreement",
+                UserGuid.ToString(),
+                DateTime.Now.ToFileTimeUtc().ToString(),
+            };
+            StartCoroutine(LogCsvLine(lineCells, true));
+        }
+
+        private IEnumerator LogCsvLine(IEnumerable<string> cells, bool isRevoke = false)
+        {
+            var line = string.Join(";", cells);
             var payload = $"{{\"payload\": \"{line}\" }}";
             var payloadBytes = System.Text.Encoding.UTF8.GetBytes(payload);
             var www = UnityEngine.Networking.UnityWebRequest.Put("http://mattka.tcf2.cz/storeData.php", payloadBytes);
@@ -95,7 +117,37 @@ namespace Assets.Scripts.Analytics
             yield return www.SendWebRequest();
 
             UnityEngine.Debug.Log(www.responseCode);
+            AnalyticsResponse response;
+            try
+            {
+                response = JsonUtility.FromJson<AnalyticsResponse>(www.downloadHandler.text);
+            }
+            catch (Exception e)
+            {
+                UnityEngine.Debug.LogError(e);
+                response = null;
+            }
             UnityEngine.Debug.Log(www.downloadHandler.text);
+
+            if (isRevoke)
+            {
+                // TODO: Actually parse the json. We depend on only a single field.
+                if (www.responseCode == 200 && response?.success == true)
+                {
+                    UserGuid = Guid.Empty;
+                }
+                else if (RevokeAttemptIndex++ < MaxRevokeAttempts)
+                {
+                    // Nothing to do but try again.
+                    StartCoroutine(LogCsvLine(cells, isRevoke));
+                }
+            }
         }
+    }
+    [Serializable]
+    class AnalyticsResponse
+    {
+        // Purposufelly lowercase to match server response.
+        public bool success;
     }
 }
