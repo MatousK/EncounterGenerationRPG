@@ -506,9 +506,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SurveyUrls:
   - ExperimentGroup: 0
-    SurveyUrl: https://www.google.com/search?q=genthenstatic
+    SurveyUrl: https://forms.office.com/Pages/ResponsePage.aspx?id=2naS4DT5hkC_CIgWogQUonsqv6eoO9JJn7NmmdwRw11URjJSV1c2MDNQQk84NEhBNkswSEpOQVpCNi4u
   - ExperimentGroup: 1
-    SurveyUrl: https://www.google.com/search?q=staticthengen
+    SurveyUrl: https://forms.office.com/Pages/ResponsePage.aspx?id=2naS4DT5hkC_CIgWogQUonsqv6eoO9JJn7NmmdwRw11URjJSV1c2MDNQQk84NEhBNkswSEpOQVpCNi4u
 --- !u!1 &1037899514
 GameObject:
   m_ObjectHideFlags: 0

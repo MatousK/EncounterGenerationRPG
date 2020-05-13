@@ -194,6 +194,7 @@ MonoBehaviour:
   LevelDefinition: {fileID: 0}
   SurveyButton: {fileID: 6210979953514912710}
   ContinueButton: {fileID: 6210979953093561861}
+  CopyUserIDButton: {fileID: 7439614144745964865}
   SurveyButtonsContainer: {fileID: 2876501568857658251}
 --- !u!111 &3557339892720979791
 Animation:
@@ -578,12 +579,12 @@ PrefabInstance:
     - target: {fileID: 6128055987352046790, guid: cfcc9e72569950548842c87d4ff66571,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 785.6
+      value: 1149.07
       objectReference: {fileID: 0}
     - target: {fileID: 6128055987352046790, guid: cfcc9e72569950548842c87d4ff66571,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 113.4
+      value: 180
       objectReference: {fileID: 0}
     - target: {fileID: 6128055987352046790, guid: cfcc9e72569950548842c87d4ff66571,
         type: 3}
@@ -628,17 +629,17 @@ PrefabInstance:
     - target: {fileID: 2653057513107788100, guid: cfcc9e72569950548842c87d4ff66571,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 392.8
+      value: 574.535
       objectReference: {fileID: 0}
     - target: {fileID: 2653057513107788100, guid: cfcc9e72569950548842c87d4ff66571,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -83.7
+      value: -150.29999
       objectReference: {fileID: 0}
     - target: {fileID: 2653057513107788100, guid: cfcc9e72569950548842c87d4ff66571,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 785.6
+      value: 1149.07
       objectReference: {fileID: 0}
     - target: {fileID: 2653057511574881415, guid: cfcc9e72569950548842c87d4ff66571,
         type: 3}
@@ -653,17 +654,32 @@ PrefabInstance:
     - target: {fileID: 2653057511574881415, guid: cfcc9e72569950548842c87d4ff66571,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 392.8
+      value: 574.535
       objectReference: {fileID: 0}
     - target: {fileID: 2653057511574881415, guid: cfcc9e72569950548842c87d4ff66571,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -29.7
+      value: -90.29999
       objectReference: {fileID: 0}
     - target: {fileID: 2653057511574881415, guid: cfcc9e72569950548842c87d4ff66571,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 780
+      value: 1149.07
+      objectReference: {fileID: 0}
+    - target: {fileID: 6128055987352046792, guid: cfcc9e72569950548842c87d4ff66571,
+        type: 3}
+      propertyPath: m_ChildControlWidth
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2653057513160547772, guid: cfcc9e72569950548842c87d4ff66571,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2653057513160547772, guid: cfcc9e72569950548842c87d4ff66571,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2653057513107788107, guid: cfcc9e72569950548842c87d4ff66571,
         type: 3}
@@ -689,6 +705,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: SurveyPressed
+      objectReference: {fileID: 0}
+    - target: {fileID: 2653057511574881416, guid: cfcc9e72569950548842c87d4ff66571,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2653057511574881416, guid: cfcc9e72569950548842c87d4ff66571,
+        type: 3}
+      propertyPath: m_Interactable
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2653057511574881414, guid: cfcc9e72569950548842c87d4ff66571,
         type: 3}
@@ -728,7 +754,107 @@ PrefabInstance:
     - target: {fileID: 2653057511539558784, guid: cfcc9e72569950548842c87d4ff66571,
         type: 3}
       propertyPath: m_text
-      value: Please fill out a survey before venturing forth
+      value: Fill out a survey
+      objectReference: {fileID: 0}
+    - target: {fileID: 2653057511539558784, guid: cfcc9e72569950548842c87d4ff66571,
+        type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 2653057511539558784, guid: cfcc9e72569950548842c87d4ff66571,
+        type: 3}
+      propertyPath: m_textInfo.spaceCount
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2653057511539558784, guid: cfcc9e72569950548842c87d4ff66571,
+        type: 3}
+      propertyPath: m_textInfo.wordCount
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1575847799776369152, guid: cfcc9e72569950548842c87d4ff66571,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1575847799776369152, guid: cfcc9e72569950548842c87d4ff66571,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1575847799776369152, guid: cfcc9e72569950548842c87d4ff66571,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 574.535
+      objectReference: {fileID: 0}
+    - target: {fileID: 1575847799776369152, guid: cfcc9e72569950548842c87d4ff66571,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -30.299995
+      objectReference: {fileID: 0}
+    - target: {fileID: 1575847799776369152, guid: cfcc9e72569950548842c87d4ff66571,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 1149.07
+      objectReference: {fileID: 0}
+    - target: {fileID: 1575847800084977400, guid: cfcc9e72569950548842c87d4ff66571,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1575847800084977400, guid: cfcc9e72569950548842c87d4ff66571,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1575847799776369167, guid: cfcc9e72569950548842c87d4ff66571,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 3557339892720979790}
+    - target: {fileID: 1575847799776369167, guid: cfcc9e72569950548842c87d4ff66571,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: CopyUserId
+      objectReference: {fileID: 0}
+    - target: {fileID: 1575847800084977415, guid: cfcc9e72569950548842c87d4ff66571,
+        type: 3}
+      propertyPath: m_fontColor.a
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1575847800084977415, guid: cfcc9e72569950548842c87d4ff66571,
+        type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 16777215
+      objectReference: {fileID: 0}
+    - target: {fileID: 1575847800084977415, guid: cfcc9e72569950548842c87d4ff66571,
+        type: 3}
+      propertyPath: m_text
+      value: Copy User ID to clipboard (you will be asked for it during the survey)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1575847800084977415, guid: cfcc9e72569950548842c87d4ff66571,
+        type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 1575847800084977415, guid: cfcc9e72569950548842c87d4ff66571,
+        type: 3}
+      propertyPath: m_textInfo.spaceCount
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 1575847800084977415, guid: cfcc9e72569950548842c87d4ff66571,
+        type: 3}
+      propertyPath: m_textInfo.wordCount
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 1575847800084977415, guid: cfcc9e72569950548842c87d4ff66571,
+        type: 3}
+      propertyPath: m_firstOverflowCharacterIndex
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1575847800084977415, guid: cfcc9e72569950548842c87d4ff66571,
+        type: 3}
+      propertyPath: m_textInfo.lineCount
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6128055987352046791, guid: cfcc9e72569950548842c87d4ff66571, type: 3}
@@ -745,6 +871,18 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 8277713543727308622}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &7439614144745964865 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1575847799776369167, guid: cfcc9e72569950548842c87d4ff66571,
+    type: 3}
+  m_PrefabInstance: {fileID: 8277713543727308622}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &6210979953514912710 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2653057511574881416, guid: cfcc9e72569950548842c87d4ff66571,

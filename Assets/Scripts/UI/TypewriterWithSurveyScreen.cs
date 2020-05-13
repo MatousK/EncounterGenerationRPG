@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Assets.Scripts.Analytics;
 using Assets.Scripts.GameFlow;
 using UnityEngine;
 using UnityEngine.UI;
@@ -17,6 +18,7 @@ namespace Assets.Scripts.UI
         public LevelDefinition LevelDefinition;
         public Button SurveyButton;
         public Button ContinueButton;
+        public Button CopyUserIDButton;
         public GameObject SurveyButtonsContainer;
         public void Start()
         {
@@ -27,12 +29,22 @@ namespace Assets.Scripts.UI
             if (!hasSurvey)
             {
                 Destroy(SurveyButton.gameObject);
+                Destroy(CopyUserIDButton.gameObject);
             }
         }
 
         private void IntroTypewriterText_TextAnimationDone(object sender, EventArgs e)
         {
             SurveyButtonsContainer.SetActive(true);
+        }
+
+        public void CopyUserId()
+        {
+            var analyticsService = FindObjectOfType<AnalyticsService>();
+            var guid = analyticsService.UserGuid;
+            GUIUtility.systemCopyBuffer = guid.ToString();
+            // Enable launching of the survey.
+            SurveyButton.interactable = true;
         }
 
         public void ContinuePressed()
