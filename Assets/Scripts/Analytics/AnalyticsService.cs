@@ -112,7 +112,7 @@ namespace Assets.Scripts.Analytics
             var line = string.Join(";", cells);
             var payload = $"{{\"payload\": \"{line}\" }}";
             var payloadBytes = System.Text.Encoding.UTF8.GetBytes(payload);
-            var www = UnityEngine.Networking.UnityWebRequest.Put("http://mattka.tcf2.cz/storeData.php", payloadBytes);
+            var www = UnityEngine.Networking.UnityWebRequest.Put("https://mattka.tcf2.cz/storeData.php", payloadBytes);
             www.SetRequestHeader("Accept", "application/json");
             yield return www.SendWebRequest();
 

@@ -282,6 +282,9 @@ MonoBehaviour:
   - {fileID: 5577071383263350094, guid: fcdd8aeb35d3d2646b0aa54f911f60fc, type: 3}
   - {fileID: 5916579234708034811, guid: 025d278e31d33cc438a8a26b559eb23c, type: 3}
   - {fileID: 3188338634353959213, guid: e3a800d85ab997742a0a700ee8c7f8e1, type: 3}
+  - {fileID: 3188338634353959213, guid: 9dd255a7ad2244a48926c6482b82b24e, type: 3}
+  - {fileID: 3188338634353959213, guid: d4e1f757d84d3314e89363000741ba14, type: 3}
+  - {fileID: 3188338634353959213, guid: 6bfe91863c6ee43429a67ca17d2221ef, type: 3}
   CorridorRoomTemplateSets: []
   CorridorIndividualRoomTemplates:
   - {fileID: 6966731523498046389, guid: 6f5551d26d82f3c4289c8e98fc08951f, type: 3}
