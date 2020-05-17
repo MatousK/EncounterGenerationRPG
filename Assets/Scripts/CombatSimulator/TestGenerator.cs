@@ -28,10 +28,11 @@ namespace Assets.Scripts.CombatSimulator
         readonly List<PartyConfigurationProvider.PartyConfigurationProvider> partyProviders = new List<PartyConfigurationProvider.PartyConfigurationProvider>();
         readonly SimulatorEncounterProvider encounterProvider = new SimulatorEncounterProvider();
 
-        private const int TestsPerTier = 2100;
+        private const int TestsPerTier = 4200;
         private const int MonsterTierMonsterCountIncrement = 2;
         private const int PowerupTiers = 4;
         private const int PowerupTierIncrement = 3;
+        private const int MaxMonsterTier = 10;
 
         public PartyConfigurationProvider.PartyConfigurationProvider CurrentPartyProvider
         { get; private set; }
@@ -45,6 +46,10 @@ namespace Assets.Scripts.CombatSimulator
             CurrentPartyProvider = partyProviders[partyProviderIndex];
             CurrentPartyConfiguration = CurrentPartyProvider.GetPartyConfiguration();
             MonsterTier = testIndex / TestsPerTier + 1;
+            if (MonsterTier > MaxMonsterTier)
+            {
+                MonsterTier = UnityEngine.Random.Range(1, MaxMonsterTier + 1);
+            }
             CurrentEncounter = encounterProvider.GetEncounter(MonsterTier * MonsterTierMonsterCountIncrement);
             UnityEngine.Debug.Log("Monster tier: " + MonsterTier.ToString());
             UnityEngine.Debug.Log("Party provider: " + CurrentPartyProvider.ToString());

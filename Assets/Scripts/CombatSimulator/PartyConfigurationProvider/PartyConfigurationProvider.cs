@@ -9,8 +9,8 @@ namespace Assets.Scripts.CombatSimulator.PartyConfigurationProvider
     /// </summary>
     public abstract class PartyConfigurationProvider
     {
-        public float SimulateDamagedPartyProbability = 0.75f;
-        // These should really be 
+        public float SimulateDamagedPartyProbability = 0.2f;
+        // These should really be a constant somewhere
         protected const int ClericBaseHp = 125;
         protected const int RangerBaseHp = 50;
         protected const int KnightBaseHp = 250;

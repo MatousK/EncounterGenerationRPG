@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Assets.Scripts.Analytics;
+using Assets.Scripts.EncounterGenerator;
+using Assets.Scripts.Experiment;
 using Assets.Scripts.GameFlow;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -38,10 +40,21 @@ namespace Assets.Scripts.UI.Credits
 
         public void CreditsOver()
         {
+            // Reset data - generate new AB testing group, generate new GUID, reset the matrix.
             var analyticsService = FindObjectOfType<AnalyticsService>();
             if (analyticsService != null)
             {
                 analyticsService.ResetGuid();
+            }
+            var difficultyMatrixProvider = FindObjectOfType<DifficultyMatrixProvider>();
+            if (difficultyMatrixProvider != null)
+            {
+                difficultyMatrixProvider.ReloadMatrix(true);
+            }
+            var abTestingManager = FindObjectOfType<AbTestingManager>();
+            if (abTestingManager != null)
+            {
+                abTestingManager.ResetTestingGroup();
             }
 
             FindObjectOfType<LevelLoader>().OpenMainMenu();

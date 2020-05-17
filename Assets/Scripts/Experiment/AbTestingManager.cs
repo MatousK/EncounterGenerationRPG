@@ -19,7 +19,11 @@ namespace Assets.Scripts.Experiment
                 IsPendingKill = true;
                 Destroy(gameObject);
             }
-            // TODO: Get if from unity analytics maybe.
+            ResetTestingGroup();
+        }
+
+        public void ResetTestingGroup()
+        {
             CurrentExperimentGroup = UnityEngine.Random.Range(0f, 1f) > 0.5f
                 ? ExperimentGroup.FirstGeneratedThenStatic
                 : ExperimentGroup.FirstStaticThenGenerated;

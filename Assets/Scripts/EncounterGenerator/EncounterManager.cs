@@ -32,11 +32,11 @@ namespace Assets.Scripts.EncounterGenerator
 
         private void Start()
         {
-            analyticsService = FindObjectsOfType<AnalyticsService>().First(analytics => !analytics.IsPendingKill);
+            analyticsService = FindObjectsOfType<AnalyticsService>().FirstOrDefault(analytics => !analytics.IsPendingKill);
             difficultyMatrixProvider =
                 FindObjectsOfType<DifficultyMatrixProvider>().First(provider => !provider.IsPendingKill);
             UnityEngine.Debug.Log($"Encounter manager found matrix: {difficultyMatrixProvider}");
-            levelLoader = FindObjectsOfType<LevelLoader>().First(loader => !loader.IsPendingKill);
+            levelLoader = FindObjectsOfType<LevelLoader>().FirstOrDefault(loader => !loader.IsPendingKill);
             var difficultyMatrix = difficultyMatrixProvider.CurrentDifficultyMatrix;
             MatrixUpdater = new EncounterMatrixUpdater(difficultyMatrix, generatorConfiguration, analyticsService);
             MatrixUpdater.MatrixChanged += MatrixUpdater_MatrixChanged;

@@ -60,6 +60,7 @@ namespace Assets.Scripts.EncounterGenerator.Algorithm
         {
             if (expectedDifficulty == null || !initialMaxHp.Any())
             {
+                // Probably combat simulator, in release mode this would be a bug.
                 UnityEngine.Debug.LogWarning("Logging combat encounter when initial conditions are not set");
                 return; ;
             }

@@ -26,7 +26,7 @@ namespace Assets.Scripts.EncounterGenerator
         /// </summary>
         public bool IsPendingKill;
 
-        public event EventHandler<MatrixChangedEventArgs> MatrixChanged; 
+        public event EventHandler<MatrixChangedEventArgs> MatrixChanged;
 
         private void Awake()
         {
@@ -37,9 +37,14 @@ namespace Assets.Scripts.EncounterGenerator
                 return;
             }
             DontDestroyOnLoad(this);
+            ReloadMatrix(IsInMainMenu);
+        }
+
+        public void ReloadMatrix(bool async)
+        {
             var matrixString = Resources.Load<TextAsset>("Matrix").text;
             UnityEngine.Debug.Log($"Matrix loaded. Characters: {matrixString.Length}");
-            if (IsInMainMenu)
+            if (async)
             {
                 UnityEngine.Debug.Log("Matrix will be loaded asynchronously.");
                 // Run on a different thread so we do not blockUI while in main menu.

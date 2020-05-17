@@ -28,6 +28,9 @@ namespace Assets.Scripts.CombatSimulator
         readonly TestResultLogger testLogger = new TestResultLogger();
         private void Start()
         {
+            // Simulator should be silent.
+            AudioListener.volume = 0f;
+
             mapGrid = FindObjectOfType<Grid>();
             monstersGenerator = GetComponent<SimulatorMonstersGenerator>();
             combatantsManager = FindObjectOfType<CombatantsManager>();
