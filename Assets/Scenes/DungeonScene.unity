@@ -220,7 +220,7 @@ MonoBehaviour:
   FollowingTransform: {fileID: 0}
   MaxSquaredDistanceFromMap: 2
   ScrollingEdge: 50
-  ScrollingSpeed: 10
+  ScrollingSpeed: 15
   QuickScrollingSpeed: 100
 --- !u!114 &264610530
 MonoBehaviour:
