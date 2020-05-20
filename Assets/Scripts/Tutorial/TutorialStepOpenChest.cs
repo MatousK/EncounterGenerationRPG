@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.Environment;
+using Assets.Scripts.Input;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +15,12 @@ namespace Assets.Scripts.Tutorial
         {
             base.Start();
             allChests = FindObjectsOfType<TreasureChest>();
-
+            // Disable all doors so the player does not leave;
+            var doors = FindObjectsOfType<Doors>();
+            foreach (var door in doors)
+            {
+                door.GetComponent<InteractableObject>().IsInteractionDisabledByTutorial = true;
+            }
         }
 
         private void Update()
