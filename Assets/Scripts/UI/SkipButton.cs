@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Assets.Scripts.UI.Credits;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,18 +10,28 @@ namespace Assets.Scripts.UI
 {
     public class SkipButton: MonoBehaviour
     {
+        public bool isCredits;
         private TypewriterText controlledTypewriterText;
         private void Start()
         {
-            controlledTypewriterText = FindObjectOfType<TypewriterText>();
-            controlledTypewriterText.TextAnimationDone += ControlledTypewriterText_TextAnimationDone;
+            if (!isCredits)
+            {
+                controlledTypewriterText = FindObjectOfType<TypewriterText>();
+                controlledTypewriterText.TextAnimationDone += ControlledTypewriterText_TextAnimationDone;
+            }
         }
 
         private void Update()
         {
             if (UnityEngine.Input.GetKeyUp(KeyCode.Return))
             {
-                controlledTypewriterText.FinishAnimation();
+                if (isCredits)
+                {
+                    FindObjectOfType<CreditsController>().CreditsOver();
+                } else
+                {
+                    controlledTypewriterText.FinishAnimation();
+                }
             }
             else if (UnityEngine.Input.anyKeyDown)
             {
