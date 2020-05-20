@@ -176,15 +176,7 @@ namespace Assets.Scripts.Combat
             {
                 skill.TryStopSkill();
             }
-            if (!CombatantsManager.IsCombatActive)
-            {
-                cameraMovement.FollowingTransform = transform;
-                movementController.MoveToPosition(position);
-            }
-            else
-            {
-                movementController.MoveToPosition(position);
-            }
+            movementController.MoveToPosition(position);
             var moveToIndicator = Instantiate(MoveToIndicatorTemplate, transform.parent, true);
             moveToIndicator.transform.position = new Vector3(position.x, position.y, -1);
 
