@@ -258,6 +258,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7811067050841716562}
     m_Modifications:
+    - target: {fileID: 4038884535840532886, guid: 983b84d7cd2bc2948b6462e60e84eaf1,
+        type: 3}
+      propertyPath: m_Name
+      value: ShimmerEffect
+      objectReference: {fileID: 0}
+    - target: {fileID: 4038884535840532886, guid: 983b84d7cd2bc2948b6462e60e84eaf1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9201418795592566306, guid: 983b84d7cd2bc2948b6462e60e84eaf1,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -322,16 +332,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.y
       value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4038884535840532886, guid: 983b84d7cd2bc2948b6462e60e84eaf1,
-        type: 3}
-      propertyPath: m_Name
-      value: ShimmerEffect
-      objectReference: {fileID: 0}
-    - target: {fileID: 4038884535840532886, guid: 983b84d7cd2bc2948b6462e60e84eaf1,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 460890607283701683, guid: 983b84d7cd2bc2948b6462e60e84eaf1,
         type: 3}
