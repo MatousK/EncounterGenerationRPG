@@ -9,7 +9,7 @@ namespace Assets.Scripts.CombatSimulator.PartyConfigurationProvider
     /// </summary>
     public abstract class PartyConfigurationProvider
     {
-        public float SimulateDamagedPartyProbability = 0.2f;
+        public float SimulateDamagedPartyProbability = 1f;
         // These should really be a constant somewhere
         protected const int ClericBaseHp = 125;
         protected const int RangerBaseHp = 50;
@@ -38,9 +38,9 @@ namespace Assets.Scripts.CombatSimulator.PartyConfigurationProvider
         protected PartyMemberConfiguration GetStats(HeroProfession profession, int healthPowerups, int attackPowerups)
         {
             bool shouldSimulateDamagedParty = UnityEngine.Random.Range(0f, 1f) < SimulateDamagedPartyProbability;
-            float rangerHpPercentage = shouldSimulateDamagedParty ? UnityEngine.Random.Range(0.05f, 1f) : 1f;
-            float knightHpPercentage = shouldSimulateDamagedParty ? UnityEngine.Random.Range(0.05f, 1f) : 1f;
-            float clericHpPercentage = shouldSimulateDamagedParty ? UnityEngine.Random.Range(0.05f, 1f) : 1f;
+            float rangerHpPercentage = shouldSimulateDamagedParty ? UnityEngine.Random.Range(0.2f, 1f) : 1f;
+            float knightHpPercentage = shouldSimulateDamagedParty ? UnityEngine.Random.Range(0.2f, 1f) : 1f;
+            float clericHpPercentage = shouldSimulateDamagedParty ? UnityEngine.Random.Range(0.2f, 1f) : 1f;
             float baseHp;
             float baseAttack;
             float attackIncrement;

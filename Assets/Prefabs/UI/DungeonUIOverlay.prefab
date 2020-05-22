@@ -1398,6 +1398,26 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1988645753507149944}
+    - target: {fileID: 5496948271282608371, guid: 25cb09aefa59ca244bd57f83a9606772,
+        type: 3}
+      propertyPath: m_text
+      value: Nah, giving up sounds nice. (Exit Game)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5496948271282608371, guid: 25cb09aefa59ca244bd57f83a9606772,
+        type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 39
+      objectReference: {fileID: 0}
+    - target: {fileID: 5496948271282608371, guid: 25cb09aefa59ca244bd57f83a9606772,
+        type: 3}
+      propertyPath: m_textInfo.spaceCount
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5496948271282608371, guid: 25cb09aefa59ca244bd57f83a9606772,
+        type: 3}
+      propertyPath: m_textInfo.wordCount
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 25cb09aefa59ca244bd57f83a9606772, type: 3}
 --- !u!224 &1988645753187252143 stripped
