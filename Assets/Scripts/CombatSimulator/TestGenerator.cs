@@ -44,20 +44,16 @@ namespace Assets.Scripts.CombatSimulator
         public void ReadyNextTest(int testIndex)
         {
             float partyPower;
-            do
-            {
-                var partyProviderIndex = RandomPartyConfiguration ? UnityEngine.Random.Range(0, partyProviders.Count) : testIndex % partyProviders.Count;
-                CurrentPartyProvider = partyProviders[partyProviderIndex];
-                CurrentPartyConfiguration = CurrentPartyProvider.GetPartyConfiguration();
-                partyPower = CurrentPartyConfiguration.ClericStats.MaxHp * CurrentPartyConfiguration.ClericStats.AttackModifier +
-                                 CurrentPartyConfiguration.KnightStats.MaxHp * CurrentPartyConfiguration.KnightStats.AttackModifier +
-                                 CurrentPartyConfiguration.RangerStats.MaxHp * CurrentPartyConfiguration.RangerStats.AttackModifier;
-            }
-            while (partyPower < 55500);
+            var partyProviderIndex = RandomPartyConfiguration ? UnityEngine.Random.Range(0, partyProviders.Count) : testIndex % partyProviders.Count;
+            CurrentPartyProvider = partyProviders[partyProviderIndex];
+            CurrentPartyConfiguration = CurrentPartyProvider.GetPartyConfiguration();
+            partyPower = CurrentPartyConfiguration.ClericStats.MaxHp * CurrentPartyConfiguration.ClericStats.AttackModifier +
+                             CurrentPartyConfiguration.KnightStats.MaxHp * CurrentPartyConfiguration.KnightStats.AttackModifier +
+                             CurrentPartyConfiguration.RangerStats.MaxHp * CurrentPartyConfiguration.RangerStats.AttackModifier;
             MonsterTier = testIndex / TestsPerTier + 1;
             if (MonsterTier > MaxMonsterTier)
             {
-                MonsterTier = UnityEngine.Random.Range(1, MaxMonsterTier + 1);
+                MonsterTier = UnityEngine.Random.Range(11, 16);
             }
             CurrentEncounter = encounterProvider.GetEncounter(MonsterTier * MonsterTierMonsterCountIncrement);
             UnityEngine.Debug.Log("Monster tier: " + MonsterTier.ToString());
@@ -65,48 +61,48 @@ namespace Assets.Scripts.CombatSimulator
         }
     }
 
-        public class PartyConfiguration
+    public class PartyConfiguration
+    {
+        public PartyConfiguration() { }
+
+        public PartyConfiguration(Hero[] fromHeroes)
         {
-            public PartyConfiguration() { }
-
-            public PartyConfiguration(Hero[] fromHeroes)
-            {
-                var knight = fromHeroes.FirstOrDefault(hero => hero.HeroProfession == HeroProfession.Knight);
-                KnightStats = knight != null ? new PartyMemberConfiguration(knight) : default;
-                var ranger = fromHeroes.FirstOrDefault(hero => hero.HeroProfession == HeroProfession.Ranger);
-                RangerStats = ranger != null ? new PartyMemberConfiguration(ranger) : default;
-                var cleric = fromHeroes.FirstOrDefault(hero => hero.HeroProfession == HeroProfession.Cleric);
-                ClericStats = cleric != null ? new PartyMemberConfiguration(cleric) : default;
-            }
-
-            public PartyMemberConfiguration KnightStats;
-            public PartyMemberConfiguration RangerStats;
-            public PartyMemberConfiguration ClericStats;
-
-            public PartyMemberConfiguration? GetStatsFor(HeroProfession profession)
-            {
-                switch (profession)
-                {
-                    case HeroProfession.Cleric:
-                        return ClericStats;
-                    case HeroProfession.Ranger:
-                        return RangerStats;
-                    case HeroProfession.Knight:
-                        return KnightStats;
-                }
-                UnityEngine.Debug.Assert(false, "Requesting stats for unknown hero.");
-                return null;
-            }
+            var knight = fromHeroes.FirstOrDefault(hero => hero.HeroProfession == HeroProfession.Knight);
+            KnightStats = knight != null ? new PartyMemberConfiguration(knight) : default;
+            var ranger = fromHeroes.FirstOrDefault(hero => hero.HeroProfession == HeroProfession.Ranger);
+            RangerStats = ranger != null ? new PartyMemberConfiguration(ranger) : default;
+            var cleric = fromHeroes.FirstOrDefault(hero => hero.HeroProfession == HeroProfession.Cleric);
+            ClericStats = cleric != null ? new PartyMemberConfiguration(cleric) : default;
         }
 
-        public struct PartyMemberConfiguration
+        public PartyMemberConfiguration KnightStats;
+        public PartyMemberConfiguration RangerStats;
+        public PartyMemberConfiguration ClericStats;
+
+        public PartyMemberConfiguration? GetStatsFor(HeroProfession profession)
         {
-            public PartyMemberConfiguration(Hero fromHero)
+            switch (profession)
             {
-                MaxHp = (int)fromHero.TotalMaxHitpoints;
-                AttackModifier = fromHero.Attributes.DealtDamageMultiplier;
+                case HeroProfession.Cleric:
+                    return ClericStats;
+                case HeroProfession.Ranger:
+                    return RangerStats;
+                case HeroProfession.Knight:
+                    return KnightStats;
             }
-            public int MaxHp;
-            public float AttackModifier;
+            UnityEngine.Debug.Assert(false, "Requesting stats for unknown hero.");
+            return null;
         }
     }
+
+    public struct PartyMemberConfiguration
+    {
+        public PartyMemberConfiguration(Hero fromHero)
+        {
+            MaxHp = (int)fromHero.TotalMaxHitpoints;
+            AttackModifier = fromHero.Attributes.DealtDamageMultiplier;
+        }
+        public int MaxHp;
+        public float AttackModifier;
+    }
+}

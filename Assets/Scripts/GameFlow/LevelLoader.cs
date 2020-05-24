@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using Assets.ProceduralLevelGenerator.Scripts.Data.Graphs;
+using Assets.Scripts.Analytics;
 using Assets.Scripts.Combat;
 using Assets.Scripts.CombatSimulator;
 using Assets.Scripts.Experiment;
@@ -43,6 +44,7 @@ namespace Assets.Scripts.GameFlow
         /// After the tutorial, we want to save the party configuration and restore it later, so we can start after the tutorial.
         /// </summary>
         private PartyConfiguration storedTutorialConfiguration;
+        private AnalyticsService analyticsService;
 
         private bool didShowTutorial;
         
@@ -61,6 +63,7 @@ namespace Assets.Scripts.GameFlow
         private void Start()
         {
             abTestingManager = FindObjectsOfType<AbTestingManager>().First(testingManager => !testingManager.IsPendingKill);
+            analyticsService = FindObjectsOfType<AnalyticsService>().First(analyticsService => !analyticsService.IsPendingKill);
         }
 
         public void StartStoryMode()
@@ -99,6 +102,7 @@ namespace Assets.Scripts.GameFlow
                 }
                 else
                 {
+                    analyticsService.LevelLoadStart(currentStoryModeLevelIndex);
                     LoadLevelWithIntro(StoryModeLevels[currentStoryModeLevelIndex]);
                 }
             }
@@ -167,6 +171,7 @@ namespace Assets.Scripts.GameFlow
 
         public void LevelLoadComplete()
         {
+            analyticsService.LevelLoadEnd(currentStoryModeLevelIndex);
             var tutorialController = FindObjectOfType<TutorialController>();
             if (tutorialController != null && !didShowTutorial)
             {

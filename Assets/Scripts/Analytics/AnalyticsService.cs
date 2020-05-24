@@ -107,6 +107,28 @@ namespace Assets.Scripts.Analytics
             StartCoroutine(LogCsvLine(lineCells, true));
         }
 
+        public void LevelLoadStart(int levelIndex)
+        {
+            List<string> lineCells = new List<string> {
+                "LevelLoadStarted",
+                UserGuid.ToString(),
+                DateTime.Now.ToFileTimeUtc().ToString(),
+                levelIndex.ToString()
+            };
+            StartCoroutine(LogCsvLine(lineCells));
+        }
+
+        public void LevelLoadEnd(int levelIndex)
+        {
+            List<string> lineCells = new List<string> {
+                "LevelLoadEnded",
+                UserGuid.ToString(),
+                DateTime.Now.ToFileTimeUtc().ToString(),
+                levelIndex.ToString()
+            };
+            StartCoroutine(LogCsvLine(lineCells));
+        }
+
         private IEnumerator LogCsvLine(IEnumerable<string> cells, bool isRevoke = false)
         {
             var line = string.Join(";", cells);
