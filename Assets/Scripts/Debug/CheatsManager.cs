@@ -53,12 +53,13 @@ namespace Assets.Scripts.Debug
 
         private void EnableGodMode()
         {
-            knight.Attributes.DealtDamageMultiplier = 10000;
+            // Disabled in release builds.
+            /*knight.Attributes.DealtDamageMultiplier = 10000;
             knight.SetTotalMaxHp(10000);
             ranger.Attributes.DealtDamageMultiplier = 10000;
             ranger.SetTotalMaxHp(10000);
             cleric.Attributes.DealtDamageMultiplier = 10000;
-            cleric.SetTotalMaxHp(10000);
+            cleric.SetTotalMaxHp(10000);*/
         }
 
         private void UpdateImmortality()
