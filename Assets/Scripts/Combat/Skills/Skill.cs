@@ -189,7 +189,6 @@ namespace Assets.Scripts.Combat.Skills
             {
                 SelfCombatant.GetComponent<Animator>().SetBool(SkillAnimationName, false);
             }
-            SelfCombatant.GetComponent<MovementController>().StopMovement();
             SelfCombatant.GetComponent<OrientationController>().LookAtTarget = null;
             // HACK: Auto attacking uses the same animation as attack skills.
             // If an attack skill interrupted a basic attack, the animation would not reset, leading to bugs.

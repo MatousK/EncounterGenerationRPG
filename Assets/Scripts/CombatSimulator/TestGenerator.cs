@@ -33,6 +33,7 @@ namespace Assets.Scripts.CombatSimulator
         private const int PowerupTiers = 4;
         private const int PowerupTierIncrement = 3;
         private const int MaxMonsterTier = 10;
+        private const bool RandomPartyConfiguration = true;
 
         public PartyConfigurationProvider.PartyConfigurationProvider CurrentPartyProvider
         { get; private set; }
@@ -42,9 +43,17 @@ namespace Assets.Scripts.CombatSimulator
 
         public void ReadyNextTest(int testIndex)
         {
-            var partyProviderIndex = testIndex % partyProviders.Count;
-            CurrentPartyProvider = partyProviders[partyProviderIndex];
-            CurrentPartyConfiguration = CurrentPartyProvider.GetPartyConfiguration();
+            float partyPower;
+            do
+            {
+                var partyProviderIndex = RandomPartyConfiguration ? UnityEngine.Random.Range(0, partyProviders.Count) : testIndex % partyProviders.Count;
+                CurrentPartyProvider = partyProviders[partyProviderIndex];
+                CurrentPartyConfiguration = CurrentPartyProvider.GetPartyConfiguration();
+                partyPower = CurrentPartyConfiguration.ClericStats.MaxHp * CurrentPartyConfiguration.ClericStats.AttackModifier +
+                                 CurrentPartyConfiguration.KnightStats.MaxHp * CurrentPartyConfiguration.KnightStats.AttackModifier +
+                                 CurrentPartyConfiguration.RangerStats.MaxHp * CurrentPartyConfiguration.RangerStats.AttackModifier;
+            }
+            while (partyPower < 55500);
             MonsterTier = testIndex / TestsPerTier + 1;
             if (MonsterTier > MaxMonsterTier)
             {
@@ -56,48 +65,48 @@ namespace Assets.Scripts.CombatSimulator
         }
     }
 
-    public class PartyConfiguration
-    {
-        public PartyConfiguration() { }
-
-        public PartyConfiguration(Hero[] fromHeroes)
+        public class PartyConfiguration
         {
-            var knight = fromHeroes.FirstOrDefault(hero => hero.HeroProfession == HeroProfession.Knight);
-            KnightStats = knight != null ? new PartyMemberConfiguration(knight) : default;
-            var ranger = fromHeroes.FirstOrDefault(hero => hero.HeroProfession == HeroProfession.Ranger);
-            RangerStats = ranger != null ? new PartyMemberConfiguration(ranger) : default;
-            var cleric = fromHeroes.FirstOrDefault(hero => hero.HeroProfession == HeroProfession.Cleric);
-            ClericStats = cleric != null ? new PartyMemberConfiguration(cleric) : default;
-        }
+            public PartyConfiguration() { }
 
-        public PartyMemberConfiguration KnightStats;
-        public PartyMemberConfiguration RangerStats;
-        public PartyMemberConfiguration ClericStats;
-
-        public PartyMemberConfiguration? GetStatsFor(HeroProfession profession)
-        {
-            switch (profession)
+            public PartyConfiguration(Hero[] fromHeroes)
             {
-                case HeroProfession.Cleric:
-                    return ClericStats;
-                case HeroProfession.Ranger:
-                    return RangerStats;
-                case HeroProfession.Knight:
-                    return KnightStats;
+                var knight = fromHeroes.FirstOrDefault(hero => hero.HeroProfession == HeroProfession.Knight);
+                KnightStats = knight != null ? new PartyMemberConfiguration(knight) : default;
+                var ranger = fromHeroes.FirstOrDefault(hero => hero.HeroProfession == HeroProfession.Ranger);
+                RangerStats = ranger != null ? new PartyMemberConfiguration(ranger) : default;
+                var cleric = fromHeroes.FirstOrDefault(hero => hero.HeroProfession == HeroProfession.Cleric);
+                ClericStats = cleric != null ? new PartyMemberConfiguration(cleric) : default;
             }
-            UnityEngine.Debug.Assert(false, "Requesting stats for unknown hero.");
-            return null;
-        }
-    }
 
-    public struct PartyMemberConfiguration
-    {
-        public PartyMemberConfiguration(Hero fromHero)
-        {
-            MaxHp = (int)fromHero.TotalMaxHitpoints;
-            AttackModifier = fromHero.Attributes.DealtDamageMultiplier;
+            public PartyMemberConfiguration KnightStats;
+            public PartyMemberConfiguration RangerStats;
+            public PartyMemberConfiguration ClericStats;
+
+            public PartyMemberConfiguration? GetStatsFor(HeroProfession profession)
+            {
+                switch (profession)
+                {
+                    case HeroProfession.Cleric:
+                        return ClericStats;
+                    case HeroProfession.Ranger:
+                        return RangerStats;
+                    case HeroProfession.Knight:
+                        return KnightStats;
+                }
+                UnityEngine.Debug.Assert(false, "Requesting stats for unknown hero.");
+                return null;
+            }
         }
-        public int MaxHp;
-        public float AttackModifier;
+
+        public struct PartyMemberConfiguration
+        {
+            public PartyMemberConfiguration(Hero fromHero)
+            {
+                MaxHp = (int)fromHero.TotalMaxHitpoints;
+                AttackModifier = fromHero.Attributes.DealtDamageMultiplier;
+            }
+            public int MaxHp;
+            public float AttackModifier;
+        }
     }
-}

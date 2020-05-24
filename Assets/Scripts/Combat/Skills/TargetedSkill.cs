@@ -1,4 +1,5 @@
 ﻿using System;
+using Assets.Scripts.Movement;
 using Assets.Scripts.UI;
 using UnityEngine;
 
@@ -85,6 +86,8 @@ namespace Assets.Scripts.Combat.Skills
             if (didStopSkill)
             {
                 Target = null;
+                // Stop trying to move to position if relevant.
+                SelfCombatant.GetComponent<MovementController>().StopMovement();
             }
             return didStopSkill;
         }

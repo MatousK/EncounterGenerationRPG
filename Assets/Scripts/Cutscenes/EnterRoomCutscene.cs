@@ -63,7 +63,13 @@ namespace Assets.Scripts.Cutscenes
                 var targetPosition = GetHeroTargetPosition(hero);
                 ++movingHeroes;
                 print("Moving hero to ." + targetPosition);
-                hero.GetComponent<MovementController>().MoveToPosition(targetPosition, ignoreOtherCombatants: true, onMoveToSuccessful: moveSuccessful => --movingHeroes);
+                hero.GetComponent<MovementController>().MoveToPosition(targetPosition, ignoreOtherCombatants: true, onMoveToSuccessful: moveSuccessful => {
+                    if (!moveSuccessful)
+                    {
+                        UnityEngine.Debug.LogError("Could not move to target position");
+                    }
+                    --movingHeroes;
+                    });
             }
         }
 
