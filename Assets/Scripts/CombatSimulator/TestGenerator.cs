@@ -44,12 +44,16 @@ namespace Assets.Scripts.CombatSimulator
         public void ReadyNextTest(int testIndex)
         {
             float partyPower;
-            var partyProviderIndex = RandomPartyConfiguration ? UnityEngine.Random.Range(0, partyProviders.Count) : testIndex % partyProviders.Count;
-            CurrentPartyProvider = partyProviders[partyProviderIndex];
-            CurrentPartyConfiguration = CurrentPartyProvider.GetPartyConfiguration();
-            partyPower = CurrentPartyConfiguration.ClericStats.MaxHp * CurrentPartyConfiguration.ClericStats.AttackModifier +
-                             CurrentPartyConfiguration.KnightStats.MaxHp * CurrentPartyConfiguration.KnightStats.AttackModifier +
-                             CurrentPartyConfiguration.RangerStats.MaxHp * CurrentPartyConfiguration.RangerStats.AttackModifier;
+            do
+            {
+                var partyProviderIndex = RandomPartyConfiguration ? UnityEngine.Random.Range(0, partyProviders.Count) : testIndex % partyProviders.Count;
+                CurrentPartyProvider = partyProviders[partyProviderIndex];
+                CurrentPartyConfiguration = CurrentPartyProvider.GetPartyConfiguration();
+                partyPower = CurrentPartyConfiguration.ClericStats.MaxHp * CurrentPartyConfiguration.ClericStats.AttackModifier +
+                                 CurrentPartyConfiguration.KnightStats.MaxHp * CurrentPartyConfiguration.KnightStats.AttackModifier +
+                                 CurrentPartyConfiguration.RangerStats.MaxHp * CurrentPartyConfiguration.RangerStats.AttackModifier;
+            }
+            while (partyPower < 40000);
             MonsterTier = testIndex / TestsPerTier + 1;
             if (MonsterTier > MaxMonsterTier)
             {
