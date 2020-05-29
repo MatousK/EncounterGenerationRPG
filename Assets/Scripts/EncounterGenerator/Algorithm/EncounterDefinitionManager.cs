@@ -66,14 +66,17 @@ namespace Assets.Scripts.EncounterGenerator.Algorithm
             var eliteRankDownCandidates = encounter.AllEncounterGroups.Where(group => group.MonsterType.Rank == MonsterRank.Elite && CanDowngradeMonster(group.MonsterType)).ToArray();
             // Bosses and leaders are important and should not be removed unless absolutely necessary.
             var removeMonsterCandidates = encounter.AllEncounterGroups.Where(group => group.MonsterType.Rank != MonsterRank.Boss && group.MonsterType.Role != MonsterRole.Leader).ToArray();
+            // If there is only one monster left, do not remove it, downgrade it if possible.
+            var monsterCountInEncounters = encounter.AllEncounterGroups.Sum(group => group.MonsterCount);
+
 
             // It is apparent that if a monster can be downgraded, the same monster can also be removed.
             // If we can rank down a monster, we make it fifty/fifty whether we downgrade a monster or remove it.
-            if (eliteRankDownCandidates.Any() && UnityEngine.Random.value < 0.5)
+            if (eliteRankDownCandidates.Any() && (UnityEngine.Random.value < 0.5 || monsterCountInEncounters == 1))
             {
                 DowngradeMonster(encounter, eliteRankDownCandidates.GetRandomElementOrDefault().MonsterType);
             }
-            else if (removeMonsterCandidates.Any())
+            else if (removeMonsterCandidates.Any() && monsterCountInEncounters > 1)
             {
                 RemoveSpecificMonsterFromEncounter(encounter, removeMonsterCandidates.GetRandomElementOrDefault().MonsterType);
             }
@@ -82,16 +85,16 @@ namespace Assets.Scripts.EncounterGenerator.Algorithm
                 // The encounter is apparently only a leader and/or a boss. Welp, too bad. If there is a boss, downgrade it or remove it. If there is just a leader, well... Nothing to be done.
                 // Single elite leader should be beatable by absolutely anyone.
                 // So try to find a boss and downgrade/remove it.
-                var boss = encounter.AllEncounterGroups.First(group => group.MonsterType.Rank == MonsterRank.Boss);
+                var boss = encounter.AllEncounterGroups.FirstOrDefault(group => group.MonsterType.Rank == MonsterRank.Boss);
                 if (boss == null)
                 {
-                    return; // Probably only a boss in this encounter. Nothing to be done.
+                    return; // One creature in the encounter, nothing to be done.
                 }
                 if (CanDowngradeMonster(boss.MonsterType))
                 {
                     DowngradeMonster(encounter, boss.MonsterType);
                 }
-                else
+                else if (monsterCountInEncounters > 1)
                 {
                     RemoveSpecificMonsterFromEncounter(encounter, boss.MonsterType);
                 }

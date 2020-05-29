@@ -18,7 +18,9 @@ namespace Assets.Scripts.Experiment
             {
                 IsPendingKill = true;
                 Destroy(gameObject);
+                return;
             }
+            DontDestroyOnLoad(gameObject);
             ResetTestingGroup();
         }
 
