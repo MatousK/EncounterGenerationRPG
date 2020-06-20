@@ -29,7 +29,7 @@ namespace Assets.Scripts.Analytics
         public Guid UserGuid = Guid.NewGuid();
         public bool IsPendingKill;
         public GameObject RevokeActivityIndicatorTemplate;
-        private List<MonsterType> orderedMonsterTypes = new List<MonsterType>
+        public static List<MonsterType> OrderedMonsterTypes = new List<MonsterType>
         {
             new MonsterType(MonsterRank.Minion, MonsterRole.Minion),
             new MonsterType(MonsterRank.Regular, MonsterRole.Brute),
@@ -81,7 +81,7 @@ namespace Assets.Scripts.Analytics
             lineCells.Add(partyAttack[HeroProfession.Knight].ToString(CultureInfo.InvariantCulture));
             lineCells.Add(partyAttack[HeroProfession.Ranger].ToString(CultureInfo.InvariantCulture));
             lineCells.Add(partyAttack[HeroProfession.Cleric].ToString(CultureInfo.InvariantCulture));
-            foreach (var monsterType in orderedMonsterTypes)
+            foreach (var monsterType in OrderedMonsterTypes)
             {
                 var monsterCount =
                     encounter.AllEncounterGroups.FirstOrDefault(group => group.MonsterType == monsterType)?.MonsterCount ?? 0;

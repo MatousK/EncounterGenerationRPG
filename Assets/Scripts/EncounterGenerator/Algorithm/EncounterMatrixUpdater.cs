@@ -52,6 +52,11 @@ namespace Assets.Scripts.EncounterGenerator.Algorithm
                 initialHp[hero.HeroProfession] = hero.HitPoints;
                 partyDamageMultipliers[hero.HeroProfession] = hero.Attributes.DealtDamageMultiplier;
             }
+            if (initialMaxHp.Any(p => p.Value == 0))
+            {
+                UnityEngine.Debug.LogError("Invalid matrix start data");
+                return;
+            }
             this.expectedDifficulty = expectedDifficulty;
             this.encounter = encounter;
         }
@@ -63,6 +68,11 @@ namespace Assets.Scripts.EncounterGenerator.Algorithm
                 // Probably combat simulator, in release mode this would be a bug.
                 UnityEngine.Debug.LogWarning("Logging combat encounter when initial conditions are not set");
                 return; ;
+            }
+            if (initialMaxHp.Any(p => p.Value == 0))
+            {
+                UnityEngine.Debug.LogError("Invalid matrix start data");
+                return;
             }
 
             var partyEndHp = new Dictionary<HeroProfession, float>();
