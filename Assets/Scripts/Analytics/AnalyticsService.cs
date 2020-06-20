@@ -26,6 +26,7 @@ namespace Assets.Scripts.Analytics
         {
             get => RevokeAttemptIndex >= MaxRevokeAttempts;
         }
+        const int ExperimentVersion = 2;
         public Guid UserGuid = Guid.NewGuid();
         public bool IsPendingKill;
         public GameObject RevokeActivityIndicatorTemplate;
@@ -92,6 +93,7 @@ namespace Assets.Scripts.Analytics
             lineCells.Add(wasGameOver ? "1" : "0");
             lineCells.Add(wasStatic ? "1" : "0");
             lineCells.Add(wasLogged ? "1" : "0");
+            lineCells.Add(ExperimentVersion.ToString(CultureInfo.InvariantCulture));
 
             StartCoroutine(LogCsvLine(lineCells));
         }
@@ -103,6 +105,7 @@ namespace Assets.Scripts.Analytics
                 "RevokeAgreement",
                 UserGuid.ToString(),
                 DateTime.Now.ToFileTimeUtc().ToString(),
+                ExperimentVersion.ToString(CultureInfo.InvariantCulture)
             };
             StartCoroutine(LogCsvLine(lineCells, true));
         }
@@ -113,7 +116,8 @@ namespace Assets.Scripts.Analytics
                 "LevelLoadStarted",
                 UserGuid.ToString(),
                 DateTime.Now.ToFileTimeUtc().ToString(),
-                levelIndex.ToString()
+                levelIndex.ToString(),
+                ExperimentVersion.ToString(CultureInfo.InvariantCulture)
             };
             StartCoroutine(LogCsvLine(lineCells));
         }
@@ -124,7 +128,8 @@ namespace Assets.Scripts.Analytics
                 "LevelLoadEnded",
                 UserGuid.ToString(),
                 DateTime.Now.ToFileTimeUtc().ToString(),
-                levelIndex.ToString()
+                levelIndex.ToString(),
+                ExperimentVersion.ToString(CultureInfo.InvariantCulture)
             };
             StartCoroutine(LogCsvLine(lineCells));
         }

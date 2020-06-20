@@ -72,12 +72,12 @@ namespace Assets.Scripts.EncounterGenerator.Configuration
         /// How much should the algorithm try to change its data based on actual battles when the battle is easier than it should have been.
         /// 0 means no learning at all, 1 means that it should completely change the matrix to fit the data.
         /// </summary>
-        public float LearningSpeedIncreaseDifficulty = 0.5f;
+        public float LearningSpeedIncreaseDifficulty = 0.75f;
         /// <summary>
         /// How much should the algorithm try to change its data based on actual battles when the battle is harder than it should have been.
         /// 0 means no learning at all, 1 means that it should completely change the matrix to fit the data.
         /// </summary>
-        public float LearningSpeedDecreaseDifficulty = 0.5f;
+        public float LearningSpeedDecreaseDifficulty = 0.75f;
         /// <summary>
         /// While learning, every field in the matrix should be rated as at least this similar.
         /// Why? Because every fight tells us something about the player's ability, so it should affect the entire matrix by at least some amount.

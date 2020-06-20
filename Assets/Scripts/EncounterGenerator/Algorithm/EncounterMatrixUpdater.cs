@@ -136,7 +136,9 @@ namespace Assets.Scripts.EncounterGenerator.Algorithm
                     similarity = similarity < configuration.LearningMinimumSimilarity
                         ? configuration.LearningMinimumSimilarity
                         : similarity;
-                    matrixElement.ResourcesLost -= matrixElement.ResourcesLost * modifyDifficultyBy * similarity;
+                    // The bad version of the updater, kept here for posterity and so I remember how to simulate the bug when reproducing the matrices of original users.
+                    //matrixElement.ResourcesLost -= matrixElement.ResourcesLost * modifyDifficultyBy * similarity; 
+                    matrixElement.ResourcesLost -= modifyDifficultyBy * similarity;
                     if (matrixElement.ResourcesLost > 3)
                     {
                         matrixElement.ResourcesLost = 3;
