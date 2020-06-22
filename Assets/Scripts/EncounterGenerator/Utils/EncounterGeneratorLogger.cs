@@ -15,7 +15,6 @@ namespace Assets.Scripts.EncounterGenerator.Utils
 {
     public class EncounterGeneratorLogger: MonoBehaviour
     {
-#if DEVELOPMENT_BUILD || UNITY_EDITOR
         private DifficultyMatrixProvider matrixProvider;
         private MatrixVisualizer matrixVisualizer;
         private EncounterGeneratorConfiguration configuration;
@@ -33,6 +32,8 @@ namespace Assets.Scripts.EncounterGenerator.Utils
             configuration = EncounterGeneratorConfiguration.CurrentConfig;
         }
 
+#if DEVELOPMENT_BUILD || UNITY_EDITOR
+
         private void Start()
         {
             matrixProvider = FindObjectsOfType<DifficultyMatrixProvider>().First(provider => !provider.IsPendingKill);
@@ -44,7 +45,7 @@ namespace Assets.Scripts.EncounterGenerator.Utils
                 Task.Run(() => matrixVisualizer.SaveMatrix(visualizationFileName, matrixProvider.CurrentDifficultyMatrix));
             }
         }
-
+#endif
         public void LogMatrixChange(MatrixChangedEventArgs e, EncounterDifficultyMatrix matrix, bool async)
         {
             LogResult(e);
@@ -122,6 +123,6 @@ namespace Assets.Scripts.EncounterGenerator.Utils
                 matrixProvider.MatrixChanged -= MatrixProvider_MatrixChanged;
             }
         }
-#endif
+
     }
 }
