@@ -1,7 +1,7 @@
 ﻿using Assets.Scripts.Analytics;
 using Assets.Scripts.Combat;
-using Assets.Scripts.Editor.Model;
 using Assets.Scripts.EncounterGenerator.Model;
+using Assets.Scripts.Experiment.ResultsAnalysis.Model;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -10,7 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Assets.Scripts.Editor
+namespace Assets.Scripts.Experiment.ResultsAnalysis
 {
     class GeneralDataParser
     {
@@ -44,14 +44,26 @@ namespace Assets.Scripts.Editor
                     {
                         LineType = lineType,
                         LogTime = timeStamp,
-                        UserId = userId
+                        UserId = userId,
+                        LevelIndex = int.Parse(csvElements[3], CultureInfo.InvariantCulture),
+                        Version = csvElements.Length == 5 ? int.Parse(csvElements[4], CultureInfo.InvariantCulture) : 1
+                    };
+                case "LevelLoadStarted":
+                    return new LevelLoadStartedLine
+                    {
+                        LineType = lineType,
+                        LogTime = timeStamp,
+                        UserId = userId,
+                        LevelIndex = int.Parse(csvElements[3], CultureInfo.InvariantCulture),
+                        Version = csvElements.Length == 5 ? int.Parse(csvElements[4], CultureInfo.InvariantCulture) : 1
                     };
                 case "RevokeAgreement":
                     return new AgreementRevokedLine
                     {
                         LineType = lineType,
                         LogTime = timeStamp,
-                        UserId = userId
+                        UserId = userId,
+                        Version = csvElements.Length == 4 ? int.Parse(csvElements[3], CultureInfo.InvariantCulture) : 1
                     };
                 case "Combat":
                     return ParseCombatLine(csvElements, lineType, userId, timeStamp);
@@ -103,12 +115,13 @@ namespace Assets.Scripts.Editor
                 CombatEncounter = encounter,
                 ExpectedDifficulty = expectedDifficulty,
                 RealDifficulty = realDifficulty,
-                PartAttack = partyAttack,
+                PartyAttack = partyAttack,
                 PartyEndHitpoints = partyEndHitpoints,
                 PartyStartHitpoints = partyStartHitpoints,
                 WasGameOver = wasGameOver,
                 WasLogged = wasLogged,
-                WasStaticEncounter = wasStatic
+                WasStaticEncounter = wasStatic,
+                Version = ++currentElementIndex < csvElements.Length ? int.Parse(csvElements[currentElementIndex], CultureInfo.InvariantCulture) : 1
             };
         }
     }

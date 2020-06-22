@@ -4,12 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Assets.Scripts.Editor.Model
+namespace Assets.Scripts.Experiment.ResultsAnalysis.Model
 {
     public abstract class CsvLine
     {
         public string UserId;
         public DateTime LogTime;
         public string LineType;
+        public int Version;
     }
 }

@@ -44,15 +44,15 @@ namespace Assets.Scripts.EncounterGenerator.Algorithm
         private EncounterDefinition encounter;
         private AnalyticsService analyticsService;
 
-        public void StoreCombatStartConditions(PartyDefinition party, EncounterDefinition encounter, float expectedDifficulty)
+        public void StoreCombatStartConditions(IPartyDefinition party, EncounterDefinition encounter, float expectedDifficulty)
         {
-            foreach (var hero in party.PartyMembers)
+            foreach (var heroProfession in party.GetHeroProfessions())
             {
-                initialMaxHp[hero.HeroProfession] = hero.MaxHitpoints;
-                initialHp[hero.HeroProfession] = hero.HitPoints;
-                partyDamageMultipliers[hero.HeroProfession] = hero.Attributes.DealtDamageMultiplier;
+                initialMaxHp[heroProfession] = party.GetMaxHpForHero(heroProfession);
+                initialHp[heroProfession] = party.GetHpForHero(heroProfession);
+                partyDamageMultipliers[heroProfession] = party.GetAttackForHero(heroProfession);
             }
-            if (initialMaxHp.Any(p => p.Value == 0))
+            if (initialMaxHp.Any(p => p.Value == 0) && !configuration.EmulateV1Bug)
             {
                 UnityEngine.Debug.LogError("Invalid matrix start data");
                 return;
@@ -61,7 +61,7 @@ namespace Assets.Scripts.EncounterGenerator.Algorithm
             this.encounter = encounter;
         }
 
-        public void CombatOverAdjustMatrix(PartyDefinition party, bool wasGameOver)
+        public void CombatOverAdjustMatrix(IPartyDefinition party, bool wasGameOver)
         {
             if (expectedDifficulty == null || !initialMaxHp.Any())
             {
@@ -69,7 +69,7 @@ namespace Assets.Scripts.EncounterGenerator.Algorithm
                 UnityEngine.Debug.LogWarning("Logging combat encounter when initial conditions are not set");
                 return; ;
             }
-            if (initialMaxHp.Any(p => p.Value == 0))
+            if (initialMaxHp.Any(p => p.Value == 0) && !configuration.EmulateV1Bug)
             {
                 UnityEngine.Debug.LogError("Invalid matrix start data");
                 return;
@@ -78,16 +78,16 @@ namespace Assets.Scripts.EncounterGenerator.Algorithm
             var partyEndHp = new Dictionary<HeroProfession, float>();
             float totalLostMaxHp = 0;
             float totalHpLost = 0;
-            foreach (var hero in party.PartyMembers)
+            foreach (var heroProfession in party.GetHeroProfessions())
             {
-                totalLostMaxHp += 1 - hero.MaxHitpoints / initialMaxHp[hero.HeroProfession];
-                totalHpLost += 1 - hero.HitPoints / initialHp[hero.HeroProfession];
-                partyEndHp[hero.HeroProfession] = hero.MaxHitpoints;
+                totalLostMaxHp += 1 - party.GetMaxHpForHero(heroProfession) / initialMaxHp[heroProfession];
+                totalHpLost += 1 - party.GetHpForHero(heroProfession) / initialHp[heroProfession];
+                partyEndHp[heroProfession] = party.GetMaxHpForHero(heroProfession);
             }
             var partyStartHp = new Dictionary<HeroProfession, float>(initialMaxHp);
             var partyAttack = new Dictionary<HeroProfession, float>(partyDamageMultipliers);
             var finishedEncounter = encounter;
-            analyticsService.LogCombat(partyStartHp, partyEndHp, partyAttack, finishedEncounter, expectedDifficulty.Value, totalLostMaxHp, wasGameOver, IsStaticEncounter, AdjustMatrixForNextFight);
+            analyticsService?.LogCombat(partyStartHp, partyEndHp, partyAttack, finishedEncounter, expectedDifficulty.Value, totalLostMaxHp, wasGameOver, IsStaticEncounter, AdjustMatrixForNextFight);
             if (AdjustMatrixForNextFight)
             {
                 AddMatrixRow(party, wasGameOver ? 3f : totalLostMaxHp, wasGameOver ? 3f : totalHpLost);
@@ -136,9 +136,15 @@ namespace Assets.Scripts.EncounterGenerator.Algorithm
                     similarity = similarity < configuration.LearningMinimumSimilarity
                         ? configuration.LearningMinimumSimilarity
                         : similarity;
-                    // The bad version of the updater, kept here for posterity and so I remember how to simulate the bug when reproducing the matrices of original users.
-                    //matrixElement.ResourcesLost -= matrixElement.ResourcesLost * modifyDifficultyBy * similarity; 
-                    matrixElement.ResourcesLost -= modifyDifficultyBy * similarity;
+                    if (configuration.EmulateV1Bug)
+                    {
+                        // Wrong behavior, fixed, but we need it to be here for analyzing data from the original version.
+                        matrixElement.ResourcesLost -= matrixElement.ResourcesLost * modifyDifficultyBy * similarity; 
+                    } 
+                    else
+                    {
+                        matrixElement.ResourcesLost -= modifyDifficultyBy * similarity;
+                    }
                     if (matrixElement.ResourcesLost > 3)
                     {
                         matrixElement.ResourcesLost = 3;
@@ -160,21 +166,21 @@ namespace Assets.Scripts.EncounterGenerator.Algorithm
             });
         }
 
-        private void AddMatrixRow(PartyDefinition party, float maxHpLost, float hpLost)
+        private void AddMatrixRow(IPartyDefinition party, float maxHpLost, float hpLost)
         {
             var heroStatusMap = new Dictionary<HeroProfession, HeroCombatStatus>();
             float partyStrength = 0;
-            foreach (var hero in party.PartyMembers)
+            foreach (var heroProfession in party.GetHeroProfessions())
             {
-                partyStrength += initialMaxHp[hero.HeroProfession] * partyDamageMultipliers[hero.HeroProfession];
-                heroStatusMap[hero.HeroProfession] = new HeroCombatStatus
+                partyStrength += initialMaxHp[heroProfession] * partyDamageMultipliers[heroProfession];
+                heroStatusMap[heroProfession] = new HeroCombatStatus
                 {
-                    Attack = partyDamageMultipliers[hero.HeroProfession],
-                    Hp = initialHp[hero.HeroProfession],
-                    HpLost = 1 - hero.HitPoints / initialHp[hero.HeroProfession],
-                    MaxHp = initialMaxHp[hero.HeroProfession],
-                    MaxHpLost = 1 - hero.MaxHitpoints / initialMaxHp[hero.HeroProfession],
-                    WasKilled = hero.IsDown
+                    Attack = partyDamageMultipliers[heroProfession],
+                    Hp = initialHp[heroProfession],
+                    HpLost = 1 - party.GetHpForHero(heroProfession) / initialHp[heroProfession],
+                    MaxHp = initialMaxHp[heroProfession],
+                    MaxHpLost = 1 - party.GetMaxHpForHero(heroProfession) / initialMaxHp[heroProfession],
+                    WasKilled = party.IsDown(heroProfession)
                 };
             }
             var matrixLine = new DifficultyMatrixSourceLine

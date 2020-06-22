@@ -16,6 +16,16 @@ namespace Assets.Scripts.EncounterGenerator.Model
         // TODO: Algorithms here are quite inefficient for now, but, well, we must first find out if it works at all.
         public List<EncounterDifficultyMatrixElement> MatrixElements = new List<EncounterDifficultyMatrixElement>();
 
+        public EncounterDifficultyMatrix Clone()
+        {
+            return new EncounterDifficultyMatrix
+            {
+                MatrixElements = new List<EncounterDifficultyMatrixElement>(MatrixElements.Select(
+                    originalElement => new EncounterDifficultyMatrixElement(originalElement.ElementSource)
+                    ))
+            };
+        }
+
         public float GetDifficultyFor(EncounterDefinition encounter, PartyDefinition party, EncounterGeneratorConfiguration configuration)
         {
             encounter.UpdatePrecomputedMonsterCount(configuration);

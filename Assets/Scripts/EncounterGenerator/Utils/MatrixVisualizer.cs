@@ -17,8 +17,7 @@ namespace Assets.Scripts.EncounterGenerator.Utils
         public float MonsterPowerScale = 100;
         public int VisualizationWidth = 1000;
         public int VisualizationHeight = 1000;
-        // TODO: Get this from somewhere.
-        private EncounterGeneratorConfiguration configuration = new EncounterGeneratorConfiguration();
+        private EncounterGeneratorConfiguration configuration = EncounterGeneratorConfiguration.CurrentConfig;
         private Dictionary<Vector2Int, List<float>> matrixDataPendingSave;
         private string pendingSavePath;
 
@@ -70,7 +69,10 @@ namespace Assets.Scripts.EncounterGenerator.Utils
                         continue;
                     }
                     var averageDifficulty = matrixDataPendingSave[coordinates].Average();
-
+                    if (float.IsNaN(averageDifficulty) || float.IsInfinity(averageDifficulty))
+                    {
+                        continue;
+                    }
                     var pointColor = VisualizationGradient.Evaluate(averageDifficulty / 3);
                     matrixVisualization.SetPixel(x, y, pointColor);
                 }

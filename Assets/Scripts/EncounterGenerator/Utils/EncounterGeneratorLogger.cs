@@ -8,6 +8,7 @@ using Assets.Scripts.Combat;
 using Assets.Scripts.CombatSimulator;
 using Assets.Scripts.EncounterGenerator.Algorithm;
 using Assets.Scripts.EncounterGenerator.Configuration;
+using Assets.Scripts.EncounterGenerator.Model;
 using UnityEngine;
 
 namespace Assets.Scripts.EncounterGenerator.Utils
@@ -18,7 +19,7 @@ namespace Assets.Scripts.EncounterGenerator.Utils
         private DifficultyMatrixProvider matrixProvider;
         private MatrixVisualizer matrixVisualizer;
         private EncounterGeneratorConfiguration configuration;
-        private string resultsDirectory;
+        public string ResultsDirectory;
         private int currentTestIndex;
 
         private void Awake()
@@ -28,9 +29,8 @@ namespace Assets.Scripts.EncounterGenerator.Utils
                 Destroy(gameObject);
             }
             DontDestroyOnLoad(gameObject);
-            matrixVisualizer = GetComponent<MatrixVisualizer>();
-            // TODO: Get config from some common place;
-            configuration = new EncounterGeneratorConfiguration();
+            matrixVisualizer = FindObjectOfType<MatrixVisualizer>();
+            configuration = EncounterGeneratorConfiguration.CurrentConfig;
         }
 
         private void Start()
@@ -40,23 +40,35 @@ namespace Assets.Scripts.EncounterGenerator.Utils
             InitTestResultsDirectory();
             if (matrixProvider.CurrentDifficultyMatrix != null)
             {
-                var visualizationFileName = $"{resultsDirectory}Visualization.bmp";
+                var visualizationFileName = $"{ResultsDirectory}Visualization.bmp";
                 Task.Run(() => matrixVisualizer.SaveMatrix(visualizationFileName, matrixProvider.CurrentDifficultyMatrix));
             }
         }
 
-        private void MatrixProvider_MatrixChanged(object sender, MatrixChangedEventArgs e)
+        public void LogMatrixChange(MatrixChangedEventArgs e, EncounterDifficultyMatrix matrix, bool async)
         {
             LogResult(e);
-            var visualizationFileName = $"{resultsDirectory}Visualization{currentTestIndex}.bmp";
+            var visualizationFileName = $"{ResultsDirectory}Visualization{currentTestIndex}.bmp";
             // This will probably take a long time, run on a different thread.
-            Task.Run(() => matrixVisualizer.SaveMatrix(visualizationFileName, matrixProvider.CurrentDifficultyMatrix));
+            if (async)
+            {
+                Task.Run(() => matrixVisualizer.SaveMatrix(visualizationFileName, matrix));
+            } 
+            else
+            {
+                matrixVisualizer.SaveMatrix(visualizationFileName, matrix);
+            }
             currentTestIndex++;
+        }
+
+        private void MatrixProvider_MatrixChanged(object sender, MatrixChangedEventArgs e)
+        {
+            LogMatrixChange(e, matrixProvider.CurrentDifficultyMatrix, true);
         }
 
         private void LogResult(MatrixChangedEventArgs e)
         {
-            var resultsFilename = $"{resultsDirectory}log.txt";
+            var resultsFilename = $"{ResultsDirectory}log.txt";
             var partyStrength = e.PartyAttack[HeroProfession.Ranger] * e.PartyHitpoints[HeroProfession.Ranger] +
                                 e.PartyAttack[HeroProfession.Knight] * e.PartyHitpoints[HeroProfession.Knight] +
                                 e.PartyAttack[HeroProfession.Cleric] * e.PartyHitpoints[HeroProfession.Cleric];
@@ -96,8 +108,11 @@ namespace Assets.Scripts.EncounterGenerator.Utils
 
         private void InitTestResultsDirectory()
         {
-            resultsDirectory = $"TestResults/{DateTime.Now:yy-MM-dd-HH-mm-ss}/";
-            Directory.CreateDirectory(resultsDirectory);
+            if (ResultsDirectory == null)
+            {
+                ResultsDirectory = $"TestResults/{DateTime.Now:yy-MM-dd-HH-mm-ss}/";
+                Directory.CreateDirectory(ResultsDirectory);
+            }
         }
 
         private void OnDestroy()

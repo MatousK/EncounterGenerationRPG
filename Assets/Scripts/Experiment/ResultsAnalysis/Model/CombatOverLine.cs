@@ -6,13 +6,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Assets.Scripts.Editor.Model
+namespace Assets.Scripts.Experiment.ResultsAnalysis.Model
 {
     public class CombatOverLine: CsvLine
     {
         public Dictionary<HeroProfession, float> PartyStartHitpoints;
         public Dictionary<HeroProfession, float> PartyEndHitpoints;
-        public Dictionary<HeroProfession, float> PartAttack;
+        public Dictionary<HeroProfession, float> PartyAttack;
         public EncounterDefinition CombatEncounter;
         public float ExpectedDifficulty;
         public float RealDifficulty;

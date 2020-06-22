@@ -6,7 +6,23 @@ namespace Assets.Scripts.EncounterGenerator.Configuration
 {
     public class EncounterGeneratorConfiguration
     {
+        public static EncounterGeneratorConfiguration ConfigurationV1 = new EncounterGeneratorConfiguration
+        {
+            LearningSpeedDecreaseDifficulty = 0.5f,
+            LearningSpeedIncreaseDifficulty = 0.5f,
+            EmulateV1Bug = true
+        };
+        public static EncounterGeneratorConfiguration ConfigurationV2 = new EncounterGeneratorConfiguration();
 
+        public static EncounterGeneratorConfiguration CurrentConfig
+        {
+            get
+            {
+                return ConfigurationV2;
+            }
+        }
+
+        private EncounterGeneratorConfiguration() { }
         /// <summary>
         /// How to individual roles correspond to either defense or offense of the group.
         /// </summary>
@@ -83,5 +99,10 @@ namespace Assets.Scripts.EncounterGenerator.Configuration
         /// Why? Because every fight tells us something about the player's ability, so it should affect the entire matrix by at least some amount.
         /// </summary>
         public float LearningMinimumSimilarity = 0f;
+        /// <summary>
+        /// This is for analyzing old data with bugs.
+        /// If true, we will emulate the wrong behavior of matrix adjustments that led to invalid data.
+        /// </summary>
+        public bool EmulateV1Bug;
     }
 }

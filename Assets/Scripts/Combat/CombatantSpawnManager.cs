@@ -20,8 +20,7 @@ namespace Assets.Scripts.Combat
 
         public void Start()
         {
-            // TODO: Get this from somewhere
-            generatorConfiguration = new EncounterGeneratorConfiguration();
+            generatorConfiguration = EncounterGeneratorConfiguration.CurrentConfig;
         }
 
         /// <summary>

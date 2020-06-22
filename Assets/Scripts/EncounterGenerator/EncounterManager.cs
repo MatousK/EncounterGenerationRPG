@@ -25,7 +25,7 @@ namespace Assets.Scripts.EncounterGenerator
         private CombatantSpawnManager combatantSpawnManager;
         private CombatantsManager combatantsManager;
         private GameStateManager gameStateManager;
-        private readonly EncounterGeneratorConfiguration generatorConfiguration = new EncounterGeneratorConfiguration();
+        private readonly EncounterGeneratorConfiguration generatorConfiguration = EncounterGeneratorConfiguration.CurrentConfig;
         private DifficultyMatrixProvider difficultyMatrixProvider;
         private LevelLoader levelLoader;
         private AnalyticsService analyticsService;

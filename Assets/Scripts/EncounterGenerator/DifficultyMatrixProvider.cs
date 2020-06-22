@@ -11,7 +11,7 @@ using UnityEngine;
 
 namespace Assets.Scripts.EncounterGenerator
 {
-    class DifficultyMatrixProvider : MonoBehaviour
+    public class DifficultyMatrixProvider : MonoBehaviour
     {
         public EncounterDifficultyMatrix CurrentDifficultyMatrix { get; private set; }
         /// <summary>
@@ -67,8 +67,7 @@ namespace Assets.Scripts.EncounterGenerator
             try
             {
                 UnityEngine.Debug.Log("Started loading matrix.");
-                // TODO: Load from some shared storage, make it a singleton, something, this is ugly.
-                var config = new EncounterGeneratorConfiguration();
+                var config = EncounterGeneratorConfiguration.CurrentConfig;
                 UnityEngine.Debug.Log("Config initialized.");
                 using (var sr = new StringReader(matrixString))
                 {
