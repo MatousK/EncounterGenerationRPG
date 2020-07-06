@@ -42,6 +42,7 @@ namespace Assets.Scripts.Experiment.ResultsAnalysis
                 case "LevelLoadEnded":
                     return new LevelLoadOverLine
                     {
+                        RawLineData = line,
                         LineType = lineType,
                         LogTime = timeStamp,
                         UserId = userId,
@@ -51,6 +52,7 @@ namespace Assets.Scripts.Experiment.ResultsAnalysis
                 case "LevelLoadStarted":
                     return new LevelLoadStartedLine
                     {
+                        RawLineData = line,
                         LineType = lineType,
                         LogTime = timeStamp,
                         UserId = userId,
@@ -60,19 +62,20 @@ namespace Assets.Scripts.Experiment.ResultsAnalysis
                 case "RevokeAgreement":
                     return new AgreementRevokedLine
                     {
+                        RawLineData = line,
                         LineType = lineType,
                         LogTime = timeStamp,
                         UserId = userId,
                         Version = csvElements.Length == 4 ? int.Parse(csvElements[3], CultureInfo.InvariantCulture) : 1
                     };
                 case "Combat":
-                    return ParseCombatLine(csvElements, lineType, userId, timeStamp);
+                    return ParseCombatLine(csvElements, lineType, userId, timeStamp, line);
                 default:
                     throw new FormatException("CSV is in an invalid format");
             }
         }
 
-        private CombatOverLine ParseCombatLine(string[] csvElements, string lineType, string userId, DateTime timestamp)
+        private CombatOverLine ParseCombatLine(string[] csvElements, string lineType, string userId, DateTime timestamp, string line)
         {
             int currentElementIndex = 3;
             Dictionary<HeroProfession, float> partyStartHitpoints = new Dictionary<HeroProfession, float>
@@ -109,6 +112,7 @@ namespace Assets.Scripts.Experiment.ResultsAnalysis
             var wasLogged = csvElements[currentElementIndex++] == "1";
             return new CombatOverLine
             {
+                RawLineData = line,
                 LineType = lineType,
                 UserId = userId,
                 LogTime = timestamp,

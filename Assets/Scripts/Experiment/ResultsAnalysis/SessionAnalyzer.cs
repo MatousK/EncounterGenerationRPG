@@ -3,6 +3,7 @@ using Assets.Scripts.EncounterGenerator.Utils;
 using Assets.Scripts.Experiment.ResultsAnalysis.Model;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,19 +13,24 @@ namespace Assets.Scripts.Experiment.ResultsAnalysis
 {
     class SessionAnalyzer: MonoBehaviour
     {
+        public bool ShouldReconstructMatrix;
+        public string ResultsRootDirectory;
         MatrixReconstructionManager matrixReconstructionManager;
-        const string ResultsRootDirectory = "Results/Processed/IndividualTests/";
         public void AnalyzeSession(List<CsvLine> lines, EncounterDifficultyMatrix initialDifficultyMatrix)
         {
             var sessionGroup = GetGroup(lines);
             int levelsCompleted = lines.Count(line => line is LevelLoadStartedLine);
             var resultsFolder = GetSessionResultsFolder(sessionGroup, levelsCompleted, lines.First().UserId, lines.First().Version);
             System.IO.Directory.CreateDirectory(resultsFolder);
-            matrixReconstructionManager = gameObject.AddComponent<MatrixReconstructionManager>();
-            matrixReconstructionManager.CombatOverLines = lines.Select(line => line as CombatOverLine).Where(line => line != null).ToList();
-            matrixReconstructionManager.ResultsFolder = resultsFolder;
-            matrixReconstructionManager.CurrentMatrix = initialDifficultyMatrix;
-            matrixReconstructionManager.Version = lines.First().Version;
+            if (ShouldReconstructMatrix)
+            {
+                matrixReconstructionManager = gameObject.AddComponent<MatrixReconstructionManager>();
+                matrixReconstructionManager.CombatOverLines = lines.Select(line => line as CombatOverLine).Where(line => line != null).ToList();
+                matrixReconstructionManager.ResultsFolder = resultsFolder;
+                matrixReconstructionManager.CurrentMatrix = initialDifficultyMatrix;
+                matrixReconstructionManager.Version = lines.First().Version;
+            }
+            SaveAllSessionLines(lines, resultsFolder);
         }
 
         private void Update()
@@ -77,6 +83,19 @@ namespace Assets.Scripts.Experiment.ResultsAnalysis
             else
             {
                 return (lines[currentLineIndex] as CombatOverLine).WasStaticEncounter ? SessionGroup.FirstStaticThenGenerated : SessionGroup.FirstGeneratedThenStatic;
+            }
+        }
+    
+        private void SaveAllSessionLines(List<CsvLine> lines, string resultsFolder)
+        {
+            var rawDataFilename = resultsFolder + "rawdata.csv";
+            using (StreamWriter sw = new StreamWriter(rawDataFilename))
+            {
+                sw.WriteLine("sep=;");
+                foreach (var line in lines)
+                {
+                    sw.WriteLine(line.RawLineData);
+                }
             }
         }
     }

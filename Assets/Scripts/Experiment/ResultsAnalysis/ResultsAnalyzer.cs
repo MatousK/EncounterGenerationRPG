@@ -15,17 +15,23 @@ namespace Assets.Scripts.Experiment.ResultsAnalysis
     public class ResultsAnalyzer: MonoBehaviour
     {
         const string ResultsPath = "Results/Raw";
-        const string GeneratedFirstDonePath = ResultsPath + "/GeneratedFirstDone.csv";
+        const string GeneratedFirstCompletePath = ResultsPath + "/GeneratedFirstComplete.csv";
         const string GeneratedFirstHalfPath = ResultsPath + "/GeneratedFirstHalf.csv";
-        const string PrematureExitPath = ResultsPath + "/PrematureExit.csv";
-        const string StaticFirstDonePath = ResultsPath + "/StaticFirstDone.csv";
+        const string PrematureExitPath = ResultsPath + "/Unfinished.csv";
+        const string StaticFirstCompletePath = ResultsPath + "/StaticFirstComplete.csv";
         const string StaticFirstHalfPath = ResultsPath + "/StaticFirstHalf.csv";
         const string GeneralDataFilePath = ResultsPath + "/data.csv";
+        const string ResultsRootDirectory = "Results/Processed/IndividualTests/";
 
         List<IGrouping<string, CsvLine>> nonRevokedData;
         int currentSessionIndex = 0;
         SessionAnalyzer currentSessionAnalyzer;
         EncounterDifficultyMatrix matrixTemplate;
+        /// <summary>
+        /// If true, we should reconstruct how the matrix looked for multiple users.
+        /// This switch is here for debugging the experiment, as reconstructing the matrices takes a long time.
+        /// </summary>
+        public bool ShouldReconstructMatrices;
         public void Start()
         {
             LoadGeneralData();
@@ -37,9 +43,16 @@ namespace Assets.Scripts.Experiment.ResultsAnalysis
             {
                 var sessionAnalysisObject = new GameObject($"Session {currentSessionIndex}");
                 currentSessionAnalyzer = sessionAnalysisObject.AddComponent<SessionAnalyzer>();
+                currentSessionAnalyzer.ShouldReconstructMatrix = ShouldReconstructMatrices;
+                currentSessionAnalyzer.ResultsRootDirectory = ResultsRootDirectory;
                 var currentData = nonRevokedData[currentSessionIndex++];
                 currentSessionAnalyzer.AnalyzeSession(currentData.ToList(), matrixTemplate.Clone());
-            }    
+            } 
+            else if (currentSessionAnalyzer == null)
+            {
+                AnalyzeSurveys();
+                Destroy(gameObject);
+            }
         }
 
         private void LoadGeneralData()
@@ -51,6 +64,17 @@ namespace Assets.Scripts.Experiment.ResultsAnalysis
             var matrixProvider = gameObject.AddComponent<DifficultyMatrixProvider>();
             matrixProvider.ReloadMatrix(false);
             matrixTemplate = matrixProvider.CurrentDifficultyMatrix;
+        }
+
+        private void AnalyzeSurveys()
+        {
+            var surveyWithIdAnalyzer = new SurveyWithIdAnalyzer();
+            surveyWithIdAnalyzer.AnalyzeSurvey(GeneratedFirstCompletePath, ResultsRootDirectory, "GeneratedFirstComplete.csv");
+            surveyWithIdAnalyzer.AnalyzeSurvey(GeneratedFirstHalfPath, ResultsRootDirectory, "GeneratedFirstHalf.csv");
+            surveyWithIdAnalyzer.AnalyzeSurvey(StaticFirstCompletePath, ResultsRootDirectory, "StaticFirstComplete.csv");
+            surveyWithIdAnalyzer.AnalyzeSurvey(StaticFirstHalfPath, ResultsRootDirectory, "StaticFirstHalf.csv");
+            var surveyWithoutIdAnalyzer = new SurveyWithoutIdAnalyzer();
+            surveyWithoutIdAnalyzer.AnalyzeSurvey(PrematureExitPath, ResultsRootDirectory, "PrematureExit.csv");
         }
     }
 }
