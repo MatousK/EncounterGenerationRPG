@@ -3,6 +3,7 @@ using Assets.Scripts.EncounterGenerator.Utils;
 using Assets.Scripts.Experiment.ResultsAnalysis.Model;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -13,6 +14,7 @@ namespace Assets.Scripts.Experiment.ResultsAnalysis
 {
     class SessionAnalyzer: MonoBehaviour
     {
+        public ResultAnalysisConfiguration Configuration;
         public bool ShouldReconstructMatrix;
         public string ResultsRootDirectory;
         MatrixReconstructionManager matrixReconstructionManager;
@@ -47,16 +49,16 @@ namespace Assets.Scripts.Experiment.ResultsAnalysis
             switch (group)
             {
                 case SessionGroup.FirstGeneratedThenStatic:
-                    groupHumanReadableName = "GeneratedFirst";
+                    groupHumanReadableName = Configuration.GeneratedFirstGroupName;
                     break;
                 case SessionGroup.FirstStaticThenGenerated:
-                    groupHumanReadableName = "StaticFirst";
+                    groupHumanReadableName = Configuration.StaticFirstGroupName;
                     break;
                 case SessionGroup.TutorialOnly:
-                    groupHumanReadableName = "TutorialOnly";
+                    groupHumanReadableName = Configuration.TutorialOnlyGroupName;
                     break;
                 case SessionGroup.InvalidValues:
-                    groupHumanReadableName = "InvalidValues";
+                    groupHumanReadableName = Configuration.InvalidValuesGroupName;
                     break;
             }
             return $"{ResultsRootDirectory}/v{version}/{groupHumanReadableName}/{levelsCompleted}/{userId}/";
@@ -88,7 +90,7 @@ namespace Assets.Scripts.Experiment.ResultsAnalysis
     
         private void SaveAllSessionLines(List<CsvLine> lines, string resultsFolder)
         {
-            var rawDataFilename = resultsFolder + "rawdata.csv";
+            var rawDataFilename = resultsFolder + Configuration.ProcessedRawDataFileName;
             using (StreamWriter sw = new StreamWriter(rawDataFilename))
             {
                 sw.WriteLine("sep=;");

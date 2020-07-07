@@ -9,7 +9,12 @@ namespace Assets.Scripts.Experiment.ResultsAnalysis
 {
     class SurveyWithIdAnalyzer : SurveyAnalyzerBase
     {
-        protected override string GetTargetDirectory(string[] cells, string[] allDirectories, string processedResultsRootDirectory)
+        public SurveyWithIdAnalyzer(ResultAnalysisConfiguration configuration) : base(configuration)
+        {
+
+        }
+
+        protected override string GetTargetDirectory(List<string> cells, string[] allDirectories)
         {
             var id = cells[5];
             foreach (var directory in allDirectories)

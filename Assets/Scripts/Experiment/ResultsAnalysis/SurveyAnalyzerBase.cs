@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Assets.Scripts.Extension;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -9,25 +10,33 @@ namespace Assets.Scripts.Experiment.ResultsAnalysis
 {
     abstract class SurveyAnalyzerBase
     {
-        public void AnalyzeSurvey(string filePath, string processedResultsRoot, string outputFilename)
+        protected ResultAnalysisConfiguration Configuration;
+
+        public SurveyAnalyzerBase(ResultAnalysisConfiguration configuration)
+        {
+            Configuration = configuration;
+        }
+
+        public void AnalyzeSurvey(string filePath, string outputFilename)
         {
             using (var sr = new StreamReader(filePath))
             {
-                var allDirectories = GetAllProcessedFolders(processedResultsRoot);
-                var headerLine = ReadCsvLineWithNewLines(sr);
-                var currentLine = ReadCsvLineWithNewLines(sr);
-                while (currentLine != null && currentLine.Any())
+                var allDirectories = GetAllProcessedFolders(Configuration.ResultsRootDirectory);
+                var headerLine = string.Join(",", sr.ReadCsvLine());
+                var currentLineCells = sr.ReadCsvLine();
+                var currentLine = string.Join(",", currentLineCells);
+                while (currentLineCells != null && currentLineCells.Count > 1)
                 {
-                    var cells = currentLine.Split(',');
-                    SaveSurveyLine(cells, allDirectories, currentLine, headerLine, outputFilename, processedResultsRoot);
-                    currentLine = ReadCsvLineWithNewLines(sr);
+                    SaveSurveyLine(currentLineCells, allDirectories, currentLine, headerLine, outputFilename);
+                    currentLineCells = sr.ReadCsvLine();
+                    currentLine = string.Join(",", currentLineCells);
                 }
             }
         }
 
-        private void SaveSurveyLine(string[] cells, string[] allDirectories, string line, string header, string outputFilename, string processedResultsRoot)
+        private void SaveSurveyLine(List<string> cells, string[] allDirectories, string line, string header, string outputFilename)
         {
-            var targetDirectory = GetTargetDirectory(cells, allDirectories, processedResultsRoot);
+            var targetDirectory = GetTargetDirectory(cells, allDirectories);
             if (targetDirectory == null)
             {
                 UnityEngine.Debug.LogError($"Could not save line.");
@@ -40,41 +49,12 @@ namespace Assets.Scripts.Experiment.ResultsAnalysis
                 sw.WriteLine(line);
             }
         }
-        protected abstract string GetTargetDirectory(string[] cells, string[] allDirectories, string processedResultsRootDirectory);
+        protected abstract string GetTargetDirectory(List<string> cells, string[] allDirectories);
 
 
         private string[] GetAllProcessedFolders(string processedResultsRoot)
         {
             return Directory.GetDirectories(processedResultsRoot, "*", SearchOption.AllDirectories);
-        }
-
-        private string ReadCsvLineWithNewLines(StreamReader reader)
-        {
-            // Ok, this is really hacky and won't work in all cases, but this is a quick way to get a line from csv line that might containg newlines in a cell between quotes.
-            StringBuilder output = new StringBuilder();
-            var buffer = new char[1];
-            var isInQuotedCell = false;
-            char? previousChar = null;
-            while (!reader.EndOfStream)
-            {
-                reader.Read(buffer, 0, 1);
-                var currentChar = buffer[0];
-                if (previousChar == '"' && currentChar != '"')
-                {
-                    // Unescaped quote
-                    isInQuotedCell = !isInQuotedCell;
-                }
-                if (currentChar == '\n' && !isInQuotedCell)
-                {
-                    break;
-                }
-                else if (currentChar != '\r')
-                {
-                    output.Append(currentChar);
-                }
-                previousChar = currentChar;
-            }
-            return output.ToString();
         }
     }
 }

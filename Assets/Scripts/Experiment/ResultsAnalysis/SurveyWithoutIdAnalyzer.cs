@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -9,20 +10,28 @@ namespace Assets.Scripts.Experiment.ResultsAnalysis
 {
     class SurveyWithoutIdAnalyzer : SurveyAnalyzerBase
     {
+        public SurveyWithoutIdAnalyzer(ResultAnalysisConfiguration configuration) : base(configuration)
+        {
+
+        }
+
         private int unasignedSurveyIndex;
-        protected override string GetTargetDirectory(string[] cells, string[] allDirectories, string processedResultsRootDirectory)
+        protected override string GetTargetDirectory(List<string> cells, string[] allDirectories)
         {
             var startDateString = cells[1];
             DateTime surveyStartDateTime;
-            if (!DateTime.TryParse(startDateString, out surveyStartDateTime))
+            var culture = System.Globalization.CultureInfo.GetCultureInfo("en");
+            var styles = DateTimeStyles.AllowWhiteSpaces | DateTimeStyles.AssumeLocal;
+            if (!DateTime.TryParse(startDateString, culture, styles, out surveyStartDateTime))
             {
+                UnityEngine.Debug.LogError("Cannot parse date.");
                 return null;
             }
             TimeSpan? shortestDifference = null;
             string shortestDifferenceDirectory = null;
             foreach (var directory in allDirectories)
             {
-                var rawDataPath = directory + "/rawdata.csv";
+                var rawDataPath = directory + "/" + Configuration.ProcessedRawDataFileName;
                 if (!File.Exists(rawDataPath))
                 {
                     continue;
@@ -48,7 +57,7 @@ namespace Assets.Scripts.Experiment.ResultsAnalysis
             }
             else
             {
-                return processedResultsRootDirectory + $"/UnassignedSurvey/{unasignedSurveyIndex++}";
+                return Configuration.ResultsRootDirectory + Configuration.UnassignedSurveyFolder + (unasignedSurveyIndex++).ToString();
             }
 
         }

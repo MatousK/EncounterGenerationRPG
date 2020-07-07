@@ -74,7 +74,7 @@ namespace Assets.Scripts.EncounterGenerator.Utils
                         continue;
                     }
                     var pointColor = VisualizationGradient.Evaluate(averageDifficulty / 3);
-                    matrixVisualization.SetPixel(x, y, pointColor);
+                    matrixVisualization.SetPixel(x, y, pointColor); 
                 }
             }
             matrixVisualization.Apply();
