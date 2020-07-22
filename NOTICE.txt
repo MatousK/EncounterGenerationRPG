@@ -1,0 +1,120 @@
+This file lists the licenses and attributions for all third assets present in this project.
+
+**********************************************************************************************
+
+The following libraries are under MIT license. The individual license files are in the correspondig folders:
+
+Assets/ProceduralLevelGenerator: Edgar - Procedural Level Generator
+Assets/ExecutionOrderAttributes
+Assets/Nuget
+
+Assets/Packages/OptimizedPriorityQueue.4.2.0 - License not in the folder, written below:
+
+The MIT License (MIT)
+
+Copyright (c) 2013 Daniel "BlueRaja" Pflughoeft
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+
+**********************************************************************************************
+The following assets are under the CC-BY 3.0 license: https://creativecommons.org/licenses/by/3.0
+
+Assets/Graphics/rpg-effects.png RPG Status Icons by Buch, usable under Creative Commons Attribution 3.0 license. 
+https://opengameart.org/users/buch
+
+Assets/Graphics/sj_frame.png RPG Frame by Flatlander and modified by cbritez, usable under Creative Commons Attribution 3.0 license.
+
+Assets/Graphics/Skills/ Painterly Spell Icons - J. W. Bjerk (eleazzaar) -- www.jwbjerk.com/art -- find this and other open art at: http://opengameart.org , usable under Creative Commons Attribution 3.0 license.
+
+Assets/Graphics/Effects/Fire/Fire 64x.png: 9 Frame Fire Animation by FoshyTakashi, usable under Creative Commons Attribution 3.0 license.
+
+Assets/Graphics/Effects/Aura/HealAura.png, Assets/Graphics/Effects/Aura/PoisonGas.png: Magic Sprite Effects - Copyright 2008 Jordan Trudgett | http://jordan.trudgett.com/ - Licensed under CC BY 3.0 http://creativecommons.org/licenses/by/3.0/
+
+Assets/Tilesets/dungeon tileset calciumtrice.png: Dungeon tileset by Calciumtrice, usable under Creative Commons Attribution 3.0 license.
+
+Assets/Graphics/Characters/Cleric/cleric spritesheet calciumtrice.png: Animated Cleric by Calciumtrice, usable under Creative Commons Attribution 3.0 license.
+
+Assets/Graphics/Characters/Ranger/ranger spritesheet calciumtrice.png: Animated Ranger by Calciumtrice, usable under Creative Commons Attribution 3.0 license.
+
+Assets/Graphics/Characters/Knight/MitheralKnight.png: Animated Mitheral Knight by Calciumtrice and Recolored by Merry Dream Games, usable under Creative Commons Attribution 3.0 license.
+
+Assets/Graphics/Monsters/Minotaur/Normal/GreyMinotaur.png: Animated Grey Minotaur by Calciumtrice and Recolored by Merry Dream Games, usable under Creative Commons Attribution 3.0 license.
+
+Assets/Graphics/Monsters/Minotaur/Elite/minotaur spritesheet calciumtrice.png: Animated Minotaur by Calciumtrice, usable under Creative Commons Attribution 3.0 license.
+
+Assets/Graphics/Monsters/Minotaur/Boss/RedMinotaur.png: Animated Red Minotaur by Calciumtrice and Recolored by Merry Dream Games, usable under Creative Commons Attribution 3.0 license.
+
+Assets/Graphics/Monsters/OrcBrute/Normal/HunterOrc.png: Animated Hunter Orc by Calciumtrice and Recolored by Merry Dream Games, usable under Creative Commons Attribution 3.0 license.
+
+Assets/Graphics/Monsters/OrcBrute/Elite/PurpleOrc.png: Animated Purple Orc by Calciumtrice and Recolored by Merry Dream Games, usable under Creative Commons Attribution 3.0 license.
+
+Assets/Graphics/Monsters/OrcBrute/Boss/RedOrc.png: Animated Red Orc by Calciumtrice and Recolored by Merry Dream Games, usable under Creative Commons Attribution 3.0 license.
+
+Assets/Graphics/Monsters/SkeletonFighter/Normal/skeleton spritesheet calciumtrice.png: Animated Skeleton by Calciumtrice, usable under Creative Commons Attribution 3.0 license.
+
+Assets/Graphics/Monsters/SkeletonFighter/Elite/Death.png: Animated Death by Calciumtrice and Recolored by Merry Dream Games, usable under Creative Commons Attribution 3.0 license.
+
+Assets/Graphics/Monsters/Statue/Normal/statue spritesheet no green.png, Assets/Graphics/Monsters/Statue/Elite/statue spritesheet alt no green.png: Animated statue by Calciumtrice, usable under Creative Commons Attribution 3.0 license.
+
+Assets/Graphics/Monsters/Goblin/Minion/goblin spritesheet calciumtrice.png: Animated Goblins by Calciumtrice, usable under Creative Commons Attribution 3.0 license.
+
+Assets/Graphics/Monsters/Imp/ArmourImp.png: Animated Armour Imp by Calciumtrice and Recolored by Merry Dream Games, usable under Creative Commons Attribution 3.0 license.
+
+Assets/Graphics/Monsters/EvilCleric/Elite/FoulMonk.png: Animated Foul Monk by Calciumtrice and Recolored by Merry Dream Games, usable under Creative Commons Attribution 3.0 license.
+
+Assets/Graphics/Monsters/EvilCleric/Boss/EvilCleric.png: Animated Evil Cleric by Calciumtrice and Recolored by Merry Dream Games, usable under Creative Commons Attribution 3.0 license.
+
+Assets/Graphics/Monsters/SkeletonMage/Boss/float_skel_red.png, Assets/Graphics/Monsters/SkeletonMage/Elite/float_skel_jade.png, Assets/Graphics/Monsters/SkeletonMage/Normal/float_skel_white.png: Original "Animated Skeleton" by Calciumtrice and Modified by abetusk, usable under Creative Commons Attribution 3.0 license.
+
+Assets/Graphics/Monsters/EvilRanger/Normal/AbyssRanger.png: Animated Abyss Ranger by Calciumtrice and Recolored by Merry Dream Games, usable under Creative Commons Attribution 3.0 license.
+
+Assets/Graphics/Monsters/EvilRanger/Elite/BloodRanger.png: Animated Blood Ranger by Calciumtrice and Recolored by Merry Dream Games, usable under Creative Commons Attribution 3.0 license.
+
+Assets/Graphics/Monsters/EvilRanger/Boss/DarkRanger.png: Animated Dark Ranger by Calciumtrice and Recolored by Merry Dream Games, usable under Creative Commons Attribution 3.0 license.
+
+Assets/Graphics/Monsters/OrcThief/Normal/YellowOrc.png: Animated Yellow Orc by Calciumtrice and Recolored by Merry Dream Games, usable under Creative Commons Attribution 3.0 license.
+
+Assets/Graphics/Monsters/OrcThief/Elite/TricksterOrc.png: Animated Trickster Orc by Calciumtrice and Recolored by Merry Dream Games, usable under Creative Commons Attribution 3.0 license.
+
+Assets/Graphics/Monsters/OrcThief/Boss/PyromaniacOrc.png: Animated Pyromaniac Orc by Calciumtrice and Recolored by Merry Dream Games, usable under Creative Commons Attribution 3.0 license.
+
+**********************************************************************************************
+
+The following assets are under the CC-BY-SA 3.0 license: https://creativecommons.org/licenses/by-sa/3.0/
+
+Assets\Graphics\Portraits: Hero Portraits are from the Flare Portrait pack by Justin Nichol and the Flare Project, usable under Creative Commons Attribution ShareAlike 3.0 license.
+**********************************************************************************************
+These assets do not provide a specific license, but require attribution based on their license terms:
+Hero Dialogs
+
+Bob the Ranger's voice was from this package:
+LITE - Fantasy - Headstrong Archer Character Voice Sound Pack
+
+Cleric and Knight voices are from the following package:
+Custom Voice Resource - https://kerstynungerva.itch.io/custom-voice-resource
+Dialog Writer:
+Kerstyn Unger - https://linktr.ee/KerstynUngerVA
+Cast:
+John the Cleric - Mr. Bromin
+https://www.castingcall.club/m/MrBromin
+Tom the Knight - Jonas Fresh
+https://twitter.com/JonasFreshVA
+
+**********************************************************************************************
+The graphical and sound assets not listed above are under the CC0 universal license: https://creativecommons.org/publicdomain/zero/1.0/
