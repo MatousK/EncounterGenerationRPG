@@ -15,11 +15,15 @@ namespace Assets.Scripts.Experiment.ResultsAnalysis
     class GeneralDataParser
     {
 
-        public List<CsvLine> LoadGeneralData(string path)
+        public List<CsvLine> LoadGeneralData(string path, int skipFirstNLines = 0)
         {
             List<CsvLine> allCsvLines = new List<CsvLine>();
             using (StreamReader sr = new StreamReader(path))
             {
+                for (int i = 0; i< skipFirstNLines; ++i)
+                {
+                    sr.ReadLine();
+                }
                 do
                 {
                     string line = sr.ReadLine();

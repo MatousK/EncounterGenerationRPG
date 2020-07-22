@@ -15,6 +15,10 @@ namespace Assets.Scripts.Experiment.ResultsAnalysis.Model
         public ExperimentHalfSummary StaticLevelsSummary;
         public ExperimentDemographics Demographics;
 
+        public float AverageErrorAll;
+        public float[] AverageErrorsHalves = new float[2];
+        public float[] AverageErrorsQuarters = new float[4];
+
         public static void WriteHeader(StreamWriter sw, char separator = ';')
         {
             sw.Write($"UserId{separator}");
@@ -22,6 +26,13 @@ namespace Assets.Scripts.Experiment.ResultsAnalysis.Model
             ExperimentHalfSummary.WriteHeader(sw, "Generated", separator);
             ExperimentHalfSummary.WriteHeader(sw, "Static", separator);
             ExperimentDemographics.WriteHeader(sw, separator);
+            sw.Write($"AverageError{separator}");
+            sw.Write($"AverageErrorHalf1{separator}");
+            sw.Write($"AverageErrorHalf2{separator}");
+            sw.Write($"AverageErrorQuarter1{separator}");
+            sw.Write($"AverageErrorQuarter2{separator}");
+            sw.Write($"AverageErrorQuarter3{separator}");
+            sw.WriteLine($"AverageErrorQuarter4");
         }
 
         public void WriteLine(StreamWriter sw, char separator = ';')
@@ -31,6 +42,13 @@ namespace Assets.Scripts.Experiment.ResultsAnalysis.Model
             GeneratedLevelsSummary.WriteLine(sw, separator);
             StaticLevelsSummary.WriteLine(sw, separator);
             Demographics.WriteLine(sw, separator);
+            sw.Write($"{AverageErrorAll}{separator}");
+            sw.Write($"{AverageErrorsHalves[0]}{separator}");
+            sw.Write($"{AverageErrorsHalves[1]}{separator}");
+            sw.Write($"{AverageErrorsQuarters[0]}{separator}");
+            sw.Write($"{AverageErrorsQuarters[1]}{separator}");
+            sw.Write($"{AverageErrorsQuarters[2]}{separator}");
+            sw.WriteLine($"{AverageErrorsQuarters[3]}");
         }
     }
     
@@ -79,7 +97,7 @@ namespace Assets.Scripts.Experiment.ResultsAnalysis.Model
             sw.Write($"Gender{separator}");
             sw.Write($"Age{separator}");
             sw.Write($"Education{separator}");
-            sw.WriteLine($"RpgsPlayed");
+            sw.Write($"RpgsPlayed{separator}");
         }
 
         public void WriteLine(StreamWriter sw, char separator)
@@ -87,7 +105,7 @@ namespace Assets.Scripts.Experiment.ResultsAnalysis.Model
             sw.Write($"{Gender}{separator}");
             sw.Write($"{Age}{separator}");
             sw.Write($"{Education}{separator}");
-            sw.WriteLine($"{RpgsPlayed}");
+            sw.Write($"{RpgsPlayed}{separator}");
         }
     }
 }

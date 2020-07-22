@@ -78,6 +78,8 @@ namespace Assets.Scripts.Experiment.ResultsAnalysis
             var completeFileName = folder + "/" + configuration.ProcessedSurveyCompleteFileName;
             FillExperimentHalfSummary(completeFileName, false, isGeneratedFirstGroup, summaryLine);
             FillDemographics(completeFileName, summaryLine);
+            var rawDataFileName = folder + "/" + configuration.ProcessedRawDataFileName;
+            FillCombatResultsSummary(rawDataFileName, summaryLine);
             summaryLine.WriteLine(outputWriter);
         }
 
@@ -124,7 +126,7 @@ namespace Assets.Scripts.Experiment.ResultsAnalysis
                 {
                     difficultySum += int.Parse(cells[i]);
                 }
-                summary.PerceivedDifficultyScore = difficultySum / 3;
+                summary.PerceivedDifficultyScore = int.Parse(cells[22]);
             }
         }
 
@@ -142,6 +144,44 @@ namespace Assets.Scripts.Experiment.ResultsAnalysis
                 demographics.Education = cells[25];
                 demographics.RpgsPlayed = cells[26].Split(';').Length - 1;
             }
+        }
+
+        private void FillCombatResultsSummary(string fileName, ExperimentSummaryCsvLine lineToFill)
+        {
+            var rawData = new GeneralDataParser().LoadGeneralData(fileName, skipFirstNLines: 1);
+            var errors = (from line in rawData
+                                 where (line as CombatOverLine)?.WasLogged == true
+                                 select Math.Abs((line as CombatOverLine).DifficultyError)).ToList();
+            var halves = SplitIntoParts(errors, 2);
+            var quarters = SplitIntoParts(errors, 4);
+            lineToFill.AverageErrorAll = errors.Average();
+            lineToFill.AverageErrorsHalves[0] = halves[0].Average();
+            lineToFill.AverageErrorsHalves[1] = halves[1].Average();
+            lineToFill.AverageErrorsQuarters[0] = quarters[0].Average();
+            lineToFill.AverageErrorsQuarters[1] = quarters[1].Average();
+            lineToFill.AverageErrorsQuarters[2] = quarters[2].Average();
+            lineToFill.AverageErrorsQuarters[3] = quarters[3].Average();
+        }
+
+        private List<List<T>> SplitIntoParts<T>(List<T> toSplit, int parts)
+        {
+            var toReturn = new List<List<T>>(parts);
+            int currentArrayStart = 0;
+            for (int i = 0; i < parts; ++i)
+            {
+                var partLength = toSplit.Count / parts;
+                if (i < toSplit.Count % parts)
+                {
+                    partLength += 1;
+                }
+                toReturn.Add(new List<T>(partLength));
+                for (var j = currentArrayStart; j < currentArrayStart + partLength; ++j)
+                {
+                    toReturn[i].Add(toSplit[j]);
+                }
+                currentArrayStart = currentArrayStart + partLength;
+            }
+            return toReturn;
         }
     }
 }

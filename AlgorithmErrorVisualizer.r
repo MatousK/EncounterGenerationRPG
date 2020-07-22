@@ -19,7 +19,7 @@ plot(errors,
      type = "b", 
      main="Algorithm error over time",
      ylab="Estimate Error",
-     xlab = "Time",
+     xlab = "Combat index",
      col="blue",
      lwd = 2,
      ylim = c(-3,3))

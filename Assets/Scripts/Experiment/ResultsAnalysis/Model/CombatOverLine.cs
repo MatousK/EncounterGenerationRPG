@@ -16,6 +16,7 @@ namespace Assets.Scripts.Experiment.ResultsAnalysis.Model
         public EncounterDefinition CombatEncounter;
         public float ExpectedDifficulty;
         public float RealDifficulty;
+        public float DifficultyError => ExpectedDifficulty - RealDifficulty;
         public bool WasGameOver;
         public bool WasStaticEncounter;
         public bool WasLogged;
