@@ -1,0 +1,9 @@
+*.pdf
+*.txt
+*.ttf
+*.mat
+*.cginc
+*.shader
+*.asset
+*.json
+*.png

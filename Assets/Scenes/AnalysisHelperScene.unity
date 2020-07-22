@@ -240,6 +240,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cee7b15f58b0aa44faf2e1cb2102723a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Configuration:
+    AllowedVersions:
+    - v2
+    AllowedLevelsFinished:
+    - 5
+    ProcessedSurveyCompleteFileName: EndSurvey.csv
+    ProcessedSurveyHalfFileName: HalfSurvey.csv
+    ProcessedUnfinishedFileName: Unfinished.csv
+    ProcessedRawDataFileName: rawData.csv
+    ResultsRootDirectory: Results/Processed/IndividualTests/
+    SummaryFilePath: Results/Processed/Summary/SuccessfulUsersSummary.csv
+    UnassignedSurveyFolder: /UnassignedSurvey/
+    RawResultsDirectory: Results/Raw
+    GeneratedFirstCompletePath: /GeneratedFirstComplete.csv
+    GeneratedFirstHalfPath: /GeneratedFirstHalf.csv
+    PrematureExitPath: /Unfinished.csv
+    StaticFirstCompletePath: /StaticFirstComplete.csv
+    StaticFirstHalfPath: /StaticFirstHalf.csv
+    GeneralDataFilePath: /data.csv
+    GeneratedFirstGroupName: GeneratedFirst
+    StaticFirstGroupName: StaticFirst
+    TutorialOnlyGroupName: TutorialOnly
+    InvalidValuesGroupName: InvalidValues
+  ShouldReconstructMatrices: 1
 --- !u!1 &1787475761
 GameObject:
   m_ObjectHideFlags: 0
