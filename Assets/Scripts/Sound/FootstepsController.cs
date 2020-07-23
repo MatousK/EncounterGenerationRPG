@@ -18,12 +18,12 @@ namespace Assets.Scripts.Sound
         {
             audioSource = GetComponent<AudioSource>();
             animationEventsListener = GetComponentInParent<AnimationEventsListener>();
-            animationEventsListener.SoundCompleted += AnimationEventsListener_SoundCompleted;
+            animationEventsListener.PlaySoundEffectRequested += AnimationEventsListener_SoundCompleted;
         }
 
         private void OnDestroy()
         {
-            animationEventsListener.SoundCompleted -= AnimationEventsListener_SoundCompleted;
+            animationEventsListener.PlaySoundEffectRequested -= AnimationEventsListener_SoundCompleted;
         }
 
         private void AnimationEventsListener_SoundCompleted(object sender, SoundEffectType e)

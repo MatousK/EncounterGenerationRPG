@@ -7,11 +7,14 @@ using UnityEngine;
 namespace Assets.Scripts.Camera
 {
     /// <summary>
-    /// This behavior centers the camera on the player characters. Will just find their center, if they're scattered, too bad.
+    /// This component can center the camera on some specific room without animations.
     /// </summary>
     public class CameraCentering : MonoBehaviour
     {
-        // Start is called before the first frame update
+        /// <summary>
+        /// Immediately change the camera so the specified room is in the center of the view.
+        /// </summary>
+        /// <param name="centeredRoom">The room that should be in the center of the view.</param>
         public void Center(RoomInfo centeredRoom)
         {
             var grid = FindObjectOfType<Grid>();

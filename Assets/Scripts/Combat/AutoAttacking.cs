@@ -4,18 +4,32 @@ using UnityEngine;
 
 namespace Assets.Scripts.Combat
 {
+    /// <summary>
+    /// A script which will repeatedly use the basic attack skill on at target if a target is set, targetable and alive.
+    /// </summary>
     class AutoAttacking : MonoBehaviour
     {
+        /// <summary>
+        /// The target of the auto attack,
+        /// </summary>
         [NonSerialized]
         public CombatantBase Target;
+        /// <summary>
+        /// The skill used for basic attacks, usually a basic attack.
+        /// </summary>
         public TargetedSkill AutoAttackSkill = null;
+        /// <summary>
+        /// The combatant who has this auto attacking script.
+        /// </summary>
         private CombatantBase selfCombatant;
 
         private void Start()
         {
             selfCombatant = GetComponent<CombatantBase>();
         }
-
+        /// <summary>
+        /// As long as the target is alive and targetable and we are not using any skills, use basic attack on the target.
+        /// </summary>
         private void Update()
         {
             if (Target && !Target.CanBeTargeted || selfCombatant.IsDown)

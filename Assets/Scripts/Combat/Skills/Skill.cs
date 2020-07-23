@@ -9,6 +9,8 @@ namespace Assets.Scripts.Combat.Skills
 {
     /// <summary>
     /// Represents a skill a character can use.
+    /// This class is supposed to be a generic class that should be easily customizable to the needs of individual skills.
+    /// It automatically moves the character in range if necessary, starts the skill animation and applies the skill effect when appropriate.
     /// </summary>
     public abstract class Skill: MonoBehaviour
     {
@@ -30,7 +32,7 @@ namespace Assets.Scripts.Combat.Skills
         [TextArea(3,6)]
         public string SkillDescription;
         /// <summary>
-        /// If true, after using this skill the target of the combatant will be cleared no matter what else.
+        /// If true, after using this skill the target of the combatant will be cleared. Otherwise the target of the skill will become the new target.
         /// E.g. after putting an enemy to sleep, we do not want to keep attacking him.
         /// </summary>
         public bool ClearTargetAfterUsingSkill = false;
@@ -50,7 +52,7 @@ namespace Assets.Scripts.Combat.Skills
         [NonSerialized]
         public bool BlocksManualMovement = true;
         /// <summary>
-        /// Number of seconds for which the skill cannot be used again once it's used.
+        /// Number of seconds for which any non-basic attack skill cannot be used once this skill is used.
         /// </summary>
         public float Cooldown;
         /// <summary>
@@ -83,9 +85,9 @@ namespace Assets.Scripts.Combat.Skills
         /// </summary>
         protected bool DidGetInRange;
         /// <summary>
-        /// If true, this skill is being used right now.
+        /// If true, this skill is being used right now. This means that the character already moved in range and the animation is playing..
         /// </summary>
-        protected bool IsUsingSkill;
+        protected bool SkillAnimationStarted;
         /// <summary>
         /// How many times was this animation already completed while using this skill
         /// </summary>
@@ -99,10 +101,13 @@ namespace Assets.Scripts.Combat.Skills
         /// </summary>
         protected CombatSoundsController CombatSoundsController;
         /// <summary>
-        /// Can play a sound for a specific character
+        /// Can play a sound for a specific character.
         /// </summary>
         protected CharacterVoiceController CharacterVoiceController;
-        // Start is called before the first frame update
+        /// <summary>
+        /// Start is called before the first frame update.
+        /// Fills references to other classes.
+        /// </summary>
         protected virtual void Start()
         {
             // First, travel the tree to find the combatant object.
@@ -112,7 +117,11 @@ namespace Assets.Scripts.Combat.Skills
             CharacterVoiceController = SelfCombatant.GetComponentInChildren<CharacterVoiceController>();
         }
 
-        // Update is called once per frame
+        /// <summary>
+        /// Update is called once per frame.
+        /// If the skill is being used and the combatant is not in range, try to move in range.
+        /// When in range, start doing the skill animation.
+        /// </summary>
         protected virtual void Update()
         {
             if (!IsBeingUsed())
@@ -139,23 +148,31 @@ namespace Assets.Scripts.Combat.Skills
                 return;
             }
             DidGetInRange = true;
-            if (!IsUsingSkill)
+            if (!SkillAnimationStarted)
             {
-                IsUsingSkill = true;
+                SkillAnimationStarted = true;
                 StartSkillAnimation();
             }
         }
+        /// <summary>
+        /// How far are we from the target of this skill. If less or equal than range, this skill will execute.
+        /// </summary>
+        /// <returns>The distance to the target location.</returns>
         public abstract float GetDistanceToTargetLocation();
         /// <summary>
-        /// The location of the target to move towards and orient towards. Return null if we do not care about either of those things.
+        /// The location of the target to move towards and orient towards. Return null if we do not care about either of those things, e.g. for self target skills.
         /// </summary>
         /// <returns>The location of the target, or null if we do not wish to orient ourselves toward the target.</returns>
         public abstract Vector2? GetTargetLocation();
+        /// <summary>
+        /// Returns true if the skill is being used. This should be true even while moving to target.
+        /// </summary>
+        /// <returns>True if this skill is being used, otherwise false.</returns>
         public abstract bool IsBeingUsed();
         /// <summary>
         /// Call to start execution of this skill.
         /// </summary>
-        /// <returns>True if the skill cnan be used right now, otherwise false.</returns>
+        /// <returns>True if the skill can be used right now, otherwise false.</returns>
         protected virtual bool TryStartUsingSkill()
         {
             if (!CanUseSkill())
@@ -168,7 +185,7 @@ namespace Assets.Scripts.Combat.Skills
                 SelfCombatant.StartCooldown(Cooldown);
             }
             DidGetInRange = false;
-            IsUsingSkill = false;
+            SkillAnimationStarted = false;
             AnimationCompletedCount = 0;
             AnimationEventListener.ApplySkillEffect += ApplySkillEffects;
             AnimationEventListener.SkillAnimationFinished += AnimationCompleted;
@@ -193,19 +210,23 @@ namespace Assets.Scripts.Combat.Skills
             // HACK: Auto attacking uses the same animation as attack skills.
             // If an attack skill interrupted a basic attack, the animation would not reset, leading to bugs.
             // This solution is not ideal, it would cease working if someone used for example gesture for basic attacks.
+            // Still, this resets the attack animation.
             SelfCombatant.GetComponent<Animator>().Play("Attack", -1, 0);
             AnimationEventListener.ApplySkillEffect -= ApplySkillEffects;
             AnimationEventListener.SkillAnimationFinished -= AnimationCompleted;
             return true;
         }
-        // Return true if this skill can be used at this moment.
+        /// <summary>
+        /// Checks whether this skill can be used right now.
+        /// </summary>
+        /// <returns>True if this skill can be used, otherwise false.</returns>
         public bool CanUseSkill()
         {
             return !IsBeingUsed() && (IsBasicAttack || ( SelfCombatant.LastSkillRemainingCooldown ?? 0) <= 0);
         }
 
         /// <summary>
-        /// Called when the skill animation hits the point where the effects should be applied
+        /// Called when the skill animation hits the point where the effects should be applied.
         /// </summary>
         protected virtual void ApplySkillEffects(object sender, EventArgs e)
         {
@@ -219,7 +240,9 @@ namespace Assets.Scripts.Combat.Skills
         {
             CombatSoundsController.AnimationEnded(SkillSoundType);
         }
-
+        /// <summary>
+        /// Call to start the skill animation, effectively starting this skill.
+        /// </summary>
         protected virtual void StartSkillAnimation()
         {
             CharacterVoiceController.SkillAnimationStartedStarted(VoiceSkillType);

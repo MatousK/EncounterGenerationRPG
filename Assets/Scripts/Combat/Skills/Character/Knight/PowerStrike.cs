@@ -24,7 +24,13 @@ namespace Assets.Scripts.Combat.Skills.Character.Knight
         /// How far should this attack knockback the enemy.
         /// </summary>
         public int KnockbackDistance;
+        /// <summary>
+        /// An object which knows about the pathfinding map, of the game.
+        /// </summary>
         private PathfindingMapController pathfindingMapController;
+        /// <summary>
+        /// The grid representing the game map.
+        /// </summary>
         private Grid mapGrid;
         // Start is called before the first frame update
         protected override void Start()
@@ -39,7 +45,14 @@ namespace Assets.Scripts.Combat.Skills.Character.Knight
         {
             base.Update();
         }
-
+        /// <summary>
+        /// <inheritdoc/> Gives the enemy stun and forced target conditions. and knocks him back.
+        /// <see cref="StunCondition"/>
+        /// <see cref="ForcedTargetCondition"/>
+        /// <see cref="KnockbackEnemy"/>
+        /// </summary>
+        /// <param name="sender">Sender of this event.</param>
+        /// <param name="e">Arguments of this event.</param>
         protected override void ApplySkillEffects(object sender, EventArgs e)
         {
             base.ApplySkillEffects(sender, e);
@@ -52,7 +65,11 @@ namespace Assets.Scripts.Combat.Skills.Character.Knight
             KnockbackEnemy();
 
         }
-
+        /// <summary>
+        /// Tries to knocback an enemy. Will go through spaces behind the target from the opposite direction than from which the knight is attacking.
+        /// Find the furthest square in the opposite direction than the knight and moves him there. Will not move the enemy more then specified distance,
+        /// <see cref="KnockbackDistance"/>
+        /// </summary>
         private void KnockbackEnemy()
         {
             Vector2 target2dPosition = Target.transform.position;

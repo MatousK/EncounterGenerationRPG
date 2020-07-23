@@ -11,18 +11,23 @@ namespace Assets.Scripts.AI.HeroAI
     /// <summary>
     /// As our AIs proved to be a lot better than a player playing for the first time, we prepared an AI that is much simpler.
     /// It will attack the closest enemies and from time to time use a skill, not really thinking about how appropriate it is.
+    /// This is only meant to be used in the combat simulator.
     /// </summary>
     class SimpleHeroAi : HeroAiBase
     {
         /// <summary>
-        /// Every time the hero attacks, this is a probability he will use a skill.
+        /// Every time the hero should do an action, this is a probability he will use a skill.
         /// </summary>
         private const float SkillUsageProbability = 0.2f;
         /// <summary>
-        /// Probability that the hero will try to target an ally.
+        /// Probability that the hero will try to target an ally with his skills.
         /// </summary>
         private const float FriendlyTargetProbability = 0.5f;
-
+        /// <summary>
+        /// Called when an action is requested from the hero.
+        /// It will randomly either use a skill on a random target or attack the closest opponent
+        /// </summary>
+        /// <returns>True if some action was done, otherwise false. </returns>
         protected override bool TryDoAction()
         {
             if (UnityEngine.Random.Range(0f, 1f) < SkillUsageProbability)

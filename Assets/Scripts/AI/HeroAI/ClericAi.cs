@@ -6,6 +6,9 @@ using UnityEngine;
 
 namespace Assets.Scripts.AI.HeroAI
 {
+    /// <summary>
+    /// Smart AI class for the cleric which will use its skills tactically, putting dangerous enemies to sleep and healing allies when their injured.
+    /// </summary>
     public class ClericAi: HeroAiBase
     {
         /// <summary>
@@ -25,7 +28,12 @@ namespace Assets.Scripts.AI.HeroAI
         {
             base.Start();
         }
-
+        /// <summary>
+        /// Called when an action is requested from the AI.
+        /// Highest priority is healing allies. If that is not possible, check if there is a dangerous enough enemy to warrant being put to sleep.
+        /// If not, go to the behavior of the base class.
+        /// </summary>
+        /// <returns> True if some action was executed, otherwise false.</returns>
         protected override bool TryDoAction()
         {
             // Higher priority is healing almost dead characters.
@@ -45,7 +53,12 @@ namespace Assets.Scripts.AI.HeroAI
             // No skills to be used, to standard hero stuff.
             return base.TryDoAction();
         }
-
+        /// <summary>
+        /// If knight or ranger is hurt, heal them. Knight takes priority.
+        /// If neither is dead, activate healing aura.
+        /// While healing aura is active, try to stay close to the more hurt ally.
+        /// </summary>
+        /// <returns>True if some action was taken, otherwise false.</returns>
         protected bool TryHealAllies()
         {
             // We heal our allies
@@ -73,13 +86,20 @@ namespace Assets.Scripts.AI.HeroAI
             }
             return false;
         }
-
+        /// <summary>
+        /// Casts heal on the target if possible and necessary, i.e. the target is hurt.
+        /// </summary>
+        /// <param name="target">The target if the heal spell.</param>
+        /// <returns>True if the heal was cast, otherwise false.</returns>
         protected bool TryDoMajorHealIfNecessary(CombatantBase target)
         {
             // We heal allies who are sufficiently hurt, yet also only those who still have enough max hp left for the heal to be worth it.
             return !target.IsDown && target.HitPoints < target.MaxHitpoints * HealThreshold && target.MaxHitpoints / target.TotalMaxHitpoints >= 0.5 && TryUseSkill(target, Cleric.FriendlyTargetSkill);
         }
-
+        /// <summary>
+        /// Find the most dangerous enemy. If he is more dangerous than some treshold, casts sleep on him if possible.
+        /// </summary>
+        /// <returns> True if sleep was used, otherwise false.</returns>
         protected bool TryPutToSleep()
         {
             // Healing not necessary, so instead, let's try to put the most powrful target to sleep if he is powerful enough to warant this.

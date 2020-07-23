@@ -3,9 +3,23 @@ using Assets.Scripts.Combat;
 
 namespace Assets.Scripts.AI.HeroAI
 {
+    /// <summary>
+    /// Smart AI for the ranger, used only for combat simulator.
+    /// Tries to do as much damage as possible.
+    /// If there are sufficiently powerful enemies, it will try to kill them with sniper shot.
+    /// If there are not, it will try to kill enemies it can one shot.
+    /// If there are none, just start shooting enemies at random.
+    /// </summary>
     public class RangerAi: HeroAiBase
     {
+        /// <summary>
+        /// Hacky solution, used to indicate whether the ranger skipped the first update.
+        /// He should do that, because he needs to know which enemy will the allied cleric put to sleep.
+        /// </summary>
         bool didSkipFirstUpdate = false;
+        /// <summary>
+        /// If some enemy is more dangerous than this, it will try to kill him with sniper shot.
+        /// </summary>
         const float SniperShotMonsterDangerThreshold = 3;
         protected override void Update()
         {
@@ -15,7 +29,12 @@ namespace Assets.Scripts.AI.HeroAI
         {
             base.Start();
         }
-
+        /// <summary>
+        /// Called when the ranger should do something.
+        /// He will try to kill the most dangerous enemies with sniper shot.
+        /// Otherwise it will trigger Rapid Stance and start killing enemies, preferably those he can one shot.
+        /// </summary>
+        /// <returns> True if some action was returned, otherwise false.</returns>
         protected override bool TryDoAction()
         {
             if (!didSkipFirstUpdate)
@@ -46,7 +65,10 @@ namespace Assets.Scripts.AI.HeroAI
             return base.TryDoAction();
         }
 
-        // Retrieve an enemy we can kill with one shot.
+        /// <summary>
+        /// Retrieve an enemy we can kill with one shot
+        /// </summary>
+        /// <returns> The enemy we can kill in one shot, otherwise false.</returns>
         CombatantBase GetOneShotEnemy()
         {
             var oneShotEnemies = CombatantsManager.GetEnemies(onlyAlive: true).Where(enemy => enemy.HitPoints < ControlledCombatant.Attributes.DealtDamageMultiplier);

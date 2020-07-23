@@ -5,11 +5,28 @@ using UnityEngine;
 
 namespace Assets.Scripts.AI
 {
+    /// <summary>
+    /// This component can be added to a combatant object. It will attack its target with basic attacks if it has nothing better to do.
+    /// If no target is set, attack the closest enemy that is not sleeping.
+    /// Used by heroes in the actual game so they do not just stand around doing nothing.
+    /// </summary>
     public class AggressiveBehavior : MonoBehaviour
     {
+        /// <summary>
+        /// This component has information about all combatants in the game.
+        /// </summary>
         CombatantsManager combatantsManager;
+        /// <summary>
+        /// The component that is responsible for using basic attacks on the target over and over again.
+        /// </summary>
         AutoAttacking autoAttacking;
+        /// <summary>
+        /// The combatant this AI controls.
+        /// </summary>
         CombatantBase selfCombatant;
+        /// <summary>
+        /// Component that knows whether the cutscene is active. Necessary because an active cutscene blocks AI.
+        /// </summary>
         CutsceneManager cutsceneManager;
 
         private void Start()
@@ -32,7 +49,9 @@ namespace Assets.Scripts.AI
                 AttackClosestOpponent();
             }
         }
-
+        /// <summary>
+        /// Attacks the nearest opponent who is not asleep.
+        /// </summary>
         void AttackClosestOpponent()
         {
             var collider = GetComponent<Collider2D>();

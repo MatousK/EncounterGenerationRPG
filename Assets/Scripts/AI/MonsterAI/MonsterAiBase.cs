@@ -4,6 +4,12 @@ using UnityEngine;
 
 namespace Assets.Scripts.AI.MonsterAI
 {
+    /// <summary>
+    /// AI for monsters. Unlike the hero AI, this is actually used in the game.
+    /// Default behavior will attack its target, which is either the target forced by the knight or by leader or the closest enemy.
+    /// Child classes can override who is the target for this monster.
+    /// Monsters can also use skills. Regular enemies never use them, elite enemies use them when their health drops below 50% and bosses use them whenever possible.
+    /// </summary>
     public class MonsterAiBase: AiBase
     {
         /// <summary>
@@ -24,7 +30,12 @@ namespace Assets.Scripts.AI.MonsterAI
         {
             base.Update();
         }
-
+        /// <summary>
+        /// Called whenever the AI should do something.
+        /// If it should use a skill (it is a boss or hurt elite), it will do so.
+        /// Otherwise it will just start attacking its target, <see cref="GetCurrentTarget"/>
+        /// </summary>
+        /// <returns>Returns true if some action was executed, otherwise false.</returns>
         protected override bool TryDoAction()
         {
             // Try to attack the current target with the advanced skill if possible, with basic attack with that fails.
@@ -46,19 +57,28 @@ namespace Assets.Scripts.AI.MonsterAI
         }
 
         /// <summary>
-        /// Used by basic implementation of monster AI. Returns the current target which we should be attacking.
+        /// Returns the current target which we should be attacking.
+        /// By default it will be the forced target. If no target is set, target the closest enemy.
         /// </summary>
-        /// <returns></returns>
+        /// <returns> The target for this monster, or null if this monster is not targeting anyone.</returns>
         protected virtual CombatantBase GetCurrentTarget()
         {
             return ForcedTarget != null ? ForcedTarget : GetClosestOpponent();
         }
 
+        /// <summary>
+        /// Returns the target for the current skill.
+        /// Normally it will be the current target, but it might be someone else in case of self or friendly skills.
+        /// </summary>
+        /// <returns></returns>
         protected virtual CombatantBase GetAdvancedSkillTarget()
         {
             return GetCurrentTarget();
         }
-
+        /// <summary>
+        /// Retrieve the most powerful hero alive.
+        /// </summary>
+        /// <returns>The strongest hero who is alive, or null if no heroes are alive.</returns>
         protected CombatantBase GetStrongestHero()
         {
             return GetOpponentWithBestScore(combatant => (int) ((Hero)combatant).AiTargetPriority);

@@ -8,6 +8,7 @@ namespace Assets.Scripts.AI.HeroAI
     /// Base class for Hero artifical intelligence.
     /// Note that these are used only for the simulator to fill the difficulty matrix, not used during gameplay
     /// That is why there was not much emphasis to make the hero AIs universal or especially good, they simply must display some basic level of competence.
+    /// This class and its children are only meant to be used in the combat simulator.
     /// </summary>
     public class HeroAiBase : AiBase
     {
@@ -23,7 +24,9 @@ namespace Assets.Scripts.AI.HeroAI
         /// Reference to the cleric character in the party.
         /// </summary>
         public Hero Cleric;
-
+        /// <summary>
+        /// The hero this AI controls.
+        /// </summary>
         protected Hero ControlledHero => (Hero)ControlledCombatant;
         protected override void Update()
         {
@@ -34,13 +37,24 @@ namespace Assets.Scripts.AI.HeroAI
         {
             base.Start();
         }
-
+        /// <summary>
+        /// Called when AI is requested to do an action.
+        /// Child classes should override it.
+        /// Basic implementation for hero tries to attack the most dangerous target.
+        /// If the AI thinks it is stuck (which happens when tha character cannot get in range to use the skill), it instead attacks the closest target.
+        /// </summary>
+        /// <returns>True if the attack was successful.</returns>
         protected override bool TryDoAction()
         {
             var target = IsProbablyStuck ? GetClosestOpponent() : GetMostDangerousTarget();
             return TryUseSkill(target, BasicAttack);
         }
-
+        /// <summary>
+        /// Returns the most dangerous target that fulfills some criteria.
+        /// </summary>
+        /// <param name="dangerousnessThreshold"> If set, this specifies the minimum dangerousness of the enemy returned.</param>
+        /// <param name="includeTargetOfSleepSkill"> If true, the skill will consider all enemies, even those who are asleep or about to be put to sleep by the cleric. Default false.</param>
+        /// <returns>The most dangerous monster that fits the criteria. If no monster fits the criteria, returns null.</returns>
         protected Monster GetMostDangerousTarget(float dangerousnessThreshold = 0f, bool includeTargetOfSleepSkill = false)
         {
             Monster toReturn;
@@ -70,7 +84,11 @@ namespace Assets.Scripts.AI.HeroAI
             }
             return null;
         }
-
+        /// <summary>
+        /// Calculates a danger score for the monster, which determines how much should the heroes try to kill it. This is used only by the AI.
+        /// </summary>
+        /// <param name="monster">The monster whose danger score is requested.</param>
+        /// <returns>The danger score of the monster.</returns>
         protected float GetMonsterDangerScore(Monster monster)
         {
             float rankDanger = 0;

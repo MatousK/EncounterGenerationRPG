@@ -3,7 +3,8 @@
 namespace Assets.Scripts.Combat.Conditions
 {
     /// <summary>
-    /// A combatant with this condition cannot take any actions.
+    /// For whatever reason this character can do no actions.
+    /// Stop everything the character was doing. AI will ensure this combatant does nothing.
     /// </summary>
     public class StunCondition: ConditionBase
     { 
@@ -16,7 +17,9 @@ namespace Assets.Scripts.Combat.Conditions
         {
             base.Update();
         }
-
+        /// <summary>
+        /// Stop doing everything. AI checks for this condition. If the controlled combatant is stunned, it does nothing.
+        /// </summary>
         protected override void StartCondition()
         {
             base.StartCondition();

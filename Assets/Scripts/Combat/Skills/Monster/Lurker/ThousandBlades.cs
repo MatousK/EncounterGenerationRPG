@@ -1,5 +1,8 @@
 ﻿namespace Assets.Scripts.Combat.Skills.Monster.Lurker
 {
+    /// <summary>
+    /// An attack that damages the enemy multiple times in swift sequence.
+    /// </summary>
     public class ThousandBlades : Attack
     {
         public ThousandBlades()

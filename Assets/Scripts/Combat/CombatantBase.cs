@@ -25,7 +25,7 @@ namespace Assets.Scripts.Combat
         /// </summary>
         public event EventHandler<int> HealedDamage;
         /// <summary>
-        /// If true, combat damage deals damage to max hitpoints directly.
+        /// If true, combat damage deals damage to max hit points directly.
         /// If false, normal hit points are depleted first.
         /// </summary>
         [NonSerialized]
@@ -51,7 +51,7 @@ namespace Assets.Scripts.Combat
         /// </summary>
         public float HitPoints { get; protected set; }
         /// <summary>
-        ///  Current maximum hitpoints, i.e. value to which the combatant can be healed.
+        ///  Current maximum hitpoints, i.e. value to which the combatant can be healed and can be restored by items.
         /// </summary>
         public float MaxHitpoints;
         /// <summary>
@@ -59,17 +59,20 @@ namespace Assets.Scripts.Combat
         /// </summary>
         public Skill[] CombatantSkills { get; protected set; }
         /// <summary>
-        /// If true, the character is defeated. They might still theoretically be resurrected, that's why we use Down insteadof Dead.
+        /// If true, the character is defeated. They might still theoretically be resurrected, that's why we use Down instead of Dead.
         /// </summary>
         public bool IsDown => MaxHitpoints <= 0;
-
         /// <summary>
         /// If true, this character cannot currently be damaged, targeted or killed.
         /// </summary>
         public bool IsInvincible;
-
+        /// <summary>
+        /// If true, this character can be a target of skills and abilities.
+        /// </summary>
         public bool CanBeTargeted => !IsDown && !IsInvincible;
-
+        /// <summary>
+        /// The class which has references to all combatants in the game.
+        /// </summary>
         protected CombatantsManager CombatantsManager;
         /// <summary>
         /// Checks if the combatant is currently using a skill that blocks other skills.
@@ -82,7 +85,10 @@ namespace Assets.Scripts.Combat
         {
             return CombatantSkills.Any(skill => skill.IsBeingUsed() && skill.BlocksOtherSkills && (!skill.IsBasicAttack || isBasicAttackBlocking));
         }
-
+        /// <summary>
+        /// Helper method to check whether the combatant is currently moving.
+        /// </summary>
+        /// <returns></returns>
         public bool IsMoving()
         {
             return GetComponent<MovementController>().IsMoving;
@@ -95,12 +101,21 @@ namespace Assets.Scripts.Combat
         {
             return IsBlockingSkillInProgress(false) || IsMoving();
         }
-
+        /// <summary>
+        /// If true, the combatant's controller cannot order him to move, he's probably using a skill forbidding movement.
+        /// </summary>
+        /// <returns></returns>
         public virtual bool IsManualMovementBlocked()
         {
             return CombatantSkills.Any(skill => skill.IsBeingUsed() && skill.BlocksManualMovement);
         }
-
+        /// <summary>
+        /// Decrease HP of the combatant. Always use this skill instead of directly reducing hit points.
+        /// This skill modifies the damage by relevant multipliers, decreases max hit points when necessary,
+        /// raises events and shows damage indicators.
+        /// </summary>
+        /// <param name="damage">The amount of damage this combatant received.</param>
+        /// <param name="fromCombatant">The combatant from whom the damage was received.</param>
         public virtual void TakeDamage(int damage, CombatantBase fromCombatant)
         {
             float damageFloat = damage * Attributes.ReceivedDamageMultiplier;
@@ -116,11 +131,11 @@ namespace Assets.Scripts.Combat
             }
             if (HitPoints < 0)
             {
-                // Once hitpoints are depleted, max HP should start depleting.
+                // Once hit points are depleted, max HP should start depleting.
                 MaxHitpoints += (int)(HitPoints);
                 HitPoints = 0;
             }
-            // Max hitpoints should never fall below zero.
+            // Max hit points should never fall below zero.
             MaxHitpoints = MaxHitpoints >= 0 ? MaxHitpoints : 0;
             TookDamage?.Invoke(this, damage);
             if (IsDown)
@@ -130,7 +145,15 @@ namespace Assets.Scripts.Combat
             }
             GetComponent<FloatingTextController>().ShowDamageIndicator(damage);
         }
-
+        /// <summary>
+        /// Increases hit points of the this combatant, though never over <see cref="MaxHitpoints"/>
+        /// Always use this skill instead of directly increasing hit points variable.
+        /// This skill modifies the healed amount by relevant modifiers, raises an event,
+        /// shows heal indicator a triggers a relevant animation.
+        /// </summary>
+        /// <param name="healAmount">The amount of hit points that should be restored.</param>
+        /// <param name="fromCombatant">The combatant who triggered the heal.</param>
+        /// <param name="withDefaultAnimation">If true, this combatant will play an animation indicating he was healed.</param>
         public virtual void HealDamage(float healAmount, CombatantBase fromCombatant, bool withDefaultAnimation = true)
         {
             healAmount *= Attributes.ReceivedHealingMultiplier;
@@ -147,13 +170,15 @@ namespace Assets.Scripts.Combat
             }
             GetComponent<FloatingTextController>().ShowHealingIndicator(healAmountInt);
         }
-
+        /// <summary>
+        /// Starts a cooldown on all non basic attack skills, making them unusable for a while.
+        /// </summary>
+        /// <param name="cooldownTime">How long should the cool down last.</param>
         public virtual void StartCooldown(float cooldownTime)
         {
             LastSkillCooldown = cooldownTime;
             LastSkillRemainingCooldown = cooldownTime;
         }
-
         protected virtual void Awake()
         {
             MaxHitpoints = TotalMaxHitpoints;
@@ -183,24 +208,35 @@ namespace Assets.Scripts.Combat
             ApplyHealthRegeneration();
             ResetCooldownIfOutOfCombat();
         }
-
+        /// <summary>
+        /// Called when a monster's death animation finishes.
+        /// Destroys the monster game object.
+        /// </summary>
         public void DeathAnimationFinished()
         {
             Destroy(gameObject);
         }
-
-        public void SetTotalMaxHp(float newMaxHp)
+        /// <summary>
+        /// Sets new total max HP. Also sets max HP and HP to that same value.
+        /// </summary>
+        /// <param name="newTotalMaxHp">New total max HP value.</param>
+        public void SetTotalMaxHp(float newTotalMaxHp)
         {
-            TotalMaxHitpoints = newMaxHp;
-            MaxHitpoints = newMaxHp;
-            HitPoints = newMaxHp;
+            TotalMaxHitpoints = newTotalMaxHp;
+            MaxHitpoints = newTotalMaxHp;
+            HitPoints = newTotalMaxHp;
         }
+        /// <summary>
+        /// Resets the cooldown on all skills, making them usable again.
+        /// </summary>
         public void ResetCooldown()
         {
             LastSkillRemainingCooldown = 0;
             LastSkillCooldown = null;
         }
-
+        /// <summary>
+        /// If the character has regeneration powers, this applies them and restores HP.
+        /// </summary>
         private void ApplyHealthRegeneration()
         {
             float regenerationRate = CombatantsManager.IsCombatActive ? Attributes.CombatHealthRegeneration : Attributes.OutOfCombatHealthRegeneration;
@@ -215,7 +251,9 @@ namespace Assets.Scripts.Combat
                 ResetCooldown();
             }
         }
-
+        /// <summary>
+        /// Update the remaining cooldown of skills by the delta time.
+        /// </summary>
         private void UpdateSkillCooldown()
         {
             if (LastSkillRemainingCooldown.HasValue)

@@ -2,6 +2,9 @@
 
 namespace Assets.Scripts.Combat.Skills
 {
+    /// <summary>
+    /// A targeted skill that is an attack, i.e. it deals damage to the target.
+    /// </summary>
     public abstract class Attack : TargetedSkill
     {
         /// <summary>
@@ -27,7 +30,11 @@ namespace Assets.Scripts.Combat.Skills
         {
             base.Update();
         }
-
+        /// <summary>
+        /// Called when the animation hits the point where the attack should deal damage. And deals that damage.
+        /// </summary>
+        /// <param name="sender">Sender of this event.</param>
+        /// <param name="e">Ignored.</param>
         protected override void ApplySkillEffects(object sender, EventArgs e)
         {
             if (Target != null && DealDamageOnApplySkillEffects)

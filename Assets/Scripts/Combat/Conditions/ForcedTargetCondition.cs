@@ -4,7 +4,7 @@ using Assets.Scripts.Combat.Skills;
 namespace Assets.Scripts.Combat.Conditions
 {
     /// <summary>
-    /// Helper condition for AI - specifies that the affected AI MUST attack the specified player or character for a specified duration.
+    /// Helper condition for AI - specifies that the AI of the affected combatant MUST attack the specified player or character for a specified duration.
     /// When another target is called, the most recently applied condition will apply.
     /// </summary>
     class ForcedTargetCondition : ConditionBase
@@ -21,7 +21,9 @@ namespace Assets.Scripts.Combat.Conditions
         /// The character who forced this target.
         /// </summary>
         public CombatantBase TargetForcedBy;
-
+        /// <summary>
+        /// In addition to base behavior, ends the condition if caster dies.
+        /// </summary>
         protected override void Update()
         {
             base.Update();
@@ -34,11 +36,14 @@ namespace Assets.Scripts.Combat.Conditions
         protected override void Start() {
             base.Start();
         }
-
+        /// <summary>
+        /// If the combatant was currently moving to the target of a skill, stop that, target changed.
+        /// We do not interrupt the AI in the middle of an attack.
+        /// The AI will check for this condition everytime it decides what it should be doing.
+        /// </summary>
         protected override void StartCondition()
         {
             base.StartCondition();
-            // If currently targeting someone, try to shift the target to the forced target.
             var selfCombatant = GetComponent<CombatantBase>();
             var currentSkill = selfCombatant.CombatantSkills.FirstOrDefault(skill => skill.IsBeingUsed()) as TargetedSkill;
             if (currentSkill == null)

@@ -27,7 +27,7 @@ namespace Assets.Scripts.UI
                     Application.Quit();
                     break;
                 case InGameMenuState.RevokingAgreement:
-                    FindObjectOfType<AnalyticsService>().LogRevokeAndExit();
+                    FindObjectOfType<AnalyticsService>().LogRevoke();
                     break;
                 default:
                     UnityEngine.Debug.Assert(false, "Confirmation of menu pressed in invalid state");
