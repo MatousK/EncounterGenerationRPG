@@ -7,13 +7,18 @@ namespace Assets.Scripts.Cutscenes
     /// </summary>
     public class CutsceneManager : MonoBehaviour
     {
+        /// <summary>
+        /// The cutscene that is currently playing.
+        /// </summary>
         Cutscene currentCutscene;
         /// <summary>
         /// Returns true if a cutscene is currently playing.
         /// </summary>
         public bool IsCutsceneActive => currentCutscene != null;
 
-        // Update is called once per frame
+        /// <summary>
+        /// Update is called once per frame. If the current cutscene is done playing, destroy it.
+        /// </summary>
         void Update()
         {
             if (currentCutscene != null && !currentCutscene.IsCutsceneActive())

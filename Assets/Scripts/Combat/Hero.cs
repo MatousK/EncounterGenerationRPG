@@ -8,6 +8,10 @@ using UnityEngine;
 
 namespace Assets.Scripts.Combat
 {
+    /// <summary>
+    /// Some AIs use values from this enum to determine which enemies to target first.
+    /// Some AIs ignore this.
+    /// </summary>
     public enum AiTargetPriority
     {
         Low,
@@ -17,14 +21,16 @@ namespace Assets.Scripts.Combat
 
     public class Hero : CombatantBase
     {
-        private CameraMovement cameraMovement;
+        /// <summary>
+        /// Component used to move the hero around.
+        /// </summary>
         private MovementController movementController;
         /// <summary>
         /// The profession this hero has.
         /// </summary>
         public HeroProfession HeroProfession;
         /// <summary>
-        /// How much should the character heal after combat if dead.
+        /// When a character is revived after combat, he will be automatically healed enough to have this many percent of hit points.
         /// </summary>
         public float AfterCombatRevivalHealthPercentage = 0.1f;
         /// <summary>
@@ -44,7 +50,7 @@ namespace Assets.Scripts.Combat
         /// </summary>
         public TargetedSkill EnemyTargetSkill;
         /// <summary>
-        /// A skill that should be used when using a skill on self.
+        /// A skill that should be used when using a skill on an ally.
         /// </summary>
         public TargetedSkill FriendlyTargetSkill;
         /// <summary>
@@ -71,7 +77,6 @@ namespace Assets.Scripts.Combat
         {
             base.Start();
             CombatantsManager.PlayerCharacters.Add(this);
-            cameraMovement = FindObjectOfType<CameraMovement>();
         }
 
         // Update is called once per frame
@@ -84,15 +89,14 @@ namespace Assets.Scripts.Combat
                 MaxHitpoints += TotalMaxHitpoints * AfterCombatRevivalHealthPercentage;
                 GetComponent<Animator>().SetBool("Dead", false);
                 GetComponent<Animator>().SetTrigger("Revive");
-                // TODO: Figure out how to make reviving animations work.
-                // Basically figure out how to not reset animations by calling SetBool.
             }
         }
-
-        public void RevivalDoneOrDeathStarted()
-        {
-        }
-
+        /// <summary>
+        /// Orders the player to use the <see cref="EnemyTargetSkill"/> against some monster.
+        /// If <see cref="Skill.ClearTargetAfterUsingSkill"/> if true, this will clear auto attacking target.
+        /// If it is false, the hero will then keep attacking the taget.
+        /// </summary>
+        /// <param name="target">The target of this skill.</param>
         public virtual void SkillAttackUsed(Monster target)
         {
             // After using a skill, we probably want to keep attacking the enemy.
@@ -100,7 +104,6 @@ namespace Assets.Scripts.Combat
             if (EnemyTargetSkill == null || !EnemyTargetSkill.CanUseSkill() || IsBlockingSkillInProgress(false) || IsDown)
             {
                 // Special attack either cannot be used or is not defined.
-                // Use normal attack started at the start of the method as fallback.
                 return;
             }
             target.GetComponent<CommandConfirmationIndicator>().DisplayConfirmation();
@@ -112,7 +115,10 @@ namespace Assets.Scripts.Combat
                 GetComponent<AutoAttacking>().Target = null;
             }
         }
-
+        /// <summary>
+        /// Start attacking the target monster with basic attack.
+        /// </summary>
+        /// <param name="target">Target of this attack</param>
         public virtual void AttackUsed(Monster target)
         {
             if (target != GetComponent<AutoAttacking>().Target)
@@ -123,7 +129,11 @@ namespace Assets.Scripts.Combat
             GetComponent<AutoAttacking>().Target = target;
             target.GetComponent<CommandConfirmationIndicator>().DisplayConfirmation();
         }
-
+        /// <summary>
+        /// Use a friendly skill on the specified ally.
+        /// Will clear auto attacking.
+        /// </summary>
+        /// <param name="target">Target of this skill.</param>
         public virtual void FriendlySkillUsed(Hero target)
         {
             if (IsBlockingSkillInProgress(false) || FriendlyTargetSkill == null || IsDown)
@@ -136,9 +146,15 @@ namespace Assets.Scripts.Combat
             // In that case we probably don't want to keep on attacking
             FriendlyTargetSkill.UseSkillOn(target);
         }
-
+        /// <summary>
+        /// Called when the player right clicks on a hero without using a skill. Does nothing by default.
+        /// </summary>
+        /// <param name="target">Ally that was clicked.</param>
         public virtual void FriendlyClicked(Hero target) { }
-
+        /// <summary>
+        /// Use the self skill on the hero himself.
+        /// If <see cref="Skill.ClearTargetAfterUsingSkill"/>, this will also clear auto attacking target.
+        /// </summary>
         public virtual void SelfSkillUsed()
         {
             if (IsBlockingSkillInProgress(false) || SelfTargetSkill == null || IsDown)
@@ -152,19 +168,31 @@ namespace Assets.Scripts.Combat
                 GetComponent<AutoAttacking>().Target = null;
             }
         }
-
+        /// <summary>
+        /// Called when is right clicked on himself when not using a skill. Does nothing by default.
+        /// </summary>
         public virtual void SelfClicked(){ }
-
+        /// <summary>
+        /// Right clicking on a location while using a skill. The hero will start movement to that location.
+        /// The skill is ignored.
+        /// </summary>
+        /// <param name="position">The position where the player clicked.</param>
         public virtual void LocationSkillClick(Vector2 position)
         {
             MoveToCommand(position);
         }
-
+        /// <summary>
+        /// Right clicking on a location without using a skill. The hero will start movement to that location.
+        /// </summary>
+        /// <param name="position">The position where the player clicked.</param>
         public virtual void LocationClick(Vector2 position)
         {
             MoveToCommand(position);
         }
-
+        /// <summary>
+        /// Gives the hero an order to move to the specified position.
+        /// </summary>
+        /// <param name="position">Position where the hero should move.</param>
         protected void MoveToCommand(Vector2 position)
         {
             if (IsManualMovementBlocked())

@@ -33,7 +33,7 @@ namespace Assets.Scripts.AI.MonsterAI
         /// <summary>
         /// Called whenever the AI should do something.
         /// If it should use a skill (it is a boss or hurt elite), it will do so.
-        /// Otherwise it will just start attacking its target, <see cref="GetCurrentTarget"/>
+        /// Otherwise it will just start attacking its target, see <see cref="GetCurrentTarget"/>
         /// </summary>
         /// <returns>Returns true if some action was executed, otherwise false.</returns>
         protected override bool TryDoAction()

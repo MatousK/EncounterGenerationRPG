@@ -7,10 +7,20 @@ using UnityEngine;
 
 namespace Assets.Scripts.DungeonGenerator
 {
+    /// <summary>
+    /// Adds the doors to the map. Uses <see cref="DoorsConfig"/> for configuration.
+    /// </summary>
+    /// <typeparam name="TPayload"><inheritdoc/></typeparam>
     public class DoorsTask<TPayload> : ConfigurablePipelineTask<TPayload, DoorsConfig>
         where TPayload : class, IGeneratorPayload, IGraphBasedGeneratorPayload, INamedTilemapsPayload
     {
+        /// <summary>
+        /// Grid onto which the doors should be placed.
+        /// </summary>
         Grid grid;
+        /// <summary>
+        /// Adds the doors to the map.
+        /// </summary>
         public override void Process()
         {
             if (!Config.AddDoors)
@@ -42,7 +52,10 @@ namespace Assets.Scripts.DungeonGenerator
                 }
             }
         }
-
+        /// <summary>
+        /// Remove the walls to make space for the doors. Removes only from the wall tilemap.
+        /// </summary>
+        /// <param name="doorLine">Defines the place where the doors will be spawned.</param>
         protected void RemoveWalls(OrthogonalLine doorLine)
         {
             foreach (var point in doorLine.GetPoints())
@@ -50,7 +63,12 @@ namespace Assets.Scripts.DungeonGenerator
                 Payload.WallsTilemap.SetTile(point, null);
             }
         }
-
+        /// <summary>
+        /// Retrieve the doors game object that should be spawned.
+        /// </summary>
+        /// <param name="isHorizontal">If true, these doors are horizontal, i.e. the character will go through them from left to right or vice versa.</param>
+        /// <param name="facingDirection">Orientation of the doors.</param>
+        /// <returns>Template of the doors that should be added to the map.</returns>
         protected GameObject GetDoorTemplateObject(bool isHorizontal, Vector2Int facingDirection)
         {
             if (isHorizontal)
@@ -76,7 +94,11 @@ namespace Assets.Scripts.DungeonGenerator
                 }
             }
         }
-
+        /// <summary>
+        /// Retrieve the position where the doors should be spawned for some defined door line.
+        /// </summary>
+        /// <param name="doorLine">Where the algorithm says the doors should be.</param>
+        /// <returns>The grid coordinates where the doors should be spawned.</returns>
         protected Vector2 GetLocalCoordinatesForDoorLine(OrthogonalLine doorLine)
         {
             var doorlineStartLocal = grid.GetCellCenterLocal(doorLine.From);

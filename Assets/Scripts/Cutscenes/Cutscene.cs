@@ -17,7 +17,7 @@ namespace Assets.Scripts.Cutscenes
         /// <returns>True if the cutscene is active, otherwise false.</returns>
         public abstract bool IsCutsceneActive();
         /// <summary>
-        /// Called by the cutscene manager before this cutscene is ended as a result of IsCutsceneActive returning true.
+        /// Called by the cutscene manager before this cutscene is ended as a result of IsCutsceneActive returning false.
         /// </summary>
         public abstract void EndCutscene();
     }

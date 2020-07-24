@@ -3,10 +3,15 @@
 namespace Assets.Scripts.CombatSimulator.PartyConfigurationProvider
 {
     /// <summary>
+    /// <inheritdoc/>
     /// This class ignores powerups and returns a configuration with no powerups.
     /// </summary>
     public class NoPowerupsPartyConfigurationProvider : global::Assets.Scripts.CombatSimulator.PartyConfigurationProvider.PartyConfigurationProvider
     {
+        /// <summary>
+        /// <inheritdoc/>
+        /// </summary>
+        /// <returns>The party configuration represented by this provider.</returns>
         public override PartyConfiguration GetPartyConfiguration()
         {
             return new PartyConfiguration
@@ -17,6 +22,10 @@ namespace Assets.Scripts.CombatSimulator.PartyConfigurationProvider
             };
         }
 
+        /// <summary>
+        /// Returns the string representation of this class.
+        /// </summary>
+        /// <returns>The string representation of this class.</returns>
         public override string ToString()
         {
             return "No powerups";

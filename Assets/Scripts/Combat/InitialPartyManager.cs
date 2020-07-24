@@ -12,16 +12,34 @@ namespace Assets.Scripts.Combat
 {
     /// <summary>
     /// Responsible for spawning the party when the game starts.
+    /// Will spawn the party once initialized. Will also respawn the party on restart.
     /// </summary>
     [ExecuteAfter(typeof(PathfindingMapController)), ExecuteAfter(typeof(Doors))]
     public class InitialPartyManager: MonoBehaviour
     {
+        /// <summary>
+        /// Templates for the party that should be spawned.
+        /// </summary>
         public List<GameObject> InitialParty;
-
+        /// <summary>
+        /// Class that can center the camera on the room where the party spawns.
+        /// </summary>
         private CameraCentering cameraCentering;
+        /// <summary>
+        /// Class which can actually spawn combatants onto a map.
+        /// </summary>
         private CombatantSpawnManager spawnManager;
+        /// <summary>
+        /// Contains dungeon generator information, used to determine in which room the party should spawn and the room bounds.
+        /// </summary>
         private RoomsLayout roomsLayout;
+        /// <summary>
+        /// Object which notifies the scene about game over and game reset. Used to respawn the party on reset.
+        /// </summary>
         private GameStateManager gameStateManager;
+        /// <summary>
+        /// Object which should know about all combatants in the game.
+        /// </summary>
         private CombatantsManager combatantsManager;
 
         private void Start()
@@ -34,7 +52,10 @@ namespace Assets.Scripts.Combat
             combatantsManager = FindObjectOfType<CombatantsManager>();
             SpawnPartyAndRecenterCamera();
         }
-
+        /// <summary>
+        /// Find the start room of the floor and spawn the party there.
+        /// If party member's attributes are set in <see cref="LevelLoader.CurrentPartyConfiguration"/>, sets attributes of the party mebmerrs.
+        /// </summary>
         private void SpawnPartyAndRecenterCamera()
         {
             var startingRoom = roomsLayout.Rooms.First(room => room.IsStartingRoom);
@@ -54,7 +75,11 @@ namespace Assets.Scripts.Combat
             }
             cameraCentering.Center(startingRoom);
         }
-
+        /// <summary>
+        /// On game reload, we should kill the old characters and recreate the new one.
+        /// </summary>
+        /// <param name="sender">The sender of this event.</param>
+        /// <param name="e">The arguments of the event.</param>
         private void GameStateManager_GameReloaded(object sender, System.EventArgs e)
         {
             combatantsManager.DestroyPlayerCharacters();

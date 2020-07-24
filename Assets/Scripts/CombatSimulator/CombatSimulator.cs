@@ -7,25 +7,91 @@ using UnityEngine;
 
 namespace Assets.Scripts.CombatSimulator
 {
+    /// <summary>
+    /// Class for generating the matrix used for generating encounters.
+    /// Tries to generate all possible combat scenarios in the game and log their results.
+    /// It will try to find an existing log file and continue generating tests from the last test index which was logged.
+    /// If no log file was found, this is a new test, so we start from zero.
+    /// Has a deterministic system provided by <see cref="TestGenerator"/> which assigns to each test positive test index a test definition.
+    /// This definition specifies how many monsters should spawn, how many power ups did the party pick up at this point and how should they distribute them.
+    /// From this definition the class creates the actual list of monsters that should spawn and a stats for the attributes the hero controls.
+    /// It will then spawn these creatures, lets them fight, stores the result and moves to the next combat.
+    /// Note that this class attaches AI scripts to the individual heroes so the fight on their own.
+    /// </summary>
     public class CombatSimulator: MonoBehaviour
     {
+        /// <summary>
+        /// Position where the knight should spawn.
+        /// </summary>
         public GameObject KnightSpawnPoint;
+        /// <summary>
+        /// Position where the ranger should spawn.
+        /// </summary>
         public GameObject RangerSpawnPoint;
+        /// <summary>
+        /// Position where the cleric should spawn.
+        /// </summary>
         public GameObject ClericSpawnPoint;
+        /// <summary>
+        /// Positions where the enemies should spawn.
+        /// </summary>
         public List<GameObject> EnemySpawnPoints;
+        /// <summary>
+        /// Template for the knight game object.
+        /// </summary>
         public GameObject KnightTemplate;
+        /// <summary>
+        /// Template for the ranger game object.
+        /// </summary>
         public GameObject RangerTemplate;
+        /// <summary>
+        /// Template for the cleric game object.
+        /// </summary>
         public GameObject ClericTemplate;
+        /// <summary>
+        /// Class for retrieving test definitions this combat simulator should run.
+        /// </summary>
         public TestGenerator TestGenerator = new TestGenerator();
+        /// <summary>
+        /// Index of the currently executed test.
+        /// </summary>
         public int CurrentTestIndex => testLogger.CurrentTestIndex;
+        /// <summary>
+        /// The knight that is currently spawned and fighting.
+        /// </summary>
         GameObject knight;
+        /// <summary>
+        /// The ranger that is currently spawned and fighting.
+        /// </summary>
         GameObject ranger;
+        /// <summary>
+        /// The cleric that is currently spawned and fighting.
+        /// </summary>
         GameObject cleric;
+        /// <summary>
+        /// Class which knows about all combatants existing in the game.
+        /// </summary>
         CombatantsManager combatantsManager;
+        /// <summary>
+        /// The grid onto which the characters and monsters will be spawned.
+        /// </summary>
         Grid mapGrid;
+        /// <summary>
+        /// Class for generating monsters that will fight in an encounter based on a test definition.
+        /// </summary>
         SimulatorMonstersGenerator monstersGenerator;
+        /// <summary>
+        /// The encounter that is currently being simulated.
+        /// </summary>
         EncounterDefinition currentTestEncounter;
+        /// <summary>
+        /// The logger which logs the results of individual tests.
+        /// </summary>
         readonly TestResultLogger testLogger = new TestResultLogger();
+        /// <summary>
+        /// Called before <see cref="Update"/> is executed for the first time.
+        /// Initializes references to dependencies, instantiates player characters and starts the first combat.
+        /// </summary>
         private void Start()
         {
             // Simulator should be silent.
@@ -39,7 +105,9 @@ namespace Assets.Scripts.CombatSimulator
             cleric = Instantiate(ClericTemplate, mapGrid.transform);
             StartNewCombat();
         }
-
+        /// <summary>
+        /// Called in every frame. If the combat is over, which means that either the monsters or the players are dead, logs the results of the test and starts the next combat.
+        /// </summary>
         private void Update()
         {
             if (!combatantsManager.IsCombatActive || !combatantsManager.GetPlayerCharacters(onlyAlive: true).Any())
@@ -48,7 +116,9 @@ namespace Assets.Scripts.CombatSimulator
                 StartNewCombat();
             }
         }
-
+        /// <summary>
+        /// Gathers the result of this combat and asks the <see cref="testLogger"/> to save it.
+        /// </summary>
         private void LogCombatResults()
         {
             testLogger.LogResult(new TestResult
@@ -63,7 +133,9 @@ namespace Assets.Scripts.CombatSimulator
                 TestIndex = CurrentTestIndex
             });
         }
-
+        /// <summary>
+        /// Generates the next encounter definition, cleans up the old monsters, heals and respawns the heroes and spawns the monsters.
+        /// </summary>
         private void StartNewCombat()
         {
             TestGenerator.ReadyNextTest(CurrentTestIndex);
@@ -79,7 +151,10 @@ namespace Assets.Scripts.CombatSimulator
             currentTestEncounter = TestGenerator.CurrentEncounter;
             SpawnMonsters(monstersGenerator.GenerateMonsters(currentTestEncounter));
         }
-
+        /// <summary>
+        /// Destroys all heroes and creates them once more with the stats saved in the <see cref="TestGenerator"/>.
+        /// Also adds AI components to the heroes so they attack on their own.
+        /// </summary>
         private void RespawnHeroes()
         {
             var partyStats = TestGenerator.CurrentPartyConfiguration;
@@ -99,14 +174,24 @@ namespace Assets.Scripts.CombatSimulator
             FillAiHeroReferences(ranger.AddComponent<SimpleHeroAi>());
             FillAiHeroReferences(cleric.AddComponent<SimpleHeroAi>());
         }
-
+        /// <summary>
+        /// AI classes needs to know about all other heroes.
+        /// This method fills these references.
+        /// </summary>
+        /// <param name="aiToFill">AI which needs references to individual heroes.</param>
         private void FillAiHeroReferences(HeroAiBase aiToFill)
         {
             aiToFill.Knight = knight.GetComponent<Hero>();
             aiToFill.Ranger = ranger.GetComponent<Hero>();
             aiToFill.Cleric = cleric.GetComponent<Hero>();
         }
-
+        /// <summary>
+        /// Spawns the specified hero at the specified location with specific stats.
+        /// </summary>
+        /// <param name="heroTemplate"> The object representing the hero to be spawned.</param>
+        /// <param name="spawnPoint">The spawn point where the hero should spawn.</param>
+        /// <param name="stats">Attributes of the character that should be spawned.</param>
+        /// <returns></returns>
         private GameObject SpawnHero(GameObject heroTemplate, GameObject spawnPoint, PartyMemberConfiguration stats)
         {
             var hero = Instantiate(heroTemplate, mapGrid.transform);
@@ -118,7 +203,10 @@ namespace Assets.Scripts.CombatSimulator
             heroCombatant.Attributes.DealtDamageMultiplier = stats.AttackModifier;
             return hero;
         }
-
+        /// <summary>
+        /// Spawns the list of specific monsters.
+        /// </summary>
+        /// <param name="monstersToSpawn">Monsters which should be spawned.</param>
         private void SpawnMonsters(List<GameObject> monstersToSpawn)
         {
             var freeSpawnPoints = new List<GameObject>(EnemySpawnPoints);

@@ -10,11 +10,30 @@ using Assets.Scripts.EncounterGenerator.Model;
 
 namespace Assets.Scripts.CombatSimulator
 {
+    /// <summary>
+    /// This class can log the results of the test into a file.
+    /// When created, it will try to open the log file to get the index of the test where we left off the last time.
+    /// If no log file is found, create one and assume that we are starting a new round of simulations.
+    /// This class is also the authority on what is the current test index. That is because the test index is determined by the current state of the log file.
+    /// </summary>
     class TestResultLogger
     {
+        // TODO: Refactor this so the matrix data are in some class that can output itself and read itself from an XML file. This is reaaaaally not the best way to do this, but it was quick.
+        /// <summary>
+        /// The index of the test currently being executed.
+        /// </summary>
         public int CurrentTestIndex;
+        /// <summary>
+        /// The separator to use in the output CSV file.
+        /// </summary>
         private const string Separator = ";";
+        /// <summary>
+        /// The name of the file in which the results of the combat simulations should be stored.
+        /// </summary>
         private const string ResultsFileName = "TestResults.csv";
+        /// <summary>
+        /// Specifies the format of the matrix output file.
+        /// </summary>
         private readonly List<Column> outputColumns = new List<Column> {
             new Column { Header = "Test Index", ValueFunction = result => result.TestIndex.ToString() },
             new Column { Header = "Monster Tier", ValueFunction = result => result.MonsterTier.ToString() },
@@ -52,7 +71,10 @@ namespace Assets.Scripts.CombatSimulator
             new Column { Header = "Sniper boss Count", ValueFunction = result => result.GetMonsterCount(MonsterRank.Boss, MonsterRole.Sniper).ToString() },
         };
     
-
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TestResultLogger"/> class. Tries to open the log file and get the current test index.
+        /// If no log file is found, create one.
+        /// </summary>
         public TestResultLogger()
         {
             UpdateFinishedTestsCount();
@@ -61,7 +83,10 @@ namespace Assets.Scripts.CombatSimulator
                 CreateOutputFile();
             }
         }
-
+        /// <summary>
+        /// Logs the result of a test into the log file.
+        /// </summary>
+        /// <param name="result">Result to log.</param>
         public void LogResult(TestResult result)
         {
             using (var outputStream = new StreamWriter(ResultsFileName, true))
@@ -71,7 +96,10 @@ namespace Assets.Scripts.CombatSimulator
             }
             CurrentTestIndex++;
         }
-
+        /// <summary>
+        /// Try open the log file and update the current test index.
+        /// Does nothing if the file does not exist.
+        /// </summary>
         void UpdateFinishedTestsCount()
         {
             try
@@ -89,6 +117,9 @@ namespace Assets.Scripts.CombatSimulator
                 // Everything fine, output file just not exist yet. 
             }
         }
+        /// <summary>
+        /// Initializes the output file.
+        /// </summary>
         void CreateOutputFile()
         {
             using (var outputStream = new StreamWriter(ResultsFileName, true))
@@ -98,50 +129,108 @@ namespace Assets.Scripts.CombatSimulator
                 outputStream.WriteLine(headers);
             }
         }
-    
+        /// <summary>
+        /// A class representing a single column in the CSV file.
+        /// </summary>
         private class Column
         {
+            /// <summary>
+            /// The header of the CSV column.
+            /// </summary>
             public string Header;
+            /// <summary>
+            /// A function that can extract the value for this column from a test result.
+            /// </summary>
             public Func<TestResult, string> ValueFunction;
         }
     }
-
+    /// <summary>
+    /// Results of the finished combat simulation.
+    /// </summary>
     public class TestResult
     {
+        /// <summary>
+        /// Index of the text.
+        /// </summary>
         public int TestIndex;
+        /// <summary>
+        /// Monster tier used in the test.
+        /// </summary>
         public int MonsterTier;
+        /// <summary>
+        /// Encounter specifying the monsters the party was fighting against in this test.
+        /// </summary>
         public EncounterDefinition TestEncounter;
+        /// <summary>
+        /// The configuration the party that was fighting the monsters in the combat simulation.
+        /// </summary>
         public PartyConfiguration PartyConfiguration;
+        /// <summary>
+        /// The provider used to generate the party in this test.
+        /// </summary>
         public PartyConfigurationProvider.PartyConfigurationProvider PartyProvider;
+        /// <summary>
+        /// The knight class which was fighting, should contain his status at the end of the encounter.
+        /// </summary>
         public Hero Knight;
+        /// <summary>
+        /// The cleric class which was fighting, should contain his status at the end of the encounter.
+        /// </summary>
         public Hero Cleric;
+        /// <summary>
+        /// The ranger class which was fighting, should contain his status at the end of the encounter.
+        /// </summary>
         public Hero Ranger;
-
+        /// <summary>
+        /// Calculates the strength of the party fighting in the encounter
+        /// </summary>
+        /// <returns></returns>
         public float GetPartyStrength()
         {
             return PartyConfiguration.ClericStats.AttackModifier * PartyConfiguration.ClericStats.MaxHp +
                    PartyConfiguration.KnightStats.AttackModifier * PartyConfiguration.KnightStats.MaxHp +
                    PartyConfiguration.RangerStats.AttackModifier * PartyConfiguration.RangerStats.MaxHp;
         }
-
+        /// <summary>
+        /// Calculates how many Max HP percent did the party lose in total (0-3).
+        /// </summary>
+        /// <returns>How many Max HP did the entire party lost.</returns>
         public float GetMaxHpLost()
         {
             return GetMaxHpLost(Knight) + GetMaxHpLost(Cleric) + GetMaxHpLost(Ranger);
         }
-
+        /// <summary>
+        /// Calculates how many Max HP percent did the hero lose (0-1).
+        /// </summary>
+        /// <param name="hero">The hero whose lost Max HP is requested.</param>
+        /// <returns>How many max HP percent did the hero lose. </returns>
         public float GetMaxHpLost(Hero hero)
         {
             return 1 - hero.MaxHitpoints / hero.TotalMaxHitpoints;
         }
+        /// <summary>
+        /// Calculates how many HP percent did the party lose in total (0-3).
+        /// </summary>
+        /// <returns>How many HP percent did the entire party lost.</returns>
         public float GetHpLost()
         {
             return GetHpLost(Knight) + GetHpLost(Cleric) + GetHpLost(Ranger);
         }
+        /// <summary>
+        /// Calculates how many HP percent did the hero lose (0-1).
+        /// </summary>
+        /// <param name="hero">The hero whose lost HP is requested.</param>
+        /// <returns>How many HP percent did the hero lose. </returns>
         public float GetHpLost(Hero hero)
         {
             return 1 - hero.HitPoints / hero.TotalMaxHitpoints;
         }
-
+        /// <summary>
+        /// Retrieve the number of monsters present in the encounter of specified rank an role.
+        /// </summary>
+        /// <param name="rank">Rank of monsters whose count interests us.</param>
+        /// <param name="role">Role of monsters whose count interests us.</param>
+        /// <returns>The requested number of monsters.</returns>
         public int GetMonsterCount(MonsterRank rank, MonsterRole role)
         {
             var monsterGroup = TestEncounter.AllEncounterGroups.FirstOrDefault(encounter => encounter.MonsterType.Rank == rank && encounter.MonsterType.Role == role);

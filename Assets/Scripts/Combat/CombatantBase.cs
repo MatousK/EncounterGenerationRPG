@@ -185,7 +185,9 @@ namespace Assets.Scripts.Combat
             HitPoints = TotalMaxHitpoints;
             CombatantSkills = GetComponentsInChildren<Skill>().Where(skill => skill.gameObject.activeSelf).ToArray();
         }
-
+        /// <summary>
+        /// Called before the first Update. Children are expected to register themselves to the <see cref="CombatantsManager"/>.
+        /// </summary>
         protected virtual void Start()
         {
             CombatantsManager = FindObjectOfType<CombatantsManager>();

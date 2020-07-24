@@ -8,9 +8,19 @@ using UnityEngine.Tilemaps;
 
 namespace Assets.Scripts.DungeonGenerator
 {
+    /// <summary>
+    /// Adds components which give the other game components information about the room layout, which rooms are which etc. 
+    /// Without this task the dungeon generator data would be unavailable to the game.
+    /// Adds the <see cref="RoomsLayout"/> object to the map.
+    /// Uses <see cref="RoomExporterConfig"/> for configuration.
+    /// </summary>
+    /// <typeparam name="TPayload"><inheritdoc/></typeparam>
     public class RoomExporterTask<TPayload> : ConfigurablePipelineTask<TPayload, RoomExporterConfig>
         where TPayload : class, IGeneratorPayload, IGraphBasedGeneratorPayload, INamedTilemapsPayload, IRoomToIntMappingPayload<RoomWithEncounter>
     {
+        /// <summary>
+        /// Adds the information about room layout to the generated map.
+        /// </summary>
         public override void Process()
         {
             var roomsLayout = Payload.GameObject.AddComponent<RoomsLayout>();
@@ -48,7 +58,11 @@ namespace Assets.Scripts.DungeonGenerator
                 }
             }
         }
-
+        /// <summary>
+        /// Retrieve all the positions of all squares that are considered to be inside this room.
+        /// </summary>
+        /// <param name="room">Room whose squares will be returned.</param>
+        /// <returns>All squares inside the room.</returns>
         HashSet<Vector2Int> GetRoomSquares(Assets.ProceduralLevelGenerator.Scripts.GeneratorPipeline.RoomTemplates.RoomInfo<int> room)
         {
             var allTilemaps = room.Room.gameObject.GetComponentsInChildren<Tilemap>();
@@ -65,7 +79,11 @@ namespace Assets.Scripts.DungeonGenerator
             }
             return roomSquares;
         }
-
+        /// <summary>
+        /// Retrieve information about the room with the specified index.
+        /// </summary>
+        /// <param name="index">The index of the room to be returned.</param>
+        /// <returns>The room with the specified index.</returns>
         RoomWithEncounter GetRoomData(int index)
         {
             if (!Payload.RoomToIntMapping.TryGetKey(index, out RoomWithEncounter roomGraphData))

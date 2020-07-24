@@ -8,6 +8,12 @@ using UnityEngine.UI;
 
 namespace Assets.Scripts.Effects
 {
+    /// <summary>
+    /// Shimmering objects displayed over usable objects.
+    /// Is displayed only if the object has not been used and is usable at the moment.
+    /// For example, doors and chests are not usable during combat.
+    /// Object with this component should also have an animation component that should do the shimmer effect.
+    /// </summary>
     public class InteractableObjectShimmer: MonoBehaviour
     {
         /// <summary>
