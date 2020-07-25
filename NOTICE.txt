@@ -100,20 +100,18 @@ The following assets are under the CC-BY-SA 3.0 license: https://creativecommons
 
 Assets\Graphics\Portraits: Hero Portraits are from the Flare Portrait pack by Justin Nichol and the Flare Project, usable under Creative Commons Attribution ShareAlike 3.0 license.
 **********************************************************************************************
-These assets do not provide a specific license, but require attribution based on their license terms:
-Hero Dialogs
+The voice pack used for knight and cleric voices has following terms of use:
 
-Bob the Ranger's voice was from this package:
-LITE - Fantasy - Headstrong Archer Character Voice Sound Pack
+Permissions of Use: Supply credit link back to this page so that others may utilize this resource. Credit the voice actor of the voice set you use and this page in your credits section. Thank you.
 
 Cleric and Knight voices are from the following package:
 Custom Voice Resource - https://kerstynungerva.itch.io/custom-voice-resource
 Dialog Writer:
 Kerstyn Unger - https://linktr.ee/KerstynUngerVA
 Cast:
-John the Cleric - Mr. Bromin
+Assets\Sounds\Voices\Cleric: Mr. Bromin
 https://www.castingcall.club/m/MrBromin
-Tom the Knight - Jonas Fresh
+Assets\Sounds\Voices\Knight: Jonas Fresh
 https://twitter.com/JonasFreshVA
 
 **********************************************************************************************
