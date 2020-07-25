@@ -41,7 +41,9 @@ namespace Assets.Scripts.UI.CharacterPortrait
             }
             lastFrameValueToShow = ValueToShow;
         }
-
+        /// <summary>
+        /// Sets the value to the label to correctly represent the field.
+        /// </summary>
         void UpdateLabel()
         {
             Label.text = ValueToShow.ToString();

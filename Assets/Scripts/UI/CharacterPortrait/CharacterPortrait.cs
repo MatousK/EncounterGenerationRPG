@@ -118,7 +118,10 @@ namespace Assets.Scripts.UI.CharacterPortrait
             var isSelected = RepresentedHero.GetComponent<SelectableObject>().IsSelected;
             Border.color = isSelected ? Color.green : Color.white;
         }
-
+        /// <summary>
+        ///  Handle click on a hero. This can be both a left click right click, which can select a hero or give a command.
+        /// </summary>
+        /// <param name="eventData">Data about the click.</param>
         public void OnPointerClick(PointerEventData eventData)
         {
             if (eventData.button == PointerEventData.InputButton.Left)
@@ -149,8 +152,10 @@ namespace Assets.Scripts.UI.CharacterPortrait
                 }
             }
         }
-
-        void SelectHero()
+        /// <summary>
+        /// Selects the represented hero.
+        /// </summary>
+        private void SelectHero()
         {
             RepresentedHero.GetComponent<SelectableObject>().IsSelected = true;
             if (!UnityEngine.Input.GetKey(KeyCode.LeftShift) && !UnityEngine.Input.GetKey(KeyCode.RightShift))
@@ -165,8 +170,10 @@ namespace Assets.Scripts.UI.CharacterPortrait
                 }
             }
         }
-
-        void DoActionOnHero()
+        /// <summary>
+        /// We right clicked on a hero, which some command. Give the command to the selected heroes. If appropriate, play the skill.
+        /// </summary>
+        private void DoActionOnHero()
         {
             var usingSkill = UnityEngine.Input.GetKey(KeyCode.LeftControl) || UnityEngine.Input.GetKey(KeyCode.RightControl);
             var selectedCharacters = combatantsManager.GetPlayerCharacters(onlySelected: true).ToList();
@@ -175,6 +182,7 @@ namespace Assets.Scripts.UI.CharacterPortrait
                 ? speakingHero.GetComponentInChildren<CharacterVoiceController>()
                 : null;
             VoiceOrderType? voiceOrderType = null;
+            // Go through each selected character and give him the order.
             foreach (var hero in selectedCharacters)
             {
                 if (hero == RepresentedHero)
@@ -214,8 +222,11 @@ namespace Assets.Scripts.UI.CharacterPortrait
                 speakingCharacterVoice.OnOrderGiven(voiceOrderType.Value);
             }
         }
-
-        void HandleSkillUsageFromUi()
+        /// <summary>
+        /// Called when the player right clicks on a player while having a skill selected.
+        /// If the target is valid, i.e. this is a friendly skill and we are not targetting ourselves, execute it.
+        /// </summary>
+        private void HandleSkillUsageFromUi()
         {
             if (!skillFromUiIconClickController.IsFriendlySkill || RepresentedHero == skillFromUiIconClickController.CastingHero)
             {
