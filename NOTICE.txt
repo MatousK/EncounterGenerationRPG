@@ -104,14 +104,13 @@ The voice pack used for knight and cleric voices has following terms of use:
 
 Permissions of Use: Supply credit link back to this page so that others may utilize this resource. Credit the voice actor of the voice set you use and this page in your credits section. Thank you.
 
-Cleric and Knight voices are from the following package:
-Custom Voice Resource - https://kerstynungerva.itch.io/custom-voice-resource
+Original page: https://kerstynungerva.itch.io/custom-voice-resource
 Dialog Writer:
 Kerstyn Unger - https://linktr.ee/KerstynUngerVA
 Cast:
-Assets\Sounds\Voices\Cleric: Mr. Bromin
+Assets/Sounds/Voices/Cleric: Mr. Bromin
 https://www.castingcall.club/m/MrBromin
-Assets\Sounds\Voices\Knight: Jonas Fresh
+Assets/Sounds/Voices/Knight: Jonas Fresh
 https://twitter.com/JonasFreshVA
 
 **********************************************************************************************
