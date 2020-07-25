@@ -10,17 +10,50 @@ using UnityEngine;
 
 namespace Assets.Scripts.EncounterGenerator.Utils
 {
+    /// <summary>
+    /// This class can create a graphic representation of the current matrix.
+    /// Should only be used in development, as it is not optimized and freezes the game while generating the visualization.
+    /// </summary>
     public class MatrixVisualizer: MonoBehaviour
     {
+        /// <summary>
+        /// The gradient which specifies what colors should different difficulty values have in the matrix.
+        /// </summary>
         public Gradient VisualizationGradient;
+        /// <summary>
+        /// Party power divided by this is the x coordinate in the output image a matrix element represents.
+        /// </summary>
         public float PartyPowerScale = 100;
+        /// <summary>
+        /// Monster power divided by this is the y coordinate in the output image a matrix element represents.
+        /// </summary>
         public float MonsterPowerScale = 100;
+        /// <summary>
+        /// The width of the output file in pixels.
+        /// </summary>
         public int VisualizationWidth = 1000;
+        /// <summary>
+        /// The height of the output file in pixels.
+        /// </summary>
         public int VisualizationHeight = 1000;
+        /// <summary>
+        /// The general configuration of the encounter generation algorithm.
+        /// </summary>
         private EncounterGeneratorConfiguration configuration = EncounterGeneratorConfiguration.CurrentConfig;
+        /// <summary>
+        /// First we process the data from the matrix and set for each pixel the difficulties of the elements that should affect it.
+        /// This can be done on another thread.
+        /// However, drawing to the texture itself uses Unity methods. So does the gradient evaluation. These can be only done on the main thread.
+        /// So we save these preprocessed data and in the next update save them to the file.
+        /// </summary>
         private Dictionary<Vector2Int, List<float>> matrixDataPendingSave;
+        /// <summary>
+        /// File path where the matrix from <see cref="matrixDataPendingSave"/> should be saved.
+        /// </summary>
         private string pendingSavePath;
-
+        /// <summary>
+        /// Called every frame. If we have matrix data which have not been saved, save them. See <see cref="matrixDataPendingSave"/>
+        /// </summary>
         private void Update()
         {
             if (matrixDataPendingSave != null && pendingSavePath != null)
@@ -30,7 +63,11 @@ namespace Assets.Scripts.EncounterGenerator.Utils
                 pendingSavePath = null;
             }
         }
-        
+        /// <summary>
+        /// Generates the visualization for <paramref name="matrix"/> and saves it to <paramref name="path"/>.
+        /// </summary>
+        /// <param name="path">Path where the visualization should be saved.</param>
+        /// <param name="matrix">The martix that should be saved.</param>
         public void SaveMatrix(string path, EncounterDifficultyMatrix matrix)
         {
             // This must be incredibly slow... But we are running on a different thread, so probably no big deal.
@@ -53,7 +90,9 @@ namespace Assets.Scripts.EncounterGenerator.Utils
             pendingSavePath = path;
             matrixDataPendingSave = coordinatesToDifficulty;
         }
-
+        /// <summary>
+        /// Saves the matrix data stored in <see cref="matrixDataPendingSave"/> to <see cref="pendingSavePath"/>.
+        /// </summary>
         private void SaveMatrixMainThread()
         {
             // We divided matrix into buckets, now lets visualize it.

@@ -11,20 +11,27 @@ using UnityEngine;
 
 namespace Assets.Scripts.EncounterGenerator
 {
+    /// <summary>
+    /// The class for parsing the difficulty matrix created by the <see cref="CombatSimulator.CombatSimulator"./>
+    /// </summary>
     public static class DifficultyMatrixParser
     {
+        /// <summary>
+        /// Parses the entire CSV file and return the lines in some more readable format.
+        /// </summary>
+        /// <param name="reader">The stream containing the CSV file.</param>
+        /// <returns>All matrix lines in the CSV file.</returns>
         public static List<DifficultyMatrixSourceLine> ParseFile(TextReader reader)
         {
             var toReturn = new List<DifficultyMatrixSourceLine>();
             // Skip through separator and headers.
             reader.ReadLine();
             reader.ReadLine();
+            // Read line by line until the matrix is empty, parsing a line and adding it to the output list.
             var currentLine = reader.ReadLine();
-            // To match the line number in excel, we start at line index 2;
-            var currentIndex = 2;
             while (!string.IsNullOrEmpty(currentLine))
             {
-                var parsedLine = ParseLine(currentLine, currentIndex++);
+                var parsedLine = ParseLine(currentLine);
                 if (parsedLine != null)
                 {
                     toReturn.Add(parsedLine);
@@ -33,7 +40,12 @@ namespace Assets.Scripts.EncounterGenerator
             }
             return toReturn;
         }
-        private static DifficultyMatrixSourceLine ParseLine(String line, int lineIndex)
+        /// <summary>
+        /// Parse a single line from the CSV.
+        /// </summary>
+        /// <param name="line">The line to parse.</param>
+        /// <returns>Parsed line from the CSV.</returns>
+        private static DifficultyMatrixSourceLine ParseLine(string line)
         {
             string[] values = line.Split(';');
             UnityEngine.Debug.Assert(values.Length == 34);
@@ -96,26 +108,72 @@ namespace Assets.Scripts.EncounterGenerator
 
         }
     }
-
+    /// <summary>
+    /// The class with all information from the matrix source file.
+    /// </summary>
     public class DifficultyMatrixSourceLine
     {
+        /// <summary>
+        /// Index of the test this line represents.
+        /// </summary>
         public int TestIndex;
+        /// <summary>
+        /// Tier of monsters generated in the encounter.
+        /// </summary>
         public int MonsterTier;
+        /// <summary>
+        /// Which party configuration provider was used for this line.
+        /// </summary>
         public string PartyConfiguration;
+        /// <summary>
+        /// How strong is the party in this encounter.
+        /// </summary>
         public float PartyStrength;
+        /// <summary>
+        /// How many percent of Max HP were lost in this encounter.
+        /// </summary>
         public float MaxHpLost;
+        /// <summary>
+        /// How many percent of HP were lost in this encounter
+        /// </summary>
         public float HpLost;
+        /// <summary>
+        /// For each hero, information about his status at the start of the encounter and how did he survive it.
+        /// </summary>
         public Dictionary<HeroProfession, HeroCombatStatus> HeroCombatStatuses;
+        /// <summary>
+        /// The monsters that appeared in this encounter.
+        /// </summary>
         public EncounterDefinition EncounterDefinition;
     }
-
+    /// <summary>
+    /// Status of the hero at the start of some encounter and how much was he hurt during it.
+    /// </summary>
     public class HeroCombatStatus
     {
+        /// <summary>
+        /// If true, the hero was killed in this encounter.
+        /// </summary>
         public bool WasKilled;
+        /// <summary>
+        /// The attack value of the hero.
+        /// </summary>
         public float Attack;
+        /// <summary>
+        /// Hero Max HP at the startof combat.
+        /// </summary>
         public float MaxHp;
+        /// <summary>
+        /// Hero HP at the start of combat.
+        /// </summary>
         public float Hp;
+        /// <summary>
+        /// How many max HP percent did the hero lose.
+        /// </summary>
         public float MaxHpLost;
+        /// <summary>
+        /// How many HP percent did the hero lose.
+        /// </summary>
         public float HpLost;
     }
 }

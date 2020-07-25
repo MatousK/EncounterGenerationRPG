@@ -7,6 +7,9 @@ using UnityEngine;
 
 namespace Assets.Scripts.Sound.CharacterSounds
 {
+    /// <summary>
+    /// All the possible lines a combatant might say.
+    /// </summary>
     [CreateAssetMenu(menuName = "Sounds/Character Voices", fileName = "Character Voices")]
     public class CharacterVoiceSounds: ScriptableObject
     {

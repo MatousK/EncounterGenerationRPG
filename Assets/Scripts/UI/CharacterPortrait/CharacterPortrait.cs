@@ -9,37 +9,87 @@ using UnityEngine.UI;
 
 namespace Assets.Scripts.UI.CharacterPortrait
 {
+    /// <summary>
+    /// Controls the character's. Everything regarding it - background, indicators, attributes, clicking on the portrait everything.
+    /// </summary>
     public class CharacterPortrait : MonoBehaviour, IPointerClickHandler
     {
+        /// <summary>
+        /// The component which knows about all combatants in the game.
+        /// </summary>
         CombatantsManager combatantsManager;
-
+        /// <summary>
+        /// The hero this portrait represents.
+        /// </summary>
         public Hero RepresentedHero;
-
+        /// <summary>
+        /// The field where we should show the attack strength of the hero.
+        /// </summary>
         public AttributeField AttackField;
+        /// <summary>
+        /// The field where we should show the maximum health of a hero.
+        /// </summary>
         public AttributeField MaxHealthField;
-
+        /// <summary>
+        /// Gradient specifying how should the character's background change as he gets more hurt. 
+        /// </summary>
         public Gradient PortraitBackgroundGradient;
+        /// <summary>
+        /// The image which is the background of the image. It should have the color controlled by character's health an d<see cref="PortraitBackgroundGradient"/>.
+        /// </summary>
         public Image ImageBackground;
+        /// <summary>
+        /// The portrait of the hero.
+        /// </summary>
         public Image PortraitImage;
+        /// <summary>
+        /// Indicator showing the hero's max health.
+        /// </summary>
         public Image MaxHealthIndicator;
+        /// <summary>
+        /// Indicator showing the hero's current health.
+        /// </summary>
         public Image CurrentHealthIndicator;
+        /// <summary>
+        /// A border around the hero. Colored green if the hero is selected.
+        /// </summary>
         public Image Border;
 
-        // Used to detect doubleClick
+        /// <summary>
+        /// When was the last time we clicked on the portrait.
+        /// Used to detect doubleClick.
+        /// </summary>
         private float lastPortraitClickTime;
+        /// <summary>
+        /// How quickly after another must clicks happen to be considered a double click.
+        /// Used to detect doubleClick.
+        /// </summary>
         private const float DoubleClickTime = 0.25f;
-
+        /// <summary>
+        /// Component that can move the camera around, used to quickly pan to hero on double click on portrait.
+        /// </summary>
         private CameraMovement cameraMovement;
+        /// <summary>
+        /// The component which can play the voices of the character.
+        /// </summary>
         private CharacterVoiceController heroVoiceController;
+        /// <summary>
+        /// Class used to handle usage of skills from UI.
+        /// When the player clicks on a skill, we let this component know that the player is using that skill from UI.
+        /// </summary>
         private SkillFromUiIconClickController skillFromUiIconClickController;
-
+        /// <summary>
+        /// Called before the first update. Finds references to dependencies.
+        /// </summary>
         void Start()
         {
             combatantsManager = FindObjectOfType<CombatantsManager>();
             cameraMovement = FindObjectOfType<CameraMovement>();
             skillFromUiIconClickController = FindObjectOfType<SkillFromUiIconClickController>();
         }
-
+        /// <summary>
+        /// Called every frame. Update all the properties to match the hero's state.
+        /// </summary>
         public void Update()
         {
             if (RepresentedHero == null)

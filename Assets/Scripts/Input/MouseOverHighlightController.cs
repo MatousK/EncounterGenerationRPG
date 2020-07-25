@@ -9,11 +9,18 @@ using UnityEngine;
 
 namespace Assets.Scripts.Input
 {
-    // HighlightableObject's update will clear the IsHighlighted flag, LateUpdate will apply it.
+
+    /// <summary>
+    /// This will check whether there is currently a character under the cursor and it will highlight it if possible.
+    /// Why the execute after attribute - HighlightableObject's update will always clear the IsHighlighted flag, of that class LateUpdate will apply it.
+    /// This way this controller can only highlight the things under the cursor, as everything is unhighlighted every frame.
+    /// </summary>
     [ExecuteAfter(typeof(HighlightableObject))]
     class MouseOverHighlightController: MonoBehaviour
     {
-
+        /// <summary>
+        /// Called every frame. Checks if there is something highlightable under the cursor. If yes, highlight it.
+        /// </summary>
         private void Update()
         {
             // Raycast to see what's under cursor

@@ -5,10 +5,20 @@ using UnityEngine;
 
 namespace Assets.Scripts.Environment
 {
+    /// <summary>
+    /// This manager goes through the room layout information from the dungeon generator and makes sure each room contains the chests with correct drop types.
+    /// The room templates contain more treasure chests than needed, this class disables those chests that are unused.
+    /// </summary>
     class TreasureChestManager : MonoBehaviour
     {
+        /// <summary>
+        /// If true, this object already did its initialization logic.
+        /// Hack to ensure that this class will eventually mark the chests as impassable, either when it is initialized or when the pathfinding map is initialized.
+        /// </summary>
         private bool didInitialize;
-
+        /// <summary>
+        /// Called before the first frame, sets the drop rate for all chests and disable the unused ones.
+        /// </summary>
         void Start()
         {
             // In every room there are some treasures placed by the designer.
@@ -17,7 +27,7 @@ namespace Assets.Scripts.Environment
 
             var roomLayout = FindObjectOfType<RoomsLayout>();
             var allTreasureChests = FindObjectsOfType<TreasureChest>();
-            // We go through the chests one by one, depending on room in which they belong.
+            // Group the treasure chests by rooms and then process the chests spawned in each of these rooms.
             var perRoomTreasureChests = allTreasureChests.GroupBy(chest => chest.GetComponent<RoomInfoComponent>().RoomIndex);
             foreach (var chestGroup in perRoomTreasureChests)
             {
@@ -31,7 +41,7 @@ namespace Assets.Scripts.Environment
                 {
                     roomTreasureChests[i].gameObject.SetActive(false);
                 }
-                // Set drops for chests.
+                // Set drops for chests. we want to keep
                 for (int i = 0; i < treasuresToKeepCount; ++i)
                 {
                     if (i < chestRoom.HealthBonusTreasureChests)
@@ -52,7 +62,10 @@ namespace Assets.Scripts.Environment
             didInitialize = true;
             UpdatePathfindingMap();
         }
-
+        /// <summary>
+        /// Updates the pathfinding map. Called automatically after <see cref="Start"/> finishes, but can be called also from the <see cref="PathfindingMapController"/> if it is initialized after this object.
+        /// Marks the squares with chests as impassable.
+        /// </summary>
         public void UpdatePathfindingMap()
         {
             var pathfindingMapController = FindObjectOfType<PathfindingMapController>();

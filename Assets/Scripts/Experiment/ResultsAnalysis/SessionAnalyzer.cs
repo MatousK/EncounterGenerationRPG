@@ -12,18 +12,36 @@ using UnityEngine;
 
 namespace Assets.Scripts.Experiment.ResultsAnalysis
 {
+    /// <summary>
+    /// Analyzes a single session. Goes only through the CSV data from the analytics backend.
+    /// Initializes output directory, stores the raw data there and does the matrix reconstruction if requested.
+    /// Destroys itself once done.
+    /// </summary>
     class SessionAnalyzer: MonoBehaviour
     {
+        /// <summary>
+        /// Paths for output and input file of the result analysis
+        /// </summary>
         public ResultAnalysisConfiguration Configuration;
+        /// <summary>
+        /// If true, this analyzer should also reconstruct the matrix as it developed throughout the session and save the visualizations.
+        /// </summary>
         public bool ShouldReconstructMatrix;
-        public string ResultsRootDirectory;
+        /// <summary>
+        /// The component responsible for reconstructing the matrix. Null if reconstruction is done or not required.
+        /// </summary>
         MatrixReconstructionManager matrixReconstructionManager;
+        /// <summary>
+        /// Starts the analysis. Once done, the object destroys itself.
+        /// </summary>
+        /// <param name="lines">All lines in the current session which this class should analyze.</param>
+        /// <param name="initialDifficultyMatrix">The matrix to be used as the initial matrix for the reconstruction.</param>
         public void AnalyzeSession(List<CsvLine> lines, EncounterDifficultyMatrix initialDifficultyMatrix)
         {
             var sessionGroup = GetGroup(lines);
             int levelsCompleted = lines.Count(line => line is LevelLoadStartedLine);
             var resultsFolder = GetSessionResultsFolder(sessionGroup, levelsCompleted, lines.First().UserId, lines.First().Version);
-            System.IO.Directory.CreateDirectory(resultsFolder);
+            Directory.CreateDirectory(resultsFolder);
             if (ShouldReconstructMatrix)
             {
                 matrixReconstructionManager = gameObject.AddComponent<MatrixReconstructionManager>();
@@ -34,15 +52,24 @@ namespace Assets.Scripts.Experiment.ResultsAnalysis
             }
             SaveAllSessionLines(lines, resultsFolder);
         }
-
+        /// <summary>
+        /// Called every frame, if we did not have to reconstruct the matrix or if it is done, destroy self.
+        /// </summary>
         private void Update()
         {
             if (matrixReconstructionManager == null)
             {
-                Destroy(this.gameObject);
+                Destroy(gameObject);
             }
         }
-
+        /// <summary>
+        /// Get the output folder for the given parameters for this result analysis.
+        /// </summary>
+        /// <param name="group">Group to which the session belongs to.</param>
+        /// <param name="levelsCompleted">How many levels were completed during the session.</param>
+        /// <param name="userId">The ID of the user.</param>
+        /// <param name="version">The version of the experiment.</param>
+        /// <returns>The folder where the output data for this session should be stored.</returns>
         private string GetSessionResultsFolder(SessionGroup group, int levelsCompleted, string userId, int version)
         {
             string groupHumanReadableName = "";
@@ -61,11 +88,16 @@ namespace Assets.Scripts.Experiment.ResultsAnalysis
                     groupHumanReadableName = Configuration.InvalidValuesGroupName;
                     break;
             }
-            return $"{ResultsRootDirectory}/v{version}/{groupHumanReadableName}/{levelsCompleted}/{userId}/";
+            return $"{Configuration.ResultsRootDirectory}/v{version}/{groupHumanReadableName}/{levelsCompleted}/{userId}/";
         }
-
+        /// <summary>
+        /// Determine the experiment group of the current session.
+        /// </summary>
+        /// <param name="lines">All lines in the experiment.</param>
+        /// <returns>The experiment group this session belongs to.</returns>
         private SessionGroup GetGroup(List<CsvLine> lines)
         {
+            // First, check for NaN, which are the sign of the bug that screwed up the matrix.
             if (lines.Any(line =>
             {
                 var combatLine = line as CombatOverLine;
@@ -80,6 +112,7 @@ namespace Assets.Scripts.Experiment.ResultsAnalysis
             while (++currentLineIndex < lines.Count && !(lines[currentLineIndex] is CombatOverLine)) ;
             if (currentLineIndex >= lines.Count)
             {
+                // We did not an end of combat after tutorial. So the user did not finish the tutorial.
                 return SessionGroup.TutorialOnly;
             }
             else
@@ -87,7 +120,11 @@ namespace Assets.Scripts.Experiment.ResultsAnalysis
                 return (lines[currentLineIndex] as CombatOverLine).WasStaticEncounter ? SessionGroup.FirstStaticThenGenerated : SessionGroup.FirstGeneratedThenStatic;
             }
         }
-    
+        /// <summary>
+        /// Dumps all the lines in the output directory.
+        /// </summary>
+        /// <param name="lines">All the CSV lines for this session..</param>
+        /// <param name="resultsFolder">Folder where we should dump those.</param>
         private void SaveAllSessionLines(List<CsvLine> lines, string resultsFolder)
         {
             var rawDataFilename = resultsFolder + Configuration.ProcessedRawDataFileName;

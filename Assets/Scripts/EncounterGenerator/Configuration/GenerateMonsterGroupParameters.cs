@@ -5,12 +5,12 @@ using UnityEngine;
 namespace Assets.Scripts.EncounterGenerator.Configuration
 {
     /// <summary>
-    /// Parameters used for generating a group of monsters.
+    /// Parameters passed to the <see cref="MonsterGroup"/>. Specify what monsters the monster group should generate.
     /// </summary>
     public struct GenerateMonsterGroupParameters
     {
         /// <summary>
-        /// How monsters with which roles should be generated.
+        /// The monsters we should generate - how many monsters of each monster type should be returned.
         /// </summary>
         public EncounterDefinition RequestedMonsters;
         /// <summary>

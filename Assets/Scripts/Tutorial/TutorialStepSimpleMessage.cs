@@ -10,14 +10,23 @@ using UnityEngine;
 
 namespace Assets.Scripts.Tutorial
 {
+    /// <summary>
+    /// <inheritdoc/>
+    /// This is a generic component for a step which only displays the message and can be dismissed by clicking anywhere.
+    /// </summary>
     public class TutorialStepSimpleMessage: TutorialStepWithMessageBoxBase
     {
 
+        /// <summary>
+        /// <inheritdoc/>
+        /// </summary>
         protected override void Start()
         {
             base.Start();
         }
-
+        /// <summary>
+        /// Executed every frame. Dismisses the message box if the player is presses anything.
+        /// </summary>
         private void Update()
         {
             if (didMessageBoxAppear && UnityEngine.Input.anyKeyDown && !completedTutorialAction)
@@ -27,6 +36,9 @@ namespace Assets.Scripts.Tutorial
             }
         }
 
+        /// <summary>
+        /// <inheritdoc/>
+        /// </summary>
         protected override void OnDestroy()
         {
             base.OnDestroy();

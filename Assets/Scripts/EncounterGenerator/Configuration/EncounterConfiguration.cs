@@ -14,7 +14,7 @@ namespace Assets.Scripts.EncounterGenerator.Configuration
         /// </summary>
         public EncounterDifficulty EncounterDifficulty;
         /// <summary>
-        /// Specifies which monsters should spawn in this room.
+        /// Specifies which monsters can spawn in this room.
         /// </summary>
         public List<MonsterGroupDefinition> MonsterGroupDefinitions;
     }

@@ -26,15 +26,27 @@ namespace Assets.Scripts.Input
         /// Called when a character gets close enough to trigger the interaction. The argument is the character who triggered the interaction.
         /// </summary>
         public event EventHandler<Hero> OnInteractionTriggered;
-
+        /// <summary>
+        /// The effect that indicates that the object is usable.
+        /// This class controls whether it should be active or not.
+        /// </summary>
         private InteractableObjectShimmer shimmerEffect;
+        /// <summary>
+        /// Contains reference to all combatants in the game.
+        /// Used to detect whether we are in combat.
+        /// </summary>
         private CombatantsManager combatantsManager;
+        /// <summary>
+        /// Called before the first frame update. Initializes references to dependencies.
+        /// </summary>
         private void Start()
         {
             combatantsManager = FindObjectOfType<CombatantsManager>();
             shimmerEffect = GetComponentInChildren<InteractableObjectShimmer>();
         }
-
+        /// <summary>
+        /// Called every frame. Updates whether the shimmer animation should be playing right now.
+        /// </summary>
         private void Update()
         {
             if (shimmerEffect == null)
@@ -47,6 +59,7 @@ namespace Assets.Scripts.Input
 
         /// <summary>
         /// Starts the interaction with this object by the hero if possible.
+        /// Only does something if the hero is close enough to the object.
         /// </summary>
         /// <param name="interactingHero">The hero who wishes to interact with this object.</param>
         /// <returns>True if the interaction was successful, otherwise false.</returns>
@@ -64,7 +77,12 @@ namespace Assets.Scripts.Input
             OnInteractionTriggered(this, interactingHero);
             return true;
         }
-
+        /// <summary>
+        /// Return true if the hero is close enough to the object to trigger interaction.
+        /// If he is not, someone should order the hero to move here.
+        /// </summary>
+        /// <param name="hero">The hero who wants to interact.</param>
+        /// <returns>True if the hero is close enough to the object, otherwise false.</returns>
         public bool IsHeroCloseToInteract(Hero hero)
         {
             if (GetComponent<Collider2D>() != null)

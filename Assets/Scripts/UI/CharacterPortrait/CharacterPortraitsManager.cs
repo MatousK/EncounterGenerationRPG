@@ -5,13 +5,28 @@ using UnityEngine;
 
 namespace Assets.Scripts.UI.CharacterPortrait
 {
+    /// <summary>
+    /// This component assigns to character containers and skill containers the appropriate hero they represent.
+    /// </summary>
     public class CharacterPortraitsManager: MonoBehaviour
     {
+        /// <summary>
+        /// Ordered list of available portrait widgets.
+        /// Must be in the same order as <see cref="AvailableSkillsContainers"/>.
+        /// </summary>
         public List<CharacterPortrait> AvailablePortraitWidgets;
+        /// <summary>
+        /// Ordered list of available containers which display the skills of some hero..
+        /// Must be in the same order as <see cref="AvailablePortraitWidgets"/>.
+        /// </summary>
         public List<HeroSkillsContainer> AvailableSkillsContainers;
+        /// <summary>
+        /// The class which knows about all combatants in the game.
+        /// </summary>
         private CombatantsManager combatantsManager;
-
-        
+        /// <summary>
+        /// Update the heroes the portraits are showing.
+        /// </summary>
         void Update()
         {
             if (combatantsManager == null)
@@ -25,7 +40,9 @@ namespace Assets.Scripts.UI.CharacterPortrait
             }
             UpdatePortraits();
         }
-
+        /// <summary>
+        /// For each portrait and skill container, update the combatant class it is representing.
+        /// </summary>
         void UpdatePortraits()
         {
             UnityEngine.Debug.Assert(AvailableSkillsContainers.Count == AvailablePortraitWidgets.Count);

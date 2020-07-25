@@ -3,25 +3,61 @@ using UnityEngine;
 
 namespace Assets.Scripts.UI
 {
+    /// <summary>
+    /// Draws a circle under a character.
+    /// If there is some sprite renderer on this game object or parent, goes uses its sorting layer attributes. 
+    /// This makes the circle appear under the character so he blocks it.
+    /// </summary>
     [ExecuteAfter(typeof(CommandConfirmationIndicator))]
     public class Circle : MonoBehaviour
     {
+        /// <summary>
+        /// If true, this circle is visible right now.
+        /// </summary>
         public bool IsVisible = true;
+        /// <summary>
+        /// The material used to draw the circle.
+        /// </summary>
         public Material LineMaterial;
+        /// <summary>
+        /// Number of lines that should be used to draw the circle.
+        /// </summary>
         public int Segments = 360;
+        /// <summary>
+        /// Radius of the circle.
+        /// </summary>
         public float Radius;
+        /// <summary>
+        /// Width of the circle.
+        /// </summary>
         public float LineWidth;
+        /// <summary>
+        /// The renderer used to drawn this circle.
+        /// </summary>
         LineRenderer line;
+        /// <summary>
+        /// What was the radius in the last frame. If it changed, update the line representing the circle.
+        /// </summary>
         float? lastFrameRadius;
+        /// <summary>
+        /// What was the number of segments which was representing this circle in the last frame.
+        /// If it changed, update the line representing the circle.
+        /// </summary>
         int? lastFrameSegments;
 
-        // Start is called before the first frame update
+        /// <summary>
+        /// Start is called before the first frame update.
+        /// Draws the circle based on the class configuration.
+        /// </summary>
         void Start()
         {
-            DrawCircle(gameObject);
+            DrawCircle();
         }
 
-        // Update is called once per frame
+        /// <summary>
+        /// Update is called once per frame. 
+        /// Updates the drawn circle to fit the class configuration.
+        /// </summary>
         void Update()
         {
             UpdateCircleProperties();
@@ -29,13 +65,16 @@ namespace Assets.Scripts.UI
             lastFrameRadius = Radius;
             lastFrameSegments = Segments;
         }
-
-        private void DrawCircle(GameObject container)
+        /// <summary>
+        /// Draws the initial circle around the character.
+        /// Adds the line renderer and initializes the correct sorting order and material.
+        /// </summary>
+        private void DrawCircle()
         {
             line = GetComponent<LineRenderer>();
             if (line == null)
             {
-                line = container.AddComponent<LineRenderer>();
+                line = gameObject.AddComponent<LineRenderer>();
             }
             var spriteRenderer = GetComponentInParent<SpriteRenderer>();
             if (spriteRenderer != null)
@@ -47,7 +86,9 @@ namespace Assets.Scripts.UI
             line.useWorldSpace = false;
             UpdateCircleProperties();
         }
-
+        /// <summary>
+        /// Update the circle to fit the class settings.
+        /// </summary>
         private void UpdateCircleProperties()
         {
             line.startWidth = LineWidth;
@@ -57,7 +98,9 @@ namespace Assets.Scripts.UI
                 UpdateCirclePoints();
             }
         }
-
+        /// <summary>
+        /// Updates the path that makes up the circle in the line renderer.
+        /// </summary>
         void UpdateCirclePoints()
         {
             line.positionCount = Segments + 1;

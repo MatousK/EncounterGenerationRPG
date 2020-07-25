@@ -10,9 +10,21 @@ using Assets.Scripts.Input;
 
 namespace Assets.Scripts.Tutorial
 {
+    /// <summary>
+    /// <inheritdoc/>
+    /// This step gives the player info about enemy skills and then sends him to combat.
+    /// This step will end when the player stats a combat.
+    /// </summary>
     class TutorialStepStartFight : TutorialStepWithMessageBoxBase
     {
+        /// <summary>
+        /// The class which knows about all combatants in the game. Used to detect start of combat.
+        /// </summary>
         private CombatantsManager combatantsManager;
+        /// <summary>
+        /// <inheritdoc/>
+        /// Enables doors so the player can enter the room with combat.
+        /// </summary>
         protected override void Start()
         {
             base.Start();
@@ -23,7 +35,9 @@ namespace Assets.Scripts.Tutorial
             }
 
         }
-
+        /// <summary>
+        /// Executed every frame. Once a combat is over, ends this tutorial step.
+        /// </summary>
         private void Update()
         {
             if (!completedTutorialAction && combatantsManager.IsCombatActive)
@@ -33,6 +47,9 @@ namespace Assets.Scripts.Tutorial
             }
         }
 
+        /// <summary>
+        /// <inheritdoc/>
+        /// </summary>
         protected override void OnDestroy()
         {
             base.OnDestroy();

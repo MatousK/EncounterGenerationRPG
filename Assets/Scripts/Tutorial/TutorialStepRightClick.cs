@@ -8,9 +8,17 @@ using Assets.Scripts.Environment;
 
 namespace Assets.Scripts.Tutorial
 {
+    /// <summary>
+    /// <inheritdoc/>
+    /// Meant to teach the player about right clicking. Ends when the user opens the doors out of the starting room.
+    /// </summary>
     class TutorialStepRightClick : TutorialStepWithMessageBoxBase
     {
         private Doors[] allDoors;
+        /// <summary>
+        /// <inheritdoc/>
+        /// Enables left and right clicking.
+        /// </summary>
         protected override void Start()
         {
             base.Start();
@@ -19,7 +27,9 @@ namespace Assets.Scripts.Tutorial
             allDoors = FindObjectsOfType<Doors>();
 
         }
-
+        /// <summary>
+        /// Executed every frame. If it finds some opened doors, ends the current step.
+        /// </summary>
         private void Update()
         {
             if (!completedTutorialAction && allDoors.Any(door => door.IsOpened))
@@ -28,7 +38,9 @@ namespace Assets.Scripts.Tutorial
                 completedTutorialAction = true;
             }
         }
-
+        /// <summary>
+        /// <inheritdoc/>
+        /// </summary>
         protected override void OnDestroy()
         {
             base.OnDestroy();

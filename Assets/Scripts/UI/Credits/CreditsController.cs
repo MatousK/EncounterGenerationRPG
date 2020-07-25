@@ -12,20 +12,32 @@ using UnityEngine.SceneManagement;
 
 namespace Assets.Scripts.UI.Credits
 {
+    /// <summary>
+    /// Scrolls the credits up until they completely disappears. Then we reset everything about the session and open main menu
+    /// </summary>
     public class CreditsController: MonoBehaviour
     {
+        /// <summary>
+        /// How fast should the credits scroll.
+        /// </summary>
         public float scrollSpeed = 10;
+        /// <summary>
+        /// The object containing the scrolled text.
+        /// </summary>
         public GameObject ScrollText;
-        private double animationStart;
+        /// <summary>
+        /// Called before the first update. Teleports the credits so they are just below the screen.
+        /// </summary>
         private void Start()
         {
-            animationStart = Time.unscaledTime;
             var canvasTransform = transform as RectTransform;
             var canvasHeight = canvasTransform.sizeDelta.y;
             var scrollTransform = ScrollText.transform as RectTransform;
             scrollTransform.anchoredPosition = new Vector2(scrollTransform.anchoredPosition.x, -canvasHeight);
         }
-
+        /// <summary>
+        /// Called every frame. Moves the credits slightly up. If we got out of bounds and the entire credits scrolled, call <see cref="CreditsOver"/>
+        /// </summary>
         private void Update()
         {
             var scrollTransform = ScrollText.transform as RectTransform;
@@ -37,7 +49,10 @@ namespace Assets.Scripts.UI.Credits
                 CreditsOver();
             }
         }
-
+        /// <summary>
+        /// Call when the credits are over.
+        /// Reset everything that should not persist between sessions - experiment group, analytics and matrix - and open main menu.
+        /// </summary>
         public void CreditsOver()
         {
             // Reset data - generate new AB testing group, generate new GUID, reset the matrix.

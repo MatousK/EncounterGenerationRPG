@@ -8,8 +8,14 @@ using UnityEngine;
 
 namespace Assets.Scripts.Input
 {
+    /// <summary>
+    /// Allows the player to select heroes by pressing keys 1, 2 or 3.
+    /// </summary>
     class KeyboardHeroSelectionController: MonoBehaviour
     {
+        /// <summary>
+        /// Called ever frame to detect key presses.
+        /// </summary>
         private void Update()
         {
             if (UnityEngine.Input.GetKeyUp(KeyCode.Alpha1))
@@ -25,7 +31,10 @@ namespace Assets.Scripts.Input
                 SelectHero(2);
             }
         }
-
+        /// <summary>
+        /// Selects the hero with the specified index in the <see cref="CombatantsManager"/>. 
+        /// </summary>
+        /// <param name="index">Index of the hero to select.</param>
         private void SelectHero(int index)
         {
             var combatantsManager = FindObjectOfType<CombatantsManager>();

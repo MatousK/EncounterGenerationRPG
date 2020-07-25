@@ -9,11 +9,14 @@ using UnityEngine;
 
 namespace Assets.Scripts.GameFlow
 {
+    /// <summary>
+    /// Everything the level loader needs to know about a level to load it.
+    /// </summary>
     [CreateAssetMenu(menuName = "Encounter generator/Level Definition", fileName = "LevelDefinition")]
     public class LevelDefinition: ScriptableObject
     {
         /// <summary>
-        /// If true, doors should use alternate colors to specify difficulty. 
+        /// If true, doors should use alternate colors to indicate difficulty. 
         /// </summary>
         public bool UseAlternateDoorColors;
         /// <summary>
@@ -30,7 +33,7 @@ namespace Assets.Scripts.GameFlow
         /// </summary>
         public SceneType Type;
         /// <summary>
-        /// When this level is loaded, one of these graphs will be used to generate the level.
+        /// When this level is loaded, one of these graphs will be selected at random and used to generate the level.
         /// </summary>
         public LevelGraph[] PossibleLevelGraphs;
         /// <summary>
@@ -38,18 +41,29 @@ namespace Assets.Scripts.GameFlow
         /// </summary>
         [TextArea(0,10)]
         public string[] IntroTexts;
-
+        /// <summary>
+        /// Settings which are dependent on the experiment group.
+        /// We cannot use dictionary, as dictionaries are not visible in editor.
+        /// </summary>
         public List<ExperimentConfiguration> ExperimentGroupConfigurations;
     }
-
+    /// <summary>
+    /// Information about a level which are relevant only to a certain experiment group.
+    /// </summary>
     [Serializable]
     public class ExperimentConfiguration
     {
+        /// <summary>
+        /// The experiment group for which these settings apply.
+        /// </summary>
         public ExperimentGroup ExperimentGroup;
+        /// <summary>
+        /// The algorithm that should be used in this level.
+        /// </summary>
         public EncounterGenerationAlgorithmType Algorithm;
         /// <summary>
         /// If not empty, this is a link to the survey to be taken at the start of this level.
         /// </summary>
-        public String SurveyLink;
+        public string SurveyLink;
     }
 }

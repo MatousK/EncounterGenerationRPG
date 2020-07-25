@@ -2,9 +2,18 @@
 
 namespace Assets.Scripts.Movement
 {
+    /// <summary>
+    /// Calculates the velocity of the character, i.e. how has his position changed since the last frame.
+    /// </summary>
     public class VelocityManager : MonoBehaviour
     {
+        /// <summary>
+        /// The position where we were last frame.
+        /// </summary>
         private Vector2? previousFramePosition = null;
+        /// <summary>
+        /// The current velocity.
+        /// </summary>
         private Vector2 velocity = Vector2.zero;
         // Start is called before the first frame update
         void Start()
@@ -12,7 +21,10 @@ namespace Assets.Scripts.Movement
             previousFramePosition = transform.position;
         }
 
-        // We use late update instead of regular update to allow the movement of actor to occur before calculating velocity.
+        /// <summary>
+        /// Late update is executed after all other update methods.
+        /// We use late update instead of regular update to allow the movement of actor to occur before calculating velocity.
+        /// </summary>
         void LateUpdate()
         {
             Vector2 currentPosition = transform.position;
@@ -26,7 +38,10 @@ namespace Assets.Scripts.Movement
             }
             previousFramePosition = transform.position;
         }
-
+        /// <summary>
+        /// Retrieves the current velocity..
+        /// </summary>
+        /// <returns>The velocity of the character.</returns>
         public Vector2 GetVelocity()
         {
             return velocity;

@@ -7,7 +7,7 @@ using UnityEngine;
 namespace Assets.Scripts.EncounterGenerator.Algorithm
 {
     /// <summary>
-    /// This class can generate monsters for a specified encounter definition.
+    /// This class can generate specific monsters to spawn for a specified encounter definition.
     /// It tries to vary the monsters if possible.
     /// </summary>
     public class MonstersManager
@@ -17,11 +17,11 @@ namespace Assets.Scripts.EncounterGenerator.Algorithm
         /// </summary>
         private readonly Dictionary<GameObject, float> monsterPriorities = new Dictionary<GameObject, float>();
         /// <summary>
-        /// Generates encoutners for the specified encounter definition.
+        /// Generates the monsters to be spawned for the specified encounter definition.
         /// </summary>
         /// <param name="encounterDefinition">Encounter definition for which we want monsters.</param>
         /// <param name="monsterGroupDefinition">The object which specifies which monsters should actually be generated.</param>
-        /// <returns></returns>
+        /// <returns>The list of monsters that should be spawned.</returns>
         public List<GameObject> GenerateMonsters(EncounterDefinition encounterDefinition, MonsterGroupDefinition monsterGroupDefinition)
         {
             var parameters = new GenerateMonsterGroupParameters

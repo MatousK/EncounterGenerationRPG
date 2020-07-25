@@ -5,6 +5,8 @@ namespace Assets.Scripts.EncounterGenerator.Configuration
 {
     /// <summary>
     ///  A class that can calculate the target encounter difficulty for the given party strength.
+    ///  This was designed when we assumed the difficulty would scale with party strength, essentially that the difficulty would be the strength of enemies.
+    ///  Now the only implementation of this class ignores the party parameter.
     /// </summary>
     public abstract class EncounterDifficulty: ScriptableObject
     {

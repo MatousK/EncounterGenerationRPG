@@ -12,9 +12,17 @@ using System.Threading.Tasks;
 
 namespace Assets.Scripts.Experiment.ResultsAnalysis
 {
+    /// <summary>
+    /// This class can parse the general data from the analytics csv line from the server.
+    /// </summary>
     class GeneralDataParser
     {
-
+        /// <summary>
+        /// Load the data from the specified file and parses them.
+        /// </summary>
+        /// <param name="path">The path of where the CSV line is present.</param>
+        /// <param name="skipFirstNLines">This many lines of the output file be skipped. This should be the size of the header.</param>
+        /// <returns>The list of CSV lines in the specified file.</returns>
         public List<CsvLine> LoadGeneralData(string path, int skipFirstNLines = 0)
         {
             List<CsvLine> allCsvLines = new List<CsvLine>();
@@ -33,7 +41,11 @@ namespace Assets.Scripts.Experiment.ResultsAnalysis
             return allCsvLines;
             
         }
-
+        /// <summary>
+        /// Parses the string line into a CSV line of the correct type.
+        /// </summary>
+        /// <param name="line">The line to parse.</param>
+        /// <returns>The CSV line this string represents.</returns>
         private CsvLine ParseLine(string line)
         {
             var csvElements = line.Split(';');
@@ -78,7 +90,15 @@ namespace Assets.Scripts.Experiment.ResultsAnalysis
                     throw new FormatException("CSV is in an invalid format");
             }
         }
-
+        /// <summary>
+        /// Parses the combat over line.
+        /// </summary>
+        /// <param name="csvElements">List of all cells in this CSV line.</param>
+        /// <param name="lineType">The type of the line being parsed.</param>
+        /// <param name="userId">ID of the user who logged this line.</param>
+        /// <param name="timestamp">When was this line logged.</param>
+        /// <param name="line">String representation of the line to be parsed.</param>
+        /// <returns></returns>
         private CombatOverLine ParseCombatLine(string[] csvElements, string lineType, string userId, DateTime timestamp, string line)
         {
             int currentElementIndex = 3;

@@ -7,8 +7,17 @@ using System.Threading.Tasks;
 
 namespace Assets.Scripts.Extension
 {
+    /// <summary>
+    /// Extends the stream reader with methods for handling CSV files.
+    /// </summary>
     static class StreamReaderCsvExtension
     {
+        /// <summary>
+        /// Reads a line from the CSV line and splits them into cells. Allows new lines in cells.
+        /// </summary>
+        /// <param name="reader">The reader reading the CSV.</param>
+        /// <param name="separator">The separator to use in the CSV file.</param>
+        /// <returns>The list of cells in the current row, or empty list if EoF.</returns>
         public static List<string> ReadCsvLine(this StreamReader reader, char separator = ',')
         {
             // Ok, this is really hacky and won't work in all cases, but this is a quick way to get a line from csv line that might containg newlines in a cell between quotes.

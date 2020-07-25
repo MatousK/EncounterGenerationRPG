@@ -16,23 +16,53 @@ using UnityEngine.UIElements;
 
 namespace Assets.Scripts.EncounterGenerator
 {
+    /// <summary>
+    /// The component on the game scene which generates the proper encounters when appropriate.
+    /// </summary>
     class EncounterManager : MonoBehaviour
     {
+        /// <summary>
+        /// The object which can update the matrix when a combat is over.
+        /// </summary>
         public EncounterMatrixUpdater MatrixUpdater { get; private set; }
-
+        /// <summary>
+        /// The object which does the actual encounter generation.
+        /// </summary>
         private EncounterGenerator encounterGenerator;
+        /// <summary>
+        /// Used to access information about all the rooms in the dungeon.
+        /// </summary>
         private RoomsLayout roomsLayout;
+        /// <summary>
+        /// The object which can spawn new combatants in the game.
+        /// </summary>
         private CombatantSpawnManager combatantSpawnManager;
+        /// <summary>
+        /// Knows about all combatants in the game.
+        /// </summary>
         private CombatantsManager combatantsManager;
+        /// <summary>
+        /// Notifies other components about game over and reloaded events.. 
+        /// </summary>
         private GameStateManager gameStateManager;
+        /// <summary>
+        /// The general configuration for the encounter generator.
+        /// </summary>
         private readonly EncounterGeneratorConfiguration generatorConfiguration = EncounterGeneratorConfiguration.CurrentConfig;
+        /// <summary>
+        /// The manager which holds the difficulty matrix that should be used by the encounter generator.
+        /// </summary>
         private DifficultyMatrixProvider difficultyMatrixProvider;
+        /// <summary>
+        /// The object which knows about all levels. Most importantly for this class, it knows which encounters should be generated and which should be static.
+        /// </summary>
         private LevelLoader levelLoader;
-        private AnalyticsService analyticsService;
-
+        /// <summary>
+        /// Called before the first update, finds all dependencies on the scene, attaches to relevant events and creates the <see cref="encounterGenerator"/> and <see cref="MatrixUpdater"/>.
+        /// </summary>
         private void Start()
         {
-            analyticsService = FindObjectsOfType<AnalyticsService>().FirstOrDefault(analytics => !analytics.IsPendingKill);
+            var analyticsService = FindObjectsOfType<AnalyticsService>().FirstOrDefault(analytics => !analytics.IsPendingKill);
             difficultyMatrixProvider =
                 FindObjectsOfType<DifficultyMatrixProvider>().First(provider => !provider.IsPendingKill);
             UnityEngine.Debug.Log($"Encounter manager found matrix: {difficultyMatrixProvider}");
@@ -52,7 +82,11 @@ namespace Assets.Scripts.EncounterGenerator
                 room.IsExploredChanged += OnRoomExplored;
             }
         }
-
+        /// <summary>
+        /// Called when the matrix is changed after combat. Propagates the event to the difficulty matrix updater.
+        /// </summary>
+        /// <param name="sender">Sender of the event.</param>
+        /// <param name="e">Arguments of the event, i.e. what caused the change of the matrix.</param>
         private void MatrixUpdater_MatrixChanged(object sender, MatrixChangedEventArgs e)
         {
             if (difficultyMatrixProvider != null)
@@ -60,17 +94,30 @@ namespace Assets.Scripts.EncounterGenerator
                 difficultyMatrixProvider.OnMatrixChanged(e);
             }
         }
-
+        /// <summary>
+        /// When the game is over, this method logs the results of the combat and says that the party was defeated.
+        /// </summary>
+        /// <param name="sender">The sender of this event.</param>
+        /// <param name="e">Arguments of the event.</param>
         private void GameStateManager_GameOver(object sender, EventArgs e)
         {
             LogCombatResult(true);
         }
-
+        /// <summary>
+        /// When a combat is over, this method logs the result of the combat and says that the party won.
+        /// </summary>
+        /// <param name="sender">The sender of this event.</param>
+        /// <param name="e">Arguments of the event.</param>
         private void CombatantsManager_CombatOver(object sender, EventArgs e)
         {
             LogCombatResult(false);
         }
-
+        /// <summary>
+        /// Called when a room is explored, this method spawns the appropriate monsters in the room.
+        /// This method is responsible for both static and dynamic encounters.
+        /// </summary>
+        /// <param name="sender">Sender of the event.</param>
+        /// <param name="exploredEventArgs">Information about which room was explored.</param>
         private void OnRoomExplored(object sender, RoomExploredEventArgs exploredEventArgs)
         {
             var exploredRoom = (RoomInfo)sender;
@@ -110,19 +157,29 @@ namespace Assets.Scripts.EncounterGenerator
             }
             SpawnMonsters(encounter, sender as RoomInfo, exploredEventArgs.IncomingDoors);
         }
-
+        /// <summary>
+        /// Spawns the <paramref name="monstersToSpawn"/> in a <paramref name="room"/>.
+        /// </summary>
+        /// <param name="monstersToSpawn">Monsters that should be spawned in the room.</param>
+        /// <param name="room">Room in which the monsters should be spawned.</param>
+        /// <param name="incomingDoors">Doors through which the party entered. The monsters will not be spawned too close to those doors if possible.</param>
         private void SpawnMonsters(List<GameObject> monstersToSpawn, RoomInfo room, Doors incomingDoors)
         {
             combatantSpawnManager.SpawnCombatants(monstersToSpawn, room, incomingDoors, 5);
         }
-
+        /// <summary>
+        /// Called when a combat is over, this method instructs the matrix to log the results of the combat.
+        /// </summary>
+        /// <param name="wasGameOver">If true, the party was defeated in this combat.</param>
         private void LogCombatResult(bool wasGameOver)
         {
             var allHeroes = combatantsManager.PlayerCharacters;
             var partyDefinition = new PartyDefinition { PartyMembers = allHeroes };
             MatrixUpdater.CombatOverAdjustMatrix(partyDefinition, wasGameOver);
         }
-
+        /// <summary>
+        /// When destroyed, unsubscribe from all events.
+        /// </summary>
         private void OnDestroy()
         {
             if (roomsLayout != null)

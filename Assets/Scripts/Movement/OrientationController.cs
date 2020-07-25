@@ -2,9 +2,14 @@
 
 namespace Assets.Scripts.Movement
 {
+    /// <summary>
+    /// This component can orient the character some way if he is fighting or moving.
+    /// </summary>
     public class OrientationController : MonoBehaviour
     {
-        // If true, the sprite is mirrored, so our orientations should also be mirrored
+        /// <summary>
+        /// If true, the sprite is mirrored, so our orientations should also be mirrored
+        /// </summary>
         public bool IsSpriteMirrored = false;
         /// <summary>
         /// If set, velocity of this combatant will be ignored and the combatant will orient itself towards the target.
@@ -14,7 +19,9 @@ namespace Assets.Scripts.Movement
         /// If true, orienation should not change;
         /// </summary>
         public bool LockOrientation;
-        // Update is called once per frame
+        /// <summary>
+        /// Update is called once per frame. Calculates the orientation we should have and sets the x scale appropriately.
+        /// </summary>
         void Update()
         {
             if (LockOrientation)
@@ -22,6 +29,7 @@ namespace Assets.Scripts.Movement
                 return;
             }
             var transformMultiplier = IsSpriteMirrored ? -1 : 1;
+            // Calculate where should we look.
             Vector2 orientationVector;
             if (LookAtTarget == null)
             {
@@ -34,6 +42,7 @@ namespace Assets.Scripts.Movement
             if ((orientationVector.x > 0 && transform.localScale.x * transformMultiplier < 0) ||
                 (orientationVector.x < 0 && transform.localScale.x * transformMultiplier > 0))
             {
+                // We are not looking the way we should be looking! Flip the sprite.
                 transform.localScale = new Vector3(transform.localScale.x * -1 * transformMultiplier, transform.localScale.y, transform.localScale.z);
             }
         }
