@@ -14,7 +14,7 @@ Medieval Combat Sounds: https://assetstore.unity.com/packages/audio/sound-fx/wea
 Magic Spells Sound Effects: https://assetstore.unity.com/packages/audio/sound-fx/magic-spells-sound-effects-114628
 
 LITE - Fantasy - Headstrong Archer Character Voice Sound Pack: https://bobfeeservo.itch.io/lite-fantasy-headstrong-archer-character-voice-sound-pack
-This pack is not from the Asset Store. It provides the ranger voice and is more difficult to install. In Assets\Sounds\Voices\Ranger you will find .meta files corresponding to the audio files. You will have to find the corresponding .wav files in the voice pack and copy them next to the .meta files.
+This pack is not from the Asset Store. It provides the ranger voice. Copy the back to Assets\Sounds\Voices\Ranger. There will already be a Archer Sound Pack LITE folder. Make sure to copy the files to the same file structure.
 
 # Documentation
 I feel that thorough documentation of the algorithm would be reduntant. Once my thesis is available online, I will add a link to it.
