@@ -66,7 +66,9 @@ namespace Assets.Scripts.Combat
             }
             lastFrameCombatActive = IsCombatActive;
         }
-
+        /// <summary>
+        /// Destroys the objects of all player characters and clears <see cref="PlayerCharacters"/>.
+        /// </summary>
         public void DestroyPlayerCharacters()
         {
             foreach (var playerCharacter in PlayerCharacters)

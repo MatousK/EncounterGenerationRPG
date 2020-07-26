@@ -14,6 +14,9 @@
         /// The rank of the monster, how powerful it is.
         /// </summary>
         public MonsterRank Rank;
+        /// <summary>
+        /// <inheritdoc/>
+        /// </summary>
         protected override void Awake()
         {
             base.Awake();
@@ -21,12 +24,17 @@
             DamageMaxHitPointsDirectly = true;
         }
 
+        /// <summary>
+        /// <inheritdoc/>
+        /// </summary>
         protected override void Start()
         {
             base.Start();
             CombatantsManager.Enemies.Add(this);
         }
-        // Update is called once per frame
+        /// <summary>
+        /// <inheritdoc/>
+        /// </summary>
         protected override void Update()
         {
             base.Update();

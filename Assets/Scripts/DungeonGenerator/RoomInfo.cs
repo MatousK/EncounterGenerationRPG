@@ -86,9 +86,10 @@ namespace Assets.Scripts.DungeonGenerator
         /// </summary>
         public bool IsExplored => isExplored;
         /// <summary>
-        /// Sets this room as explored, optionally setting from which doors the room was explored.
+        /// Sets whether this room is explored or not, optionally setting from which doors the room was explored.
         /// </summary>
         /// <param name="incomingDoors">The doors whose opening explored this room.</param>
+        ///  <param name="isExplored">If true, this room should be marked as explored, otherwise it will be marked as unexplored.</param>
         public void SetRoomExplored(bool isExplored, Doors incomingDoors = null)
         {
             this.isExplored = isExplored;

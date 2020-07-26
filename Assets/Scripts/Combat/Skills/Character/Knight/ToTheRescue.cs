@@ -36,6 +36,9 @@ namespace Assets.Scripts.Combat.Skills.Character.Knight
         /// The grid where the game is taking place.
         /// </summary>
         private Grid mapGrid;
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ToTheRescue"/> class.
+        /// </summary>
         public ToTheRescue()
         {
             Speed = 2;
@@ -44,7 +47,9 @@ namespace Assets.Scripts.Combat.Skills.Character.Knight
         
         }
 
-        // Start is called before the first frame update
+        /// <summary>
+        /// <inheritdoc/>
+        /// </summary>
         protected override void Start()
         {
             base.Start();
@@ -73,7 +78,9 @@ namespace Assets.Scripts.Combat.Skills.Character.Knight
             return toReturn;
         }
 
-        // Update is called once per frame
+        /// <summary>
+        /// <inheritdoc/>
+        /// </summary>
         protected override void Update()
         {
             base.Update();

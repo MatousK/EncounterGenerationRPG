@@ -12,7 +12,7 @@ using UnityEngine;
 namespace Assets.Scripts.EncounterGenerator
 {
     /// <summary>
-    /// The class for parsing the difficulty matrix created by the <see cref="CombatSimulator.CombatSimulator"./>
+    /// The class for parsing the difficulty matrix created by the <see cref="CombatSimulator.CombatSimulator"/>.
     /// </summary>
     public static class DifficultyMatrixParser
     {

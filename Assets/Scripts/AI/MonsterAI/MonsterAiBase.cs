@@ -20,12 +20,16 @@ namespace Assets.Scripts.AI.MonsterAI
         /// The skill an elite monster should start using if its HP fall to low and which a boss should be using as often as possible.
         /// </summary>
         public Skill AdvancedSkill;
-
+        /// <summary>
+        /// <inheritdoc/>
+        /// </summary>
         protected override void Start()
         {
             base.Start();
         }
-
+        /// <summary>
+        /// <inheritdoc/>
+        /// </summary>
         protected override void Update()
         {
             base.Update();

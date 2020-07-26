@@ -14,11 +14,23 @@ namespace Assets.Scripts.Combat
     /// </summary>
     public enum AiTargetPriority
     {
+        /// <summary>
+        /// Low targeting prioririty for the AI.
+        /// </summary>
         Low,
+        /// <summary>
+        /// Medium targeting priority for the AI.
+        /// </summary>
         Medium,
+        /// <summary>
+        /// High targetting priority for the AI.
+        /// </summary>
         High
     }
-
+    /// <summary>
+    /// Represents a single character the hero controls.
+    /// Has information and classes releated to its role in combat.
+    /// </summary>
     public class Hero : CombatantBase
     {
         /// <summary>
@@ -66,20 +78,26 @@ namespace Assets.Scripts.Combat
         /// </summary>
         public GameObject MoveToIndicatorTemplate;
 
-        // Start is called before the first frame update
+        /// <summary>
+        /// <inheritdoc/>
+        /// </summary>
         protected override void Awake()
         {
             base.Awake();
             movementController = GetComponent<MovementController>();
         }
-
+        /// <summary>
+        /// <inheritdoc/>
+        /// </summary>
         protected override void Start()
         {
             base.Start();
             CombatantsManager.PlayerCharacters.Add(this);
         }
 
-        // Update is called once per frame
+       /// <summary>
+       /// <inheritdoc/>
+       /// </summary>
         protected override void Update()
         {
             base.Update();

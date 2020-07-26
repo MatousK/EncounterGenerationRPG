@@ -5,13 +5,17 @@
     /// </summary>
     public class SniperShot : ProjectileAttack
     {
-        // Start is called before the first frame update
+        /// <summary>
+        /// <inheritdoc/>
+        /// </summary>
         protected override void Start()
         {
             base.Start();
         }
 
-        // Update is called once per frame
+        /// <summary>
+        /// <inheritdoc/>
+        /// </summary>
         protected override void Update()
         {
             base.Update();

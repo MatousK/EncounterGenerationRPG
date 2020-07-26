@@ -24,11 +24,16 @@ namespace Assets.Scripts.AI.HeroAI
         /// How dangerous must an enemy be to consider using the single target taunt on him and keeping him taunted forever.
         /// </summary>
         protected const float SingleTauntThreshold = 3f;
+        /// <summary>
+        /// <inheritdoc/>
+        /// </summary>
         protected override void Update()
         {
             base.Update();
         }
-
+        /// <summary>
+        /// <inheritdoc/>
+        /// </summary>
         protected override void Start()
         {
             base.Start();

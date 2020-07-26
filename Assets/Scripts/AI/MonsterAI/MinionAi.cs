@@ -5,11 +5,16 @@
     /// </summary>
     public class MinionAi: MonsterAiBase
     {
+        /// <summary>
+        /// <inheritdoc/>
+        /// </summary>
         protected override void Start()
         {
             base.Start();
         }
-
+        /// <summary>
+        /// <inheritdoc/>
+        /// </summary>
         protected override void Update()
         {
             base.Update();

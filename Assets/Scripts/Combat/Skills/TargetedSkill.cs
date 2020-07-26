@@ -26,6 +26,9 @@ namespace Assets.Scripts.Combat.Skills
         /// Object that can be used to indicate the direction of the attack.
         /// </summary>
         private AttackDirectionIndicator attackDirectionIndicator;
+        /// <summary>
+        /// <inheritdoc/>
+        /// </summary>
         protected override void Start()
         {
             base.Start();
@@ -68,6 +71,10 @@ namespace Assets.Scripts.Combat.Skills
             }
             return Target.transform.position;
         }
+        /// <summary>
+        /// <inheritdoc/>
+        /// </summary>
+        /// <returns><inheritdoc/></returns>
         public override bool IsBeingUsed()
         {
             return Target != null;

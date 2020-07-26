@@ -13,17 +13,23 @@
         /// The indicator which shows how much progress was made. When it matches <see cref="TotalCooldownIndicator"/>, cooldown is over.
         /// </summary>
         public UiBar CooldownProgressIndicator;
-
+        /// <summary>
+        /// <inheritdoc/>
+        /// </summary>
         protected override void Awake()
         {
             base.Awake();
         }
-
+        /// <summary>
+        /// <inheritdoc/>
+        /// </summary>
         protected override void Start()
         {
             base.Start();
         }
-
+        /// <summary>
+        /// <inheritdoc/>
+        /// </summary>
         // Update is called once per frame
         protected override void Update()
         {

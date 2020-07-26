@@ -19,12 +19,17 @@ namespace Assets.Scripts.Combat.Skills
         /// How many squares should the projectile traverse per second.
         /// </summary>
         public float ProjectileSpeed;
+        /// <summary>
+        /// <inheritdoc/>
+        /// </summary>
         protected override void Start()
         {
             DealDamageOnApplySkillEffects = false;
             base.Start();
         }
-
+        /// <summary>
+        /// <inheritdoc/>
+        /// </summary>
         protected override void Update()
         {
             base.Update();

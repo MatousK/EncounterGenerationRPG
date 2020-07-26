@@ -5,6 +5,9 @@
     /// </summary>
     public class ThousandBlades : Attack
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ThousandBlades"/> class.
+        /// </summary>
         public ThousandBlades()
         {
             Cooldown = 5;
@@ -12,13 +15,17 @@
             Speed = 5;
             DamagePerHit = 1;
         }
-        // Start is called before the first frame update
+        /// <summary>
+        /// <inheritdoc/>
+        /// </summary>
         protected override void Start()
         {
             base.Start();
         }
 
-        // Update is called once per frame
+        /// <summary>
+        /// <inheritdoc/>
+        /// </summary>
         protected override void Update()
         {
             base.Update();

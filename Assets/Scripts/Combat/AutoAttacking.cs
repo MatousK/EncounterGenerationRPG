@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Assets.Scripts.Combat
 {
     /// <summary>
-    /// A script which will repeatedly use the basic attack skill on at target if a target is set, targetable and alive.
+    /// A script which will repeatedly use some skill on at target if a target is set, targetable and alive.
     /// </summary>
     class AutoAttacking : MonoBehaviour
     {
@@ -15,7 +15,7 @@ namespace Assets.Scripts.Combat
         [NonSerialized]
         public CombatantBase Target;
         /// <summary>
-        /// The skill used for basic attacks, usually a basic attack.
+        /// The skill used for automatic attacks, usually a basic attack.
         /// </summary>
         public TargetedSkill AutoAttackSkill = null;
         /// <summary>

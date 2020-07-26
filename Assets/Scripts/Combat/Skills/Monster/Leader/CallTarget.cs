@@ -17,12 +17,17 @@ namespace Assets.Scripts.Combat.Skills.Monster.Leader
         /// Determines how long will the target call last.
         /// </summary>
         public float Duration;
-
+        /// <summary>
+        /// <inheritdoc/>
+        /// </summary>
         protected override void Start()
         {
             base.Start();
             combatantsManager = FindObjectOfType<CombatantsManager>();
         }
+        /// <summary>
+        /// <inheritdoc/>
+        /// </summary>
         protected override void Update()
         {
             base.Update();

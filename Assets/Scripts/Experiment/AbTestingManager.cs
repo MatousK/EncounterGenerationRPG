@@ -13,6 +13,9 @@ namespace Assets.Scripts.Experiment
     /// </summary>
     public class AbTestingManager: MonoBehaviour
     {
+        /// <summary>
+        /// If true, this object is about to be destroyed and should not be accessed by anyone.
+        /// </summary>
         [HideInInspector]
         public bool IsPendingKill;
 

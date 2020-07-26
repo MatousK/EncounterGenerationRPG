@@ -32,7 +32,9 @@ namespace Assets.Scripts.Combat.Skills.Character.Knight
         /// The grid representing the game map.
         /// </summary>
         private Grid mapGrid;
-        // Start is called before the first frame update
+        /// <summary>
+        /// <inheritdoc/>
+        /// </summary>
         protected override void Start()
         {
             base.Start();
@@ -40,7 +42,9 @@ namespace Assets.Scripts.Combat.Skills.Character.Knight
             mapGrid = FindObjectOfType<Grid>();
         }
 
-        // Update is called once per frame
+        /// <summary>
+        /// <inheritdoc/>
+        /// </summary>
         protected override void Update()
         {
             base.Update();

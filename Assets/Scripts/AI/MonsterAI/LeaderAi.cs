@@ -22,10 +22,16 @@ namespace Assets.Scripts.AI.MonsterAI
         /// </summary>
         public TargetedSkill TargetHeroSkill;
 
+        /// <summary>
+        /// <inheritdoc/>
+        /// </summary>
         protected override void Start()
         {
             base.Start();
         }
+        /// <summary>
+        /// <inheritdoc/>
+        /// </summary>
         protected override void Update()
         {
             base.Update();

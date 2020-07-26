@@ -7,18 +7,30 @@ namespace Assets.Scripts.Combat.Skills.Monster.Leader
     /// </summary>
     public class HealLightWounds : TargetedGestureSkill
     {
+        /// <summary>
+        /// The amount for which this heal should heal.
+        /// </summary>
         public int HealAmount;
-        // Start is called before the first frame update
+        /// <summary>
+        /// <inheritdoc/>
+        /// </summary>
         protected override void Start()
         {
             base.Start();
         }
 
-        // Update is called once per frame
+        /// <summary>
+        /// <inheritdoc/>
+        /// </summary>
         protected override void Update()
         {
             base.Update();
         }
+        /// <summary>
+        /// <inheritdoc/>
+        /// </summary>
+        /// <param name="sender"><inheritdoc/></param>
+        /// <param name="e"><inheritdoc/></param>
         protected override void ApplySkillEffects(object sender, EventArgs e)
         {
             Target.HealDamage(HealAmount, SelfCombatant);

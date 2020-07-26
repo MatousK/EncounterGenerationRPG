@@ -7,12 +7,17 @@ namespace Assets.Scripts.Combat.Conditions
     /// Stop everything the character was doing. AI will ensure this combatant does nothing.
     /// </summary>
     public class StunCondition: ConditionBase
-    { 
+    {
+        /// <summary>
+        /// <inheritdoc/>
+        /// </summary>
         protected override void Start()
         {
             base.Start();
         }
-
+        /// <summary>
+        /// <inheritdoc/>
+        /// </summary>
         protected override void Update()
         {
             base.Update();

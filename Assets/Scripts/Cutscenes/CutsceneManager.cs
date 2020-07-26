@@ -30,7 +30,7 @@ namespace Assets.Scripts.Cutscenes
         }
         /// <summary>
         /// Adds a cutscene of the specified type to this manager. 
-        /// <paramref name="autoplay"> If true, cutscene should also play immediately.</paramref>>
+        /// <paramref name="autoplay"/> If true, cutscene should also play immediately.
         /// </summary>
         /// <typeparam name="T">The cutscene to play.</typeparam>
         public T InstantiateCutscene<T>(bool autoplay = false) where T: Cutscene

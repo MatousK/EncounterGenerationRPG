@@ -19,11 +19,16 @@ namespace Assets.Scripts.AI.HeroAI
         /// How low must the health of an ally or self be to trigger healing.
         /// </summary>
         protected const float HealThreshold = 0.15f;
+        /// <summary>
+        /// <inheritdoc/>
+        /// </summary>
         protected override void Update()
         {
             base.Update();
         }
-
+        /// <summary>
+        /// <inheritdoc/>
+        /// </summary>
         protected override void Start()
         {
             base.Start();

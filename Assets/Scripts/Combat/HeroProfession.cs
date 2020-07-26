@@ -11,8 +11,17 @@ namespace Assets.Scripts.Combat
     /// </summary>
     public enum HeroProfession
     {
+        /// <summary>
+        /// Ranger, the archer focused on dealing damage.
+        /// </summary>
         Ranger,
+        /// <summary>
+        /// Knight, the fighter focused on absorbing damage and taunting enemies.
+        /// </summary>
         Knight,
+        /// <summary>
+        /// Cleric, focuses on healing allies.
+        /// </summary>
         Cleric
     }
 }

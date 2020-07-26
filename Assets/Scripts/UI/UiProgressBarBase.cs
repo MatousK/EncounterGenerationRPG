@@ -13,6 +13,9 @@ namespace Assets.Scripts.UI
         /// The class representing the combatant. Expected to be in this object or parent.
         /// </summary>
         protected CombatantBase RepresentedCombatant;
+        /// <summary>
+        /// Called when the script instance is being loaded. Finds the references for dependencies on this object only.
+        /// </summary>
         protected virtual void Awake()
         {
             RepresentedCombatant = GetComponentInParent<CombatantBase>();

@@ -28,11 +28,16 @@ namespace Assets.Scripts.AI.HeroAI
         /// The hero this AI controls.
         /// </summary>
         protected Hero ControlledHero => (Hero)ControlledCombatant;
+        /// <summary>
+        /// <inheritdoc/>
+        /// </summary>
         protected override void Update()
         {
             base.Update();
         }
-
+        /// <summary>
+        /// <inheritdoc/>
+        /// </summary>
         protected override void Start()
         {
             base.Start();

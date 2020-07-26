@@ -124,6 +124,7 @@ namespace Assets.Scripts.Experiment.ResultsAnalysis.Model
         /// </summary>
         /// <param name="sw">Output stream where the header will be written.</param>
         /// <param name="separator">CSV separator used.</param>
+        /// <param name="headerPrefix">Each of the header names will be prefixed by this string.</param>
         public static void WriteHeader(StreamWriter sw, string headerPrefix, char separator)
         {
             sw.Write($"{headerPrefix}Rating{separator}");

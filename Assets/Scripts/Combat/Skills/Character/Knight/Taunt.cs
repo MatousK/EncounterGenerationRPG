@@ -20,6 +20,9 @@ namespace Assets.Scripts.Combat.Skills.Character.Knight
         /// An object which knows about the positions of all combatants on the map.
         /// </summary>
         private CombatantsManager combatantsManager;
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Taunt"/> class.
+        /// </summary>
         public Taunt()
         {
             SkillAnimationName = "";
@@ -50,14 +53,18 @@ namespace Assets.Scripts.Combat.Skills.Character.Knight
             SelfCombatant.Attributes.ReceivedDamageMultiplier /= ReceivedDamageModifier;
         }
 
-        // Start is called before the first frame update
+        /// <summary>
+        /// <inheritdoc/>
+        /// </summary>
         protected override void Start()
         {
             base.Start();
             combatantsManager = FindObjectOfType<CombatantsManager>();
         }
 
-        // Update is called once per frame
+        /// <summary>
+        /// <inheritdoc/>
+        /// </summary>
         protected override void Update()
         {
             base.Update();

@@ -18,12 +18,16 @@ namespace Assets.Scripts.AI.MonsterAI
         /// The skill used for teleporting. If null, the lurker will not teleport.
         /// </summary>
         public TargetedSkill TeleportSkill;
-
+        /// <summary>
+        /// <inheritdoc/>
+        /// </summary>
         protected override void Update()
         {
             base.Update();
         }
-
+        /// <summary>
+        /// <inheritdoc/>
+        /// </summary>
         protected override void Start()
         {
             base.Start();

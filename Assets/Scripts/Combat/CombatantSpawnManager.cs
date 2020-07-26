@@ -30,7 +30,10 @@ namespace Assets.Scripts.Combat
         /// </summary>
         private EncounterGeneratorConfiguration generatorConfiguration;
 
-        public void Start()
+        /// <summary>
+        /// Called before first update. Initializes references to dependencies.
+        /// </summary>
+        private void Start()
         {
             generatorConfiguration = EncounterGeneratorConfiguration.CurrentConfig;
         }

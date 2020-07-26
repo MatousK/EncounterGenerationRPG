@@ -51,6 +51,9 @@ namespace Assets.Scripts.Animations
     /// </summary>
     public enum SoundEffectType
     {
+        /// <summary>
+        /// Sound effect of a single foot step.
+        /// </summary>
         Footstep
     }
 }

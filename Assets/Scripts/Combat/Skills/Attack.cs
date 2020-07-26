@@ -15,17 +15,23 @@ namespace Assets.Scripts.Combat.Skills
         /// If true, damage will be automatically dealt when ApplySkillEffects is called.
         /// </summary>
         protected bool DealDamageOnApplySkillEffects = true;
-
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Attack"/> class.
+        /// </summary>
         protected Attack()
         {
             SkillAnimationName = "Attacking";
         }
-
+        /// <summary>
+        /// <inheritdoc/>
+        /// </summary>
         protected override void Start()
         {
             base.Start();
         }
-
+        /// <summary>
+        /// <inheritdoc/>
+        /// </summary>
         protected override void Update()
         {
             base.Update();

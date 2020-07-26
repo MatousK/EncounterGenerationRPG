@@ -9,6 +9,9 @@ namespace Assets.Scripts.Combat.Skills
     /// </summary>
     public abstract class PersonalSkill : Skill
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PersonalSkill"/> class.
+        /// </summary>
         protected PersonalSkill()
         {
             // Usually a personal skill does not block other skills
@@ -31,10 +34,16 @@ namespace Assets.Scripts.Combat.Skills
         {
             TryStartUsingSkill();
         }
+        /// <summary>
+        /// <inheritdoc/>
+        /// </summary>
         protected override void Start()
         {
             base.Start();
         }
+        /// <summary>
+        /// <inheritdoc/>
+        /// </summary>
         protected override void Update()
         {
             base.Update();
@@ -55,12 +64,19 @@ namespace Assets.Scripts.Combat.Skills
         {
             return null;
         }
-
+        /// <summary>
+        /// <inheritdoc/>
+        /// </summary>
+        /// <returns><inheritdoc/></returns>
         public override bool IsBeingUsed()
         {
             return IsActive;
         }
-
+        /// <summary>
+        /// <inheritdoc/>. Does not call base, is disabled for this skill.
+        /// </summary>
+        /// <param name="sender"><inheritdoc/></param>
+        /// <param name="e"><inheritdoc/></param>
         protected override void ApplySkillEffects(object sender, EventArgs e)
         {
             // We do nothing by default, personal skills normally do something only when they start and end.

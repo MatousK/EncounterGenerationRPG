@@ -37,7 +37,7 @@ namespace Assets.Scripts.CombatSimulator
             // To make sure we do not get stuck in a loop in some edge cases, count iterations and break if generating for too long.
             int maxIterationCount = 100000;
             int currentIteration = 0;
-            /// Try adding monsters while we can.
+            // Try adding monsters while we can.
             while (remainingAdjustedMonsterCount > 0 && currentIteration++ < maxIterationCount)
             {
                 // Find the monster that should spawn and spawn it.

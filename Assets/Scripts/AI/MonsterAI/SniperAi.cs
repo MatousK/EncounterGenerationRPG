@@ -9,13 +9,20 @@ namespace Assets.Scripts.AI.MonsterAI
     /// </summary>
     public class SniperAi: MonsterAiBase
     {
-        // Sniper lock to a random target and fire at it until it is dead.
+        /// <summary>
+        /// Sniper lock to a random target and fire at it until it is dead.
+        /// </summary>
         private CombatantBase lockedRandomTarget;
+        /// <summary>
+        /// <inheritdoc/>
+        /// </summary>
         protected override void Update()
         {
             base.Update();
         }
-
+        /// <summary>
+        /// <inheritdoc/>
+        /// </summary>
         protected override void Start()
         {
             base.Start();

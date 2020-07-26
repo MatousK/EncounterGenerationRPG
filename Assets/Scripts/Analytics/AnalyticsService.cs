@@ -235,7 +235,11 @@ namespace Assets.Scripts.Analytics
     [Serializable]
     class AnalyticsResponse
     {
-        // Purposufelly lowercase to match server response.
+        /// <summary>
+        /// The response from the server, true if the result was saved, otherwise false.
+        /// TODO: Retry on failure.
+        ///  Purposefully lowercase to match server response.
+        /// </summary>
         public bool success;
     }
 }

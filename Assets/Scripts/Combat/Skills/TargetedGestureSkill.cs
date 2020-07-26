@@ -5,16 +5,23 @@
     /// </summary>
     public abstract class TargetedGestureSkill : TargetedSkill
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TargetedGestureSkill"/> class.
+        /// </summary>
         protected TargetedGestureSkill()
         {
             SkillAnimationName = "Gesturing";
         }
-
+        /// <summary>
+        /// <inheritdoc/>
+        /// </summary>
         protected override void Start()
         {
             base.Start();
         }
-
+        /// <summary>
+        /// <inheritdoc/>
+        /// </summary>
         protected override void Update()
         {
             base.Update();

@@ -179,6 +179,11 @@ namespace Assets.Scripts.Combat
             LastSkillCooldown = cooldownTime;
             LastSkillRemainingCooldown = cooldownTime;
         }
+        /// <summary>
+        /// Called when the script instance is being loaded.
+        /// Initializes references to dependencies in this object.
+        /// Also initializes hit points.
+        /// </summary>
         protected virtual void Awake()
         {
             MaxHitpoints = TotalMaxHitpoints;
@@ -193,7 +198,9 @@ namespace Assets.Scripts.Combat
             CombatantsManager = FindObjectOfType<CombatantsManager>();
         }
 
-        // Update is called once per frame
+        /// <summary>
+        /// Called every update. Updates cooldowns, regeneration and stops doing everything if dead.
+        /// </summary>
         protected virtual void Update()
         {
             if (IsDown)

@@ -21,10 +21,16 @@ namespace Assets.Scripts.AI.HeroAI
         /// If some enemy is more dangerous than this, it will try to kill him with sniper shot.
         /// </summary>
         const float SniperShotMonsterDangerThreshold = 3;
+        /// <summary>
+        /// <inheritdoc/>
+        /// </summary>
         protected override void Update()
         {
             base.Update();
         }
+        /// <summary>
+        /// <inheritdoc/>
+        /// </summary>
         protected override void Start()
         {
             base.Start();

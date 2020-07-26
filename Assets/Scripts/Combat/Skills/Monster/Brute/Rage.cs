@@ -26,6 +26,9 @@ namespace Assets.Scripts.Combat.Skills.Monster.Brute
         /// </summary>
         SelectableObject selectableComponent;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Rage"/> class.
+        /// </summary>
         public Rage()
         {
             Duration = 5;
@@ -44,6 +47,9 @@ namespace Assets.Scripts.Combat.Skills.Monster.Brute
                 TryStopSkill();
             }
         }
+        /// <summary>
+        /// <inheritdoc/>
+        /// </summary>
         protected override void Start()
         {
             base.Start();

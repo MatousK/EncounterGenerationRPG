@@ -52,7 +52,7 @@ namespace Assets.Scripts.UI
         /// <summary>
         /// Shows a damage indicator showing the character was healed.
         /// </summary>
-        /// <param name="damage">How much damage was healed.</param>
+        /// <param name="healAmount">How much damage was healed.</param>
         public void ShowHealingIndicator(int healAmount)
         {
             ShowDisappearingText("+ " + healAmount.ToString(), Color.green);
