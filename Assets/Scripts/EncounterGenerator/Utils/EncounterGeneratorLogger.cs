@@ -150,7 +150,7 @@ namespace Assets.Scripts.EncounterGenerator.Utils
         /// </summary>
         private void InitTestResultsDirectory()
         {
-            if (ResultsDirectory == null)
+            if (string.IsNullOrEmpty(ResultsDirectory))
             {
                 ResultsDirectory = $"TestResults/{DateTime.Now:yy-MM-dd-HH-mm-ss}/";
                 Directory.CreateDirectory(ResultsDirectory);
