@@ -66,7 +66,7 @@ namespace Assets.Scripts.EncounterGenerator.Utils
             InitTestResultsDirectory();
             if (matrixProvider.CurrentDifficultyMatrix != null)
             {
-                var visualizationFileName = $"{ResultsDirectory}Visualization.bmp";
+                var visualizationFileName = $"{ResultsDirectory}Visualization.png";
                 Task.Run(() => matrixVisualizer.SaveMatrix(visualizationFileName, matrixProvider.CurrentDifficultyMatrix));
             }
         }
@@ -80,7 +80,7 @@ namespace Assets.Scripts.EncounterGenerator.Utils
         public void LogMatrixChange(MatrixChangedEventArgs e, EncounterDifficultyMatrix matrix, bool async)
         {
             LogResult(e);
-            var visualizationFileName = $"{ResultsDirectory}Visualization{currentTestIndex}.bmp";
+            var visualizationFileName = $"{ResultsDirectory}Visualization{currentTestIndex}.png";
             // This will probably take a long time, run on a different thread.
             if (async)
             {
