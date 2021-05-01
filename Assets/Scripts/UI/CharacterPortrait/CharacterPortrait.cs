@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using Assets.Scripts.Camera;
 using Assets.Scripts.Combat;
+using Assets.Scripts.Combat.Conditions;
 using Assets.Scripts.Input;
 using Assets.Scripts.Sound.CharacterSounds;
 using UnityEngine;
@@ -54,6 +55,10 @@ namespace Assets.Scripts.UI.CharacterPortrait
         /// A border around the hero. Colored green if the hero is selected.
         /// </summary>
         public Image Border;
+        /// <summary>
+        /// An icon that appears if the hero is targeted.
+        /// </summary>
+        public TargetedIndicatorIcon TargetedIndicator;
 
         /// <summary>
         /// When was the last time we clicked on the portrait.
@@ -117,6 +122,7 @@ namespace Assets.Scripts.UI.CharacterPortrait
 
             var isSelected = RepresentedHero.GetComponent<SelectableObject>().IsSelected;
             Border.color = isSelected ? Color.green : Color.white;
+            TargetedIndicator.RepresentedHero = RepresentedHero;
         }
         /// <summary>
         ///  Handle click on a hero. This can be both a left click right click, which can select a hero or give a command.

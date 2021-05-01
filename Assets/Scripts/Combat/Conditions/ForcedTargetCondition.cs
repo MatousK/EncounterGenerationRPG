@@ -7,7 +7,7 @@ namespace Assets.Scripts.Combat.Conditions
     /// Helper condition for AI - specifies that the AI of the affected combatant MUST attack the specified player or character for a specified duration.
     /// When another target is called, the most recently applied condition will apply.
     /// </summary>
-    class ForcedTargetCondition : ConditionBase
+    public class ForcedTargetCondition : ConditionBase
     {
         /// <summary>
         /// The target this character must attack at all cost.

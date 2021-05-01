@@ -31,7 +31,7 @@ namespace Assets.Scripts.UI.Skills
         /// <summary>
         /// The UI element which can display the name of this skill.
         /// </summary>
-        public SkillName SkillNameWidget;
+        public ToolTip SkillNameWidget;
         /// <summary>
         /// The overlay which should be used if the skill is being used, by this we mean that he left clicked on it an is selecting the target.
         /// </summary>

@@ -6,7 +6,7 @@ namespace Assets.Scripts.UI.Skills
     /// <summary>
     /// Component for the widget which displays a name of a skill when the player has his cursor over the skill.
     /// </summary>
-    public class SkillName: MonoBehaviour
+    public class ToolTip: MonoBehaviour
     {
         /// <summary>
         /// Name of the skill that should be shown. Internal, do not use, use <see cref="Text"/>.

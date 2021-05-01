@@ -10,6 +10,10 @@ namespace Assets.Scripts.Combat.Conditions
     public abstract class ConditionBase : MonoBehaviour
     {
         /// <summary>
+        /// How long should this condition last total.
+        /// </summary>
+        public float TotalDuration = float.PositiveInfinity;
+        /// <summary>
         /// How much longer should the condition remain active.
         /// </summary>
         public float RemainingDuration = float.PositiveInfinity;
@@ -38,7 +42,10 @@ namespace Assets.Scripts.Combat.Conditions
         /// <summary>
         /// Should be overriden by child classes to apply condition effects.
         /// </summary>
-        protected virtual void StartCondition() { }
+        protected virtual void StartCondition()
+        {
+            TotalDuration = RemainingDuration;
+        }
         /// <summary>
         /// Should be overriden by child classes to end condition effects.
         /// </summary>

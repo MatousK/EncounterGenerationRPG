@@ -13,6 +13,10 @@ namespace Assets.Scripts.Combat
     public class CombatantBase : MonoBehaviour
     {
         /// <summary>
+        /// The name of this combatant that can be shown to the player.
+        /// </summary>
+        public string HumanFriendlyName;
+        /// <summary>
         /// This event is raised whenever the combatant is defeated.
         /// </summary>
         public event EventHandler CombatantDied;
