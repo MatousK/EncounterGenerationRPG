@@ -16,6 +16,10 @@ namespace Assets.Scripts.GameFlow
     public class LevelDefinition: ScriptableObject
     {
         /// <summary>
+        /// In tutorial levels, doors should not be colored.
+        /// </summary>
+        public bool IsTutorialLevel;
+        /// <summary>
         /// If true, doors should use alternate colors to indicate difficulty. 
         /// </summary>
         public bool UseAlternateDoorColors;

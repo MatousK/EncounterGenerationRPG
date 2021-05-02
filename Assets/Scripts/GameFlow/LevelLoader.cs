@@ -63,6 +63,11 @@ namespace Assets.Scripts.GameFlow
         [HideInInspector]
         public bool UseAlternateDoorColors;
         /// <summary>
+        /// In tutorial levels, doors should not have colors.
+        /// </summary>
+        [HideInInspector]
+        public bool IsTutorialLevel;
+        /// <summary>
         /// Which scene should be loaded for the current level.
         /// </summary>
         public SceneType CurrentSceneType;
@@ -188,6 +193,7 @@ namespace Assets.Scripts.GameFlow
             CurrentEncounterGenerationAlgorithm = experimentConfiguration.Algorithm;
             AdjustMatrixForStaticEncounters = level.AdjustMatrixForStaticEncounters;
             UseAlternateDoorColors = level.UseAlternateDoorColors;
+            IsTutorialLevel = level.IsTutorialLevel;
             var surveyLink = experimentConfiguration.SurveyLink;
             // If there is an intro text and/or survey, show it. Otherwise just load the next level.
             if (level.IntroTexts?.Any() == true || !string.IsNullOrEmpty(surveyLink))

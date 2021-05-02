@@ -50,6 +50,11 @@ namespace Assets.Scripts.Environment
         /// </summary>
         void UpdateDoorColor()
         {
+            if (levelLoader.IsTutorialLevel)
+            {
+                // In tutorial levels, we should not modify door colors.
+                return;
+            }
             var indicators = levelLoader.UseAlternateDoorColors ? AlternateDifficultyIndicators : DifficultyIndicators;
             foreach (var indicator in indicators)
             { 

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd2dc783fcdf0d149986347be4f3e720, type: 3}
   m_Name: StoryLevel0-tutorial
   m_EditorClassIdentifier: 
+  IsTutorialLevel: 1
   UseAlternateDoorColors: 0
   AdjustMatrixForStaticEncounters: 1
   ShouldRestoreAfterTutorialStats: 0
@@ -27,17 +28,17 @@ MonoBehaviour:
     even quite close to\nfinally paying off our debt for that dog. You remember the
     dog, right John?\"\n\n\"Only one thing is missing\u201D, he continued.\n\u201CWe
     forgot to write a thesis about any of our adventures! And since we have to write
-    one, I decided that we\u2019ll explore \nthe ancient dungeon of Apdien. Ever since
-    \ the investors lost interest in it, it got filled by all kinds of squatters.\nOrcs,
+    one, I decided that we\u2019ll explore \nthe ancient dungeon of Apdien. Ever
+    since  the investors lost interest in it, it got filled by all kinds of squatters.\nOrcs,
     the undead, goblins... In short, troublemakers. I say we are strong enough to
-    defeat such opponents. And with\na bit of luck, we\u2019ll even discover the secrets
-    that Apdien holds at its end. So, let\u2019s check our equipment one more time\nand
-    find out what evil lurks inside the dungeon!\u201D\r\n\n\u201CWhy do all of your
-    speeches have to drag out for this long?\u201D, John murmured.\r\n\u201CWhat did
-    he say?\u201D, Bob asked.\r\n\nTom let out a deep sigh, turned around and took
-    a first step towards their new adventure. \n\u201CAnd if I am at least a little
-    bit lucky, both of these idiots could get killed down there\u201D, Tom thought
-    on his way out."
+    defeat such opponents. And with\na bit of luck, we\u2019ll even discover the
+    secrets that Apdien holds at its end. So, let\u2019s check our equipment one
+    more time\nand find out what evil lurks inside the dungeon!\u201D\r\n\n\u201CWhy
+    do all of your speeches have to drag out for this long?\u201D, John murmured.\r\n\u201CWhat
+    did he say?\u201D, Bob asked.\r\n\nTom let out a deep sigh, turned around and
+    took a first step towards their new adventure. \n\u201CAnd if I am at least a
+    little bit lucky, both of these idiots could get killed down there\u201D, Tom
+    thought on his way out."
   ExperimentGroupConfigurations:
   - ExperimentGroup: 0
     Algorithm: 0

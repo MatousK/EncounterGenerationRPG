@@ -27,7 +27,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: Boss Room
-  Position: {x: 429, y: 133}
+  Position: {x: 430, y: 132}
   RoomTemplateSets: []
   IndividualRoomTemplates:
   - {fileID: 7563476935698307696, guid: 395e2a830cc104e4a8cae45038b1bd53, type: 3}
@@ -53,7 +53,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: Room
-  Position: {x: 426, y: 285}
+  Position: {x: 427, y: 284}
   RoomTemplateSets: []
   IndividualRoomTemplates: []
   serializedGuid: 00000000000000000000000000000000
@@ -129,7 +129,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: Room
-  Position: {x: 424, y: 216}
+  Position: {x: 425, y: 215}
   RoomTemplateSets: []
   IndividualRoomTemplates: []
   serializedGuid: 00000000000000000000000000000000
@@ -156,7 +156,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: Room
-  Position: {x: 426, y: 360}
+  Position: {x: 427, y: 359}
   RoomTemplateSets: []
   IndividualRoomTemplates: []
   serializedGuid: 00000000000000000000000000000000
@@ -197,7 +197,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: StartingRoom
-  Position: {x: 427, y: 440}
+  Position: {x: 428, y: 439}
   RoomTemplateSets: []
   IndividualRoomTemplates:
   - {fileID: 6966731523498046389, guid: b3cd70b78369f7447acd01a745b94291, type: 3}
