@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Assets.Scripts.GameFlow;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Assets.Scripts.UI.GameOver
 {
@@ -15,6 +16,7 @@ namespace Assets.Scripts.UI.GameOver
     /// </summary>
     class GameOverScreen: MonoBehaviour
     {
+        public Text GameOverHintText;
         /// <summary>
         /// How long will we wait before showing the game over screen after game over.
         /// </summary>
@@ -75,6 +77,8 @@ namespace Assets.Scripts.UI.GameOver
         /// <param name="e">Arguments of the event.</param>
         private void GameStateManager_GameOver(object sender, EventArgs e)
         {
+            var nextHint = FindObjectOfType<GameOverHintManager>().GetNextHint();
+            GameOverHintText.text = nextHint.Text;
             StartCoroutine(StartGameOverAnimation());
         }
         /// <summary>
